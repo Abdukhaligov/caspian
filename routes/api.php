@@ -17,6 +17,8 @@ Route::post('register', 'UserController@register');
 
 Route::get('topics', 'TopicController@index');
 
+
+
 Route::group(['middleware' => ['auth:api']], function(){
 
     Route::post('details', 'UserController@details');

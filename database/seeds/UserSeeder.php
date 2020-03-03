@@ -12,9 +12,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
-            ['name' => 'admin', 'email' => 'admin@a.a', 'password' => bcrypt(123123), 'referred_by' => 6],
-            ['name' => 'manager', 'email' => 'manager@a.a', 'password' => bcrypt(123123), 'referred_by' => 6],
-            ['name' => 'operator', 'email' => 'operator@a.a', 'password' => bcrypt(123123), 'referred_by' => 6],
+            ['name' => 'admin', 'email' => 'admin@a.a', 'password' => bcrypt(123123)],
+            ['name' => 'manager', 'email' => 'manager@a.a', 'password' => bcrypt(123123)],
+            ['name' => 'operator', 'email' => 'operator@a.a', 'password' => bcrypt(123123)],
         ];
 
         DB::table('users')->insert($users);
