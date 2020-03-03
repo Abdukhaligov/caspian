@@ -11,8 +11,7 @@ use Validator;
 
 class UserController extends Controller
 {
-    public function register(Request $request)
-    {
+    public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -30,13 +29,11 @@ class UserController extends Controller
         return response()->json(['success'=>$success], 201);
     }
 
-    public function details()
-    {
+    public function details(){
         $user = Auth::user();
-        $user->roles;
-        return response()->json($user->roles, 201);
-
+        return response()->json($user, 201);
     }
+
     public function login(){
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();

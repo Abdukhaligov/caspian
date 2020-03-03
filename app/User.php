@@ -12,37 +12,6 @@ class User extends Authenticatable
     use HasApiTokens;
     use Notifiable;
 
-    public function roles(){
-        return $this->belongsToMany(Role::class);
-    }
-
-    public function isAdmin(){
-        foreach($this->roles as $struct) {
-            if ("Admin" == $struct->name) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function isManager(){
-        foreach($this->roles as $struct) {
-            if ("Manager" == $struct->name) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function isOperator(){
-        foreach($this->roles as $struct) {
-            if ("Operator" == $struct->name) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     protected $guarded = [];
 
     protected $fillable = [
