@@ -15,11 +15,15 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+
             $table->string('name');
             $table->text('description');
             $table->enum('status',['pending', 'canceled', 'accepted']);
             $table->string('file');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
