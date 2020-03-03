@@ -3,31 +3,26 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Status;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Report extends Resource
+class Membership extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\Report';
+    public static $model = 'App\Models\Membership';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -51,29 +46,8 @@ class Report extends Resource
             Text::make('Name')
                 ->sortable(),
 
-            BelongsTo::make('User')
+            BelongsTo::make('Membership', 'parent')
                 ->sortable(),
-
-
-            Status::make('Status')
-                ->loadingWhen(['pending'])
-                ->failedWhen(['canceled'])
-                ->hideFromDetail()
-                ->sortable(),
-
-
-            Select::make('Status')->options([
-                'pending' => 'pending',
-                'canceled' => 'canceled',
-                'accepted' => 'accepted',
-            ])
-                ->hideFromIndex(),
-
-            DateTime::make('Created At')
-                ->sortable(),
-            DateTime::make('Updated At')
-                ->sortable()
-                ->hideFromIndex(),
         ];
     }
 

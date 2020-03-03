@@ -3,7 +3,9 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
@@ -31,7 +33,8 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-           Boolean::make('is_admin'),
+            Text::make('Phone', 'phone_number')
+                ->sortable(),
 
             Text::make('Email')
                 ->sortable()
@@ -39,10 +42,35 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Text::make('Company')
+                ->sortable()
+                ->hideFromIndex(),
+
+
+            Text::make('Job Title','job_title')
+                ->sortable()
+                ->hideFromIndex(),
+
+
+            BelongsTo::make('Reference', 'referredBy')
+                ->sortable()
+                ->hideFromIndex(),
+
+            BelongsTo::make('Membership', 'memberAs')
+                ->sortable(),
+
+
+            Boolean::make('Administrator rules ', 'is_admin')
+                ->hideFromIndex(),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            DateTime::make('Created At'),
+            DateTime::make('Updated At')
+                ->hideFromIndex(),
         ];
     }
 

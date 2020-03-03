@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Membership extends Model
 {
     public function parent(){
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Membership::class);
     }
 
     public function children(){
-        return $this->hasMany(Topic::class, 'parent_id');
+        return $this->hasMany(Membership::class, 'parent_id');
     }
 
+    public function membership(){
+        return $this->belongsTo(Membership::class);
+
+    }
 }
