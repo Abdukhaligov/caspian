@@ -3,26 +3,26 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Membership extends Resource
+class Partner extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\Membership';
+    public static $model = 'App\Models\Partner';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -41,14 +41,15 @@ class Membership extends Resource
      */
     public function fields(Request $request)
     {
+        //php artisan storage:link
         return [
             ID::make()->sortable(),
+            Image::make('Img'),
+
             Text::make('Name')
                 ->sortable(),
 
-            BelongsTo::make('Membership', 'parent')
-                ->sortable()
-                ->nullable(true),
+            Text::make('Url'),
         ];
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembershipsTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateMembershipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('memberships', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('parent_id')->unsigned()->nullable();
+            $table->string('logo')->nullable();
+            $table->text('description')->nullable();
+            $table->dateTime('date');
+            $table->boolean('active')->default(false);
             $table->timestamps();
-
-            $table->foreign('parent_id')->references('id')->on('memberships');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateMembershipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('memberships');
+        Schema::dropIfExists('events');
     }
 }

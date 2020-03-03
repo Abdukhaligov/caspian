@@ -3,26 +3,29 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Membership extends Resource
+class Event extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\Membership';
+    public static $model = 'App\Models\Event';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -43,12 +46,22 @@ class Membership extends Resource
     {
         return [
             ID::make()->sortable(),
+            Image::make('logo'),
+
             Text::make('Name')
                 ->sortable(),
 
-            BelongsTo::make('Membership', 'parent')
-                ->sortable()
-                ->nullable(true),
+            Textarea::make('Description'),
+
+            Boolean::make('Active')
+                ->sortable(),
+
+            DateTime::make('Date')
+                ->sortable(),
+            DateTime::make('Created At')
+                ->hideFromIndex(),
+            DateTime::make('Updated At')
+                ->hideFromIndex(),
         ];
     }
 
