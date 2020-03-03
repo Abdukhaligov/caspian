@@ -20,12 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('company')->nullable();
             $table->string('job_title')->nullable();
-            $table->integer('noticed_by')->unsigned();
+            $table->integer('referred_by')->unsigned();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
 
-            $table->foreign('noticed_by')->references('id')->on('notices');
+            $table->foreign('referred_by')->references('id')->on('references');
 
             $table->timestamps();
         });

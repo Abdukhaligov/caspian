@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class NoticeSeeder extends Seeder
+class ReferenceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class NoticeSeeder extends Seeder
      */
     public function run()
     {
-        $notices = [
+        $references = [
             ['name' => 'Email Newsletter'],
             ['name' => 'Partners / Acquaintances'],
             ['name' => 'Online advertising'],
@@ -21,7 +21,6 @@ class NoticeSeeder extends Seeder
 
         ];
 
-        DB::table('notices')->insert($notices);
-
+        DB::table('references')->insert($references);
     }
 }

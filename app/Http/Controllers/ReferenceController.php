@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notice;
+use App\Models\Reference;
 use Illuminate\Http\Request;
 
-class NoticeController extends Controller
+class ReferenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class NoticeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Notice  $notice
+     * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function show(Notice $notice)
+    public function show(Reference $reference)
     {
         //
     }
@@ -52,10 +52,10 @@ class NoticeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Notice  $notice
+     * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function edit(Notice $notice)
+    public function edit(Reference $reference)
     {
         //
     }
@@ -64,10 +64,10 @@ class NoticeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Notice  $notice
+     * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Notice $notice)
+    public function update(Request $request, Reference $reference)
     {
         //
     }
@@ -75,10 +75,10 @@ class NoticeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Notice  $notice
+     * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notice $notice)
+    public function destroy(Reference $reference)
     {
         //
     }

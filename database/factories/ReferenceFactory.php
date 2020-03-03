@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Notice;
+use App\Models\Reference;
 use Faker\Generator as Faker;
 
-$factory->define(Notice::class, function (Faker $faker) {
+$factory->define(Reference::class, function (Faker $faker) {
     return [
         //
     ];
