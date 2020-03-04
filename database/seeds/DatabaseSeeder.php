@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ReferenceSeeder::class);
         $this->call(MembershipSeeder::class);
-        $this->call(UserSeeder::class);
         $this->call(TopicSeeder::class);
-
-        factory(\App\User::class,12)->create();
         factory(\App\Models\Topic::class,12)->create();
-        factory(\App\Models\Report::class,12)->create();
 
+        $this->call(UserSeeder::class);
+        factory(\App\User::class,12)->create();
+
+        factory(\App\Models\Report::class,12)->create();
         factory(\App\Models\Partner::class,10)->create();
         factory(\App\Models\Event::class,10)->create();
     }

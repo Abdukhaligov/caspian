@@ -16,6 +16,5 @@ class Membership extends Model
 
     public function membership(){
         return $this->belongsTo(Membership::class);
-
     }
 }

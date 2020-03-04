@@ -12,16 +12,16 @@ class MembershipSeeder extends Seeder
     public function run()
     {
         $memberships = [
-            ['name' => 'Reporter'],
-            ['name' => 'Listener'],
-            ['name' => 'Press'],
             ['name' => 'Guest'],
+            ['name' => 'Listener'],
+            ['name' => 'Reporter'],
+            ['name' => 'Press'],
         ];
         DB::table('memberships')->insert($memberships);
 
         $memberships = [
-            ['name' => 'Speaker', 'parent_id' => 1],
-            ['name' => 'Presenter', 'parent_id' =>1],
+            ['name' => 'Speaker', 'parent_id' => 3],
+            ['name' => 'Presenter', 'parent_id' => 3],
         ];
         DB::table('memberships')->insert($memberships);
     }

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
 
             $table->integer('referred_by')->unsigned()->nullable();
             $table->integer('member_as')->unsigned()->nullable();
+            $table->integer('topic_id')->unsigned()->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('referred_by')->references('id')->on('references');
             $table->foreign('member_as')->references('id')->on('memberships');
+            $table->foreign('topic_id')->references('id')->on('topics');
 
             $table->timestamps();
         });

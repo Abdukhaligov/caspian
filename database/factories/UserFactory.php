@@ -39,6 +39,7 @@ $factory->define(User::class, function (Faker $faker) {
         'job_title' => $faker->jobTitle,
         'referred_by' => rand(1,6),
         'member_as' => rand(1,6),
+        'topic_id' => rand(1,20),
         'password' => bcrypt(123123), // password
         'remember_token' => Str::random(10),
     ];
