@@ -19,6 +19,5 @@ $factory->define(Report::class, function (Faker $faker) {
         'user_id' => rand(4,12),
         'description' => $faker->text(1000),
         'status' => $status,
-        'file' => "https://picsum.photos/200"
     ];
 });

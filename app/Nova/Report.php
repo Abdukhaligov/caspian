@@ -5,14 +5,16 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
-
+use Illuminate\Support\Facades\Storage;
 class Report extends Resource
 {
     /**
@@ -62,6 +64,11 @@ class Report extends Resource
                 ->sortable(),
 
 
+            File::make('File')
+                ->hideFromIndex()
+                ->disk('public'),
+
+
             Select::make('Status')->options([
                 'pending' => 'pending',
                 'canceled' => 'canceled',
@@ -71,6 +78,7 @@ class Report extends Resource
 
             DateTime::make('Created At')
                 ->sortable(),
+
             DateTime::make('Updated At')
                 ->sortable()
                 ->hideFromIndex(),

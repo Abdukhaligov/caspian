@@ -7,6 +7,7 @@ use App\Models\Topic;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\Passport;
 use Validator;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $user = (object) [
+        $data["user"] = (object) [
             "name"          => $user->name,
             "email"         => $user->email,
             "phone_number"  => $user->phone_number,
@@ -28,7 +29,18 @@ class UserController extends Controller
             "joined"        => $user->created_at,
         ];
 
-        return view('personal_cabinet', compact('user'));
+        $data["reports"] = $user->reports;
+
+        foreach ($data["reports"] as $report){
+            if($report->file != null){
+                $report->file_url = Storage::url($report->file);
+            }
+        }
+
+
+
+
+        return view('personal_cabinet', compact('data'));
     }
 
     public function register(Request $request){

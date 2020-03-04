@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/cabinet', 'UserController@cabinet')->name('personal_cabinet');
 
+    Route::post('/report/edit', 'ReportController@update')->name('report_update');
+
 });
 
 
