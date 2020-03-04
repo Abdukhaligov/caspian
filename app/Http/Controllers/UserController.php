@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membership;
+use App\Models\Topic;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +13,24 @@ use Validator;
 
 class UserController extends Controller
 {
+    public function cabinet(){
+
+        $user = Auth::user();
+
+        $user = (object) [
+            "name"          => $user->name,
+            "email"         => $user->email,
+            "phone_number"  => $user->phone_number,
+            "company"       => $user->company,
+            "job_title"     => $user->job_title,
+            "member_as"     => $user->memberAs->name,
+            "topic"         => $user->topic->name,
+            "joined"        => $user->created_at,
+        ];
+
+        return view('personal_cabinet', compact('user'));
+    }
+
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',

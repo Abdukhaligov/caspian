@@ -30,6 +30,8 @@ $factory->define(User::class, function (Faker $faker) {
 
     $number = '+994 ('.$number.') '.rand(221,795).'-'.rand(21,98).'-'.rand(10,85);
 
+    $member = rand(1,6);
+
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
@@ -38,8 +40,8 @@ $factory->define(User::class, function (Faker $faker) {
         'company' => $faker->company,
         'job_title' => $faker->jobTitle,
         'referred_by' => rand(1,6),
-        'member_as' => rand(1,6),
-        'topic_id' => rand(1,20),
+        'member_as' => $member,
+        'topic_id' => $member == 5 || $member == 6 ? rand(1,20) : null,
         'password' => bcrypt(123123), // password
         'remember_token' => Str::random(10),
     ];

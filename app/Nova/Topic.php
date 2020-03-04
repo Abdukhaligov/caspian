@@ -12,7 +12,7 @@ class Topic extends Resource
 {
     public static $model = 'App\Models\Topic';
 
-    public static $title = 'id';
+    public static $title = 'name';
 
     public static $search = [
         'id',

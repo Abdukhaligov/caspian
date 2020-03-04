@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Membership;
 use App\Models\Reference;
+use App\Models\Topic;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,8 +12,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     public function isAdmin(){
         return $this->is_admin;
@@ -22,6 +22,10 @@ class User extends Authenticatable
 
     public function referredBy(){
         return $this->belongsTo(Reference::class, 'referred_by');
+    }
+
+    public function topic(){
+        return $this->belongsTo(Topic::class);
     }
 
     public function memberAs(){

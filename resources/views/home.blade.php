@@ -13,22 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                        <passport-authorized-clients>
-                        </passport-authorized-clients>
+
                     You are logged in!
-                        <br>
 
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12 mt-4">
-            <passport-clients></passport-clients>
-        </div>
 
-        <div class="col-md-12 mt-4">
-            <passport-personal-access-tokens></passport-personal-access-tokens>
-        </div>
     </div>
 </div>
 @endsection

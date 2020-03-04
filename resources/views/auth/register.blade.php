@@ -60,7 +60,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            `
 
                             <div class="form-group row">
                                 <label for="password-confirm"
@@ -199,6 +198,7 @@
                                             class="form-control @error('topic_id') is-invalid @enderror"
                                             name="topic_id"
                                             autocomplete="topic_id">
+                                        <option selected value="">Select topic</option>
                                         @foreach($data['topics'] as $topic)
                                             <option
 

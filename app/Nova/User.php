@@ -59,8 +59,12 @@ class User extends Resource
             BelongsTo::make('Membership', 'memberAs')
                 ->sortable(),
 
+            BelongsTo::make('Topic')
+                ->hideFromIndex()
+                ->nullable(),
 
-            Boolean::make('Administrator rules ', 'is_admin')
+
+            Boolean::make('Administrator permission ', 'is_admin')
                 ->hideFromIndex(),
 
             Password::make('Password')

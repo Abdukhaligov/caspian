@@ -52,11 +52,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $membership = $data['member_as'];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_number' => ['required', 'regex: (^[+]994[\s]{1}[(][0-9]{2}[)][\s]{1}[0-9]{3}[-][0-9]{2}[-][0-9]{2}$)','unique:users,phone_number'],
+            'topic_id' => $membership == 5 || $membership == 6 || $membership == 3 ? ['required']: ''
         ]);
     }
 
