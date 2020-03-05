@@ -34,9 +34,9 @@
                             <strong>Joined At: </strong><span>{{$data["user"]->joined}}</span>
                         </div>
 
+                        @if($data["reports"]->count() > 0)
                         <h3>Reports: </h3>
-
-
+                        @endif
                         @if( $data["user"]->canAddReport )
                             <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newReport">
                                 New report
@@ -76,78 +76,79 @@
                             </div>
                         @endif
 
-                        @foreach($data["reports"] as $report)
-                            <div class="card text-center mb-3">
-                                <div class="card-header">
-                                    <div class="nav nav-tabs card-header-tabs">
-                                        <div class="nav-item float-left">
-                                            <a class="nav-link active">{{ $report->name }}</a>
-                                        </div>
-                                        <div class="nav-item" style="right: 20px;position: absolute;">
+                        @if($data["reports"])
+                            @foreach($data["reports"] as $report)
+                                <div class="card text-center mb-3">
+                                    <div class="card-header">
+                                        <div class="nav nav-tabs card-header-tabs">
+                                            <div class="nav-item float-left">
+                                                <a class="nav-link active">{{ $report->name }}</a>
+                                            </div>
+                                            <div class="nav-item" style="right: 20px;position: absolute;">
 
-                                            @if($report->status == "pending")
-                                                <span class="badge badge-primary">{{ $report->status }}</span>
+                                                @if($report->status == "pending")
+                                                    <span class="badge badge-primary">{{ $report->status }}</span>
 
-                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#removeReport">
-                                                    X
-                                                </button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#removeReport">
+                                                        X
+                                                    </button>
 
-                                                <div class="modal fade" id="removeReport" tabindex="-1" role="dialog" aria-labelledby="removeReportLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="removeReportLabel">Confirmation</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure you want to remove this report
-                                                                {{ $report->id }}
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <form method="POST" action="{{ route('report_remove') }}">
-                                                                    @csrf
-                                                                    <input style="display: none" type="text" name="id" value="{{ $report->id }}">
-                                                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                                                </form>
+                                                    <div class="modal fade" id="removeReport" tabindex="-1" role="dialog" aria-labelledby="removeReportLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="removeReportLabel">Confirmation</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to remove this report
+                                                                    {{ $report->id }}
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <form method="POST" action="{{ route('report_remove') }}">
+                                                                        @csrf
+                                                                        <input style="display: none" type="text" name="id" value="{{ $report->id }}">
+                                                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @elseif($report->status == "accepted")
-                                                <span class="badge badge-success">{{ $report->status }}</span>
-                                            @else
-                                                <span class="badge badge-danger">{{ $report->status }}</span>
-                                            @endif
+                                                @elseif($report->status == "accepted")
+                                                    <span class="badge badge-success">{{ $report->status }}</span>
+                                                @else
+                                                    <span class="badge badge-danger">{{ $report->status }}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text text-justify">{{ $report->description }}</p>
+                                    <div class="card-body">
+                                        <p class="card-text text-justify">{{ $report->description }}</p>
 
-                                    @if($report->status == "accepted")
+                                        @if($report->status == "accepted")
 
-                                        @if($report->file != null)
-                                            <a href="{{$report->file_url}}">Download</a>
-                                        @else
-                                            <form method="POST" action="{{ route('report_update') }}"
-                                                  enctype="multipart/form-data">
-                                                @csrf
-                                                <input name="report_id" style="display: none" type="text"
-                                                       value="{{ $report->id }}">
-                                                <input name="file" type="file">
-                                                <button type="submit">Send</button>
-                                            </form>
+                                            @if($report->file != null)
+                                                <a href="{{$report->file_url}}">Download</a>
+                                            @else
+                                                <form method="POST" action="{{ route('report_update') }}"
+                                                      enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input name="report_id" style="display: none" type="text"
+                                                           value="{{ $report->id }}">
+                                                    <input name="file" type="file">
+                                                    <button type="submit">Send</button>
+                                                </form>
+                                            @endif
+
                                         @endif
 
-                                    @endif
-
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
-
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

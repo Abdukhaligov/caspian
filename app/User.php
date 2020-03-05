@@ -20,6 +20,14 @@ class User extends Authenticatable
     }
 
     public function canAddReports(){
+
+        if($this->id === 1){
+            return true;
+        }
+        if($this->memberAs->id != 3 || $this->memberAs->id != 5 || $this->memberAs->id != 6){
+            return false;
+        }
+
         $reports = $this->hasMany(Report::class)->where('status', '=', 'pending');
 
         if($reports->count() >= 3){
