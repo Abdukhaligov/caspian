@@ -19,6 +19,16 @@ class User extends Authenticatable
         return $this->is_admin;
     }
 
+    public function canAddReports(){
+        $reports = $this->hasMany(Report::class)->where('status', '=', 'pending');
+
+        if($reports->count() >= 3){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     protected $guarded = [];
 
     public function referredBy(){
@@ -33,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Report::class);
     }
 
+    public function pendingReports(){
+        return $this->hasMany(Report::class)->where('status', '=', 'pending');
+    }
+
     public function memberAs(){
         return $this->belongsTo(Membership::class, 'member_as');
     }
@@ -41,17 +55,12 @@ class User extends Authenticatable
         'name', 'email', 'password', 'phone_number', 'company', 'job_title' , 'referred_by', 'member_as', 'topic_id'
     ];
 
-
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 }
+

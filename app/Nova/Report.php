@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Support\Facades\Storage;
 class Report extends Resource
@@ -56,6 +57,8 @@ class Report extends Resource
             BelongsTo::make('User')
                 ->sortable(),
 
+            Textarea::make('Description')
+                ->hideFromIndex(),
 
             Status::make('Status')
                 ->loadingWhen(['pending'])
@@ -63,11 +66,9 @@ class Report extends Resource
                 ->hideFromDetail()
                 ->sortable(),
 
-
             File::make('File')
                 ->hideFromIndex()
                 ->disk('public'),
-
 
             Select::make('Status')->options([
                 'pending' => 'pending',

@@ -4,65 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function index(){
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function create(){
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
+        $user = Auth::user();
+        $request['user_id'] = $user->id;
+
+        $validator = Validator::make($request->all(), [
+            'name' => '',
+            'description' => '',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);
+        }
+        $input = $request->all();
+
+        if(!$user->canAddReports()){
+            return redirect()->back();
+        }
+
+        if(Report::create($input)){
+            return redirect()->back();
+        } else {
+            return response(redirect(url('/')), 404);
+        }
+
+    }
+
+    public function show(Report $report){
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Report $report)
-    {
+    public function edit(Report $report){
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Report $report)
-    {
-        //
-    }
-
-
-    public function update(Request $request)
-    {
+    public function update(Request $request){
         $user = \Auth::user()->id;
         $report = Report::find($request->report_id);
 
@@ -80,14 +69,15 @@ class ReportController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Report $report)
-    {
-        //
+    public function destroy(Request $request){
+        $user = Auth::user();
+        $report = Report::find($request->id);
+
+        if($user->id == $report->user_id && $report->status == "pending") {
+            $report->delete();
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 }
