@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
@@ -44,7 +45,8 @@ class Partner extends Resource
         //php artisan storage:link
         return [
             ID::make()->sortable(),
-            Image::make('Img'),
+
+            FilemanagerField::make('Img', 'img')->displayAsImage(),
 
             Text::make('Name')
                 ->sortable(),

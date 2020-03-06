@@ -11,7 +11,7 @@ $factory->define(Partner::class, function (Faker $faker) {
 
     return [
         'name' => $faker->company,
-        'img' => $IMG++.".jpeg",
+        'img' => 'partners/'.$IMG++.".jpeg",
         'url' => "https://google.com"
     ];
 });
