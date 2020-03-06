@@ -2,7 +2,9 @@
 
 namespace App\Nova;
 
+use Bissolli\NovaPhoneField\PhoneNumber;
 use Illuminate\Http\Request;
+use Inspheric\Fields\Email;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -10,6 +12,7 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use KABBOUCHI\NovaImpersonate\Impersonate;
 
 class User extends Resource
 {
@@ -33,14 +36,14 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Phone', 'phone_number')
-                ->sortable(),
-
-            Text::make('Email')
+            PhoneNumber::make('Phone', 'phone_number')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->withCustomFormats('+994 (##) ###-##-##')
+                ->onlyCustomFormats(),
+
+            Email::make('Email')
+                ->alwaysClickable()
+                ->sortable(),
 
             Text::make('Company')
                 ->sortable()
@@ -75,6 +78,9 @@ class User extends Resource
             DateTime::make('Created At'),
             DateTime::make('Updated At')
                 ->hideFromIndex(),
+
+            Impersonate::make($this)
+                ->showOnDetail(),
         ];
     }
 

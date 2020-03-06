@@ -128,6 +128,11 @@
       <path value="$PROJECT_DIR$/vendor/david-griffiths/nova-dark-theme" />
       <path value="$PROJECT_DIR$/vendor/gregoriohc/laravel-nova-theme-responsive" />
       <path value="$PROJECT_DIR$/vendor/cloudcake/nova-fixed-bars" />
+      <path value="$PROJECT_DIR$/vendor/bissolli/nova-phone-field" />
+      <path value="$PROJECT_DIR$/vendor/inspheric/nova-email-field" />
+      <path value="$PROJECT_DIR$/vendor/kabbouchi/nova-impersonate" />
+      <path value="$PROJECT_DIR$/vendor/lab404/laravel-impersonate" />
+      <path value="$PROJECT_DIR$/vendor/infinety-es/nova-filemanager" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

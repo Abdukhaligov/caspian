@@ -58,7 +58,7 @@ class ReportController extends Controller
 
         if ($report->user_id == $user && $report->file == null && $report->status == "accepted") {
 
-            $report->update(['file' => substr($request->file->store('public'),7)]);
+            $report->update(['file' => substr($request->file->store('public/reports'),7)]);
 
             return redirect()->back();
         } else {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afe4d8d6d0f0ba0bb9ed5282b18adcbf",
+    "content-hash": "a81c16130b8510e3822192a30cf4700a",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -125,6 +125,57 @@
                 }
             ],
             "time": "2018-12-13T10:34:14+00:00"
+        },
+        {
+            "name": "bissolli/nova-phone-field",
+            "version": "v0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bissolli/nova-phone-field.git",
+                "reference": "29e0e26c17366aa7e4e290c311419735e4b05b94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bissolli/nova-phone-field/zipball/29e0e26c17366aa7e4e290c311419735e4b05b94",
+                "reference": "29e0e26c17366aa7e4e290c311419735e4b05b94",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bissolli\\NovaPhoneField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bissolli\\NovaPhoneField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gustavo Bissolli",
+                    "email": "gustavo.bissolli@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Nova Phone Number field with a dynamic mask based on the country code inserted by the user.",
+            "homepage": "https://github.com/bissolli/nova-phone-field",
+            "keywords": [
+                "input mask",
+                "laravel",
+                "nova",
+                "phone mask"
+            ],
+            "time": "2019-09-08T06:05:47+00:00"
         },
         {
             "name": "brick/math",
@@ -1594,6 +1645,110 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
+            "name": "infinety-es/nova-filemanager",
+            "version": "2.6.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InfinetyEs/Nova-Filemanager.git",
+                "reference": "0c21c60fea5c79419b136a31352e1041d8b1e0d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InfinetyEs/Nova-Filemanager/zipball/0c21c60fea5c79419b136a31352e1041d8b1e0d5",
+                "reference": "0c21c60fea5c79419b136a31352e1041d8b1e0d5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "~2.0",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.6",
+                "phpunit/phpunit": "7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Infinety\\Filemanager\\FilemanagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Infinety\\Filemanager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Lagarda",
+                    "email": "eric@infinety.es",
+                    "role": "Developer"
+                },
+                {
+                    "name": "InfinetyEs",
+                    "email": "apps@infinety.es",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Filemanager tool for Laravel Nova",
+            "homepage": "https://github.com/InfinetyEs/nova-filemanager",
+            "keywords": [
+                "filemanager",
+                "laravel",
+                "nova"
+            ],
+            "time": "2020-02-24T10:18:11+00:00"
+        },
+        {
+            "name": "inspheric/nova-email-field",
+            "version": "v1.42",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inspheric/nova-email-field.git",
+                "reference": "f1930d05c29cc9008599a9bebf2123f36ecbdfbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inspheric/nova-email-field/zipball/f1930d05c29cc9008599a9bebf2123f36ecbdfbb",
+                "reference": "f1930d05c29cc9008599a9bebf2123f36ecbdfbb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inspheric\\Fields\\EmailFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inspheric\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova email field.",
+            "keywords": [
+                "email",
+                "field",
+                "laravel",
+                "mailto",
+                "nova"
+            ],
+            "time": "2019-06-02T13:22:15+00:00"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -1746,6 +1901,113 @@
                 "schema"
             ],
             "time": "2019-09-25T14:49:45+00:00"
+        },
+        {
+            "name": "kabbouchi/nova-impersonate",
+            "version": "v1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KABBOUCHI/nova-impersonate.git",
+                "reference": "b5579fa059e1fbde9e7fbf6748ec3c60d53711d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KABBOUCHI/nova-impersonate/zipball/b5579fa059e1fbde9e7fbf6748ec3c60d53711d8",
+                "reference": "b5579fa059e1fbde9e7fbf6748ec3c60d53711d8",
+                "shasum": ""
+            },
+            "require": {
+                "lab404/laravel-impersonate": "^1.4.1",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KABBOUCHI\\NovaImpersonate\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KABBOUCHI\\NovaImpersonate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field allows you to authenticate as your users.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-12-16T08:30:29+00:00"
+        },
+        {
+            "name": "lab404/laravel-impersonate",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/404labfr/laravel-impersonate.git",
+                "reference": "ac3a2bfe056f35b4201b1a06db04af2b3a2905d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/404labfr/laravel-impersonate/zipball/ac3a2bfe056f35b4201b1a06db04af2b3a2905d6",
+                "reference": "ac3a2bfe056f35b4201b1a06db04af2b3a2905d6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0 | ^7.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/database": "^4.0 | ^5.0",
+                "orchestra/testbench": "^4.0 | ^5.0",
+                "phpunit/phpunit": "^7.5 | ^8.0",
+                "symfony/http-foundation": ">=4.3.8",
+                "symfony/mime": ">=4.3.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lab404\\Impersonate\\ImpersonateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lab404\\Impersonate\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "404lab",
+                    "email": "web@404lab.fr"
+                }
+            ],
+            "description": "Laravel Impersonate is a plugin that allows to you to authenticate as your users.",
+            "keywords": [
+                "auth",
+                "impersonate",
+                "impersonation",
+                "laravel",
+                "laravel-package",
+                "laravel-plugin",
+                "package",
+                "plugin",
+                "user"
+            ],
+            "time": "2020-03-03T15:57:38+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -5787,16 +6049,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.16.0",
+            "version": "1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "37f094775814b68d0c6cc8b8ff3c3be243f20725"
+                "reference": "af05ac5ee8587395d7474ec0681c08776a2cb09d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/37f094775814b68d0c6cc8b8ff3c3be243f20725",
-                "reference": "37f094775814b68d0c6cc8b8ff3c3be243f20725",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/af05ac5ee8587395d7474ec0681c08776a2cb09d",
+                "reference": "af05ac5ee8587395d7474ec0681c08776a2cb09d",
                 "shasum": ""
             },
             "require": {
@@ -5823,7 +6085,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "v2.x-dev"
+                    "dev-master": "1.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -5854,7 +6116,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2020-01-21T17:46:02+00:00"
+            "time": "2020-03-05T12:39:07+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -6491,16 +6753,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.10.2",
+            "version": "v1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9"
+                "reference": "451c3cd1418cf640de218914901e51b064abb093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/451c3cd1418cf640de218914901e51b064abb093",
+                "reference": "451c3cd1418cf640de218914901e51b064abb093",
                 "shasum": ""
             },
             "require": {
@@ -6550,7 +6812,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2020-01-20T15:57:02+00:00"
+            "time": "2020-03-05T15:02:03+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

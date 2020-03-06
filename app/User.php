@@ -24,7 +24,8 @@ class User extends Authenticatable
         if($this->id === 1){
             return true;
         }
-        if($this->memberAs->id != 3 || $this->memberAs->id != 5 || $this->memberAs->id != 6){
+
+        if($this->memberAs->id != 3 && $this->memberAs->id != 5 && $this->memberAs->id != 6){
             return false;
         }
 
