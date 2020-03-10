@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Personal cabinet</div>
+                    <div class="card-header">{{ __('static.personal cabinet') }}</div>
 
                     <div class="card-body">
 

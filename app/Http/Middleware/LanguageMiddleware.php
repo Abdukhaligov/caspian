@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Locale
+class LanguageMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        app()->setLocale('ru');
+        app()->setLocale('en');
 
         if (in_array(session('locale'), ['en', 'ru']))
             app()->setLocale(session('locale'));

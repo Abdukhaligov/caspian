@@ -21,17 +21,20 @@
 </head>
 <body>
     <div id="app">
-        <?=App::getLocale(); ?>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                @auth
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        Home
+
+                    <a class="navbar-brand {{ Request::is('/') ? 'text-primary' : ''}}" href="{{ route('home') }}">
+                        {{ __('static.home') }}
                     </a>
-                @endauth
+
+                    <a class="navbar-brand {{ Request::is('about*') ? 'text-primary' : ''}}" href="{{ route('about') }}">
+                        {{ __('static.about us') }}
+                    </a>
+                    <a class="navbar-brand {{ Request::is('contacts*') ? 'text-primary' : ''}}" href="{{ route('contacts') }}">
+                        {{ __('static.contacts') }}
+                    </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -45,6 +48,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <select class="selectpicker" data-width="fit">
+                            <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+                            <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+                        </select>
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -63,13 +71,13 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="{{ route('personal_cabinet') }}">
-                                        {{ __('Personal Cabinet') }}
+                                        {{ __('static.personal cabinet') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('static.Logout') }}
                                     </a>
 
 

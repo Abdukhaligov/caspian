@@ -11,30 +11,30 @@
 |
 */
 
-Route::group(['middleware' => ['locale']], function(){
+Route::group(['middleware' => ['locale']], function () {
+
+    Route::get('/lang/{key}', function ($key) {
+        session()->put('locale', $key);
+        return redirect()->back();
+    });
+
+    Auth::routes();
+
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/about', 'SingleAboutController@index')->name('about');
+    Route::get('/contacts', 'SingleContactController@index')->name('contacts');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::group(['middleware' => ['auth']], function () {
 
-Auth::routes();
+        Route::get('/cabinet', 'UserController@cabinet')->name('personal_cabinet');
 
-Route::get('/home', 'HomeController@index')->name('home');
+        Route::post('/report/edit', 'ReportController@update')->name('report_update');
+        Route::post('/report/create', 'ReportController@store')->name('report_create');
+        Route::post('/report/delete', 'ReportController@destroy')->name('report_remove');
 
-Route::get('/about', 'SingleAboutController@index')->name('about');
-Route::get('/contacts', 'SingleContactController@index')->name('contacts');
-
-
-Route::group(['middleware' => ['auth']], function(){
-
-    Route::get('/cabinet', 'UserController@cabinet')->name('personal_cabinet');
-
-    Route::post('/report/edit', 'ReportController@update')->name('report_update');
-    Route::post('/report/create', 'ReportController@store')->name('report_create');
-    Route::post('/report/delete', 'ReportController@destroy')->name('report_remove');
-
-});
+    });
 
 });
 
