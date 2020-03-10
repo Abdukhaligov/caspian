@@ -2,37 +2,29 @@
 
 namespace App\Nova;
 
-use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
+use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SingleContacts extends Resource
+class SingleContact extends Resource
 {
     public static $group = 'Pages';
 
-    public static function singleRecord(): bool
-    {
+    public static function singleRecord(): bool{
         return true;
     }
 
-    public static function singleRecordId(): bool
-    {
+    public static function singleRecordId(): bool{
         return 1;
     }
 
-    public static function label()
-    {
+    public static function label(){
         return "Contacts";
     }
 
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = 'App\Models\SingleContacts';
+    public static $model = 'App\Models\SingleContact';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -59,8 +51,8 @@ class SingleContacts extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make('Name'),
-            NovaTinyMCE::make('body'),
+            Text::make('name'),
+            Multilingual::make('Language'),
         ];
     }
 

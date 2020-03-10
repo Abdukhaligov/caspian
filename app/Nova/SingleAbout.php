@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Digitalcloud\MultilingualNova\Multilingual;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
@@ -40,6 +41,7 @@ class SingleAbout extends Resource
             //Text::make('Name'),
             //NovaTinyMCE::make('name'),
             Text::make('name'),
+            Multilingual::make('Language'),
 
         ];
     }

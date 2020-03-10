@@ -11,6 +11,9 @@
 |
 */
 
+Route::group(['middleware' => ['locale']], function(){
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,6 +21,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/about', 'SingleAboutController@index')->name('about');
+Route::get('/contacts', 'SingleContactController@index')->name('contacts');
+
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -29,5 +36,5 @@ Route::group(['middleware' => ['auth']], function(){
 
 });
 
-
+});
 

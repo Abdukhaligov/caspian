@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SingleContacts;
+use App\Models\SingleContact;
 use Illuminate\Http\Request;
 
-class SingleContactsController extends Controller
+class SingleContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $data = SingleContact::first();
+
+        return view('contacts', compact('data'));
     }
 
     /**
@@ -41,10 +39,10 @@ class SingleContactsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SingleContacts  $singleContacts
+     * @param  \App\Models\SingleContact  $singleContact
      * @return \Illuminate\Http\Response
      */
-    public function show(SingleContacts $singleContacts)
+    public function show(SingleContact $singleContact)
     {
         //
     }
@@ -52,10 +50,10 @@ class SingleContactsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SingleContacts  $singleContacts
+     * @param  \App\Models\SingleContact  $singleContact
      * @return \Illuminate\Http\Response
      */
-    public function edit(SingleContacts $singleContacts)
+    public function edit(SingleContact $singleContact)
     {
         //
     }
@@ -64,10 +62,10 @@ class SingleContactsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SingleContacts  $singleContacts
+     * @param  \App\Models\SingleContact  $singleContact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SingleContacts $singleContacts)
+    public function update(Request $request, SingleContact $singleContact)
     {
         //
     }
@@ -75,10 +73,10 @@ class SingleContactsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SingleContacts  $singleContacts
+     * @param  \App\Models\SingleContact  $singleContact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SingleContacts $singleContacts)
+    public function destroy(SingleContact $singleContact)
     {
         //
     }

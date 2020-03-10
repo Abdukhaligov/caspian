@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class SingleAboutController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    public function index(){
+        $data = SingleAbout::first();
+
+        return view('about', compact('data'));
     }
 
     /**

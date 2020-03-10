@@ -134,6 +134,10 @@
       <path value="$PROJECT_DIR$/vendor/daniel-de-wit/nova-single-record-resource" />
       <path value="$PROJECT_DIR$/vendor/whitecube/nova-page" />
       <path value="$PROJECT_DIR$/vendor/energon7/nova-tinymce" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-translatable" />
+      <path value="$PROJECT_DIR$/vendor/digitalcloud/multilingual-nova" />
+      <path value="$PROJECT_DIR$/vendor/joedixon/nova-translation" />
+      <path value="$PROJECT_DIR$/vendor/joedixon/laravel-translation" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

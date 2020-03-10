@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab456c4c3c395b607497336126f695d4",
+    "content-hash": "e61da17e253891fda1cb2245f74250de",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -788,6 +788,48 @@
                 "symmetric key cryptography"
             ],
             "time": "2018-07-24T23:27:56+00:00"
+        },
+        {
+            "name": "digitalcloud/multilingual-nova",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DigitalCloud/multilingual-nova.git",
+                "reference": "8a316cd52c826459f5fecad64dee1414abe16f0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DigitalCloud/multilingual-nova/zipball/8a316cd52c826459f5fecad64dee1414abe16f0c",
+                "reference": "8a316cd52c826459f5fecad64dee1414abe16f0c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "spatie/laravel-translatable": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Digitalcloud\\MultilingualNova\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Digitalcloud\\MultilingualNova\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "💪 Multilingual Nova (using default nova fields)",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-07-11T13:40:45+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1836,6 +1878,94 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "joedixon/laravel-translation",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joedixon/laravel-translation.git",
+                "reference": "d46cd7f9667bad5950a7e690d914599fdf17795f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joedixon/laravel-translation/zipball/d46cd7f9667bad5950a7e690d914599fdf17795f",
+                "reference": "d46cd7f9667bad5950a7e690d914599fdf17795f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0.0",
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JoeDixon\\Translation\\TranslationServiceProvider",
+                        "JoeDixon\\Translation\\TranslationBindingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JoeDixon\\Translation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Dixon",
+                    "email": "hello@joedixon.co.uk"
+                }
+            ],
+            "description": "A tool for managing all of your Laravel translations",
+            "time": "2020-02-05T20:16:39+00:00"
+        },
+        {
+            "name": "joedixon/nova-translation",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joedixon/nova-translation.git",
+                "reference": "99447c8225abf1e9a9b8bd610b94d98fad15c562"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joedixon/nova-translation/zipball/99447c8225abf1e9a9b8bd610b94d98fad15c562",
+                "reference": "99447c8225abf1e9a9b8bd610b94d98fad15c562",
+                "shasum": ""
+            },
+            "require": {
+                "joedixon/laravel-translation": "^1.0.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Joedixon\\NovaTranslation\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Joedixon\\NovaTranslation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-09-09T20:06:06+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4099,6 +4229,78 @@
                 "phar"
             ],
             "time": "2020-02-14T15:25:33+00:00"
+        },
+        {
+            "name": "spatie/laravel-translatable",
+            "version": "4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-translatable.git",
+                "reference": "0f69b268257b3f594450712a95cce6178bb0eb13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/0f69b268257b3f594450712a95cce6178bb0eb13",
+                "reference": "0f69b268257b3f594450712a95cce6178bb0eb13",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.8.0|^6.0|^7.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "~3.8.0|^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Translatable\\TranslatableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Translatable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "theMohamedSaid@gmail.com",
+                    "role": "Original idea"
+                }
+            ],
+            "description": "A trait to make an Eloquent model hold translations",
+            "homepage": "https://github.com/spatie/laravel-translatable",
+            "keywords": [
+                "eloquent",
+                "i8n",
+                "laravel-translatable",
+                "model",
+                "multilingual",
+                "spatie",
+                "translate"
+            ],
+            "time": "2020-03-02T19:35:51+00:00"
         },
         {
             "name": "spatie/once",
