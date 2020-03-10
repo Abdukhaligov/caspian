@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a81c16130b8510e3822192a30cf4700a",
+    "content-hash": "ab456c4c3c395b607497336126f695d4",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -325,48 +325,6 @@
             "time": "2019-11-30T02:33:19+00:00"
         },
         {
-            "name": "cloudcake/nova-fixed-bars",
-            "version": "v1.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cloudcake/nova-fixed-bars.git",
-                "reference": "8e8da9fbf5df21d0fd87984e4f2bbc2018986128"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cloudcake/nova-fixed-bars/zipball/8e8da9fbf5df21d0fd87984e4f2bbc2018986128",
-                "reference": "8e8da9fbf5df21d0fd87984e4f2bbc2018986128",
-                "shasum": ""
-            },
-            "require": {
-                "gregoriohc/laravel-nova-theme-responsive": "~0.6",
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "NovaFixedBars\\NovaFixedBarsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "NovaFixedBars\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova package to add a responsive and/or fixed sidebar and navigation bar to the Nova admin UI.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2020-01-10T22:36:36+00:00"
-        },
-        {
             "name": "composer/ca-bundle",
             "version": "1.2.6",
             "source": {
@@ -666,6 +624,56 @@
                 "performance"
             ],
             "time": "2020-03-01T12:26:26+00:00"
+        },
+        {
+            "name": "daniel-de-wit/nova-single-record-resource",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/daniel-de-wit/nova-single-record-resource.git",
+                "reference": "5285c0e7a0b5ee2b3766bacddf56372010b8de4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daniel-de-wit/nova-single-record-resource/zipball/5285c0e7a0b5ee2b3766bacddf56372010b8de4d",
+                "reference": "5285c0e7a0b5ee2b3766bacddf56372010b8de4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DanielDeWit\\NovaSingleRecordResource\\Providers\\NovaSingleRecordResourceServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DanielDeWit\\NovaSingleRecordResource\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniël de Wit",
+                    "email": "daniel@danieldewit.nl",
+                    "homepage": "https://github.com/daniel-de-wit",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Laravel Nova Single Record Resource. Shows a link in the navigation bar directly to the only record of the resource",
+            "homepage": "https://github.com/daniel-de-wit/nova-single-record-resource",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-08-10T05:57:26+00:00"
         },
         {
             "name": "david-griffiths/nova-dark-theme",
@@ -1306,6 +1314,49 @@
             "time": "2020-02-13T22:36:52+00:00"
         },
         {
+            "name": "energon7/nova-tinymce",
+            "version": "v0.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Energon7/nova-tinymce.git",
+                "reference": "35b9e60889b90acad3018f851abf2ddc1c814e22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Energon7/nova-tinymce/zipball/35b9e60889b90acad3018f851abf2ddc1c814e22",
+                "reference": "35b9e60889b90acad3018f851abf2ddc1c814e22",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Emilianotisato\\NovaTinyMCE\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Emilianotisato\\NovaTinyMCE\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Nova package allow you to use TinyMCE editor for text areas.You can customize the editor options and... you can upload images to your server and put them rigth there on the text without leaving the text editor!",
+            "keywords": [
+                "editor",
+                "laravel",
+                "nova",
+                "tiny"
+            ],
+            "time": "2019-07-08T11:07:05+00:00"
+        },
+        {
             "name": "fideloper/proxy",
             "version": "4.3.0",
             "source": {
@@ -1404,56 +1455,6 @@
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
             "time": "2020-02-24T23:15:03+00:00"
-        },
-        {
-            "name": "gregoriohc/laravel-nova-theme-responsive",
-            "version": "v0.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gregoriohc/laravel-nova-theme-responsive.git",
-                "reference": "0394991448f10c77504d8412ae39bcec7dfc7faf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gregoriohc/laravel-nova-theme-responsive/zipball/0394991448f10c77504d8412ae39bcec7dfc7faf",
-                "reference": "0394991448f10c77504d8412ae39bcec7dfc7faf",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Gregoriohc\\LaravelNovaThemeResponsive\\ThemeServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Gregoriohc\\LaravelNovaThemeResponsive\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gregorio Hernández Caso",
-                    "email": "gregoriohc@gmail.com",
-                    "homepage": "https://github.com/gregoriohc",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A Laravel Nova responsive theme.",
-            "homepage": "https://github.com/gregoriohc/laravel-nova-theme-responsive",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2019-11-18T11:46:58+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2297,7 +2298,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "1f28392a0402c51e97bc4374f9b4def1c5ecd9d0"
+                "reference": "e779085ce7d834d49a810985345bbd155ab58777"
             },
             "require": {
                 "brick/money": "^0.4.2",
@@ -2727,16 +2728,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.64",
+            "version": "1.0.65",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "d13c43dbd4b791f815215959105a008515d1a2e0"
+                "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d13c43dbd4b791f815215959105a008515d1a2e0",
-                "reference": "d13c43dbd4b791f815215959105a008515d1a2e0",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
+                "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
                 "shasum": ""
             },
             "require": {
@@ -2807,7 +2808,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-02-05T18:14:17+00:00"
+            "time": "2020-03-08T18:53:20+00:00"
         },
         {
             "name": "league/oauth2-server",

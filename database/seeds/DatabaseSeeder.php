@@ -22,5 +22,10 @@ class DatabaseSeeder extends Seeder
         factory(\App\Models\Report::class,12)->create();
         factory(\App\Models\Partner::class,10)->create();
         factory(\App\Models\Event::class,10)->create();
+
+        /*  SINGLE PAGES */
+        $this->call(SingleAboutSeeder::class);
+        $this->call(SingleContactsSeeder::class);
+
     }
 }

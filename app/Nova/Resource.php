@@ -2,11 +2,14 @@
 
 namespace App\Nova;
 
+use DanielDeWit\NovaSingleRecordResource\Contracts\SingleRecordResourceInterface;
+use DanielDeWit\NovaSingleRecordResource\Traits\SupportSingleRecordNavigationLinks;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
 
-abstract class Resource extends NovaResource
+abstract class Resource extends NovaResource implements SingleRecordResourceInterface
 {
+    use SupportSingleRecordNavigationLinks;
     /**
      * Build an "index" query for the given resource.
      *
