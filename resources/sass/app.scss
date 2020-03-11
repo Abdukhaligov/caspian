@@ -6,3 +6,12 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.temp{
+    float: left;
+    margin: 5px;
+    img{
+        height: 75px;
+        width: 75px;
+    }
+}

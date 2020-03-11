@@ -25,6 +25,10 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/about', 'SingleAboutController@index')->name('about');
     Route::get('/contacts', 'SingleContactController@index')->name('contacts');
 
+    Route::get('/gallery', 'SingleGalleryController@index')->name('gallery');
+
+
+
 
     Route::group(['middleware' => ['auth']], function () {
 

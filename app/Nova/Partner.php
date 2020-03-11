@@ -46,7 +46,11 @@ class Partner extends Resource
         return [
             ID::make()->sortable(),
 
-            FilemanagerField::make('Img', 'img')->displayAsImage(),
+            FilemanagerField::make('Img', 'img')
+                ->folder('partners')
+                ->displayAsImage()
+                ->hideCreateFolderButton()
+                ->hideDeleteFileButton(),
 
             Text::make('Name')
                 ->sortable(),

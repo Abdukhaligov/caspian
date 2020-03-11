@@ -2,24 +2,30 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
-use Infinety\Filemanager\FilemanagerField;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Spatie\Image\Image;
 
-class Event extends Resource
+class SingleGallery extends Resource
 {
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = 'App\Models\Event';
+    public static $group = 'Pages';
+
+    public static function singleRecord(): bool{
+        return true;
+    }
+
+    public static function singleRecordId(): bool{
+        return 1;
+    }
+
+    public static function label(){
+        return "Gallery";
+    }
+
+    public static $model = 'App\Models\SingleGallery';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -46,28 +52,7 @@ class Event extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-
-            FilemanagerField::make('Logo', 'logo')
-                ->folder('events')
-                ->displayAsImage()
-                ->hideCreateFolderButton()
-                ->hideDeleteFileButton(),
-
-            Text::make('Name')
-                ->sortable(),
-
-            Textarea::make('Description'),
-
-            Boolean::make('Active')
-                ->sortable(),
-
-            DateTime::make('Date')
-                ->sortable(),
-            DateTime::make('Created At')
-                ->hideFromIndex(),
-            DateTime::make('Updated At')
-                ->hideFromIndex(),
+            Images::make('Multiple files', 'multiple_files'),
         ];
     }
 

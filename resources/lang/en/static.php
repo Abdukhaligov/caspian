@@ -5,5 +5,6 @@ return array (
     'personal cabinet' => 'Personal Cabinet',
     'home' => 'Home',
     'about us' => 'About Us',
-    'contacts' => 'Contacts'
+    'contacts' => 'Contacts',
+    'gallery' => 'Gallery'
 );

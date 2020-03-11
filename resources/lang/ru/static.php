@@ -6,5 +6,6 @@ return array (
     'Logout' => 'Выйти',
     'home' => 'Главная',
     'about us' => 'О нас',
-    'contacts' => 'Контакты'
+    'contacts' => 'Контакты',
+    'gallery' => 'Галлерея'
 );
