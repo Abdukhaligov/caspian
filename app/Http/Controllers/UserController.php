@@ -33,12 +33,6 @@ class UserController extends Controller
 
         $data["reports"] = $user->reports;
 
-        foreach ($data["reports"] as $report) {
-            if ($report->file != null) {
-                $report->file_url = Storage::url($report->file);
-            }
-        }
-
         return view('personal_cabinet', compact('data'));
     }
 

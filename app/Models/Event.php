@@ -9,4 +9,8 @@ class Event extends Model
     protected $casts = [
         'date' => 'datetime'
     ];
+
+    public function active(){
+
+    }
 }

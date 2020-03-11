@@ -12,7 +12,7 @@ class SingleContactSeeder extends Seeder
     public function run()
     {
         $data = [
-            ["name" => "Some kind of name"]
+            ["name" => "{\"en\":\"Our contacts\",\"ru\":\"\u041d\u0430\u0448\u0438 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b\"}"]
         ];
 
         DB::table('single_contacts')->insert($data);

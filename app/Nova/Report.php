@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 
+use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -68,7 +69,8 @@ class Report extends Resource
 
             File::make('File')
                 ->hideFromIndex()
-                ->disk('public'),
+                ->disk('reports'),
+
 
             Select::make('Status')->options([
                 'pending' => 'pending',

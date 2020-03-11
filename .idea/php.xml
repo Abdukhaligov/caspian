@@ -149,6 +149,7 @@
       <path value="$PROJECT_DIR$/vendor/ebess/advanced-nova-media-library" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/michielkempen/nova-polymorphic-field" />
+      <path value="$PROJECT_DIR$/vendor/whitecube/nova-flexible-content" />
       <path value="$PROJECT_DIR$/vendor/media24si/nova-youtube-field" />
     </include_path>
   </component>

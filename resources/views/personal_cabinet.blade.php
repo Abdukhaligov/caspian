@@ -131,7 +131,7 @@
                                         @if($report->status == "accepted")
 
                                             @if($report->file != null)
-                                                <a href="{{$report->file_url}}">Download</a>
+                                                <a href="{{Storage::disk('reports')->url($report->file)}}">Download</a>
                                             @else
                                                 <form method="POST" action="{{ route('report_update') }}"
                                                       enctype="multipart/form-data">

@@ -2,12 +2,18 @@
 
 namespace App\Nova;
 
+use Digitalcloud\MultilingualNova\Multilingual;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\Image\Image;
+use Media24si\NovaYoutubeField\Youtube;
+use Whitecube\NovaFlexibleContent\Flexible;
+
 
 class SingleGallery extends Resource
 {
@@ -52,7 +58,19 @@ class SingleGallery extends Resource
     public function fields(Request $request)
     {
         return [
-            Images::make('Multiple files', 'multiple_files'),
+            Text::make('name'),
+            Multilingual::make('Language'),
+            Images::make('Photos', 'photos'),
+
+            Flexible::make('Video')
+                ->addLayout('Adding video', 'Video url', [
+                    Youtube::make('Url', 'url'),
+                    File::make('File')
+                        ->disk('public'),
+                ])
+
+
+
         ];
     }
 

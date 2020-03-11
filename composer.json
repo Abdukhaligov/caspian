@@ -27,7 +27,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.2",
         "media24si/nova-youtube-field": "^1.0",
-        "michielkempen/nova-polymorphic-field": "^1.0"
+        "michielkempen/nova-polymorphic-field": "^1.0",
+        "whitecube/nova-flexible-content": "^0.1.15"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        @foreach($data as $image)
+                        @foreach($data["photos"] as $image)
 
                             <div class="temp">
                                 <img alt=""

@@ -6,6 +6,7 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ReportController extends Controller
 {
@@ -58,7 +59,10 @@ class ReportController extends Controller
 
         if ($report->user_id == $user && $report->file == null && $report->status == "accepted") {
 
-            $report->update(['file' => substr($request->file->store('public/reports'),7)]);
+            $fileName = $request->file->store('');
+            $request->file->store('public/reports');
+
+            $report->update(['file' => $fileName]);
 
             return redirect()->back();
         } else {

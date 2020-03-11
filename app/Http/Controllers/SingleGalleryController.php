@@ -10,7 +10,7 @@ class SingleGalleryController extends Controller
 
     public function index()
     {
-        $data =  SingleGallery::first()->getMedia('multiple_files');
+        $data["photos"] =  SingleGallery::first()->getMedia('photos');
         return view('gallery', compact('data'));
     }
 
