@@ -44,10 +44,6 @@ class User extends Authenticatable
         return $this->belongsTo(Reference::class, 'referred_by');
     }
 
-    public function topic(){
-        return $this->belongsTo(Topic::class);
-    }
-
     public function reports(){
         return $this->hasMany(Report::class);
     }

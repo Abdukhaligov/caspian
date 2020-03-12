@@ -17,6 +17,7 @@ $factory->define(Report::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence(8),
         'user_id' => rand(4,12),
+        'topic_id' => rand(1,20),
         'description' => $faker->text(1000),
         'status' => $status,
     ];

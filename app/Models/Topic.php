@@ -14,6 +14,10 @@ class Topic extends Model
     public function children(){
         return $this->hasMany(Topic::class, 'parent_id');
     }
-    
+
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
+
 
 }

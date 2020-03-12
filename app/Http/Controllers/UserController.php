@@ -32,9 +32,29 @@ class UserController extends Controller
         ];
 
         $data["reports"] = $user->reports;
+        $data["topics"] = $user->reports;
+
+        $topics = Topic::where('parent_id', null)->get();
+
+        function topicTree ($topics) {
+            foreach ($topics as $topic) {
+                $children = $topic->children;
+                if($children->count() > 0){
+                    topicTree($children);
+                    $topic->hasChildren = true;
+                }else{
+                    $topic->hasChildren = false;
+                }
+            }
+        }
+
+        topicTree($topics);
+
+        $data['topics'] = $topics;
 
         return view('personal_cabinet', compact('data'));
     }
+
 
     public function register(Request $request)
     {

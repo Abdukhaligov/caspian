@@ -48,13 +48,6 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'mediaFiles' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/media'),
-            'url' => env('APP_URL').'/storage/media',
-            'visibility' => 'public',
-        ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -66,6 +59,13 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public/reports'),
             'url' => env('APP_URL').'/storage/reports',
+            'visibility' => 'public',
+        ],
+
+        'mediaFiles' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/media'),
+            'url' => env('APP_URL').'/storage/media',
             'visibility' => 'public',
         ],
 

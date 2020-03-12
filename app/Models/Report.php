@@ -12,5 +12,9 @@ class Report extends Model
         return $this->belongsTo(User::class);
     }
 
-    protected $fillable = ['user_id','name','description','file'];
+    public function topic(){
+        return $this->belongsTo(Topic::class);
+    }
+
+    protected $fillable = ['user_id','name','description','file','topic_id'];
 }

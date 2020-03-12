@@ -3,7 +3,7 @@
 return array (
     'dashboard' => 'Панель',
     'personal cabinet' => 'Личный Кабинет',
-    'Logout' => 'Выйти',
+    'logout' => 'Выйти',
     'home' => 'Главная',
     'about us' => 'О нас',
     'contacts' => 'Контакты',

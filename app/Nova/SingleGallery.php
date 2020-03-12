@@ -6,6 +6,7 @@ use Digitalcloud\MultilingualNova\Multilingual;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -62,11 +63,16 @@ class SingleGallery extends Resource
             Multilingual::make('Language'),
             Images::make('Photos', 'photos'),
 
-            Flexible::make('Video')
-                ->addLayout('Adding video', 'Video url', [
-                    Youtube::make('Url', 'url'),
-                    File::make('File')
-                        ->disk('public'),
+            Flexible::make('Videos')
+                ->addLayout('Adding video', 'Videos', [
+                    Youtube::make('Url', 'url')
+                        ->required(),
+                    FilemanagerField::make('Cover', 'cover')
+                        ->required()
+                        ->folder('videos')
+                        ->displayAsImage()
+                        ->hideCreateFolderButton()
+                        ->hideDeleteFileButton(),
                 ])
 
 
@@ -97,7 +103,7 @@ class SingleGallery extends Resource
     }
 
     /**
-     * Get the lenses available for the resource.
+     * Get the lenses available for the resource.-
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array

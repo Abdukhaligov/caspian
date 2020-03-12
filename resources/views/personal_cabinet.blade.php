@@ -28,17 +28,15 @@
                             <strong>Member As: </strong><span>{{$data["user"]->member_as}}</span>
                         </div>
                         <div class="mb-3">
-                            <strong>Topic: </strong><span>{{$data["user"]->topic}}</span>
-                        </div>
-                        <div class="mb-3">
                             <strong>Joined At: </strong><span>{{$data["user"]->joined}}</span>
                         </div>
 
                         @if($data["reports"]->count() > 0)
-                        <h3>Reports: </h3>
+                            <h3>Reports: </h3>
                         @endif
                         @if( $data["user"]->canAddReport )
-                            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newReport">
+                            <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
+                                    data-target="#newReport">
                                 New report
                             </button>
 
@@ -55,18 +53,66 @@
                                         <form method="POST" action="{{ route('report_create') }}">
                                             <div class="modal-body">
                                                 @csrf
+                                                <div class="form-group row">
+                                                    <label for="name" class="col-md-4 col-form-label text-md-right">
+                                                        {{ __('Topics') }}
+                                                    </label>
+
+                                                    <div class="col-md-12">
+                                                        <select id="topic_id" type="text"
+                                                                class="form-control @error('topic_id') is-invalid @enderror"
+                                                                name="topic_id"
+                                                                required
+                                                                autocomplete="topic_id">
+                                                            <option selected disabled value="">Select topic</option>
+                                                            @foreach($data['topics'] as $topic)
+
+                                                                @if($topic->hasChildren == true )
+                                                                    <option disabled>{{ $topic->name }}</option>
+                                                                @else
+                                                                    <option
+                                                                        @if(old('topic_id') == $topic->id ) selected
+                                                                        @endif
+                                                                        value="{{ $topic->id }}">{{ $topic->name }}
+                                                                    </option>
+                                                                @endif
+
+                                                                @if($topic->hasChildren == true )
+                                                                    @foreach($topic->children as $child)
+                                                                        <option
+                                                                            @if(old('topic_id') == $child->id ) selected
+                                                                            @endif
+                                                                            value="{{ $child->id }}">
+                                                                            — {{ $child->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @endif
+
+                                                            @endforeach
+                                                        </select>
+
+                                                        @error('topic_id')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="report-name" class="col-form-label">Name:</label>
-                                                    <input name="name" type="text" class="form-control" id="report-name">
+                                                    <input required name="name" type="text" class="form-control"
+                                                           id="report-name">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="report-description"
                                                            class="col-form-label">Description:</label>
-                                                    <textarea name="description" class="form-control" id="report-description"></textarea>
+                                                    <textarea minlength="200" maxlength="600" required name="description" class="form-control"
+                                                              id="report-description"></textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">Send</button>
                                             </div>
@@ -89,29 +135,39 @@
                                                 @if($report->status == "pending")
                                                     <span class="badge badge-primary">{{ $report->status }}</span>
 
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#removeReport">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                            data-toggle="modal" data-target="#removeReport">
                                                         X
                                                     </button>
 
-                                                    <div class="modal fade" id="removeReport" tabindex="-1" role="dialog" aria-labelledby="removeReportLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="removeReport" tabindex="-1"
+                                                         role="dialog" aria-labelledby="removeReportLabel"
+                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="removeReportLabel">Confirmation</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <h5 class="modal-title" id="removeReportLabel">
+                                                                        Confirmation</h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     Are you sure you want to remove this report
-                                                                    {{ $report->id }}
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <form method="POST" action="{{ route('report_remove') }}">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close
+                                                                    </button>
+                                                                    <form method="POST"
+                                                                          action="{{ route('report_remove') }}">
                                                                         @csrf
-                                                                        <input style="display: none" type="text" name="id" value="{{ $report->id }}">
-                                                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                                                        <input style="display: none" type="text"
+                                                                               name="id" value="{{ $report->id }}">
+                                                                        <button type="submit" class="btn btn-danger">
+                                                                            Remove
+                                                                        </button>
                                                                     </form>
                                                                 </div>
                                                             </div>

@@ -59,7 +59,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_number' => ['required', 'regex: (^[+]994[\s]{1}[(][0-9]{2}[)][\s]{1}[0-9]{3}[-][0-9]{2}[-][0-9]{2}$)','unique:users,phone_number'],
-            'topic_id' => $membership == 5 || $membership == 6 || $membership == 3 ? ['required']: ''
         ]);
     }
 
@@ -71,7 +70,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -81,7 +79,6 @@ class RegisterController extends Controller
             'job_title' => $data['job_title'],
             'referred_by' => $data['referred_by'],
             'member_as' => $data['member_as'],
-            'topic_id' => $data['topic_id'],
         ]);
     }
 
@@ -105,32 +102,7 @@ class RegisterController extends Controller
 
         membershipTree($memberships);
 
-        //return $memberships;
-        //dd($memberships);
-
         $data['membership'] = $memberships;
-
-        $topics = Topic::where('parent_id', null)->get();
-
-        function topicTree ($topics) {
-            foreach ($topics as $topic) {
-                $children = $topic->children;
-                if($children->count() > 0){
-                    topicTree($children);
-                    $topic->hasChildren = true;
-                }else{
-                    $topic->hasChildren = false;
-                }
-            }
-        }
-
-        topicTree($topics);
-
-        //return $topics;
-        //dd($topics);
-
-        $data['topics'] = $topics;
-
 
         return view('auth.register')->with(compact('data'));
     }

@@ -188,44 +188,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">
-                                    {{ __('Topics') }}
-                                </label>
-
-                                <div class="col-md-6">
-                                    <select id="topic_id" type="text"
-                                            class="form-control @error('topic_id') is-invalid @enderror"
-                                            name="topic_id"
-                                            autocomplete="topic_id">
-                                        <option selected value="">Select topic</option>
-                                        @foreach($data['topics'] as $topic)
-                                            <option
-
-                                            @if(old('topic_id') == $topic->id ) selected @endif
-                                                value="{{ $topic->id }}">{{ $topic->name }}
-                                            </option>
-
-                                            @if($topic->hasChildren == true )
-                                                @foreach($topic->children as $child)
-                                                    <option
-                                                        @if(old('topic_id') == $child->id ) selected @endif
-                                                    value="{{ $child->id }}">—  {{ $child->name }}
-                                                    </option>
-                                                @endforeach
-                                            @endif
-
-                                        @endforeach
-                                    </select>
-
-                                    @error('topic_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

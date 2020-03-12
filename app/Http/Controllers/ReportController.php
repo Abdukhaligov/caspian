@@ -22,11 +22,14 @@ class ReportController extends Controller
 
         $user = Auth::user();
         $request['user_id'] = $user->id;
+        $request['topic_id'] = (int) $request['topic_id'];
 
         $validator = Validator::make($request->all(), [
             'name' => '',
             'description' => '',
+            'topic_id' => 'exists:topics,id'
         ]);
+
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }

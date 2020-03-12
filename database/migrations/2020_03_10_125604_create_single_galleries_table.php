@@ -16,7 +16,7 @@ class CreateSingleGalleriesTable extends Migration
         Schema::create('single_galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('video')->nullable();
+            $table->json('videos')->nullable();
             $table->timestamps();
         });
     }

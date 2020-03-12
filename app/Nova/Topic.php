@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
@@ -29,7 +30,11 @@ class Topic extends Resource
                 ->sortable(),
 
             Select::make('parent_id')->options(Topic::pluck('name', 'id'))
-                ->nullable(true)
+                ->nullable(true),
+
+            HasMany::make('Topics','children'),
+
+            HasMany::make('Reports'),
         ];
     }
 

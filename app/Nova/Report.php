@@ -58,6 +58,9 @@ class Report extends Resource
             BelongsTo::make('User')
                 ->sortable(),
 
+            BelongsTo::make('Topic')
+                ->sortable(),
+
             Textarea::make('Description')
                 ->hideFromIndex(),
 

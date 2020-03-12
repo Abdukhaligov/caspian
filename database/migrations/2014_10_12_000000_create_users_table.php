@@ -15,6 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('referred_by')->unsigned()->nullable();
+            $table->integer('member_as')->unsigned()->nullable();
+
             $table->string('name');
             $table->string('email')->unique();
             $table->boolean('is_admin')->default(false);
@@ -22,17 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('company')->nullable();
             $table->string('job_title')->nullable();
 
-            $table->integer('referred_by')->unsigned()->nullable();
-            $table->integer('member_as')->unsigned()->nullable();
-            $table->integer('topic_id')->unsigned()->nullable();
-
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
 
             $table->foreign('referred_by')->references('id')->on('references');
             $table->foreign('member_as')->references('id')->on('memberships');
-            $table->foreign('topic_id')->references('id')->on('topics');
 
             $table->timestamps();
         });
