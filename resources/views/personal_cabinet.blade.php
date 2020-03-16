@@ -16,7 +16,7 @@
                             <strong>E-mail: </strong><span>{{$data["user"]->email}}</span>
                         </div>
                         <div class="mb-3">
-                            <strong>Phone Number: </strong><span>{{$data["user"]->phone_number}}</span>
+                            <strong>Phone Number: </strong><span v-mask="'+\\9\\94 (99) 999-99-99'">+{{$data["user"]->phone}}</span>
                         </div>
                         <div class="mb-3">
                             <strong>Company: </strong><span>{{$data["user"]->company}}</span>
@@ -25,7 +25,7 @@
                             <strong>Job: </strong><span>{{$data["user"]->job_title}}</span>
                         </div>
                         <div class="mb-3">
-                            <strong>Member As: </strong><span>{{$data["user"]->member_as}}</span>
+                            <strong>Member As: </strong><span>{{$data["user"]->membership_id}}</span>
                         </div>
                         <div class="mb-3">
                             <strong>Joined At: </strong><span>{{$data["user"]->joined}}</span>
@@ -53,50 +53,48 @@
                                         <form method="POST" action="{{ route('report_create') }}">
                                             <div class="modal-body">
                                                 @csrf
-                                                <div class="form-group row">
-                                                    <label for="name" class="col-md-4 col-form-label text-md-right">
-                                                        {{ __('Topics') }}
-                                                    </label>
+                                                <div class="form-group">
+                                                    <label for="name" class="col-form-label">{{ __('Topic') }}:</label>
 
-                                                    <div class="col-md-12">
-                                                        <select id="topic_id" type="text"
-                                                                class="form-control @error('topic_id') is-invalid @enderror"
-                                                                name="topic_id"
-                                                                required
-                                                                autocomplete="topic_id">
-                                                            <option selected disabled value="">Select topic</option>
-                                                            @foreach($data['topics'] as $topic)
 
-                                                                @if($topic->hasChildren == true )
-                                                                    <option disabled>{{ $topic->name }}</option>
-                                                                @else
+                                                    <select id="topic_id" type="text"
+                                                            class="form-control @error('topic_id') is-invalid @enderror"
+                                                            name="topic_id"
+                                                            required
+                                                            autocomplete="topic_id">
+                                                        <option selected disabled value="">Select topic</option>
+                                                        @foreach($data['topics'] as $topic)
+
+                                                            @if($topic->hasChildren == true )
+                                                                <option disabled>{{ $topic->name }}</option>
+                                                            @else
+                                                                <option
+                                                                    @if(old('topic_id') == $topic->id ) selected
+                                                                    @endif
+                                                                    value="{{ $topic->id }}">{{ $topic->name }}
+                                                                </option>
+                                                            @endif
+
+                                                            @if($topic->hasChildren == true )
+                                                                @foreach($topic->children as $child)
                                                                     <option
-                                                                        @if(old('topic_id') == $topic->id ) selected
+                                                                        @if(old('topic_id') == $child->id ) selected
                                                                         @endif
-                                                                        value="{{ $topic->id }}">{{ $topic->name }}
+                                                                        value="{{ $child->id }}">
+                                                                        — {{ $child->name }}
                                                                     </option>
-                                                                @endif
+                                                                @endforeach
+                                                            @endif
 
-                                                                @if($topic->hasChildren == true )
-                                                                    @foreach($topic->children as $child)
-                                                                        <option
-                                                                            @if(old('topic_id') == $child->id ) selected
-                                                                            @endif
-                                                                            value="{{ $child->id }}">
-                                                                            — {{ $child->name }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                @endif
+                                                        @endforeach
+                                                    </select>
 
-                                                            @endforeach
-                                                        </select>
-
-                                                        @error('topic_id')
-                                                        <span class="invalid-feedback" role="alert">
+                                                    @error('topic_id')
+                                                    <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
-                                                        @enderror
-                                                    </div>
+                                                    @enderror
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="report-name" class="col-form-label">Name:</label>
@@ -106,7 +104,8 @@
                                                 <div class="form-group">
                                                     <label for="report-description"
                                                            class="col-form-label">Description:</label>
-                                                    <textarea minlength="200" maxlength="600" required name="description" class="form-control"
+                                                    <textarea minlength="200" maxlength="600" required
+                                                              name="description" class="form-control"
                                                               id="report-description"></textarea>
                                                 </div>
                                             </div>

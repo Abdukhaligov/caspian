@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <?php $fake = true ? $fakeUser = (new \App\User)->generateUser() : '' ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -17,7 +18,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control @error('name') is-invalid @enderror" name="name"
-                                           value="{{ old('name') }}" autocomplete="name" autofocus>
+                                           value="{{ $fake ? $fakeUser->name : old('name') }}" autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +35,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                           value="{{ old('email') }}" autocomplete="email">
+                                           value="{{ $fake ? $fakeUser->email : old('email') }}" autocomplete="email">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +51,9 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
+                                           class="form-control @error('password') is-invalid @enderror"
+                                           value="{{ $fake ? "123123" : '' }}"
+                                           name="password"
                                            autocomplete="new-password">
 
                                     @error('password')
@@ -67,6 +70,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
+                                           value="{{ $fake ? "123123" : '' }}"
                                            name="password_confirmation" autocomplete="new-password">
                                 </div>
                             </div>
@@ -77,12 +81,12 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input v-mask="'+\\9\\94 (99) 999-99-99'" id="phone_number" type="text"
-                                           class="form-control @error('phone_number') is-invalid @enderror"
-                                           name="phone_number"
-                                           value="{{ old('phone_number') }}" autocomplete="phone_number">
+                                    <input v-mask="'+\\9\\94 (99) 999-99-99'" id="phone" type="text"
+                                           class="form-control @error('phone') is-invalid @enderror"
+                                           name="phone"
+                                           value="+{{ $fake ? $fakeUser->phone : old('phone') }}" autocomplete="phone">
 
-                                    @error('phone_number')
+                                    @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -98,7 +102,7 @@
                                 <div class="col-md-6">
                                     <input id="company" type="text"
                                            class="form-control @error('company') is-invalid @enderror" name="company"
-                                           value="{{ old('company') }}" autocomplete="company">
+                                           value="{{ $fake ? $fakeUser->company : old('company') }}" autocomplete="company">
 
                                     @error('company')
                                     <span class="invalid-feedback" role="alert">
@@ -117,7 +121,7 @@
                                     <input id="job_title" type="text"
                                            class="form-control @error('job_title') is-invalid @enderror"
                                            name="job_title"
-                                           value="{{ old('job_title') }}" autocomplete="job_title">
+                                           value="{{ $fake ? $fakeUser->job_title : old('job_title') }}" autocomplete="job_title">
 
                                     @error('job_title')
                                     <span class="invalid-feedback" role="alert">
@@ -133,17 +137,17 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <select id="referred_by" type="text"
-                                            class="form-control @error('referred_by') is-invalid @enderror"
-                                            name="referred_by"
-                                            autocomplete="referred_by">
+                                    <select id="reference_id" type="text"
+                                            class="form-control @error('reference_id') is-invalid @enderror"
+                                            name="reference_id"
+                                            autocomplete="reference_id">
                                         @foreach($data['references'] as $reference)
-                                            <option @if(old('referred_by') == $reference->id ) selected
+                                            <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
                                                     @endif value="{{ $reference->id }}">{{ $reference->name }}</option>
                                         @endforeach
                                     </select>
 
-                                    @error('referred_by')
+                                    @error('reference_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -157,21 +161,21 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <select id="member_as" type="text"
-                                            class="form-control @error('member_as') is-invalid @enderror"
-                                            name="member_as"
-                                            autocomplete="member_as">
+                                    <select id="membership_id" type="text"
+                                            class="form-control @error('membership_id') is-invalid @enderror"
+                                            name="membership_id"
+                                            autocomplete="membership_id">
                                         @foreach($data['membership'] as $membership)
                                             <option
                                                 @if($membership->hasChildren == true ) disabled @endif
-                                            @if(old('member_as') == $membership->id ) selected @endif
+                                            @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected @endif
                                                 value="{{ $membership->id }}">{{ $membership->name }}
                                             </option>
 
                                             @if($membership->hasChildren == true )
                                                 @foreach($membership->children as $child)
                                                     <option
-                                                        @if(old('member_as') == $child->id ) selected @endif
+                                                        @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $child->id ) selected @endif
                                                     value="{{ $child->id }}">—  {{ $child->name }}
                                                     </option>
                                                 @endforeach
@@ -180,7 +184,7 @@
                                         @endforeach
                                     </select>
 
-                                    @error('member_as')
+                                    @error('membership_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

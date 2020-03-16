@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Membership;
 use App\Models\Topic;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Passport\Passport;
 use Validator;
 
 
@@ -22,10 +19,10 @@ class UserController extends Controller
         $data["user"] = (object)[
             "name" => $user->name,
             "email" => $user->email,
-            "phone_number" => $user->phone_number ?? '',
+            "phone" => $user->phone ?? '',
             "company" => $user->company ?? '',
             "job_title" => $user->job_title ?? '',
-            "member_as" => $user->memberAs->name ?? '',
+            "membership_id" => $user->membership->name ?? '',
             "topic" => $user->topic->name ?? '',
             "joined" => $user->created_at ?? '',
             "canAddReport" => $user->canAddReports() ?? '',
@@ -34,23 +31,9 @@ class UserController extends Controller
         $data["reports"] = $user->reports;
         $data["topics"] = $user->reports;
 
-        $topics = Topic::where('parent_id', null)->get();
 
-        function topicTree ($topics) {
-            foreach ($topics as $topic) {
-                $children = $topic->children;
-                if($children->count() > 0){
-                    topicTree($children);
-                    $topic->hasChildren = true;
-                }else{
-                    $topic->hasChildren = false;
-                }
-            }
-        }
+        $data['topics'] = (new Topic)->showTree();
 
-        topicTree($topics);
-
-        $data['topics'] = $topics;
 
         return view('personal_cabinet', compact('data'));
     }

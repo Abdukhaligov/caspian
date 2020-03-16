@@ -132,7 +132,6 @@
       <path value="$PROJECT_DIR$/vendor/lab404/laravel-impersonate" />
       <path value="$PROJECT_DIR$/vendor/infinety-es/nova-filemanager" />
       <path value="$PROJECT_DIR$/vendor/daniel-de-wit/nova-single-record-resource" />
-      <path value="$PROJECT_DIR$/vendor/whitecube/nova-page" />
       <path value="$PROJECT_DIR$/vendor/energon7/nova-tinymce" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-translatable" />
       <path value="$PROJECT_DIR$/vendor/digitalcloud/multilingual-nova" />

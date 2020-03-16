@@ -37,7 +37,7 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            PhoneNumber::make('Phone', 'phone_number')
+            PhoneNumber::make('Phone')
                 ->sortable()
                 ->withCustomFormats('+994 (##) ###-##-##')
                 ->onlyCustomFormats(),
@@ -50,19 +50,17 @@ class User extends Resource
                 ->sortable()
                 ->hideFromIndex(),
 
-
             Text::make('Job Title','job_title')
                 ->sortable()
                 ->hideFromIndex(),
 
             HasMany::make('Reports'),
 
-
-            BelongsTo::make('Reference', 'referredBy')
+            BelongsTo::make('Reference')
                 ->sortable()
                 ->hideFromIndex(),
 
-            BelongsTo::make('Membership', 'memberAs')
+            BelongsTo::make('Membership')
                 ->sortable(),
 
             Boolean::make('Administrator permission ', 'is_admin')

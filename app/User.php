@@ -5,11 +5,10 @@ namespace App;
 use App\Models\Membership;
 use App\Models\Reference;
 use App\Models\Report;
-use App\Models\Topic;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Faker\Factory as Faker;
 
 class User extends Authenticatable
 {
@@ -25,7 +24,7 @@ class User extends Authenticatable
             return true;
         }
 
-        if($this->memberAs->id != 3 && $this->memberAs->id != 5 && $this->memberAs->id != 6){
+        if($this->membership->id != 3 && $this->membership->id != 5 && $this->membership->id != 6){
             return false;
         }
 
@@ -40,8 +39,8 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
-    public function referredBy(){
-        return $this->belongsTo(Reference::class, 'referred_by');
+    public function reference(){
+        return $this->belongsTo(Reference::class);
     }
 
     public function reports(){
@@ -52,12 +51,36 @@ class User extends Authenticatable
         return $this->hasMany(Report::class)->where('status', '=', 'pending');
     }
 
-    public function memberAs(){
-        return $this->belongsTo(Membership::class, 'member_as');
+    public function membership(){
+        return $this->belongsTo(Membership::class);
+    }
+
+    public function generateNumber(){
+        $number = rand(0,4);
+        switch ($number){
+            case(0):$number = '55';break;
+            case(1):$number = '50';break;
+            case(2):$number = '51';break;
+            case(3):$number = '70';break;
+            case(4):$number = '77';break;
+        }
+        return '994'.$number.rand(221,795).rand(21,98).rand(10,85);
+    }
+
+    public function generateUser(){
+        $faker = Faker::create();
+        $data["name"] = $faker->name;
+        $data["email"] = $faker->email;
+        $data["phone"] = $this->generateNumber();
+        $data["company"] = $faker->company;
+        $data["job_title"] = $faker->jobTitle;
+        $data["reference_id"] = rand(1,6);
+        $data["membership_id"] = rand(1,6);
+        return new User($data);
     }
 
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number', 'company', 'job_title' , 'referred_by', 'member_as', 'topic_id'
+        'name', 'email', 'password', 'phone', 'company', 'job_title' , 'reference_id', 'membership_id', 'topic_id'
     ];
 
     protected $hidden = [
