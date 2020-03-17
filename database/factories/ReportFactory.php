@@ -20,5 +20,6 @@ $factory->define(Report::class, function (Faker $faker) {
         'topic_id' => rand(1,20),
         'description' => $faker->text(1000),
         'status' => $status,
+        'file' => null
     ];
 });

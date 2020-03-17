@@ -20,15 +20,15 @@ class User extends Authenticatable
 
     public function canAddReports(){
 
-        if($this->id === 1){
+        if($this->isAdmin()){
             return true;
         }
 
-        if($this->membership->id != 3 && $this->membership->id != 5 && $this->membership->id != 6){
+        if($this->membership->id != 5 && $this->membership->id != 6){
             return false;
         }
 
-        $reports = $this->hasMany(Report::class)->where('status', '=', 'pending');
+        $reports = $this->pendingReports;
 
         if($reports->count() >= 3){
             return false;
@@ -36,6 +36,7 @@ class User extends Authenticatable
             return true;
         }
     }
+
 
     protected $guarded = [];
 

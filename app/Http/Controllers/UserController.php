@@ -29,11 +29,8 @@ class UserController extends Controller
         ];
 
         $data["reports"] = $user->reports;
-        $data["topics"] = $user->reports;
-
 
         $data['topics'] = (new Topic)->showTree();
-
 
         return view('personal_cabinet', compact('data'));
     }

@@ -20,7 +20,7 @@ class CreateReportsTable extends Migration
 
             $table->string('name');
             $table->text('description');
-            $table->enum('status',['pending', 'canceled', 'accepted']);
+            $table->enum('status',['pending', 'canceled', 'accepted'])->default('pending');
             $table->string('file')->nullable();
             $table->timestamps();
 
