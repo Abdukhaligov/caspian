@@ -2,92 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReportRequest;
 use App\Models\Report;
 use Illuminate\Http\Request;
-use Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class ReportController extends Controller
 {
-    public function index(){
-        //
+    private function back403(){
+        return response(redirect()->back(), 403);
+    }
+    private function back200(){
+        return response(redirect()->back(), 200);
+    }
+    private function addFile($request, $report){
+        $fileName = $request->file->store('');
+        $request->file->store('public/reports');
+        $report->update(['file' => $fileName]);
+
+        return $this->back200();
+    }
+    private function deleteReport($report){
+        $report->delete();
+        return $this->back200();
     }
 
-    public function create(){
-        //
+    public function store(ReportRequest $request)
+    {
+        $request['user_id'] = Auth::user()->id;
+        return
+            Auth::user()->canAddReports() && Report::create($request->all())
+                ? $this->back200()
+                : $this->back403();
     }
 
-    public function store(Request $request){
-
-        $user = Auth::user();
-        $request['user_id'] = $user->id;
-        $request['topic_id'] = (int) $request['topic_id'];
-
-        $validator = Validator::make($request->all(), [
-            'name' => '',
-            'description' => '',
-            'topic_id' => 'exists:topics,id'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 403);
-        }
-        $input = $request->all();
-
-        if(!$user->canAddReports()){
-            return response(redirect()->back(),403);
-        }
-
-        if(Report::create($input)){
-            return redirect()->back();
-        } else {
-            return response(redirect(url('/')), 403);
-        }
-
-    }
-
-    public function show(Report $report){
-        //
-    }
-
-    public function edit(Report $report){
-        //
-    }
-
-    public function update(Request $request){
-
-        $user = Auth::user()->id;
+    public function update(Request $request)
+    {
         $report = Report::find($request->report_id);
-
-        if(!$request->file){
-            return response(redirect()->back(), 403);
-        }
-
-        if ($report->user_id == $user && $report->file == null && $report->status == "accepted") {
-
-            $fileName = $request->file->store('');
-            $request->file->store('public/reports');
-            $report->update(['file' => $fileName]);
-
-            return response(redirect()->back(), 200);
-        } else {
-            return response(redirect(url('/')), 403);
-        }
-
-
-
+        return
+            $request->file && $report->canAttachFile(Auth::user())
+                ? $this->addFile($request,$report)
+                : $this->back403();
     }
 
-    public function destroy(Request $request){
-        $user = Auth::user();
+    public function destroy(Request $request)
+    {
         $report = Report::find($request->id);
-
-        if($user->id == $report->user_id && $report->status == "pending") {
-            $report->delete();
-            return redirect()->back();
-        }else{
-            return response(redirect()->back(),403);
-        }
+        return
+            $report->canDeleteReport(Auth::user())
+                ? $this->deleteReport($report)
+                : $this->back403();
     }
 }

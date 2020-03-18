@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
 
     public function pendingReports(){
-        return $this->hasMany(Report::class)->where('status', '=', 'pending');
+        return $this->reports()->where('status', '=', 'pending');
     }
 
     public function membership(){

@@ -16,5 +16,26 @@ class Report extends Model
         return $this->belongsTo(Topic::class);
     }
 
-    protected $fillable = ['user_id','name','description','file','topic_id'];
+    public function canAttachFile(User $user){
+        return (
+            $this->user_id == $user->id
+            && $this->file == null
+            && $this->status == "accepted"
+        );
+    }
+
+    public function canDeleteReport(User $user){
+        return (
+            $this->user_id == $user->id
+            && $this->status == "pending"
+        );
+    }
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'description',
+        'file',
+        'topic_id'
+    ];
 }
