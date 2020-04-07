@@ -12,106 +12,100 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Event extends Resource
-{
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = 'App\Models\Event';
+class Event extends Resource {
+  /**
+   * The model the resource corresponds to.
+   *
+   * @var string
+   */
+  public static $model = 'App\Models\Event';
 
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'id';
+  /**
+   * The single value that should be used to represent the resource when being displayed.
+   *
+   * @var string
+   */
+  public static $title = 'id';
 
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
-    public static $search = [
-        'id',
+  /**
+   * The columns that should be searched.
+   *
+   * @var array
+   */
+  public static $search = [
+      'id',
+  ];
+
+  /**
+   * Get the fields displayed by the resource.
+   *
+   * @param \Illuminate\Http\Request $request
+   * @return array
+   */
+  public function fields(Request $request) {
+    return [
+        ID::make()->sortable(),
+
+        FilemanagerField::make('Logo', 'logo')
+            ->folder('events')
+            ->displayAsImage()
+            ->hideCreateFolderButton()
+            ->hideDeleteFileButton(),
+
+        Text::make('Name')
+            ->sortable(),
+
+        Textarea::make('Description'),
+
+        Boolean::make('Active')
+            ->sortable(),
+
+        DateTime::make('Date')
+            ->sortable(),
+        DateTime::make('Created At')
+            ->hideFromIndex(),
+        DateTime::make('Updated At')
+            ->hideFromIndex(),
     ];
+  }
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function fields(Request $request)
-    {
-        return [
-            ID::make()->sortable(),
+  /**
+   * Get the cards available for the request.
+   *
+   * @param \Illuminate\Http\Request $request
+   * @return array
+   */
+  public function cards(Request $request) {
+    return [];
+  }
 
-            FilemanagerField::make('Logo', 'logo')
-                ->folder('events')
-                ->displayAsImage()
-                ->hideCreateFolderButton()
-                ->hideDeleteFileButton(),
+  /**
+   * Get the filters available for the resource.
+   *
+   * @param \Illuminate\Http\Request $request
+   * @return array
+   */
+  public function filters(Request $request) {
+    return [];
+  }
 
-            Text::make('Name')
-                ->sortable(),
+  /**
+   * Get the lenses available for the resource.
+   *
+   * @param \Illuminate\Http\Request $request
+   * @return array
+   */
+  public function lenses(Request $request) {
+    return [];
+  }
 
-            Textarea::make('Description'),
-
-            Boolean::make('Active')
-                ->sortable(),
-
-            DateTime::make('Date')
-                ->sortable(),
-            DateTime::make('Created At')
-                ->hideFromIndex(),
-            DateTime::make('Updated At')
-                ->hideFromIndex(),
-        ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
-    }
+  /**
+   * Get the actions available for the resource.
+   *
+   * @param \Illuminate\Http\Request $request
+   * @return array
+   */
+  public function actions(Request $request) {
+    return [];
+  }
 }

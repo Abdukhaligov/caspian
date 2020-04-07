@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\Reference;
 use App\Models\Membership;
 use App\Providers\RouteServiceProvider;
@@ -11,50 +12,38 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
-{
-    use RegistersUsers;
+class RegisterController extends Controller {
+  use RegistersUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+  protected $redirectTo = RouteServiceProvider::HOME;
 
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+  public function __construct() {
+    $this->middleware('guest');
+  }
 
-    protected function validator(array $data)
-    {
+  protected function validator(array $data) {
+    return Validator::make($data, UserRequest::rules());
+  }
 
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'phone' => ['required', 'regex: (^[+]994[\s]{1}[(][0-9]{2}[)][\s]{1}[0-9]{3}[-][0-9]{2}[-][0-9]{2}$)', 'unique:users,phone'],
-            'membership_id' => ['required','exists:memberships,id'],
-            'reference_id' => ['required','exists:references,id'],
-        ]);
-    }
+  protected function create(array $data) {
+    $user = new User();
+    $user->name = $data['name'];
+    $user->email = $data['email'];
+    $user->password = Hash::make($data['password']);
+    $user->phone = preg_replace('/[^0-9]/', '', $data['phone']);
+    $user->company = $data['company'];
+    $user->job_title = $data['job_title'];
+    $user->reference_id = $data['reference_id'];
+    $user->membership_id = $data['membership_id'];
+    $user->save();
 
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'phone' => preg_replace('/[^0-9]/', '', $data['phone']),
-            'company' => $data['company'],
-            'job_title' => $data['job_title'],
-            'reference_id' => $data['reference_id'],
-            'membership_id' => $data['membership_id'],
-        ]);
-    }
+    return $user;
+  }
 
-    public function showRegistrationForm()
-    {
-        $data['references'] = Reference::all();
+  public function showRegistrationForm() {
+    $data['references'] = Reference::all();
+    $data['membership'] = Membership::showTree();
 
-        $data['membership'] = (new Membership)->showTree();
-
-        return view('auth.register')->with(compact('data'));
-    }
+    return view('auth.register', compact('data'));
+  }
 }

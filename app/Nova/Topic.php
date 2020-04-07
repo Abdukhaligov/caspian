@@ -9,52 +9,46 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Topic extends Resource
-{
-    public static $model = 'App\Models\Topic';
+class Topic extends Resource {
+  public static $model = 'App\Models\Topic';
 
-    public static $title = 'name';
+  public static $title = 'name';
 
-    public static $search = [
-        'id',
+  public static $search = [
+      'id',
+  ];
+
+  public function fields(Request $request) {
+
+
+    return [
+        ID::make()->sortable(),
+
+        Text::make('name')
+            ->sortable(),
+
+        Select::make('parent_id')->options(Topic::pluck('name', 'id'))
+            ->nullable(true),
+
+        HasMany::make('Topics', 'children'),
+
+        HasMany::make('Reports'),
     ];
+  }
 
-    public function fields(Request $request)
-    {
+  public function cards(Request $request) {
+    return [];
+  }
 
+  public function filters(Request $request) {
+    return [];
+  }
 
-        return [
-            ID::make()->sortable(),
+  public function lenses(Request $request) {
+    return [];
+  }
 
-            Text::make('name')
-                ->sortable(),
-
-            Select::make('parent_id')->options(Topic::pluck('name', 'id'))
-                ->nullable(true),
-
-            HasMany::make('Topics','children'),
-
-            HasMany::make('Reports'),
-        ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
-    }
+  public function actions(Request $request) {
+    return [];
+  }
 }

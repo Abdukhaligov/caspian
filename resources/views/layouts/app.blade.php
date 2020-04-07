@@ -51,10 +51,20 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <select class="selectpicker" data-width="fit">
-                            <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                            <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+                        <select id="languages" name="category" data-width="fit">
+                            <option value="lang/eng" @if(App::getLocale() == "en") selected disabled @endif>English</option>
+                            <option value="lang/ru" @if(App::getLocale() == "ru") selected disabled @endif>Russian</option>
                         </select>
+
+                        <script src="http://code.jquery.com/jquery-latest.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                                $('#languages').bind('change', function () {
+                                    window.location.replace($(this).val());
+                                });
+                            });
+
+                        </script>
 
                         @guest
                             <li class="nav-item">

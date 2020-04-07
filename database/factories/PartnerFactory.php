@@ -6,12 +6,11 @@ use App\Models\Partner;
 use Faker\Generator as Faker;
 
 $factory->define(Partner::class, function (Faker $faker) {
+  static $IMG = 1;
 
-    static $IMG = 1;
-
-    return [
-        'name' => $faker->company,
-        'img' => 'partners/'.$IMG++.".jpeg",
-        'url' => "https://google.com"
-    ];
+  return [
+      'name' => $faker->company,
+      'img' => 'partners/' . $IMG++ . ".jpeg",
+      'url' => "https://google.com"
+  ];
 });

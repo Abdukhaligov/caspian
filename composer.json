@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-json": "^1.7",
         "barryvdh/laravel-ide-helper": "^2.6",
         "bissolli/nova-phone-field": "^0.0.4",
         "daniel-de-wit/nova-single-record-resource": "^1.1",

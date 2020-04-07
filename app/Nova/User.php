@@ -15,88 +15,82 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use KABBOUCHI\NovaImpersonate\Impersonate;
 
-class User extends Resource
-{
+class User extends Resource {
 
-    public static $model = 'App\User';
+  public static $model = 'App\User';
 
-    public static $title = 'name';
+  public static $title = 'name';
 
-    public static $search = [
-        'id', 'name', 'email',
+  public static $search = [
+      'id', 'name', 'email',
+  ];
+
+  public function fields(Request $request) {
+    //if(!\Auth::user()->isAdmin())
+
+    return [
+        ID::make()->sortable(),
+
+        Text::make('Name')
+            ->sortable()
+            ->rules('required', 'max:255'),
+
+        PhoneNumber::make('Phone')
+            ->sortable()
+            ->withCustomFormats('+994 (##) ###-##-##')
+            ->onlyCustomFormats(),
+
+        Email::make('Email')
+            ->alwaysClickable()
+            ->sortable(),
+
+        Text::make('Company')
+            ->sortable()
+            ->hideFromIndex(),
+
+        Text::make('Job Title', 'job_title')
+            ->sortable()
+            ->hideFromIndex(),
+
+        HasMany::make('Reports'),
+
+        BelongsTo::make('Reference')
+            ->sortable()
+            ->hideFromIndex(),
+
+        BelongsTo::make('Membership')
+            ->sortable(),
+
+        Boolean::make('Administrator permission ', 'is_admin')
+            ->hideFromIndex(),
+
+        Password::make('Password')
+            ->onlyOnForms()
+            ->creationRules('required', 'string', 'min:8')
+            ->updateRules('nullable', 'string', 'min:8'),
+
+        DateTime::make('Created At'),
+        DateTime::make('Updated At')
+            ->hideFromIndex(),
+
+        Impersonate::make($this)
+            ->showOnDetail(),
     ];
+  }
 
-    public function fields(Request $request)
-    {
-        //if(!\Auth::user()->isAdmin())
+  public function cards(Request $request) {
+    return [];
+  }
 
-        return [
-            ID::make()->sortable(),
+  public function filters(Request $request) {
+    return [];
+  }
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
+  public function lenses(Request $request) {
+    return [];
+  }
 
-            PhoneNumber::make('Phone')
-                ->sortable()
-                ->withCustomFormats('+994 (##) ###-##-##')
-                ->onlyCustomFormats(),
-
-            Email::make('Email')
-                ->alwaysClickable()
-                ->sortable(),
-
-            Text::make('Company')
-                ->sortable()
-                ->hideFromIndex(),
-
-            Text::make('Job Title','job_title')
-                ->sortable()
-                ->hideFromIndex(),
-
-            HasMany::make('Reports'),
-
-            BelongsTo::make('Reference')
-                ->sortable()
-                ->hideFromIndex(),
-
-            BelongsTo::make('Membership')
-                ->sortable(),
-
-            Boolean::make('Administrator permission ', 'is_admin')
-                ->hideFromIndex(),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
-
-            DateTime::make('Created At'),
-            DateTime::make('Updated At')
-                ->hideFromIndex(),
-
-            Impersonate::make($this)
-                ->showOnDetail(),
-        ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
-    }
+  public function actions(Request $request) {
+    return [];
+  }
 }
