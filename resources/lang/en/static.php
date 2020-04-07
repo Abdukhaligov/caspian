@@ -7,5 +7,6 @@ return array (
     'home' => 'Home',
     'about us' => 'About Us',
     'contacts' => 'Contacts',
-    'gallery' => 'Gallery'
+    'gallery' => 'Gallery',
+    'media' => 'Media'
 );

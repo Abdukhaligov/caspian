@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 
+<!-- Mirrored from gizmoder.com/demo/html/omnivus/omnivus/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2020 11:14:46 GMT -->
 <head>
 
   <meta charset="utf-8">
@@ -42,24 +43,30 @@
 </head>
 <body>
 <div id="app">
-
   <?php
   $routes = [
       "about" => [
           "link" => route('about'),
-          "title" => __('static.about us')
+          "title" => __('static.about us'),
+          "active" => Request::is('about') ? 'active' : ''
       ],
       "contacts" => [
           "link" => route('contacts'),
-          "title" => __('static.contacts')
+          "title" => __('static.contacts'),
+          "active" => Request::is('contacts') ? 'active' : ''
       ],
       "gallery" => [
           "link" => route('gallery'),
-          "title" => __('static.gallery')
+          "title" => __('static.gallery'),
+          "active" => Request::is('gallery') ? 'active' : ''
+      ],
+      "media" => [
+          "title" => __('static.media'),
       ],
       "home" => [
           "link" => route('home'),
-          "title" => __('static.home')
+          "title" => __('static.home'),
+          "active" => Request::is('home') ? 'active' : ''
       ]
   ];
   $locale = [
@@ -75,7 +82,7 @@
       ]
   ];
 
-  switch (App::getLocale()){
+  switch (App::getLocale()) {
     case "en":
       $locale = [
           "link" => "/lang/ru",
@@ -95,19 +102,89 @@
   $routes = json_encode($routes);
   $locale = json_encode($locale);
   ?>
+
   <preloader-component></preloader-component>
 
   <navbar-component :routes="{{ $routes }}" :locale="{{ $locale }}"></navbar-component>
 
   @yield('content')
 
+  <footer class="footer-area footer-area-2 footer-area-1 bg_cover"
+          style="background-image: url({{ asset('omnivus/images/footer-bg.jpg') }});">
+    <div class="footer-overlay">
+      <div class="container position-relative">
+        <div class="row">
+          <div class="col-lg-4 col-md-7">
+            <div class="widget-item-1 mt-30">
+              <img src="{{ asset('omnivus/images/logo-1.1.png') }}" alt="">
+              <p>The web has changed a lot since Vitaly posted his first article back in 2006. The team at Smashing has
+                changed too, as have the things that we bring to our community onferences, books, and our membership
+                added to the online magazine.</p>
+              <p>One thing that hasn’t changed is that we’re a small team — with most of us not working</p>
+            </div>
+          </div>
+          <div class="col-lg-3 offset-lg-1 col-md-5">
+            <div class="widget-item-2 mt-30">
+              <h4 class="title">Pages</h4>
+              <div class="footer-list">
+                <ul>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Home</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Services</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> About</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Career</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Refund</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Terms</a></li>
+                </ul>
+                <ul>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Details</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Contact</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Business</a></li>
+                  <li><a href="#"><i class="fal fa-angle-right"></i> Affiliate</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="widget-item-2 widget-item-3 mt-30">
+              <h4 class="title">Working Hours</h4>
+              <ul>
+                <li>Monday - Friday: 7:00 - 17:00</li>
+                <li>Saturday: 7:00 - 12:00</li>
+                <li>Sunday and holidays: 8:00 - 10:00</li>
+              </ul>
+              <p><span>For more then 30 years,</span> IT Service has been a reliable partner in the field of logistics
+                and cargo forwarding.</p>
+              <a href="#"><i class="fal fa-angle-right"></i>Discover More</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="footer-copyright">
+              <p>Copyright <a href="https://gizmoder.com/cdn-cgi/l/email-protection" class="__cf_email__"
+                              data-cfemail="a5e7dce5">[email&#160;protected]</a> <span>tanvir82</span> - 2019</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="back-to-top back-to-top-2">
+    <a href="#">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+  </div>
+
+
   <script data-cfasync="false" src="{{ asset('omnivus/js/email-decode.min.js') }}"></script>
 
   <script src="{{ asset('omnivus/js/vendor/modernizr-3.6.0.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/vendor/jquery-1.12.4.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <!--//.LGX SITE CONTAINER-->
   <!-- *** ADD YOUR SITE SCRIPT HERE *** -->
@@ -121,43 +198,42 @@
   <!-- CUSTOM SCRIPT  -->
   <script src="{{ asset('eventpoint/js/custom.script.js') }}"></script>
 
-  <script src="{{ asset('omnivus/js/bootstrap.min.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
-  <script src="{{ asset('omnivus/js/popper.min.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/bootstrap.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/popper.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
-  <script src="{{ asset('omnivus/js/slick.min.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/slick.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
-  <script src="{{ asset('omnivus/js/isotope.pkgd.min.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/isotope.pkgd.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/imagesloaded.pkgd.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/jquery.magnific-popup.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/jquery.counterup.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/circle-progress.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
-  <script src="{{ asset('omnivus/js/ajax-contact.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/ajax-contact.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/jquery.syotimer.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
   <script src="{{ asset('omnivus/js/jquery.nice-select.min.js') }}"
-          type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+          type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
-  <script src="{{ asset('omnivus/js/wow.min.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/wow.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
-  <script src="{{ asset('omnivus/js/waypoints.min.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/waypoints.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 
-  <script src="{{ asset('omnivus/js/main.js') }}" type="0bd88c4bfff54d964c6c0fba-text/javascript"></script>
-  <script src="{{ asset('omnivus/js/rocket-loader.min.js') }}" data-cf-settings="0bd88c4bfff54d964c6c0fba-|49"
+  <script src="{{ asset('omnivus/js/main.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+  <script src="{{ asset('omnivus/js/rocket-loader.min.js') }}" data-cf-settings="fa7f17f0923a53efe332a952-|49"
           defer=""></script>
 
 </div>
 </body>
-
 
 </html>

@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <section class="mb-5 mt-5">
+    <section class="mb-5 mt-5" style="margin-top: 50px">
         <div id="lgx-photo-gallery" class="lgx-photo-gallery">
             <div class="lgx-inner">
                 <div class="container">
