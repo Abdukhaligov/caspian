@@ -103,7 +103,18 @@
   $locale = json_encode($locale);
   ?>
 
-  <preloader-component></preloader-component>
+    <div class="preloader">
+      <div class="loading">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
 
   <navbar-component :routes="{{ $routes }}" :locale="{{ $locale }}"></navbar-component>
 
