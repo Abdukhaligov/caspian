@@ -129,63 +129,59 @@
     </a>
   </div>
 
-  
-  <script data-cfasync="false" src="{{ asset('omnivus/js/email-decode.min.js') }}"></script>
-
-  <script src="{{ asset('omnivus/js/vendor/modernizr-3.6.0.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/vendor/jquery-1.12.4.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <!--//.LGX SITE CONTAINER-->
-  <!-- *** ADD YOUR SITE SCRIPT HERE *** -->
-  <!-- JQUERY  -->
-  <script src="{{ asset('eventpoint/js/vendor/jquery-1.12.4.min.js') }}"></script>
-
-  <!-- adding magnific popup js library -->
-  <script type="text/javascript"
-          src="{{  asset('eventpoint/libs/maginificpopup/jquery.magnific-popup.min.js') }}"></script>
-
-  <!-- CUSTOM SCRIPT  -->
-  <script src="{{ asset('eventpoint/js/custom.script.js') }}"></script>
-
-  <script src="{{ asset('omnivus/js/bootstrap.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-  <script src="{{ asset('omnivus/js/popper.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/slick.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/isotope.pkgd.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/imagesloaded.pkgd.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/jquery.magnific-popup.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/jquery.counterup.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/circle-progress.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/ajax-contact.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/jquery.syotimer.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/jquery.nice-select.min.js') }}"
-          type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/wow.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/waypoints.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-  <script src="{{ asset('omnivus/js/main.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
-  <script src="{{ asset('omnivus/js/rocket-loader.min.js') }}" data-cf-settings="fa7f17f0923a53efe332a952-|49"
-          defer=""></script>
 
 </div>
+
+<script src="{{ asset('omnivus/js/vendor/jquery-1.12.4.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<!--//.LGX SITE CONTAINER-->
+<!-- *** ADD YOUR SITE SCRIPT HERE *** -->
+<!-- JQUERY  -->
+<script src="{{ asset('eventpoint/js/vendor/jquery-1.12.4.min.js') }}"></script>
+
+<!-- adding magnific popup js library -->
+<script type="text/javascript"
+        src="{{  asset('eventpoint/libs/maginificpopup/jquery.magnific-popup.min.js') }}"></script>
+
+<!-- CUSTOM SCRIPT  -->
+<script src="{{ asset('eventpoint/js/custom.script.js') }}"></script>
+
+<script src="{{ asset('omnivus/js/bootstrap.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+<script src="{{ asset('omnivus/js/popper.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/slick.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/isotope.pkgd.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/imagesloaded.pkgd.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/jquery.magnific-popup.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/jquery.counterup.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/circle-progress.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/ajax-contact.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/jquery.syotimer.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/jquery.nice-select.min.js') }}"
+        type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/wow.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/waypoints.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+
+<script src="{{ asset('omnivus/js/main.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
+<script src="{{ asset('omnivus/js/rocket-loader.min.js') }}" data-cf-settings="fa7f17f0923a53efe332a952-|49"
+        defer=""></script>
+
 </body>
 
 </html>

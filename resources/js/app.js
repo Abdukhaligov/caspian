@@ -1,4 +1,4 @@
-require('./bootstrap');
+// require('./bootstrap');
 
 import Vue from 'vue'
 const VueInputMask = require('vue-inputmask').default;
