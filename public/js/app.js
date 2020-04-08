@@ -160,24 +160,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NavbarComponent",
-  props: ['routes', 'locale']
+  props: ['routes', 'locale', 'data']
 });
 
 /***/ }),
@@ -2502,9 +2487,13 @@ var render = function() {
       _c("div", { staticClass: "header-nav" }, [
         _c("div", { staticClass: "navigation" }, [
           _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
-            _vm._m(1),
+            _c(
+              "a",
+              { staticClass: "navbar-brand", attrs: { href: "index.html" } },
+              [_c("img", { attrs: { src: _vm.data.logo, alt: "" } })]
+            ),
             _vm._v(" "),
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "div",
@@ -2513,88 +2502,54 @@ var render = function() {
                 attrs: { id: "navbarSupportedContent" }
               },
               [
-                _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nav-item", class: _vm.routes.home.active },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: _vm.routes.home.link }
-                        },
-                        [_vm._v(_vm._s(_vm.routes.home.title))]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item", class: _vm.routes.about.active },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: _vm.routes.about.link }
-                        },
-                        [_vm._v(_vm._s(_vm.routes.about.title))]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass: "nav-item",
-                      class: _vm.routes.gallery.active
-                    },
-                    [
-                      _c(
-                        "a",
-                        { staticClass: "nav-link", attrs: { href: "#" } },
-                        [_vm._v(_vm._s(_vm.routes.media.title))]
-                      ),
-                      _vm._v(" "),
-                      _c("ul", { staticClass: "sub-menu" }, [
-                        _c("li", [
-                          _c(
-                            "a",
-                            { attrs: { href: _vm.routes.gallery.link } },
-                            [_vm._v(_vm._s(_vm.routes.gallery.title))]
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass: "nav-item",
-                      class: _vm.routes.contacts.active
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: _vm.routes.contacts.link }
-                        },
-                        [_vm._v(_vm._s(_vm.routes.contacts.title))]
-                      )
-                    ]
-                  )
-                ])
+                _c(
+                  "ul",
+                  { staticClass: "navbar-nav ml-auto" },
+                  _vm._l(_vm.routes, function(route) {
+                    return _c(
+                      "li",
+                      {
+                        key: route.id,
+                        staticClass: "nav-item",
+                        class: route.active
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: route.link }
+                          },
+                          [_vm._v(_vm._s(route.title))]
+                        ),
+                        _vm._v(" "),
+                        route.children
+                          ? _c(
+                              "ul",
+                              { staticClass: "sub-menu" },
+                              _vm._l(route.children, function(child) {
+                                return _c(
+                                  "li",
+                                  { key: child.id, staticClass: "active" },
+                                  [
+                                    _c("a", { attrs: { href: child.link } }, [
+                                      _vm._v(_vm._s(child.title))
+                                    ])
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          : _vm._e()
+                      ]
+                    )
+                  }),
+                  0
+                )
               ]
             ),
             _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._m(5),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "country-flag d-none d-lg-block ml-3" }, [
               _c("a", { attrs: { href: _vm.locale.link } }, [
@@ -2640,7 +2595,7 @@ var staticRenderFns = [
                 _c("li", [
                   _c("a", { attrs: { href: "#" } }, [
                     _c("i", { staticClass: "fal fa-phone" }),
-                    _vm._v(" 786 875 864 75 7")
+                    _vm._v(" 070 5564 238 44")
                   ])
                 ])
               ])
@@ -2695,20 +2650,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "a",
-      { staticClass: "navbar-brand", attrs: { href: "index.html" } },
-      [
-        _c("img", {
-          attrs: { src: "http://caspian/omnivus/images/logo-2.png", alt: "" }
-        })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
       "button",
       {
         staticClass: "navbar-toggler",
@@ -2729,60 +2670,6 @@ var staticRenderFns = [
         _c("span", { staticClass: "toggler-icon" })
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _vm._v("Blog")
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "sub-menu" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "blog-standard.html" } }, [
-            _vm._v("Blog Standard")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "blog-grid.html" } }, [_vm._v("Blog Grid")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "blog-details.html" } }, [
-            _vm._v("Blog Details")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bar-area d-none d-xl-block" }, [
-      _c("ul", [
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fal fa-shopping-cart" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fal fa-search" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fal fa-bars" })
-          ])
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this
