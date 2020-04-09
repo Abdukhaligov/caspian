@@ -2,15 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-class PartnerSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        //
-    }
+class PartnerSeeder extends Seeder {
+
+  public function run() {
+    //
+  }
+
 }

@@ -22,7 +22,7 @@ class SingleAbout extends Resource {
 
   public function fields(Request $request) {
     return [
-        Text::make('Name'),
+        Text::make('Title'),
         Multilingual::make('Language'),
     ];
   }

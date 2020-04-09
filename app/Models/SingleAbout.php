@@ -8,6 +8,6 @@ use Spatie\Translatable\HasTranslations;
 class SingleAbout extends Model {
 
   use HasTranslations;
-  public $translatable = ['name'];
+  public $translatable = ['title'];
 
 }

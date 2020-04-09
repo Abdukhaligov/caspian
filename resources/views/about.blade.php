@@ -2,6 +2,8 @@
 
 @section('content')
 
+  <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
+
   <div class="about-experience-area pb-120">
     <div class="container">
       <div class="row">
@@ -254,3 +256,9 @@
 
 
 @endsection
+<script>
+  import PageBannerComponent from "../js/components/PageBannerComponent";
+  export default {
+    components: {PageBannerComponent}
+  }
+</script>

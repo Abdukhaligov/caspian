@@ -9,7 +9,7 @@ class CreateSingleNewsTable extends Migration {
   public function up() {
     Schema::create('single_news', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('name');
+      $table->json('title');
       $table->timestamps();
     });
   }

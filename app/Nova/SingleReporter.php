@@ -22,7 +22,7 @@ class SingleReporter extends Resource {
 
   public function fields(Request $request) {
     return [
-        Text::make('name'),
+        Text::make('Title'),
         Multilingual::make('Language'),
     ];
   }

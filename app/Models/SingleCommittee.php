@@ -8,6 +8,6 @@ use Spatie\Translatable\HasTranslations;
 class SingleCommittee extends Model {
 
   use HasTranslations;
-  public $translatable = ['name'];
+  public $translatable = ['title'];
 
 }

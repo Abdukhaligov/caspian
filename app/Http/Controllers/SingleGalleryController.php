@@ -7,10 +7,10 @@ use App\Models\SingleGallery;
 class SingleGalleryController extends Controller {
 
   public function index() {
-    $gallery = SingleGallery::first();
+    $data = SingleGallery::first();
 
-    $data["photos"] = $gallery->getMedia('photos');
-    $data["videos"] = json_decode($gallery->videos);
+    $data["photos"] = $data->getMedia('photos');
+    $data["videos"] = json_decode($data->videos);
 
     return view('gallery', compact('data'));
   }

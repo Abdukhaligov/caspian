@@ -2,19 +2,14 @@
 
 use Illuminate\Database\Seeder;
 
-class SingleNewsSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      $data = [
-          ["name" => "{\"en\":\"News\",\"ru\":\"Новости\"}"]
-      ];
+class SingleNewsSeeder extends Seeder {
 
-      DB::table('single_news')->insert($data);
-    }
+  public function run() {
+    $data = [
+        ["title" => "{\"en\":\"News\",\"ru\":\"Новости\"}"]
+    ];
+
+    DB::table('single_news')->insert($data);
+  }
+
 }

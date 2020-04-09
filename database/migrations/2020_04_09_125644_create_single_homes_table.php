@@ -5,25 +5,18 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateSingleHomesTable extends Migration {
-  /**
-   * Run the migrations.
-   *
-   * @return void
-   */
+
   public function up() {
     Schema::create('single_homes', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('name');
+      $table->json('title');
+      $table->json('banners')->nullable();
       $table->timestamps();
     });
   }
 
-  /**
-   * Reverse the migrations.
-   *
-   * @return void
-   */
   public function down() {
     Schema::dropIfExists('single_homes');
   }
+
 }

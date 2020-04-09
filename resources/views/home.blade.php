@@ -3,66 +3,28 @@
 @section('content')
 
   <div class="banner-active">
-    <div class="single-banner bg_cover" style="background-image: url({{ asset('omnivus/images/banner-bg-1.1.jpg') }});">
-      <div class="banner-overlay">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-9">
-              <div class="banner-content">
-                <span data-animation="fadeInLeft" data-delay="0.5s">IT Business Consulting</span>
-                <h1 data-animation="fadeInLeft" data-delay="0.9s" class="title">Best IT Soluations <br>Provider Agency
-                </h1>
-                <p data-animation="fadeInLeft" data-delay="1.3s">Sed ut perspiciatis unde omnis iste natus error sit
-                  voluptatem accusantium doloremda tium totam rem aperiam eaque ipsa quae ab illo inventore
-                  veritatis </p>
-                <a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" href="services.html">Our Services <i
-                      class="fal fa-long-arrow-right"></i></a>
+    @if($data["banners"])
+      @foreach($data["banners"] as $banner)
+        <div class="single-banner bg_cover" style="background-image: url({{  Storage::disk('public')->url($banner->attributes->img) }});">
+          <div class="banner-overlay">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-9">
+                  <div class="banner-content">
+                    <span data-animation="fadeInLeft" data-delay="0.5s">{{ $banner->attributes->category }}</span>
+                    <h1 data-animation="fadeInLeft" data-delay="0.9s" class="title">{!!  $banner->attributes->title !!}</h1>
+                    <p data-animation="fadeInLeft" data-delay="1.3s">{{ $banner->attributes->subtitle }}</p>
+                    @if($banner->attributes->btn_link)
+                      <a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" target="_blank" href="{{ $banner->attributes->btn_link }}">{!! $banner->attributes->btn_title !!}</a>
+                    @endif
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="single-banner bg_cover" style="background-image: url({{ asset('omnivus/images/banner-bg-1.2.jpg') }});">
-      <div class="banner-overlay">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-9">
-              <div class="banner-content">
-                <span data-animation="fadeInLeft" data-delay="0.5s">IT Business Consulting</span>
-                <h1 data-animation="fadeInLeft" data-delay="0.9s" class="title">Best IT Soluations <br>Provider Agency
-                </h1>
-                <p data-animation="fadeInLeft" data-delay="1.3s">Sed ut perspiciatis unde omnis iste natus error sit
-                  voluptatem accusantium doloremda tium totam rem aperiam eaque ipsa quae ab illo inventore
-                  veritatis </p>
-                <a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" href="services.html">Our Services <i
-                      class="fal fa-long-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="single-banner bg_cover" style="background-image: url({{ asset('omnivus/images/banner-bg-1.3.jpg') }});">
-      <div class="banner-overlay">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-9">
-              <div class="banner-content">
-                <span data-animation="fadeInLeft" data-delay="0.5s">IT Business Consulting</span>
-                <h1 data-animation="fadeInLeft" data-delay="0.9s" class="title">Best IT Soluations <br>Provider Agency
-                </h1>
-                <p data-animation="fadeInLeft" data-delay="1.3s">Sed ut perspiciatis unde omnis iste natus error sit
-                  voluptatem accusantium doloremda tium totam rem aperiam eaque ipsa quae ab illo inventore
-                  veritatis </p>
-                <a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" href="services.html">Our Services <i
-                      class="fal fa-long-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      @endforeach
+    @endif
   </div>
 
 
@@ -495,176 +457,6 @@
               </ul>
               <h4 class="title">David Jhon Korla</h4>
               <span>IT Consultant</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="contact-us-area bg_cover" style="background-image: url({{ asset('omnivus/images/contact-bg.jpg') }})">
-    <div class="contact-overlay">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <div class="section-title text-center">
-              <span>contact us</span>
-              <h2 class="title">Join Us To Get Free Consultations</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="contact-details d-flex">
-              <div class="contact-thumb wow slideInLeft" data-wow-duration=".5s" data-wow-delay="0s">
-                <img src="{{ asset('omnivus/images/contact-man.jpg') }}" alt="">
-              </div>
-              <div class="contact-form-area">
-                <form action="#">
-                  <div class="input-title">
-                    <h3 class="title">Don't Hesitate To Contact With Us, Say Hello......</h3>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="input-box mt-30">
-                        <input type="text" placeholder="Full Name Here">
-                        <i class="fal fa-user"></i>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="input-box mt-30">
-                        <input type="email" placeholder="Email Here">
-                        <i class="fal fa-envelope-open"></i>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="input-box mt-30">
-                        <input type="text" placeholder="Phone No">
-                        <i class="fal fa-phone"></i>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="input-box mt-30">
-                        <input type="text" placeholder="Subject">
-                        <i class="fal fa-edit"></i>
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="input-box mt-30">
-                        <textarea name="#" id="#" cols="30" rows="10" placeholder="Message Us"></textarea>
-                        <i class="fal fa-pencil"></i>
-                        <button class="main-btn wow slideInUp" data-wow-duration="1.5s" data-wow-delay="0s"
-                                type="submit">Send Message <i class="fal fa-long-arrow-right"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="our-choose-area">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="section-title mt-30">
-            <span>Best agecy for you</span>
-            <h2 class="title">Why Choose Our Solutions</h2>
-          </div>
-          <div class="accordion" id="accordionExample">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <a class="" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                   aria-controls="collapseOne">
-                  <i class="fal fa-long-arrow-right"></i> We Provide Professional Service
-                </a>
-              </div>
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                  <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                    magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam</p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingTwo">
-                <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                   aria-controls="collapseTwo">
-                  <i class="fal fa-long-arrow-right"></i> Stay Up, Stay Running & Protected
-                </a>
-              </div>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                  <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                    magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam</p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingThree">
-                <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-                   aria-controls="collapseThree">
-                  <i class="fal fa-long-arrow-right"></i> Our Experienced Experts
-                </a>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
-                  <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                    magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam</p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingFour">
-                <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
-                   aria-controls="collapseFour">
-                  <i class="fal fa-long-arrow-right"></i> Management Engineering System
-                </a>
-              </div>
-              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                <div class="card-body">
-                  <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                    magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="our-choose-counter-area mt-30">
-            <div class="row">
-              <div class="col-md-6 col-sm-6">
-                <div class="our-choose-counter wow slideInUp" data-wow-duration=".5s" data-wow-delay="0s">
-                  <sub><span class="counter">569</span> <sup>+</sup></sub>
-                  <span>Projct Complate</span>
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptsantium doloremque laudantium</p>
-                </div>
-                <div class="our-choose-counter wow slideInUp mt-55" data-wow-duration="1s" data-wow-delay="0s">
-                  <sub><span class="counter">783</span> <sup>+</sup></sub>
-                  <span>Business Partners</span>
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptsantium doloremque laudantium</p>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6">
-                <div class="our-choose-counter wow slideInUp" data-wow-duration="1.5s" data-wow-delay="0s">
-                  <sub><span class="counter">356</span> <sup>+</sup></sub>
-                  <span>Happy Clients</span>
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptsantium doloremque laudantium</p>
-                </div>
-                <div class="our-choose-counter wow slideInUp mt-55" data-wow-duration="2s" data-wow-delay="0s">
-                  <sub><span class="counter">894</span> <sup>+</sup></sub>
-                  <span>IT Consultant</span>
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptsantium doloremque laudantium</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

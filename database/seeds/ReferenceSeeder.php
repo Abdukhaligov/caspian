@@ -3,11 +3,7 @@
 use Illuminate\Database\Seeder;
 
 class ReferenceSeeder extends Seeder {
-  /**
-   * Run the database seeds.
-   *
-   * @return void
-   */
+
   public function run() {
     $references = [
         ['name' => 'Email Newsletter'],
@@ -21,4 +17,5 @@ class ReferenceSeeder extends Seeder {
 
     DB::table('references')->insert($references);
   }
+
 }

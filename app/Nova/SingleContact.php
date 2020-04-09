@@ -27,7 +27,7 @@ class SingleContact extends Resource {
 
   public function fields(Request $request) {
     return [
-        Text::make('Name'),
+        Text::make('Title'),
         Text::make('Phone'),
       // You can set the initial map location. By default (Spain)
         MapAddress::make('Location')

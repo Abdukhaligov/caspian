@@ -3,11 +3,7 @@
 use Illuminate\Database\Seeder;
 
 class MembershipSeeder extends Seeder {
-  /**
-   * Run the database seeds.
-   *
-   * @return void
-   */
+
   public function run() {
     $memberships = [
         ['name' => 'Guest'],
@@ -23,4 +19,5 @@ class MembershipSeeder extends Seeder {
     ];
     DB::table('memberships')->insert($memberships);
   }
+
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Request;
 
@@ -104,9 +105,9 @@ class ConfigJSON extends Model {
 
   public static function getData() {
 
-    if (\Auth::user()) {
+    if (Auth::user()) {
       $title = __('static.personal_cabinet');
-      $url = route('personal_cabinet');
+      $url = route('cabinet');
     } else {
       $title = __('static.sign_in') . " \\ " . __('static.sign_up');
       $url = route('login');
@@ -116,7 +117,10 @@ class ConfigJSON extends Model {
         "logo" => asset('omnivus/images/logo-2.png'),
         "cabinet" => [
             "title" => $title,
-            "url" => $url
+            "url" => $url,
+            "loggedIn" => Auth::user() ? true : false,
+            "logoutTitle" => __('static.logout'),
+            "logoutUrl" => route('logout')
         ],
         "domain" => Request::root(),
         "currentPage" => Request::url()

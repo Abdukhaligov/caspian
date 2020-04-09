@@ -15,7 +15,7 @@ class SingleGallery extends Model implements HasMedia {
   use HasTranslations;
   use HasFlexible;
 
-  public $translatable = ['name'];
+  public $translatable = ['title'];
 
   public function getFlexibleContentAttribute() {
     return $this->flexible('flexible-content');

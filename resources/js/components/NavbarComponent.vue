@@ -1,5 +1,5 @@
 <template>
-  <header class="header-area header-area-2" :class="data.currentPage === data.domain ? 'header-area-4': 'header-area-4'">
+  <header class="header-area header-area-2" :class="data.currentPage === data.domain ? 'header-area-4': 'header-area-2'">
     <div class="header-top pl-30 pr-30 white-bg">
       <div class="row align-items-center">
         <div class="col-md-6 col-sm-7">
@@ -27,7 +27,7 @@
     <div class="header-nav">
       <div class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light ">
-          <a class="navbar-brand" href="index.html"><img :src="data.logo" alt=""></a>
+          <a class="navbar-brand" href="."><img :src="data.logo" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="toggler-icon"></span>
             <span class="toggler-icon"></span>
@@ -58,6 +58,15 @@
 <!--              <i class="fal fa-long-arrow-right"></i>-->
             </a>
           </div>
+
+          <ul v-show="data.cabinet.loggedIn" class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" :href="data.cabinet.logoutUrl" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ data.cabinet.logoutTitle }}
+              </a>
+            </li>
+          </ul>
+
           <div class="country-flag d-none d-lg-block ml-3">
             <a :href="locale.link"><img :src="locale.img" alt="flag"></a>
           </div>

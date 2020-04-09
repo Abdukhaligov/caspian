@@ -1,12 +1,15 @@
 @extends('layouts.init')
 
 @section('content')
+
+  <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
+
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <span>{{ __('static.personal cabinet') }}</span>
+            <span>{{ __('static.personal_cabinet') }}</span>
             <div class="float-right">
               <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUser">
                 Edit

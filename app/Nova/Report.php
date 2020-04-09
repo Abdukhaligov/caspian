@@ -23,6 +23,11 @@ class Report extends Resource {
     return [
         ID::make()->sortable(),
         Text::make('Name')
+            ->displayUsing(function ($value) {
+
+                return substr($value, 0,20);
+
+            })
             ->sortable(),
         BelongsTo::make('User')
             ->sortable(),
