@@ -9,6 +9,7 @@ return array (
     'home' => 'Home',
     'topics' => 'Topics',
     'committee' => 'Committee',
+    'presenters' => 'Presenters',
     'about_us' => 'About Us',
     'about' => 'About',
     'contacts' => 'Contacts',

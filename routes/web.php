@@ -26,6 +26,7 @@ Route::group(['middleware' => ['locale']], function () {
       Route::get('/aboutus', 'SingleAboutController@index')->name('about');
       Route::get('/topics', 'SingleTopicController@index')->name('topics');
       Route::get('/committee', 'SingleCommitteeController@index')->name('committee');
+      Route::get('/presenters', 'SinglePresenterController@index')->name('presenters');
     });
 
     Route::get('/contacts', 'SingleContactController@index')->name('contacts');

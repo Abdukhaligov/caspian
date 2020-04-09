@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SingleGallerySeeder::class);
         $this->call(SingleTopicSeeder::class);
         $this->call(SingleCommitteeSeeder::class);
+        $this->call(SinglePresenterSeeder::class);
 
     }
 }

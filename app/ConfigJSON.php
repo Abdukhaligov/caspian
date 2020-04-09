@@ -35,6 +35,11 @@ class ConfigJSON extends Model
                       "link" => route('committee'),
                       "active" => Request::is('about/committee') ? true : false,
                   ],
+                  [
+                      "title" => __('static.presenters'),
+                      "link" => route('presenters'),
+                      "active" => Request::is('about/presenters') ? true : false,
+                  ],
               ]
           ],
           [
