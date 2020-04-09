@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\models\SingleAbout;
 use App\Models\SingleContact;
 use App\Models\SingleGallery;
+use App\Models\SingleHome;
 use App\Models\SingleTopic;
 use App\Policies\SinglePagePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -18,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider {
    */
   protected $policies = [
     // 'App\Model' => 'App\Policies\ModelPolicy',
+      SingleHome::class => SinglePagePolicy::class,
       SingleAbout::class => SinglePagePolicy::class,
       SingleContact::class => SinglePagePolicy::class,
       SingleGallery::class => SinglePagePolicy::class,

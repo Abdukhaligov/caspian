@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reference;
 use App\Models\SingleGallery;
-use Illuminate\Http\Request;
 
 class SingleGalleryController extends Controller {
+
   public function index() {
     $gallery = SingleGallery::first();
 
@@ -15,4 +14,5 @@ class SingleGalleryController extends Controller {
 
     return view('gallery', compact('data'));
   }
+
 }

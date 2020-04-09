@@ -163,6 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NavbarComponent",
   props: ['routes', 'locale', 'data']
@@ -2532,7 +2533,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "header",
-    { staticClass: "header-area header-area-2 header-area-4" },
+    {
+      staticClass: "header-area header-area-2",
+      class:
+        _vm.data.currentPage === _vm.data.domain
+          ? "header-area-4"
+          : "header-area-4"
+    },
     [
       _vm._m(0),
       _vm._v(" "),
@@ -2563,7 +2570,7 @@ var render = function() {
                       {
                         key: route.id,
                         staticClass: "nav-item",
-                        class: route.active
+                        class: route.active ? "active" : ""
                       },
                       [
                         _c(
@@ -2663,7 +2670,7 @@ var staticRenderFns = [
                 _c("li", [
                   _c("a", { attrs: { href: "#" } }, [
                     _c("i", { staticClass: "fal fa-phone" }),
-                    _vm._v(" 070 5564 238 44")
+                    _vm._v("070 541521 542 22")
                   ])
                 ])
               ])

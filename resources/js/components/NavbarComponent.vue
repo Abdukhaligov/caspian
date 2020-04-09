@@ -1,15 +1,16 @@
 <template>
-  <header class="header-area header-area-2 header-area-4">
+  <header class="header-area header-area-2" :class="data.currentPage === data.domain ? 'header-area-4': 'header-area-4'">
     <div class="header-top pl-30 pr-30 white-bg">
       <div class="row align-items-center">
         <div class="col-md-6 col-sm-7">
           <div class="header-left-side text-center text-sm-left">
             <ul>
               <li><a href="#"><i class="fal fa-envelope"></i> <span class="__cf_email__" data-cfemail="95fcfbf3fad5e2f0f7f8f4fcf9bbf6faf8">[email&#160;protected]</span></a></li>
-              <li><a href="#"><i class="fal fa-phone"></i> 070 5564 238 44</a></li>
+              <li><a href="#"><i class="fal fa-phone"></i>070 541521 542 22</a></li>
             </ul>
           </div>
         </div>
+
         <div class="col-md-6 col-sm-5">
           <div class="header-right-social text-center text-sm-right">
             <ul>
@@ -34,7 +35,7 @@
           </button>
           <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item" v-for="route in routes" :key="route.id" :class="route.active">
+              <li class="nav-item" v-for="route in routes" :key="route.id" :class="route.active ? 'active' : ''">
                 <a class="nav-link" :href="route.link">{{ route.title }}</a>
                 <ul v-if="route.children" class="sub-menu">
                   <li v-for="child in route.children" :key="child.id">

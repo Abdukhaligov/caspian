@@ -2,103 +2,29 @@
 
 namespace App\Nova;
 
+use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
 
-class SingleReporter extends Resource
-{
+class SingleReporter extends Resource {
+
+  public static $model = 'App\Models\SinglePresenter';
   public static $group = 'Pages';
+  public static $title = 'id';
+  public static $search = ['id'];
 
-  public static function singleRecord(): bool {
-    return true;
-  }
+  public static function label() { return "Presenters"; }
 
-  public static function singleRecordId(): bool {
-    return 1;
-  }
+  public static function singleRecord(): bool { return true; }
 
-  public static function label() {
-    return "Presenters";
-  }
+  public static function singleRecordId(): bool { return 1; }
 
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = 'App\Models\SingleReporter';
 
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'id';
-
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
-    public static $search = [
-        'id',
+  public function fields(Request $request) {
+    return [
+        Text::make('name'),
+        Multilingual::make('Language'),
     ];
+  }
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function fields(Request $request)
-    {
-        return [
-            ID::make()->sortable(),
-        ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
-    }
 }

@@ -7,15 +7,11 @@ use App\Models\Reference;
 use App\Models\Topic;
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller {
-  private function back403() {
-    return response(redirect()->back(), 403);
-  }
 
-  private function back200() {
-    return response(redirect()->back(), 200);
-  }
+  private function back403() { return response(redirect()->back(), 403); }
+
+  private function back200() { return response(redirect()->back(), 200); }
 
   public function cabinet() {
     $user = Auth::user();
@@ -37,9 +33,7 @@ class UserController extends Controller {
     $data['references'] = Reference::all();
     $data['membership'] = Membership::showTree();
 
-//    return(Topic::showTree());
-//    die();
-
     return view('personal_cabinet', compact('data'));
   }
+
 }

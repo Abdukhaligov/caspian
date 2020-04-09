@@ -6,14 +6,14 @@ use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 
-class SingleNews extends Resource {
+class SingleHome extends Resource {
 
-  public static $model = 'App\Models\SingleNews';
+  public static $model = 'App\Models\SingleHome';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];
 
-  public static function label() { return "News"; }
+  public static function label() { return "Home"; }
 
   public static function singleRecord(): bool { return true; }
 
@@ -26,5 +26,6 @@ class SingleNews extends Resource {
         Multilingual::make('Language'),
     ];
   }
+
 
 }

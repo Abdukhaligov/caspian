@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         factory(\App\Models\Event::class,10)->create();
 
         /*  SINGLE PAGES */
+        $this->call(SingleHomeSeeder::class);
         $this->call(SingleAboutSeeder::class);
         $this->call(SingleContactSeeder::class);
         $this->call(SingleGallerySeeder::class);

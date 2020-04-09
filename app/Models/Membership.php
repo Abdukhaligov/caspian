@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Membership extends Model {
+
   public function parent() {
     return $this->belongsTo(Membership::class);
   }
@@ -31,4 +32,5 @@ class Membership extends Model {
 
     return $memberships;
   }
+
 }

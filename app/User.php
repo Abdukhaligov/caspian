@@ -8,9 +8,9 @@ use App\Models\Report;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Faker\Factory as Faker;
 
 class User extends Authenticatable {
+
   use HasApiTokens, Notifiable;
 
   protected $guarded = [];
@@ -19,6 +19,14 @@ class User extends Authenticatable {
   protected $casts = ['email_verified_at' => 'datetime'];
 
   public function isAdmin() { return $this->is_admin; }
+
+  public function reference() { return $this->belongsTo(Reference::class); }
+
+  public function membership() { return $this->belongsTo(Membership::class); }
+
+  public function reports() { return $this->hasMany(Report::class); }
+
+  public function pendingReports() { return $this->reports()->where('status', '=', 'pending'); }
 
   public function canAddReports() {
     if ($this->isAdmin()) return true;
@@ -36,20 +44,5 @@ class User extends Authenticatable {
     return $this->pendingReports->count() < $count;
   }
 
-  public function reference() {
-    return $this->belongsTo(Reference::class);
-  }
-
-  public function reports() {
-    return $this->hasMany(Report::class);
-  }
-
-  public function pendingReports() {
-    return $this->reports()->where('status', '=', 'pending');
-  }
-
-  public function membership() {
-    return $this->belongsTo(Membership::class);
-  }
 }
 

@@ -2,7 +2,7 @@
 
 return array (
     'dashboard' => 'Dashboard',
-    'personal cabinet' => 'Personal Cabinet',
+    'personal_cabinet' => 'Personal Cabinet',
     'logout' => 'Logout',
     'sign_in' => 'Sign In',
     'sign_up' => 'Sign Up',

@@ -10,15 +10,16 @@ use Spatie\Translatable\HasTranslations;
 use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 
 class SingleGallery extends Model implements HasMedia {
+
   use HasMediaTrait;
   use HasTranslations;
   use HasFlexible;
 
+  public $translatable = ['name'];
+
   public function getFlexibleContentAttribute() {
     return $this->flexible('flexible-content');
   }
-
-  public $translatable = ['name'];
 
   public function registerMediaConversions(Media $media = null) {
     $this->addMediaConversion('thumb')

@@ -4,99 +4,27 @@ namespace App\Nova;
 
 use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SingleCommittee extends Resource
-{
+class SingleCommittee extends Resource {
+
+  public static $model = 'App\Models\SingleCommittee';
   public static $group = 'Pages';
+  public static $title = 'id';
+  public static $search = ['id'];
 
-  public static function singleRecord(): bool {
-    return true;
-  }
+  public static function label() { return "Committee"; }
 
-  public static function singleRecordId(): bool {
-    return 1;
-  }
+  public static function singleRecord(): bool { return true; }
 
-  public static function label() {
-    return "Committee";
-  }
+  public static function singleRecordId(): bool { return 1; }
 
-    public static $model = 'App\Models\SingleCommittee';
 
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'id';
-
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
-    public static $search = [
-        'id',
+  public function fields(Request $request) {
+    return [
+        Text::make('name'),
+        Multilingual::make('Language'),
     ];
+  }
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function fields(Request $request)
-    {
-        return [
-            Text::make('name'),
-            Multilingual::make('Language'),
-        ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
-    }
 }

@@ -8,13 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller {
-  private function back403() {
-    return response(redirect()->back(), 403);
-  }
 
-  private function back200() {
-    return response(redirect()->back(), 200);
-  }
+  private function back403() { return response(redirect()->back(), 403); }
+
+  private function back200() { return response(redirect()->back(), 200); }
 
   private function addFile($request, $report) {
     $fileName = $request->file->store('');
@@ -26,6 +23,7 @@ class ReportController extends Controller {
 
   private function deleteReport($report) {
     $report->delete();
+
     return $this->back200();
   }
 
@@ -55,4 +53,5 @@ class ReportController extends Controller {
             ? $this->deleteReport($report)
             : $this->back403();
   }
+
 }

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 class SingleAbout extends Model {
-  use HasTranslations;
 
+  use HasTranslations;
   public $translatable = ['name'];
+
 }

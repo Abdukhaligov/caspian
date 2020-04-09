@@ -4,19 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Topic extends Model {
-  public function parent() {
-    return $this->belongsTo(Topic::class);
-  }
 
-  public function children() {
-    return $this->hasMany(Topic::class, 'parent_id');
-  }
+  public function parent() { return $this->belongsTo(Topic::class); }
 
-  public function reports() {
-    return $this->hasMany(Report::class);
-  }
+  public function children() { return $this->hasMany(Topic::class, 'parent_id'); }
+
+  public function reports() { return $this->hasMany(Report::class); }
 
   private static function topicTree($topics) {
     foreach ($topics as $topic) {
@@ -36,4 +30,5 @@ class Topic extends Model {
 
     return $topics;
   }
+
 }
