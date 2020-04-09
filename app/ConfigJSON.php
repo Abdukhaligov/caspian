@@ -16,9 +16,21 @@ class ConfigJSON extends Model
               "active" => Request::is('home') ? 'active' : ''
           ],
           [
-              "title" => __('static.about us'),
-              "link" => route('about'),
-              "active" => Request::is('about') ? 'active' : ''
+              "title" => __('static.about'),
+              "link" => "#",
+              "active" => Request::is('about*') ? 'active' : '',
+              "children" => [
+                  [
+                      "title" => __('static.about us'),
+                      "link" => route('about'),
+                      "active" => Request::is('about/aboutus') ? true : false,
+                  ],
+                  [
+                      "title" => __('static.topics'),
+                      "link" => route('topics'),
+                      "active" => Request::is('about/topics') ? true : false,
+                  ],
+              ]
           ],
           [
               "title" => __('static.contacts'),
@@ -30,10 +42,9 @@ class ConfigJSON extends Model
               "link" => "#",
               "active" => Request::is('gallery') ? 'active' : '',
               "children" => [
-                  "gallery" => [
+                  [
                       "title" => __('static.gallery'),
                       "link" => route('gallery'),
-                      "active" => Request::is('gallery') ? 'active' : ''
                   ],
               ]
           ]

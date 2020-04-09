@@ -13,7 +13,7 @@ class CreateSingleAboutsTable extends Migration {
   public function up() {
     Schema::create('single_abouts', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('name');
+      $table->json('name');
       $table->timestamps();
     });
   }

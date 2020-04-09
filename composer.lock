@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "baf281a61ade4b7d50a78c96ceff141d",
+    "content-hash": "1e23b51487d46f513313c352c74dfa76",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1543,6 +1543,48 @@
             "time": "2020-02-24T23:15:03+00:00"
         },
         {
+            "name": "genealabs/nova-map-marker-field",
+            "version": "0.1.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GeneaLabs/nova-map-marker-field.git",
+                "reference": "5914e088abab0aa1f97bf3d57e255abbac408460"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GeneaLabs/nova-map-marker-field/zipball/5914e088abab0aa1f97bf3d57e255abbac408460",
+                "reference": "5914e088abab0aa1f97bf3d57e255abbac408460",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "symfony/thanks": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GeneaLabs\\NovaMapMarkerField\\Providers\\Service"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GeneaLabs\\NovaMapMarkerField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2020-04-06T16:41:17+00:00"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "6.5.2",
             "source": {
@@ -2082,6 +2124,52 @@
                 "nova"
             ],
             "time": "2019-09-09T20:06:06+00:00"
+        },
+        {
+            "name": "josrom/nova-map-address",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JoseVte/nova-map-address.git",
+                "reference": "1cba38fb2a6794110405039d95fc05f6c708f2fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JoseVte/nova-map-address/zipball/1cba38fb2a6794110405039d95fc05f6c708f2fd",
+                "reference": "1cba38fb2a6794110405039d95fc05f6c708f2fd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.7|^6.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Josrom\\MapAddress\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Josrom\\MapAddress\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field to place a marker on map to get coordinates then it reverse geocoding the coordinates to get a street address",
+            "keywords": [
+                "address",
+                "geo",
+                "geocoding",
+                "laravel",
+                "map",
+                "nova"
+            ],
+            "time": "2019-11-21T16:10:39+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -6475,6 +6563,49 @@
                 "standards"
             ],
             "time": "2019-11-18T17:27:11+00:00"
+        },
+        {
+            "name": "symfony/thanks",
+            "version": "v1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/thanks.git",
+                "reference": "a8a5fbe3907a52cb7e2bb704d3b0231782b4193c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/a8a5fbe3907a52cb7e2bb704d3b0231782b4193c",
+                "reference": "a8a5fbe3907a52cb7e2bb704d3b0231782b4193c",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": "^5.5.9|^7.0.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                },
+                "class": "Symfony\\Thanks\\Thanks"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Thanks\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                }
+            ],
+            "description": "Encourages sending ⭐ and 💵 to fellow PHP package maintainers (not limited to Symfony components)!",
+            "time": "2020-01-15T17:39:29+00:00"
         },
         {
             "name": "symfony/translation",

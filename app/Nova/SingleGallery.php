@@ -49,12 +49,6 @@ class SingleGallery extends Resource {
       'id',
   ];
 
-  /**
-   * Get the fields displayed by the resource.
-   *
-   * @param \Illuminate\Http\Request $request
-   * @return array
-   */
   public function fields(Request $request) {
     return [
         Text::make('name'),

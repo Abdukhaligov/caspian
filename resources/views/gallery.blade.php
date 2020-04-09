@@ -31,7 +31,7 @@
                             <div class="row">
                                 @if($data["photos"])
                                     <div style="overflow: auto">
-                                        <h3>Photos</h3>
+{{--                                        <h3>Photos</h3>--}}
                                         @foreach($data["photos"] as $image)
                                             <div  class="lgx-single">
                                                 <figure style="margin: 0">

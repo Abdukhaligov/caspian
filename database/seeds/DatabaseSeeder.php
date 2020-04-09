@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SingleAboutSeeder::class);
         $this->call(SingleContactSeeder::class);
         $this->call(SingleGallerySeeder::class);
+        $this->call(SingleTopicSeeder::class);
 
     }
 }

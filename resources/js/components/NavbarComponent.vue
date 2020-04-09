@@ -37,8 +37,8 @@
               <li class="nav-item" v-for="route in routes" :key="route.id" :class="route.active">
                 <a class="nav-link" :href="route.link">{{ route.title }}</a>
                 <ul v-if="route.children" class="sub-menu">
-                  <li class="active" v-for="child in route.children" :key="child.id">
-                    <a :href="child.link">{{ child.title }}</a>
+                  <li v-for="child in route.children" :key="child.id">
+                    <a :class="child.active ? 'sub-menu-active' : ''" :href="child.link">{{ child.title }}</a>
                   </li>
                 </ul>
               </li>
@@ -71,5 +71,8 @@
 </script>
 
 <style scoped>
-
+  .sub-menu-active {
+    background-color: #0c59db;
+    color: #fff!important;
+  }
 </style>

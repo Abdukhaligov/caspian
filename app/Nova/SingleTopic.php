@@ -3,17 +3,12 @@
 namespace App\Nova;
 
 use Digitalcloud\MultilingualNova\Multilingual;
-use GeneaLabs\NovaMapMarkerField\MapMarker;
 use Illuminate\Http\Request;
-use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Media24si\NovaYoutubeField\Youtube;
-use Whitecube\NovaFlexibleContent\Flexible;
-use Josrom\MapAddress\MapAddress;
 
-class SingleContact extends Resource {
+class SingleTopic extends Resource {
   public static $group = 'Pages';
 
   public static function singleRecord(): bool {
@@ -25,10 +20,14 @@ class SingleContact extends Resource {
   }
 
   public static function label() {
-    return "Contacts";
+    return "Topics";
   }
-
-  public static $model = 'App\Models\SingleContact';
+  /**
+   * The model the resource corresponds to.
+   *
+   * @var string
+   */
+  public static $model = 'App\Models\SingleTopic';
 
   /**
    * The single value that should be used to represent the resource when being displayed.
@@ -54,35 +53,7 @@ class SingleContact extends Resource {
    */
   public function fields(Request $request) {
     return [
-        Text::make('Name'),
-        Text::make('Phone'),
-
-      // You can set the initial map location. By default (Spain)
-        MapAddress::make('Location')
-            ->setLocation($this->latitude, $this->longitude)
-            ->zoom(12),
-
-
-        Text::make('Email'),
-        Text::make('Address'),
-
-        Flexible::make('Social Networks', 'social_networks')
-            ->addLayout('Social Networks', 'Data', [
-                Text::make('title')
-                    ->required(),
-                Text::make('link')
-                    ->required(),
-            ]),
-
-        Youtube::make('Video Youtube', 'video_url')
-            ->required(),
-        FilemanagerField::make( 'Video Cover', 'video_cover')
-            ->required()
-            ->folder('videos')
-            ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
-
+        Text::make('name'),
         Multilingual::make('Language'),
     ];
   }

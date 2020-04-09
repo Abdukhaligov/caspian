@@ -65,6 +65,12 @@
 
   @yield('content')
 
+  <div class="back-to-top back-to-top-2">
+    <a href="#">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+  </div>
+
   <footer class="footer-area footer-area-2 bg_cover" style="background-image: url({{ asset('omnivus/images/footer-bg.jpg') }});">
     <div class="footer-overlay">
       <div class="container position-relative">

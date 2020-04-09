@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\models\SingleAbout;
 use App\Models\SingleContact;
 use App\Models\SingleGallery;
+use App\Models\SingleTopic;
 use App\Policies\SinglePagePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -20,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider {
       SingleAbout::class => SinglePagePolicy::class,
       SingleContact::class => SinglePagePolicy::class,
       SingleGallery::class => SinglePagePolicy::class,
+      SingleTopic::class => SinglePagePolicy::class,
 
   ];
 
