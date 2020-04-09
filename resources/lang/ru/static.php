@@ -2,10 +2,13 @@
 
 return array (
     'dashboard' => 'Панель',
-    'personal cabinet' => 'Личный Кабинет',
+    'personal_cabinet' => 'Личный Кабинет',
+    'sign_in' => 'Вход',
+    'sign_up' => 'Регистрация',
     'logout' => 'Выйти',
     'home' => 'Главная',
     'topics' => 'Темы',
+    'committee' => 'Комитет',
     'about us' => 'О нас',
     'about' => 'О нас',
     'contacts' => 'Контакты',

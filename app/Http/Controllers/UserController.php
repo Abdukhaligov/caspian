@@ -37,8 +37,8 @@ class UserController extends Controller {
     $data['references'] = Reference::all();
     $data['membership'] = Membership::showTree();
 
-    return(Topic::showTree());
-    die();
+//    return(Topic::showTree());
+//    die();
 
     return view('personal_cabinet', compact('data'));
   }

@@ -52,7 +52,10 @@
 <!--            </ul>-->
 <!--          </div>-->
           <div class="navbar-btn mr-100">
-            <a class="main-btn" href="#">Free Consulting <i class="fal fa-long-arrow-right"></i></a>
+            <a class="main-btn" :href="data.cabinet.url">
+              {{ data.cabinet.title }}
+<!--              <i class="fal fa-long-arrow-right"></i>-->
+            </a>
           </div>
           <div class="country-flag d-none d-lg-block ml-3">
             <a :href="locale.link"><img :src="locale.img" alt="flag"></a>

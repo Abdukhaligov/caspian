@@ -63,7 +63,14 @@
       :data="{{ \App\ConfigJSON::getData() }}">
   </navbar-component>
 
+
   @yield('content')
+
+{{--  <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('logout') }}</a>--}}
+
+{{--  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+{{--    @csrf--}}
+{{--  </form>--}}
 
   <div class="back-to-top back-to-top-2">
     <a href="#">

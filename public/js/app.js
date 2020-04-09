@@ -160,6 +160,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NavbarComponent",
   props: ['routes', 'locale', 'data']
@@ -2601,7 +2604,20 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "navbar-btn mr-100" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "main-btn",
+                  attrs: { href: _vm.data.cabinet.url }
+                },
+                [
+                  _vm._v(
+                    "\n              " + _vm._s(_vm.data.cabinet.title) + "\n"
+                  )
+                ]
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "country-flag d-none d-lg-block ml-3" }, [
               _c("a", { attrs: { href: _vm.locale.link } }, [
@@ -2722,17 +2738,6 @@ var staticRenderFns = [
         _c("span", { staticClass: "toggler-icon" })
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-btn mr-100" }, [
-      _c("a", { staticClass: "main-btn", attrs: { href: "#" } }, [
-        _vm._v("Free Consulting "),
-        _c("i", { staticClass: "fal fa-long-arrow-right" })
-      ])
-    ])
   }
 ]
 render._withStripped = true
