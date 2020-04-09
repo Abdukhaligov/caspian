@@ -11,6 +11,7 @@ return array (
     'presenters' => 'Репортеры',
     'committee' => 'Комитет',
     'about_us' => 'О нас',
+    'news' => 'Новости',
     'about' => 'О нас',
     'contacts' => 'Контакты',
     'gallery' => 'Галлерея',

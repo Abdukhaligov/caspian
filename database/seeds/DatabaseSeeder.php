@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SingleTopicSeeder::class);
         $this->call(SingleCommitteeSeeder::class);
         $this->call(SinglePresenterSeeder::class);
+        $this->call(SingleNewsSeeder::class);
 
     }
 }

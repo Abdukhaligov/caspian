@@ -50,11 +50,17 @@ class ConfigJSON extends Model
           [
               "title" => __('static.media'),
               "link" => "#",
-              "active" => Request::is('gallery') ? 'active' : '',
+              "active" => Request::is('media*') ? 'active' : '',
               "children" => [
                   [
                       "title" => __('static.gallery'),
                       "link" => route('gallery'),
+                      "active" => Request::is('media/gallery') ? true : false,
+                  ],
+                  [
+                      "title" => __('static.news'),
+                      "link" => route('news'),
+                      "active" => Request::is('media/news') ? true : false,
                   ],
               ]
           ]

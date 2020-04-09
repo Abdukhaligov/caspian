@@ -11,6 +11,7 @@ return array (
     'committee' => 'Committee',
     'presenters' => 'Presenters',
     'about_us' => 'About Us',
+    'news' => 'News',
     'about' => 'About',
     'contacts' => 'Contacts',
     'gallery' => 'Gallery',
