@@ -10,10 +10,9 @@ use Laravel\Nova\Fields\Text;
 use Media24si\NovaYoutubeField\Youtube;
 use Whitecube\NovaFlexibleContent\Flexible;
 
-
 class SingleGallery extends Resource {
 
-  public static $model = 'App\Models\SingleGallery';
+  public static $model = 'App\Models\Pages\SingleGallery';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

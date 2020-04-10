@@ -12,8 +12,7 @@ use Whitecube\NovaFlexibleContent\Flexible;
 
 class SingleContact extends Resource {
 
-  public static $model = 'App\Models\SingleContact';
-
+  public static $model = 'App\Models\Pages\SingleContact';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

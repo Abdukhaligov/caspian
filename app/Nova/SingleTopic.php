@@ -8,7 +8,7 @@ use Laravel\Nova\Fields\Text;
 
 class SingleTopic extends Resource {
 
-  public static $model = 'App\Models\SingleTopic';
+  public static $model = 'App\Models\Pages\SingleTopic';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

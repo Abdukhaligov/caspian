@@ -8,7 +8,7 @@ use Laravel\Nova\Fields\Text;
 
 class SingleAbout extends Resource {
 
-  public static $model = 'App\Models\SingleAbout';
+  public static $model = 'App\Models\Pages\SingleAbout';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

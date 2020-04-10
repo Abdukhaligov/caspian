@@ -3,9 +3,11 @@
 namespace App;
 
 use App;
+use App\Models\Pages\Initial;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use Storage;
 
 class ConfigJSON extends Model {
   public static function getRoutes() {
@@ -113,8 +115,13 @@ class ConfigJSON extends Model {
       $url = route('login');
     }
 
+    $initial = Initial::getData();
+
     $data = [
-        "logo" => asset('omnivus/images/logo-2.png'),
+        "logo" => Storage::disk('public')->url($initial->logo),
+        "phone" => $initial->phone,
+        "email" => $initial->email,
+        "socialNetworks" => json_decode($initial->social_networks),
         "cabinet" => [
             "title" => $title,
             "url" => $url,

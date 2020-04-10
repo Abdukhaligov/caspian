@@ -2,40 +2,31 @@
 
 namespace App\Providers;
 
-use App\models\SingleAbout;
-use App\Models\SingleCabinet;
-use App\Models\SingleContact;
-use App\Models\SingleGallery;
-use App\Models\SingleHome;
-use App\Models\SingleTopic;
+use App\Models\Pages\Initial;
+use App\Models\Pages\SingleAbout;
+use App\Models\Pages\SingleCabinet;
+use App\Models\Pages\SingleContact;
+use App\Models\Pages\SingleGallery;
+use App\Models\Pages\SingleHome;
+use App\Models\Pages\SingleTopic;
 use App\Policies\SinglePagePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider {
-  /**
-   * The policy mappings for the application.
-   *
-   * @var array
-   */
+
   protected $policies = [
     // 'App\Model' => 'App\Policies\ModelPolicy',
+      Initial::class => SinglePagePolicy::class,
       SingleHome::class => SinglePagePolicy::class,
       SingleAbout::class => SinglePagePolicy::class,
       SingleContact::class => SinglePagePolicy::class,
       SingleGallery::class => SinglePagePolicy::class,
       SingleTopic::class => SinglePagePolicy::class,
       SingleCabinet::class => SinglePagePolicy::class,
-
   ];
 
-  /**
-   * Register any authentication / authorization services.
-   *
-   * @return void
-   */
   public function boot() {
     $this->registerPolicies();
-
   }
+
 }

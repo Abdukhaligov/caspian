@@ -10,7 +10,7 @@ use Whitecube\NovaFlexibleContent\Flexible;
 
 class SingleHome extends Resource {
 
-  public static $model = 'App\Models\SingleHome';
+  public static $model = 'App\Models\Pages\SingleHome';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

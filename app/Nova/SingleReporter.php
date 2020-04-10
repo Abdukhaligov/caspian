@@ -8,7 +8,7 @@ use Laravel\Nova\Fields\Text;
 
 class SingleReporter extends Resource {
 
-  public static $model = 'App\Models\SinglePresenter';
+  public static $model = 'App\Models\Pages\SinglePresenter';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

@@ -8,7 +8,7 @@ use Laravel\Nova\Fields\Text;
 
 class SingleCommittee extends Resource {
 
-  public static $model = 'App\Models\SingleCommittee';
+  public static $model = 'App\Models\Pages\SingleCommittee';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];

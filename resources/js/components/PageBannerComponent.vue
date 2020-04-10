@@ -1,5 +1,5 @@
 <template>
-  <div class="page-title-area">
+  <div class="page-title-area" style="margin-bottom: 50px">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">

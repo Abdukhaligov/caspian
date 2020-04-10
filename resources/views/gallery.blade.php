@@ -4,7 +4,7 @@
 
   <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
 
-  <section class="mb-5 mt-5" style="margin-top: 50px">
+  <section class="mb-5 mt-5">
     <div id="lgx-photo-gallery" class="lgx-photo-gallery">
       <div class="lgx-inner">
         <div class="container">

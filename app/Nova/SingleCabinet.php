@@ -8,7 +8,7 @@ use Laravel\Nova\Fields\Text;
 
 class SingleCabinet extends Resource {
 
-  public static $model = 'App\Models\SingleCabinet';
+  public static $model = 'App\Models\Pages\SingleCabinet';
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];
@@ -18,6 +18,7 @@ class SingleCabinet extends Resource {
   public static function singleRecord(): bool { return true; }
 
   public static function singleRecordId(): bool { return 1; }
+
 
   public function fields(Request $request) {
     return [

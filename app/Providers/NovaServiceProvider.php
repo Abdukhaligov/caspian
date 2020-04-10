@@ -53,7 +53,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
    */
   protected function cards() {
     return [
-        new Help,
+
     ];
   }
 

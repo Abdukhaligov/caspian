@@ -5,8 +5,8 @@
         <div class="col-md-6 col-sm-7">
           <div class="header-left-side text-center text-sm-left">
             <ul>
-              <li><a href="#"><i class="fal fa-envelope"></i> <span class="__cf_email__" data-cfemail="95fcfbf3fad5e2f0f7f8f4fcf9bbf6faf8">[email&#160;protected]</span></a></li>
-              <li><a href="#"><i class="fal fa-phone"></i>070 541521 542 22</a></li>
+              <li><a :href="'mailto:' + data.email"><i class="fal fa-envelope"></i> {{ data.email }}</a></li>
+              <li><a :href="'tel:' + data.phone "><i class="fal fa-phone"></i>{{ data.phone }}</a></li>
             </ul>
           </div>
         </div>
@@ -14,11 +14,9 @@
         <div class="col-md-6 col-sm-5">
           <div class="header-right-social text-center text-sm-right">
             <ul>
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-behance"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+              <li v-for="network in data.socialNetworks" :key="network.key">
+                <a target="_blank" :href="network.attributes.link"><i :class="'fab ' + network.attributes.network"></i></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -27,7 +25,7 @@
     <div class="header-nav">
       <div class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light ">
-          <a class="navbar-brand" href="."><img :src="data.logo" alt=""></a>
+          <a class="navbar-brand" href="/"><img :src="data.logo" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="toggler-icon"></span>
             <span class="toggler-icon"></span>

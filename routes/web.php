@@ -9,24 +9,24 @@ Route::group(['middleware' => ['locale']], function () {
 
   Auth::routes();
 
-  Route::get('/', 'SingleHomeController@index')->name('home');
+  Route::get('/', 'PageController@home')->name('home');
 
-  Route::get('/contacts', 'SingleContactController@index')->name('contacts');
+  Route::get('/contacts', 'PageController@contacts')->name('contacts');
 
   Route::prefix('about')->group(function () {
-    Route::get('/about-us', 'SingleAboutController@index')->name('about');
-    Route::get('/topics', 'SingleTopicController@index')->name('topics');
-    Route::get('/committee', 'SingleCommitteeController@index')->name('committee');
-    Route::get('/presenters', 'SinglePresenterController@index')->name('presenters');
+    Route::get('/about-us', 'PageController@aboutUs')->name('about');
+    Route::get('/topics', 'PageController@topics')->name('topics');
+    Route::get('/committee', 'PageController@committee')->name('committee');
+    Route::get('/presenters', 'PageController@presenters')->name('presenters');
   });
 
   Route::prefix('media')->group(function () {
-    Route::get('/gallery', 'SingleGalleryController@index')->name('gallery');
-    Route::get('/news', 'SingleNewsController@index')->name('news');
+    Route::get('/gallery', 'PageController@gallery')->name('gallery');
+    Route::get('/news', 'PageController@news')->name('news');
   });
 
   Route::group(['middleware' => ['auth']], function () {
-    Route::get('/cabinet', 'SingleCabinetController@index')->name('cabinet');
+    Route::get('/cabinet', 'PageController@cabinet')->name('cabinet');
     Route::post('/report/edit', 'ReportController@update')->name('report_update');
     Route::post('/report/create', 'ReportController@store')->name('report_create');
     Route::post('/report/delete', 'ReportController@destroy')->name('report_remove');
