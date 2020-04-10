@@ -6,7 +6,7 @@ class InitialSeeder extends Seeder {
 
   public function run() {
 
-    
+
     $data = [[
         "title" => "{\"en\":\"Initial\",\"ru\":\"основные конфигурации\"}",
         "phone" => "+994 70 226 26 26",
@@ -29,7 +29,8 @@ class InitialSeeder extends Seeder {
             {\"key\": \"e9f4bdc8c5bc27a2\",
                 \"layout\": \"Data\",
                 \"attributes\": {\"link\": \"https://google.com\", \"network\": \"fa-youtube\"}}
-        ]"
+        ]",
+        "max_report_count" => 3
     ]];
 
 

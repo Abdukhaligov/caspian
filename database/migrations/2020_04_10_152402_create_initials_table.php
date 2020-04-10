@@ -15,8 +15,7 @@ class CreateInitialsTable extends Migration {
       $table->string('copyright');
       $table->string('logo');
       $table->json('social_networks')->nullable();
-
-
+      $table->integer('max_report_count');
       $table->timestamps();
     });
   }

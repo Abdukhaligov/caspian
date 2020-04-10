@@ -12,6 +12,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Membership extends Resource {
 
   public static $model = 'App\Models\Membership';
+  public static $group = 'Resources';
   public static $title = 'name';
   public static $search = ['id'];
 

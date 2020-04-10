@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Membership;
+use App\Models\Presenter;
 use App\Models\Reference;
 use App\Models\Pages\SingleAbout;
 use App\Models\Pages\SingleCabinet;
@@ -87,6 +88,7 @@ class PageController extends Controller {
 
   public function presenters() {
     $data = SinglePresenter::first();
+    $data["presenters"] = Presenter::all();
 
     return view('presenters', compact('data'));
   }

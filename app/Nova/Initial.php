@@ -6,6 +6,7 @@ use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
 use Josrom\MapAddress\MapAddress;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Whitecube\NovaFlexibleContent\Flexible;
@@ -13,7 +14,7 @@ use Whitecube\NovaFlexibleContent\Flexible;
 class Initial extends Resource {
 
   public static $model = 'App\Models\Pages\Initial';
-  public static $group = 'Pages';
+  public static $group = 'Config';
   public static $title = 'id';
   public static $search = ['id'];
 
@@ -26,10 +27,11 @@ class Initial extends Resource {
 
   public function fields(Request $request) {
     return [
-        Text::make('Title'),
-        Multilingual::make('Language'),
+//        Text::make('Title'),
+//        Multilingual::make('Language'),
         Text::make('Phone'),
         Text::make('Email'),
+        Number::make('Max Report Count','max_report_count'),
         FilemanagerField::make('Logo')
             ->displayAsImage()
             ->hideCreateFolderButton()

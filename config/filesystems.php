@@ -76,6 +76,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'presenters' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/presenters'),
+            'url' => env('APP_URL').'/storage/presenters',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

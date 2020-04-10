@@ -11,6 +11,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Reference extends Resource {
 
   public static $model = 'App\Models\Reference';
+  public static $group = 'Resources';
   public static $title = 'name';
   public static $search = ['id'];
 
@@ -21,7 +22,6 @@ class Reference extends Resource {
         Text::make('Name')
             ->sortable(),
         Multilingual::make('Language'),
-
     ];
   }
 

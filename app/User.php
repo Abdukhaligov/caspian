@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Membership;
+use App\Models\Pages\Initial;
 use App\Models\Reference;
 use App\Models\Report;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,7 +32,7 @@ class User extends Authenticatable {
   public function canAddReports() {
     if ($this->isAdmin()) return true;
 
-    return $this->checkMembership([5, 6]) && $this->checkAccessCount(3);
+    return $this->checkMembership([5, 6]) && $this->checkAccessCount(Initial::getData()->max_report_count);
   }
 
   private function checkMembership(array $ids = []) {

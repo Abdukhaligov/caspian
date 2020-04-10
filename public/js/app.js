@@ -1881,39 +1881,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "page-title-area",
-      staticStyle: { "margin-bottom": "50px" }
-    },
-    [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12" }, [
-            _c("div", { staticClass: "page-title-item text-center" }, [
-              _c("h2", { staticClass: "title" }, [_vm._v(_vm._s(_vm.title))]),
-              _vm._v(" "),
-              _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
-                _c("ol", { staticClass: "breadcrumb" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      staticClass: "breadcrumb-item active",
-                      attrs: { "aria-current": "page" }
-                    },
-                    [_vm._v(_vm._s(_vm.title))]
-                  )
-                ])
+  return _c("div", { staticClass: "page-title-area" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "page-title-item text-center" }, [
+            _c("h2", { staticClass: "title" }, [_vm._v(_vm._s(_vm.title))]),
+            _vm._v(" "),
+            _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
+              _c("ol", { staticClass: "breadcrumb" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "breadcrumb-item active",
+                    attrs: { "aria-current": "page" }
+                  },
+                  [_vm._v(_vm._s(_vm.title))]
+                )
               ])
             ])
           ])
         ])
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {

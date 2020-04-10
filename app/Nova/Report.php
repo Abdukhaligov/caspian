@@ -15,6 +15,7 @@ use Laravel\Nova\Fields\Textarea;
 class Report extends Resource {
 
   public static $model = 'App\Models\Report';
+  public static $group = 'Resources';
   public static $title = 'id';
   public static $search = ['id'];
 
@@ -24,9 +25,7 @@ class Report extends Resource {
         ID::make()->sortable(),
         Text::make('Name')
             ->displayUsing(function ($value) {
-
                 return substr($value, 0,20);
-
             })
             ->sortable(),
         BelongsTo::make('User')

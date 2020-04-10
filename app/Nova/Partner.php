@@ -12,6 +12,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Partner extends Resource {
 
   public static $model = 'App\Models\Partner';
+  public static $group = 'Resources';
   public static $title = 'id';
   public static $search = ['id'];
 

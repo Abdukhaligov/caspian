@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Text;
 class Topic extends Resource {
 
   public static $model = 'App\Models\Topic';
+  public static $group = 'Resources';
   public static $title = 'name';
   public static $search = ['id'];
 
