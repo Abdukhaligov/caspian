@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <page-banner-component :title="{{ json_encode('Login') }}"></page-banner-component>
+  <page-banner-component :title="{{ json_encode(__('static.login')) }}"></page-banner-component>
 
   <div class="container">
     <div class="row justify-content-center">
