@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -18,7 +19,9 @@ class Reference extends Resource {
     return [
         ID::make()->sortable(),
         Text::make('Name')
-            ->sortable()
+            ->sortable(),
+        Multilingual::make('Language'),
+
     ];
   }
 

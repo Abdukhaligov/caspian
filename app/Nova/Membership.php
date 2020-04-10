@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -20,10 +21,10 @@ class Membership extends Resource {
         ID::make()->sortable(),
         Text::make('Name')
             ->sortable(),
-
         BelongsTo::make('Membership', 'parent')
             ->sortable()
             ->nullable(true),
+        Multilingual::make('Language'),
     ];
   }
 

@@ -2,18 +2,20 @@
 
 @section('content')
 
+  <page-banner-component :title="{{ json_encode('Login') }}"></page-banner-component>
+
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">{{ __('Login') }}</div>
+          <div class="card-header">{{ __('static.login') }}</div>
 
           <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
               @csrf
 
               <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('static.e_mail_address') }}</label>
 
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
@@ -28,7 +30,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('static.password') }}</label>
 
                 <div class="col-md-6">
                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -49,7 +51,7 @@
                            id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                     <label class="form-check-label" for="remember">
-                      {{ __('Remember Me') }}
+                      {{ __('static.remember_me') }}
                     </label>
                   </div>
                 </div>
@@ -58,12 +60,12 @@
               <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                   <button type="submit" class="btn btn-primary">
-                    {{ __('Login') }}
+                    {{ __('static.login') }}
                   </button>
 
                   @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                      {{ __('Forgot Your Password?') }}
+                      {{ __('static.forgot_your_password') }}
                     </a>
                   @endif
                 </div>
@@ -71,7 +73,7 @@
               <div class="form-group row mb-0 mt-2">
                 <div class="col-md-8 offset-md-4">
                   <a href="{{ route('register') }}" class="btn btn-primary">
-                    {{ __('Register') }}
+                    {{ __('static.registration') }}
                   </a>
                 </div>
               </div>

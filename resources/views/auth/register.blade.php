@@ -2,17 +2,19 @@
 
 @section('content')
 
+  <page-banner-component :title="{{ json_encode(__('static.registration')) }}"></page-banner-component>
+
   <?php $fake = TRUE ? $fakeUser = factory(\App\User::class)->make() : ''?>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">{{ __('Register') }}</div>
+          <div class="card-header">{{ __('static.registration') }}</div>
           <div class="card-body">
             <form method="POST" action="{{ route('register') }}">
               @csrf
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('static.full_name') }}</label>
                 <div class="col-md-6">
                   <input id="name" type="text"
                          class="form-control @error('name') is-invalid @enderror" name="name"
@@ -23,7 +25,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('static.e_mail_address') }}</label>
                 <div class="col-md-6">
                   <input id="email" type="email"
                          class="form-control @error('email') is-invalid @enderror" name="email"
@@ -34,7 +36,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('static.password') }}</label>
                 <div class="col-md-6">
                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                          value="{{ $fake ? "123123" : '' }}" name="password" autocomplete="new-password">
@@ -45,7 +47,7 @@
               </div>
               <div class="form-group row">
                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
-                  {{ __('Confirm Password') }}
+                  {{ __('static.confirm_Password') }}
                 </label>
                 <div class="col-md-6">
                   <input id="password-confirm" type="password" class="form-control" value="{{ $fake ? "123123" : '' }}"
@@ -53,7 +55,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('static.phone_number') }}</label>
                 <div class="col-md-6">
                   <input v-mask="'+\\9\\94 (99) 999-99-99'" id="phone" type="text"
                          class="form-control @error('phone') is-invalid @enderror" name="phone"
@@ -64,7 +66,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Company') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('static.company') }}</label>
                 <div class="col-md-6">
                   <input id="company" type="text"
                          class="form-control @error('company') is-invalid @enderror" name="company"
@@ -75,7 +77,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Job Title') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('static.job_title') }}</label>
                 <div class="col-md-6">
                   <input id="job_title" type="text" class="form-control @error('job_title') is-invalid @enderror"
                          name="job_title" value="{{ $fake ? $fakeUser->job_title : old('job_title') }}"
@@ -86,9 +88,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Referred by') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('static.referred_by') }}</label>
                 <div class="col-md-6">
-                  <select id="reference_id" type="text" class="form-control @error('reference_id') is-invalid @enderror"
+                  <select id="reference_id" type="text" class="@error('reference_id') is-invalid @enderror"
                           name="reference_id" autocomplete="reference_id">
                     @foreach($data['references'] as $reference)
                       <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
@@ -101,10 +103,10 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Member as') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('static.member_as') }}</label>
                 <div class="col-md-6">
                   <select id="membership_id" type="text"
-                          class="form-control @error('membership_id') is-invalid @enderror" name="membership_id"
+                          class="@error('membership_id') is-invalid @enderror" name="membership_id"
                           autocomplete="membership_id">
                     @foreach($data['membership'] as $membership)
                       <option @if($membership->hasChildren == true ) disabled @endif
@@ -128,7 +130,7 @@
               </div>
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                  <button type="submit" class="btn btn-primary">{{ __('static.registration') }}</button>
                 </div>
               </div>
             </form>

@@ -3,8 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Membership extends Model {
+
+  use HasTranslations;
+  public $translatable = ['name'];
 
   public function parent() {
     return $this->belongsTo(Membership::class);
