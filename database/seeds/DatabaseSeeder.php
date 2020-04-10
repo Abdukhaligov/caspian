@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder {
     $this->call(SingleNewsSeeder::class);
     $this->call(SingleCabinetSeeder::class);
     $this->call(InitialSeeder::class);
+
+    $this->call(PresenterSeeder::class);
   }
 
 }
