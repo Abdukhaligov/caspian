@@ -11,6 +11,10 @@ Route::group(['middleware' => ['locale']], function () {
 
   Route::get('/', 'PageController@home')->name('home');
 
+  Route::get('/test', function (){
+    return view('test');
+  });
+
   Route::get('/contacts', 'PageController@contacts')->name('contacts');
 
   Route::prefix('about')->group(function () {
