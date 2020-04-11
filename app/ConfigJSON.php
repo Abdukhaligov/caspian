@@ -13,7 +13,7 @@ class ConfigJSON extends Model {
   public static function getRoutes() {
     $routes = [
         [
-            "title" => __('static.home'),
+            "title" => App\Models\Pages\Home::first()->title,
             "link" => route('home'),
             "active" => Request::url() == route('home') ? true : false,
         ],
@@ -23,29 +23,29 @@ class ConfigJSON extends Model {
             "active" => Request::is('about*') ? true : false,
             "children" => [
                 [
-                    "title" => __('static.about_us'),
+                    "title" => App\Models\Pages\AboutUs::first()->title,
                     "link" => route('about'),
                     "active" => Request::url() == route('about') ? true : false,
                 ],
                 [
-                    "title" => __('static.topics'),
+                    "title" => App\Models\Pages\Topics::first()->title,
                     "link" => route('topics'),
                     "active" => Request::url() == route('topics') ? true : false,
                 ],
                 [
-                    "title" => __('static.committee'),
+                    "title" => App\Models\Pages\Committee::first()->title,
                     "link" => route('committee'),
                     "active" => Request::url() == route('committee') ? true : false,
                 ],
                 [
-                    "title" => __('static.presenters'),
-                    "link" => route('presenters'),
-                    "active" => Request::url() == route('presenters') ? true : false,
+                    "title" => App\Models\Pages\Speakers::first()->title,
+                    "link" => route('speakers'),
+                    "active" => Request::url() == route('speakers') ? true : false,
                 ],
             ]
         ],
         [
-            "title" => __('static.contacts'),
+            "title" => App\Models\Pages\Contacts::first()->title,
             "link" => route('contacts'),
             "active" => Request::url() == route('contacts') ? true : false,
         ],
@@ -55,12 +55,12 @@ class ConfigJSON extends Model {
             "active" => Request::is('media*') ? true : false,
             "children" => [
                 [
-                    "title" => __('static.gallery'),
+                    "title" => App\Models\Pages\Gallery::first()->title,
                     "link" => route('gallery'),
                     "active" => Request::url() == route('gallery') ? true : false,
                 ],
                 [
-                    "title" => __('static.news'),
+                    "title" => App\Models\Pages\News::first()->title,
                     "link" => route('news'),
                     "active" => Request::url() == route('news') ? true : false,
                 ],

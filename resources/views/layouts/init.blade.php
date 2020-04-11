@@ -12,12 +12,12 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ \App\Models\Pages\Initial::getData()->title }}</title>
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
 
-  <link rel="shortcut icon" href="{{ asset('omnivus/images/favicon.ico') }}" type="image/png">
+  <link rel="shortcut icon" href="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->favicon) }}" type="image/png">
 
   <link rel="stylesheet" href="{{ asset('omnivus/css/bootstrap.min.css') }}">
 
@@ -34,9 +34,6 @@
   <link rel="stylesheet" href="{{ asset('omnivus/css/default.css') }}">
 
   <link rel="stylesheet" href="{{ asset('omnivus/css/style.css') }}">
-
-  <!-- MASTER  STYLESHEET  -->
-  <link id="lgx-master-style" rel="stylesheet" href="{{ asset('eventpoint/css/style-default.min.css') }}" media="all"/>
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -74,37 +71,12 @@
   </div>
 
 
-  <footer class="footer-area footer-area-2 footer-area-1 bg_cover"
-          style="background-image: url({{ asset('omnivus/images/footer-bg.jpg') }}); ">
-    <div class="footer-overlay">
+  <footer class="footer-area footer-area-2 footer-area-1">
+    <div style="    background-color: #00152e;">
       <div class="container position-relative">
         <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <div class="widget-item-1 mt-30">
-              <img src="{{ asset('omnivus/images/logo-1.1.png') }}" alt="">
-              <p>The web has changed a lot since Vitaly posted his first article back in 2006. The team at Smashing has
-                changed too, as have the things that we bring to our community onferences, books, and our membership
-                added to the online magazine.</p>
-              <p>One thing that hasn’t changed is that we’re a small team — with most of us not working</p>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="widget-item-2 widget-item-3 mt-30">
-              <h4 class="title">Working Hours</h4>
-              <ul>
-                <li>Monday - Friday: 7:00 - 17:00</li>
-                <li>Saturday: 7:00 - 12:00</li>
-                <li>Sunday and holidays: 8:00 - 10:00</li>
-              </ul>
-              <p><span>For more then 30 years,</span> IT Service has been a reliable partner in the field of logistics
-                and cargo forwarding.</p>
-              <a href="#"><i class="fal fa-angle-right"></i>Discover More</a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-lg-12">
-            <div class="footer-copyright">{!! \App\Models\Pages\Initial::getData()->copyright  !!}</div>
+            <div style="margin: 15px; text-align: center">{!! \App\Models\Pages\Initial::getData()->copyright  !!}</div>
           </div>
         </div>
       </div>
@@ -127,18 +99,6 @@
 
 <script src="{{ asset('omnivus/js/vendor/jquery-1.12.4.min.js') }}"
         type="fa7f17f0923a53efe332a952-text/javascript"></script>
-
-<!--//.LGX SITE CONTAINER-->
-<!-- *** ADD YOUR SITE SCRIPT HERE *** -->
-<!-- JQUERY  -->
-<script src="{{ asset('eventpoint/js/vendor/jquery-1.12.4.min.js') }}"></script>
-
-<!-- adding magnific popup js library -->
-<script type="text/javascript"
-        src="{{  asset('eventpoint/libs/maginificpopup/jquery.magnific-popup.min.js') }}"></script>
-
-<!-- CUSTOM SCRIPT  -->
-<script src="{{ asset('eventpoint/js/custom.script.js') }}"></script>
 
 <script src="{{ asset('omnivus/js/bootstrap.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>
 <script src="{{ asset('omnivus/js/popper.min.js') }}" type="fa7f17f0923a53efe332a952-text/javascript"></script>

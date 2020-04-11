@@ -2,45 +2,35 @@
 
 namespace App\Nova;
 
-use Digitalcloud\MultilingualNova\Multilingual;
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
-use Josrom\MapAddress\MapAddress;
-use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Whitecube\NovaFlexibleContent\Flexible;
 
-class Initial extends Resource {
+class Speaker extends Resource {
 
-  public static $model = 'App\Models\Pages\Initial';
-  public static $group = 'Config';
+  public static $model = 'App\Models\Speaker';
+  public static $group = 'Resources';
   public static $title = 'id';
   public static $search = ['id'];
-
-  public static function label() { return "Initial"; }
-
-  public static function singleRecord(): bool { return true; }
-
-  public static function singleRecordId(): bool { return 1; }
 
 
   public function fields(Request $request) {
     return [
-        Text::make('Title'),
-        Multilingual::make('Language'),
-        FilemanagerField::make('Favicon')
+        ID::make()->sortable(),
+        Text::make('Name')
+            ->sortable(),
+        FilemanagerField::make('Photo')
+            ->folder('speakers')
             ->displayAsImage()
             ->hideCreateFolderButton()
             ->hideDeleteFileButton(),
-        Text::make('Phone'),
-        Text::make('Email'),
-        Number::make('Max Report Count','max_report_count'),
-        FilemanagerField::make('Logo')
-            ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
-        Text::make('Copyright'),
+        Text::make('Job Title', 'job_title')
+            ->sortable(),
+        NovaTinyMCE::make('Description'),
         Flexible::make('Social Networks', 'social_networks')
             ->addLayout('Social Network', 'Data', [
                 Select::make('Network', 'network')->options([
@@ -49,7 +39,7 @@ class Initial extends Resource {
                     'fa-behance' => 'Behance',
                     'fa-linkedin-in' => 'LinkedIn',
                     'fa-youtube' => 'YouTube',])
-                  ->required(),
+                    ->required(),
                 Text::make('Link', 'link')
                     ->required(),
             ]),

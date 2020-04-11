@@ -18,18 +18,18 @@ class DatabaseSeeder extends Seeder {
     factory(\App\Models\Event::class, 10)->create();
 
     /*  SINGLE PAGES */
-    $this->call(SingleHomeSeeder::class);
-    $this->call(SingleAboutSeeder::class);
-    $this->call(SingleContactSeeder::class);
-    $this->call(SingleGallerySeeder::class);
-    $this->call(SingleTopicSeeder::class);
-    $this->call(SingleCommitteeSeeder::class);
-    $this->call(SinglePresenterSeeder::class);
-    $this->call(SingleNewsSeeder::class);
-    $this->call(SingleCabinetSeeder::class);
-    $this->call(InitialSeeder::class);
+    $this->call(PageHomeSeeder::class);
+    $this->call(PageAboutUsSeeder::class);
+    $this->call(PageContactsSeeder::class);
+    $this->call(PageGallerySeeder::class);
+    $this->call(PageTopicsSeeder::class);
+    $this->call(PageCommitteeSeeder::class);
+    $this->call(PageSpeakersSeeder::class);
+    $this->call(PageNewsSeeder::class);
+    $this->call(PageCabinetSeeder::class);
+    $this->call(PageInitialSeeder::class);
 
-    $this->call(PresenterSeeder::class);
+    $this->call(SpeakerSeeder::class);
   }
 
 }

@@ -17,7 +17,8 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/about-us', 'PageController@aboutUs')->name('about');
     Route::get('/topics', 'PageController@topics')->name('topics');
     Route::get('/committee', 'PageController@committee')->name('committee');
-    Route::get('/presenters', 'PageController@presenters')->name('presenters');
+    Route::get('/speakers', 'PageController@speakers')->name('speakers');
+      Route::get('/speakers/{id}', 'SpeakerController@index');
   });
 
   Route::prefix('media')->group(function () {

@@ -3,12 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Pages\Initial;
-use App\Models\Pages\SingleAbout;
-use App\Models\Pages\SingleCabinet;
-use App\Models\Pages\SingleContact;
-use App\Models\Pages\SingleGallery;
-use App\Models\Pages\SingleHome;
-use App\Models\Pages\SingleTopic;
+use App\Models\Pages\AboutUs;
+use App\Models\Pages\Cabinet;
+use App\Models\Pages\Contacts;
+use App\Models\Pages\Gallery;
+use App\Models\Pages\Home;
+use App\Models\Pages\Topics;
 use App\Policies\SinglePagePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -17,12 +17,12 @@ class AuthServiceProvider extends ServiceProvider {
   protected $policies = [
     // 'App\Model' => 'App\Policies\ModelPolicy',
       Initial::class => SinglePagePolicy::class,
-      SingleHome::class => SinglePagePolicy::class,
-      SingleAbout::class => SinglePagePolicy::class,
-      SingleContact::class => SinglePagePolicy::class,
-      SingleGallery::class => SinglePagePolicy::class,
-      SingleTopic::class => SinglePagePolicy::class,
-      SingleCabinet::class => SinglePagePolicy::class,
+      Home::class => SinglePagePolicy::class,
+      AboutUs::class => SinglePagePolicy::class,
+      Contacts::class => SinglePagePolicy::class,
+      Gallery::class => SinglePagePolicy::class,
+      Topics::class => SinglePagePolicy::class,
+      Cabinet::class => SinglePagePolicy::class,
   ];
 
   public function boot() {

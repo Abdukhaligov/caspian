@@ -5,12 +5,10 @@ namespace App\Models\Pages;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Initial extends Model {
+class AboutUs extends Model {
 
-  protected $table = 'page_initial';
+  protected $table = 'page_about_us';
   use HasTranslations;
   public $translatable = ['title'];
-
-  public static function getData() { return self::first(); }
 
 }
