@@ -36,7 +36,6 @@
                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -51,34 +50,6 @@
     </div>
   </section>
 
-  <!-- Team Section-->
-  <section class="our-team our-team2 speaker">
-
-    <div class="container">
-      <div class="row">
-        @foreach($data["speakers"] as $speaker)
-        <div class="col-md-3">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-              <a href="#"><img src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
-              <div class="stm-icon">
-                <h4>{{ $speaker->name }}</h4>
-                <p>{{ $speaker->job_title }}</p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </section>
-  <!-- /Team Section-->
   <!-- Blog Section-->
   <section class="blog blog-3">
     <div class="container">

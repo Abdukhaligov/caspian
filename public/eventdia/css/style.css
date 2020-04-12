@@ -515,7 +515,7 @@ input:focus {
   font-size: 20px;
   z-index: 1;
   display: block;
-  padding-top: 18px;
+  padding-top: 9px;
   padding-left: 5px; }
 
 .pulse-css:before, .pulse-css:after {
@@ -544,7 +544,7 @@ input:focus {
   border-radius: 50%;
   background: #ff007a;
   position: relative;
-  margin: 25px auto;
+  margin: 8px auto;
   z-index: 1; }
 
 .bpw-btn {
@@ -2202,7 +2202,8 @@ section.gallery {
   margin-top: 140px; }
   section.gallery .portfolio-img {
     position: relative;
-    margin: 15px auto;
+    /*margin: 15px auto;*/
+    max-height: 180px;
     overflow: hidden; }
     section.gallery .portfolio-img img {
       transition: all .5s ease-in-out;

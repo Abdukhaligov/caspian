@@ -30,29 +30,6 @@
       </div>
     </div>
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal2">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <button type="button" class="button ml-auto" id="pause-button" data-dismiss="modal"><i
-                  class="fas fa-times v-close"></i></button>
-          </div>
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div id="headerPopup">
-              <!-- Make sure ?enablejsapi=1 is on URL -->
-              <iframe id="video" src="https://www.youtube.com/embed/mGAB-kQRDBI?enablejsapi=1&amp;html5=1"
-                      allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- /About Section-->
-
 
   <!-- Team Section-->
   <section class="our-team ot-inner">
@@ -73,7 +50,7 @@
                     <ul>
                       @foreach($member->attributes->social_networks as $network)
                         <li>
-                          <a href="{{ $network->attributes->link }}">
+                          <a target="_blank" href="{{ $network->attributes->link }}">
                             <i class="fab {{ $network->attributes->network }}"></i>
                           </a>
                         </li>

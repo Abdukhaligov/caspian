@@ -24,7 +24,7 @@
 
         @if($data["photos"])
           @foreach($data["photos"] as $image)
-          <div class="col-md-4">
+          <div class="col-md-3" style="padding: 0">
             <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s"> <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
                 <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt=""></a>
             </div>
@@ -35,25 +35,33 @@
       </div>
     </div>
   </section>
-
-  <div class="container">
-    <div class="raw">
-      <div class="col-md-6">
-        <div class="amout-img">
-          <img src="http://caspian/eventdia/img/about/about.jpg" alt="">
-          <div class="bpw-btn">
-            <div class="pulse-box">
-              <div class="pulse-css">
-                <a href="#" data-toggle="modal" data-target="#myModal2">
-                  <i class="fas fa-play" aria-hidden="true"></i>
+  <br>
+  <section class="gallery">
+    <div class="container">
+      <div class="row">
+        @if($data["videos"])
+          @foreach($data["videos"] as $video)
+            <div class="col-md-3" style="padding: 0">
+              <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
+                <a data-fancybox="gallery" href="https://youtu.be/{{ $video->attributes->url }}">
+                  <img src="{{ Storage::disk('public')->url($video->attributes->cover) }}" alt="">
+                  <div class="bpw-btn">
+                    <div class="pulse-box">
+                      <div class="pulse-css">
+                        <a data-fancybox="gallery" href="https://youtu.be/{{ $video->attributes->url }}">
+                          <i class="fas fa-play" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </a>
               </div>
             </div>
-          </div>
-        </div>
+          @endforeach
+        @endif
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- /Gallery Section-->
 

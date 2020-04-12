@@ -12,6 +12,7 @@ class PageCabinet extends Resource {
   public static $group = 'Pages';
   public static $title = 'id';
   public static $search = ['id'];
+  public static $displayInNavigation = false;
 
   public static function label() { return "Cabinet"; }
 
