@@ -1,8 +1,24 @@
-@extends('layouts.init')
+@extends('layouts.app')
 
 @section('content')
 
-  <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
+  <!-- Hero Section-->
+  <section class="hero-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="hero-content">
+            <h1 class="wow fadeInUp" data-wow-delay=".3s">Eventdia Digital</h1>
+            <h1 class="wow fadeInUp" data-wow-delay=".5s">Conference</h1>
+            <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> Waterfront Hotel,
+              Canada</span>
+            <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> 8 - 9 January, 2020</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Hero Section-->
 
   <div class="container">
     <div class="row justify-content-center">

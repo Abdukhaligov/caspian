@@ -1,92 +1,72 @@
-@extends('layouts.init')
+@extends('layouts.app')
 
 @section('content')
 
-  <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
-
-  <div class="contact-details-area pt-90 pb-120">
+  <!-- Hero Section-->
+  <section class="inner-hero inner-hero4">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="contact-info mr-30 mt-30">
-            <div class="contact-item-1">
-              <div class="contact-info-item text-center">
-                <i class="fal fa-phone"></i>
-                <h5 class="title">Phone Number</h5>
-                <p><a href="tel: {{ $data->phone }}">{{ $data->phone }}</a></p>
-              </div>
-              <div class="contact-info-item text-center">
-                <i class="fal fa-envelope"></i>
-                <h5 class="title">Email Address</h5>
-                <p><a href="mailto: {{ $data->email }}">{{ $data->email }}</a></p>
-              </div>
-            </div>
-            <div class="contact-item-1">
-              <div class="contact-info-item text-center">
-                <i class="fal fa-map"></i>
-                <h5 class="title">Office Location</h5>
-                <p>{{ $data->address }}</p>
-              </div>
-              <div class="contact-info-item text-center">
-                <i class="fal fa-globe"></i>
-                <h5 class="title">Social Network</h5>
-                @foreach($data->social_networks as $sn)
-                  <p><a href="{{ $sn->attributes->link }}">{{ $sn->attributes->title }}</a></p>
-                @endforeach
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="map-area mt-30">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7496149.95373021!2d85.84621250756469!3d23.452185887261447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30adaaed80e18ba7%3A0xf2d28e0c4e1fc6b!2sBangladesh!5e0!3m2!1sen!2sbd!4v1569913375800!5m2!1sen!2sbd"
-                width="600" height="450" style="border:0;" allowfullscreen=""></iframe>
-          </div>
-        </div>
+      <div class="ih-content">
+        <h1 class="wow fadeInUp" data-wow-delay=".4s">Contact us</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
       </div>
     </div>
-  </div>
-
-
-  <div class="get-in-touch-area get-in-touch-area-2">
+  </section>
+  <!-- /Hero Section-->
+  <!--contact Us Section-->
+  <section class="contact-us">
     <div class="container">
+      <div class="contact-us-de-info">
+        <div class="single-contact-details">
+          <h5>Phone:</h5>
+          <p><a href="tel: {{ $data->phone }}">{{ $data->phone }}</a></p>
+        </div>
+        <div class="single-contact-details">
+          <h5>Send Email:</h5>
+          <p><a href="mailto: {{ $data->email }}">{{ $data->email }}</a></p>
+        </div>
+        <div class="single-contact-details">
+          <h5>Address:</h5>
+          <p>{{ $data->address }}</p>
+        </div>
+      </div>
       <div class="row">
-        <div class="col-lg-6">
-          <div class="section-title text-left">
-            <span>Get In Touch</span>
-            <h2 class="title">Estimate For Your Projects.</h2>
+        <div class="col-md-6 order-md-1 order-2">
+          <div class="map">
+            <div class="" id="googleMap">
+
+            </div>
           </div>
-          <div class="form-area">
-            <form id="contact-form" action="https://gizmoder.com/demo/html/omnivus/omnivus/assets/contact.php"
-                  method="post">
-              <div class="input-box mt-45">
-                <input type="text" name="name" placeholder="Enter your name">
-                <i class="fal fa-user"></i>
+        </div>
+        <div class="col-md-6 order-md-2 order-1">
+          <div class="contact-information contact-information-2">
+            <h2>Send Us A Message Now!</h2>
+            <form>
+              <div class="form-group cfdb1">
+                <input type="text" class="form-control cp1" name="name" id="name" placeholder="Your Name Here*"
+                       onfocus="this.placeholder = ''" onblur="this.placeholder ='Your Name Here*'">
               </div>
-              <div class="input-box mt-20">
-                <input type="email" name="email" placeholder="Enter your email">
-                <i class="fal fa-envelope"></i>
+              <div class="form-group cfdb1">
+                <input type="text" class="form-control cp1" name="email" id="email"
+                       placeholder="Your Email Address Here*" onfocus="this.placeholder = ''"
+                       onblur="this.placeholder ='Your Email Address Here*'">
               </div>
-              <div class="input-box mt-20">
-                <textarea name="message" id="#" cols="30" rows="10" placeholder="Enter your message"></textarea>
-                <i class="fal fa-edit"></i>
-                <button class="main-btn" type="submit">Submit Now</button>
+              <div class="form-group cfdb1">
+                <textarea rows="8" class="form-control cp1" name="msg" id="msg" placeholder="Message Details*"
+                          onfocus="this.placeholder =''" onblur="this.placeholder ='Message Details*'"></textarea>
               </div>
+              <button>Send Message</button>
             </form>
-            <p class="form-message"></p>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="get-map d-none d-lg-block mt-40">
-            <img src="{{ Storage::disk('public')->url($data->video_cover) }}" alt="video play">
-            <a class="video-popup" href="www.youtube.com/watch05ac.html?v={{ $data->video_url }}"><i
-                  class="fas fa-play"></i></a>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+  <!--/contact Us Section-->
 
 
 

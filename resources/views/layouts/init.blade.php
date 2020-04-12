@@ -76,7 +76,7 @@
       <div class="container position-relative">
         <div class="row">
           <div class="col-lg-12">
-            <div style="margin: 15px; text-align: center">{!! \App\Models\Pages\Initial::getData()->copyright  !!}</div>
+            <div style="margin: 15px; text-align: center"></div>
           </div>
         </div>
       </div>

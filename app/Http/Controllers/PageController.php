@@ -75,7 +75,6 @@ class PageController extends Controller {
   public function home() {
     $data = Home::first();
     $data["event"] =  Event::where('active', true)->first();
-    $data["banners"] = json_decode($data["banners"]);
 
     return view('home', compact('data'));
   }

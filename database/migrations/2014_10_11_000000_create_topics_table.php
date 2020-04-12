@@ -12,6 +12,7 @@ class CreateTopicsTable extends Migration {
       $table->integer('parent_id')->unsigned()->nullable();
       $table->foreign('parent_id')->references('id')->on('topics');
       $table->string('name');
+      $table->longText('description')->nullable();
       $table->timestamps();
     });
   }

@@ -26,20 +26,6 @@ class PageHome extends Resource {
     return [
         Text::make('Title'),
         Multilingual::make('Language'),
-        Flexible::make('Banners', 'banners')
-          ->addLayout('Banner','banners', [
-              Text::make('Category', 'category'),
-              Text::make('Title', 'title'),
-              Text::make('Subtitle', 'subtitle'),
-              Text::make('Button title', 'btn_title'),
-              Text::make('Button Link', 'btn_link'),
-              FilemanagerField::make('Img', 'img')
-                  ->required()
-                  ->folder('banners')
-                  ->displayAsImage()
-                  ->hideCreateFolderButton()
-                  ->hideDeleteFileButton(),
-          ])
     ];
   }
 

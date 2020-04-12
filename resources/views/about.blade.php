@@ -1,264 +1,259 @@
-@extends('layouts.init')
+@extends('layouts.app')
 
 @section('content')
 
-  <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
+  <!-- Hero Section-->
+  <section class="inner-hero inner-hero2">
+    <div class="container">
+      <div class="ih-content">
+        <h1 class=" wow fadeInUp" data-wow-delay=".4s">About Us</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+  <!-- /Hero Section-->
 
-  <div class="about-experience-area pb-120">
+  <!-- About Section-->
+  <section class="about-section">
     <div class="container">
       <div class="row">
-        <div class="col-lg-5">
-          <div class="experience-item">
-            <span>25 Years Of Experience</span>
-            <h2 class="title">Not only explore for job done.</h2>
+        <div class="col-md-6">
+          <div class="amout-img">
+            <img src="http://caspian/eventdia/img/about/about.jpg" alt="">
+            <div class="bpw-btn">
+              <div class="pulse-box">
+                <div class="pulse-css">
+                  <a href="#" data-toggle="modal" data-target="#myModal2">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-6 offset-lg-1">
-          <div class="experience-item">
-            <p>Does any industry face a more complex audience journey and marketing sales process than B2B technology?
-              Consider the number of people who influence a sale, the length of the decision-making cycle, the competing
-              interests of the people who purchase, implement, manage, and use the technology. It’s a lot meaningful
-              content here.</p>
-            <a href="#">Read More</a>
+        <div class="col-md-6">
+          <div class="about-content">
+            <h1>Welcome to the World
+              Digital Conference</h1>
+            <p>welcome to eventmat, start with a greeting to your audience that's appropriate to the situation. Dolor
+              sit amet consectetur elit sed do eiusmod tempor incd idunt labore et dolore magna aliqua enim ad minim
+              veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat.</p>
+            <a href="#" class="btn-2">Learn More</a>
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 col-sm-8 wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-          <div class="single-experience mt-30">
-            <img src="{{ asset('omnivus/images/experience-1.jpg') }}" alt="">
-            <div class="experience-overlay">
-              <h5 class="title">Design & Development</h5>
-              <p>The functional goal of technical content is to help people use a product.</p>
-              <a href="#">Read More</a>
-              <i class="fal fa-laptop-code"></i>
-            </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="button ml-auto" id="pause-button" data-dismiss="modal"><i
+                  class="fas fa-times v-close"></i></button>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-8 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
-          <div class="single-experience mt-30">
-            <img src="{{ asset('omnivus/images/experience-2.jpg') }}" alt="">
-            <div class="experience-overlay">
-              <h5 class="title">Technical Support</h5>
-              <p>The functional goal of technical content is to help people use a product.</p>
-              <a href="#">Read More</a>
-              <i class="fal fa-headphones-alt"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-8 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".6s">
-          <div class="single-experience mt-30">
-            <img src="{{ asset('omnivus/images/experience-3.jpg') }}" alt="">
-            <div class="experience-overlay">
-              <h5 class="title">Digital Marketing</h5>
-              <p>The functional goal of technical content is to help people use a product.</p>
-              <a href="#">Read More</a>
-              <i class="fal fa-analytics"></i>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div id="headerPopup">
+              <!-- Make sure ?enablejsapi=1 is on URL -->
+              <iframe id="video" src="https://www.youtube.com/embed/mGAB-kQRDBI?enablejsapi=1&amp;html5=1"
+                      allowfullscreen></iframe>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-
-  <div class="about-intro-area pt-120">
+  <!-- /About Section-->
+  <!-- Event Outcome Section-->
+  <section class="event-outcome eo-inner">
+    <span class="wow fadeInUp" data-wow-delay=".5s">Features</span>
+    <h1 class="wow fadeInUp" data-wow-delay=".5s">Our Features</h1>
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
-          <div class="intro-thumb">
-            <img src="{{ asset('omnivus/images/about-intro-thumb.jpg') }}" alt="">
-            <a class="video-popup" href="www.youtube.com/watch05ac.html?v=TdSA7gkVYU0"><i class="fas fa-play"></i></a>
+        <div class="col-md-4">
+          <div class="single-e-out wow fadeInUp" data-wow-delay=".3s">
+            <span class="flaticon-microphone f-icon"></span>
+            <h5>Great Speakers</h5>
+            <p>How you transform your business as technology, consumer, habits industry dynamic</p>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="intri-content">
-            <span>Intro Video</span>
-            <h2 class="title">How we growth <br> our business.</h2>
-            <p class="text-1">The introduction of cloud and mobile technologies into enterprise software.</p>
-            <p class="text-2">hether you are building an enterprise web portal or a state-of-the-art website, you always
-              need the right modern tools. Well-built and maintained PHP frameworks provide those tools in abundance,
-              allowing maintained PHP frameworks provide those tools in abundance, allowing developers to save time,
-              re-use code, and streamline the back end. As software development tools continuously.</p>
-            <a class="main-btn wow fadeInUp" href="#" data-wow-duration="1s" data-wow-delay=".4s">Learn More</a>
+        <div class="col-md-4">
+          <div class="single-e-out wow fadeInUp" data-wow-delay=".6s">
+            <span class="flaticon-collaboration f-icon"></span>
+            <h5>Networking</h5>
+            <p>How you transform your business as technology, consumer, habits industry dynamic</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-e-out wow fadeInUp" data-wow-delay=".9s">
+            <span class="flaticon-confetti f-icon"></span>
+            <h5>Have Fun</h5>
+            <p>How you transform your business as technology, consumer, habits industry dynamic</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-e-out wow fadeInUp" data-wow-delay=".3s">
+            <span class="flaticon-coffee-cup f-icon"></span>
+            <h5>Free Coffee Break</h5>
+            <p>How you transform your business as technology, consumer, habits industry dynamic</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-e-out wow fadeInUp" data-wow-delay=".6s">
+            <span class="flaticon-bus f-icon"></span>
+            <h5>Free Transfer</h5>
+            <p>How you transform your business as technology, consumer, habits industry dynamic</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-e-out wow fadeInUp" data-wow-delay=".9s">
+            <span class="flaticon-location f-icon"></span>
+            <h5>Best Location</h5>
+            <p>How you transform your business as technology, consumer, habits industry dynamic</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-
-  <div class="about-history-area">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
-          <div class="section-title text-center">
-            <h2 class="title">Our History</h2>
-            <p>Does any industry face a more complex audience journey and marketing sales process than B2B
-              technology.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-6">
-          <div class="history-item  pt-240">
-            <div class="history-thumb wow fadeInUp" data-wow-duration=".8s" data-wow-delay=".1s">
-              <img src="{{ asset('omnivus/images/history-1.jpg') }}" alt="history">
-            </div>
-            <div class="history-content wow fadeInUp" data-wow-duration=".8s" data-wow-delay=".1s">
-              <span>1990 - Startup</span>
-              <h4 class="title">Technical content may have per suasive objectives.</h4>
-            </div>
-            <div class="number-box">
-              <span>02</span>
-            </div>
-          </div>
-          <div class="history-item">
-            <div class="history-thumb wow fadeInUp" data-wow-duration=".1s" data-wow-delay=".2s">
-              <img src="{{ asset('omnivus/images/history-2.jpg') }}" alt="history">
-            </div>
-            <div class="history-content wow fadeInUp" data-wow-duration=".1s" data-wow-delay=".2s">
-              <span>1990 - Startup</span>
-              <h4 class="title">Technical content may have per suasive objectives.</h4>
-            </div>
-            <div class="number-box">
-              <span>04</span>
-            </div>
-            <div class="number-box-2">
-              <i class="fal fa-plus"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6">
-          <div class="history-item history-item-2">
-            <div class="history-thumb wow fadeInUp" data-wow-duration=".8s" data-wow-delay=".1s">
-              <img src="{{ asset('omnivus/images/history-3.jpg') }}" alt="history">
-            </div>
-            <div class="history-content wow fadeInUp" data-wow-duration=".8s" data-wow-delay=".1s">
-              <span>1990 - Startup</span>
-              <h4 class="title">Technical content may have per suasive objectives.</h4>
-            </div>
-            <div class="number-box">
-              <span>01</span>
-            </div>
-          </div>
-          <div class="history-item history-item-2">
-            <div class="history-thumb wow fadeInUp" data-wow-duration=".1s" data-wow-delay=".2s">
-              <img src="{{ asset('omnivus/images/history-4.jpg') }}" alt="history">
-            </div>
-            <div class="history-content wow fadeInUp" data-wow-duration=".1s" data-wow-delay=".2s">
-              <span>1990 - Startup</span>
-              <h4 class="title">Technical content may have per suasive objectives.</h4>
-            </div>
-            <div class="number-box">
-              <span>03</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  </section>
+  <!-- /Event Outcome Section-->
+  <!-- Team Section-->
+  <section class="our-team ot-inner">
+    <div class="ot-top">
+      <span>Our Team</span>
+      <h1>People Behind the World </h1>
+      <h1>Digital Conference</h1>
     </div>
-  </div>
-
-
-  <div class="about-faq-area pb-100 bg_cover" style="background-image: url({{ asset('omnivus/images/faq-bg.jpg') }});">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
-          <div class="about-faq-content">
-            <span>FAQ</span>
-            <h2 class="title">Get Every answer from here.</h2>
+        <div class="col-md-4">
+          <div class="single-team-member">
+            <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+              <a href="#"><img src="http://caspian/eventdia/img/team/team-member13.jpg" alt=""></a>
+              <div class="stm-icon">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+              <h4>Roberto Berry</h4>
+              <p>CEO & Founder</p>
+            </div>
           </div>
-          <div class="faq-accordion-3 mt-30">
-            <div class="accordion" id="accordionExample">
-              <div class="card wow fadeInLeft" data-wow-duration=".1.2s" data-wow-delay=".2s">
-                <div class="card-header" id="headingOne">
-                  <a class="" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                     aria-controls="collapseOne">
-                    <i class="fal fa-magic"></i>Technical content may have persuasive objectives
-                  </a>
-                </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                     data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p>Today, the term Information Technology (IT) has ballooned to encompass is real. Today, the term
-                      Information Technology (IT) has ballooned to encompass is real.Today, the term Information
-                      Technology (IT) has ballooned to encompass is real. </p>
-                  </div>
-                </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-team-member">
+            <div class="stm-img wow fadeInUp" data-wow-delay=".5s">
+              <a href="#"> <img src="http://caspian/eventdia/img/team/team-member14.jpg" alt=""></a>
+              <div class="stm-icon">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
               </div>
-              <div class="card wow fadeInLeft" data-wow-duration=".1.2s" data-wow-delay=".3s">
-                <div class="card-header" id="headingTwo">
-                  <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                     aria-controls="collapseTwo">
-                    <i class="fal fa-magic"></i>Technical content may have persuasive objectives
-                  </a>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p>Today, the term Information Technology (IT) has ballooned to encompass is real. Today, the term
-                      Information Technology (IT) has ballooned to encompass is real.Today, the term Information
-                      Technology (IT) has ballooned to encompass is real. </p>
-                  </div>
-                </div>
+            </div>
+            <div class="stm-text wow fadeInDown" data-wow-delay=".8s">
+              <h4>Frances B. Chandler</h4>
+              <p>Analisis </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-team-member">
+            <div class="stm-img wow fadeInUp" data-wow-delay="1s">
+              <a href="#"> <img src="http://caspian/eventdia/img/team/team-member15.jpg" alt=""></a>
+              <div class="stm-icon">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
               </div>
-              <div class="card wow fadeInLeft" data-wow-duration=".1.2s" data-wow-delay=".4s">
-                <div class="card-header" id="headingThree">
-                  <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                     aria-expanded="false"
-                     aria-controls="collapseThree">
-                    <i class="fal fa-magic"></i>Technical content may have persuasive objectives
-                  </a>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p>Today, the term Information Technology (IT) has ballooned to encompass is real. Today, the term
-                      Information Technology (IT) has ballooned to encompass is real.Today, the term Information
-                      Technology (IT) has ballooned to encompass is real. </p>
-                  </div>
-                </div>
+            </div>
+            <div class="stm-text wow fadeInDown" data-wow-delay="1.2s">
+              <h4>Thomas Childers</h4>
+              <p>Managing Director</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-team-member">
+            <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+              <a href="#"><img src="http://caspian/eventdia/img/team/team-member16.jpg" alt=""></a>
+              <div class="stm-icon">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
               </div>
-              <div class="card wow fadeInLeft" data-wow-duration=".1.2s" data-wow-delay=".5s">
-                <div class="card-header" id="headingFour">
-                  <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
-                     aria-controls="collapseFour">
-                    <i class="fal fa-magic"></i>Technical content may have persuasive objectives
-                  </a>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p>Today, the term Information Technology (IT) has ballooned to encompass is real. Today, the term
-                      Information Technology (IT) has ballooned to encompass is real.Today, the term Information
-                      Technology (IT) has ballooned to encompass is real. </p>
-                  </div>
-                </div>
+            </div>
+            <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+              <h4>Melek Ozcan</h4>
+              <p>Founder</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-team-member">
+            <div class="stm-img wow fadeInUp" data-wow-delay=".6s">
+              <a href="#"> <img src="http://caspian/eventdia/img/team/team-member17.jpg" alt=""></a>
+              <div class="stm-icon">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
               </div>
-              <div class="card wow fadeInLeft" data-wow-duration=".1.2s" data-wow-delay=".6s">
-                <div class="card-header" id="headingFive">
-                  <a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
-                     aria-controls="collapseFive">
-                    <i class="fal fa-magic"></i>Technical content may have persuasive objectives
-                  </a>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p>Today, the term Information Technology (IT) has ballooned to encompass is real. Today, the term
-                      Information Technology (IT) has ballooned to encompass is real.Today, the term Information
-                      Technology (IT) has ballooned to encompass is real. </p>
-                  </div>
-                </div>
+            </div>
+            <div class="stm-text wow fadeInDown" data-wow-delay=".8s">
+              <h4>Tommy Martinez</h4>
+              <p>Painter, Conceptual Artist</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="single-team-member">
+            <div class="stm-img wow fadeInUp" data-wow-delay="1s">
+              <a href="#"> <img src="http://caspian/eventdia/img/team/team-member18.jpg" alt=""></a>
+              <div class="stm-icon">
+                <ul>
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
               </div>
+            </div>
+            <div class="stm-text wow fadeInDown" data-wow-delay="1.2s">
+              <h4>Deirdre Adams</h4>
+              <p>Marketers</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+  <!-- /Team Section-->
 
 
 @endsection
 <script>
-  import PageBannerComponent from "../js/components/PageBannerComponent";
-  export default {
-    components: {PageBannerComponent}
-  }
+
 </script>

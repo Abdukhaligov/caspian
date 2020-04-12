@@ -389,6 +389,35 @@ a.btn-1 {
   a.btn-1:hover::before {
     opacity: 1; }
 
+a.btn-4 {
+    position: relative !important;
+    background-image: none;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    padding: 20px 50px;
+    border-radius: 35px;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block; }
+  a.btn-4::before {
+    position: absolute !important;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: .3s ease;
+    background-image: none;
+    z-index: -1; }
+  a.btn-4:hover::before {
+    opacity: 0; }
+
 a.btn-2 {
   position: relative;
   background-color: #820dee;
@@ -427,6 +456,8 @@ a.btn-3 {
   a.btn-3:hover {
     background-color: #fd1696;
     color: #fff; }
+
+
 
 [class^="flaticon-"]:before {
   font-size: inherit;
@@ -3511,7 +3542,36 @@ Responsive Style
       background-image: -ms-linear-gradient(-9deg, #9b3bf5 3%, #fb239a 100%);
       z-index: -1; }
     .sm-mint > li > a.btn-1:hover::before {
-      opacity: 1; } }
+      opacity: 1; }
+
+  .sm-mint > li > a.btn-4 {
+    position: relative !important;
+    background-image: none;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    padding: 20px 50px;
+    border-radius: 35px;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block; }
+  .sm-mint > li > a.btn-4::before {
+    position: absolute !important;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: .3s ease;
+    background-image: none;
+    z-index: -1; }
+  .sm-mint > li > a.btn-4:hover::before {
+    opacity: 0; }
+}
 @media only screen and (max-width: 991px) {
   a.btn-2 {
     font-size: 14px;
@@ -3615,6 +3675,10 @@ Responsive Style
     padding: 11px 26px; }
 
   section.ab-section2 .about-content a.btn-1 {
+    margin-left: 17px;
+    padding: 11px 19px; }
+
+  section.ab-section2 .about-content a.btn-4 {
     margin-left: 17px;
     padding: 11px 19px; }
 
@@ -3838,6 +3902,12 @@ Responsive Style
     color: #fff;
     font-size: 15px; }
 
+  header.header-area .sm-mint li .btn-4 {
+    margin-left: 0px;
+    display: block;
+    color: #fff;
+    font-size: 15px; }
+
   .blog-sideber .tag {
     margin-bottom: 80px; }
 
@@ -3916,7 +3986,10 @@ Responsive Style
     line-height: 76px; }
 
   header.header-area.nav-fixed .sm-mint li .btn-1 {
-    margin-top: 15px; } }
+    margin-top: 15px; }
+  header.header-area.nav-fixed .sm-mint li .btn-4 {
+    margin-top: 15px; }
+}
 @media only screen and (max-width: 575px) {
   section.hero-1 .hero-slide1 .hero-slide-wrapper .hero-slide-content h1 {
     font-size: 42px;
@@ -3930,6 +4003,10 @@ Responsive Style
     padding: 25px 35px 35px 0px; }
 
   a.btn-1 {
+    font-size: 12px;
+    padding: 10px 20px; }
+
+  a.btn-4 {
     font-size: 12px;
     padding: 10px 20px; }
 

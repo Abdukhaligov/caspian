@@ -1,47 +1,41 @@
-@extends('layouts.init')
+@extends('layouts.app')
 
 @section('content')
 
-  <page-banner-component :title="{{ json_encode($data->title) }}"></page-banner-component>
-
-  <section class="mb-5 mt-5">
-    <div id="lgx-photo-gallery" class="lgx-photo-gallery">
-      <div class="lgx-inner">
-        <div class="container">
-          <div id="lgx-memorisinner" class="lgx-memorisinner">
-            <div class="container-fluid text-center">
-              <div class="row">
-                @if($data["photos"])
-                  <div style="overflow: auto">
-                    {{--                                        <h3>Photos</h3>--}}
-                    @foreach($data["photos"] as $image)
-                      <div class="lgx-single">
-                        <figure style="margin: 0">
-                          <img title="Memories One"
-                               src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}"
-                               alt="Memories one"/>
-                          <figcaption class="lgx-figcaption">
-                            <div class="lgx-hover-link">
-                              <div class="lgx-vertical">
-                                <a title="Memories One"
-                                   href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                                  <i class="fa fa-search fa-2x"></i>
-                                </a>
-                              </div>
-                            </div>
-                          </figcaption>
-                        </figure>
-                      </div>
-                    @endforeach
-                  </div>
-                @endif
-              </div>
-            </div> <!--//.CONAINER-->
-          </div><!--//.lgx CONTACT INNER-->
-        </div>
-        <!-- //.CONTAINER -->
+  <!-- Hero Section-->
+  <section class="inner-hero inner-hero2">
+    <div class="container">
+      <div class="ih-content">
+        <h1 class="wow fadeInUp" data-wow-delay=".4s">Gallery</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+          </ol>
+        </nav>
       </div>
     </div>
   </section>
+  <!-- /Hero Section-->
+  <!-- Gallery Section-->
+  <section class="gallery">
+    <div class="container">
+      <div class="row">
+
+        @if($data["photos"])
+          @foreach($data["photos"] as $image)
+          <div class="col-md-4">
+            <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s"> <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+                <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt=""></a>
+            </div>
+          </div>
+          @endforeach
+        @endif
+
+      </div>
+    </div>
+  </section>
+  <!-- /Gallery Section-->
+
 
 @endsection

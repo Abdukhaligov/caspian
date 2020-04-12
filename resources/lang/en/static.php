@@ -16,7 +16,7 @@ return array (
     'full_name' => 'Full Name',
     'e_mail_address' => 'E-mail Address',
     'password' => 'Password',
-    'confirm_Password' => 'Confirm Password',
+    'confirm_password' => 'Confirm Password',
     'phone_number' => 'Phone Number',
     'company' => 'Company',
     'job_title' => 'Job Title',

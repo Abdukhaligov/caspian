@@ -12,6 +12,7 @@ class CreateEventsTable extends Migration {
       $table->string('name');
       $table->string('logo')->nullable();
       $table->text('description')->nullable();
+      $table->text('address');
       $table->dateTime('date');
       $table->boolean('active')->default(false);
       $table->timestamps();

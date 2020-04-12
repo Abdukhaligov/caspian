@@ -16,7 +16,7 @@ return array (
     'full_name' => 'Ф.И.О',
     'e_mail_address' => 'Электронная почта',
     'password' => 'Пароль',
-    'confirm_Password' => 'Подтвердите пароль',
+    'confirm_password' => 'Подтвердите пароль',
     'phone_number' => 'Мобильный номер',
     'company' => 'Место работы',
     'job_title' => 'Должность',

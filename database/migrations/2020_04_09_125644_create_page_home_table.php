@@ -10,7 +10,6 @@ class CreatePageHomeTable extends Migration {
     Schema::create('page_home', function (Blueprint $table) {
       $table->increments('id');
       $table->json('title');
-      $table->json('banners')->nullable();
       $table->timestamps();
     });
   }
