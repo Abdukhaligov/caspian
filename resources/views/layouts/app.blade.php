@@ -13,45 +13,45 @@
   <!-- Mobile Specific Meta  -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!--- Font-->
-  <link href="http://caspian/eventdia/css/cssf67e.css?family=Poppins:400,500,600,700&amp;display=swap"
+  <link href="{{ asset('/eventdia/css/cssf67e.css') }}?family=Poppins:400,500,600,700&amp;display=swap"
         rel="stylesheet">
-  <link href="http://caspian/eventdia/css/cssbbf1.css?family=Montserrat:400,500,600&amp;display=swap"
+  <link href="{{ asset('/eventdia/css/cssbbf1.css') }}?family=Montserrat:400,500,600&amp;display=swap"
         rel="stylesheet">
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('js/app.js') }}') }}" defer></script>
   <!-- CSS -->
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/bootstrap.min.css') }}">
   <!-- Jquery ui CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/jquery-ui.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/jquery-ui.css') }}">
   <!-- Fancybox CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/jquery.fancybox.min.css') }}">
   <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/font-awosome.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/font-awosome.css') }}">
   <!-- Flaticon CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/flat-font/flaticon.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/flat-font/flaticon.css') }}">
   <!-- Slick Slider -->
-  <link rel="stylesheet" href="http://caspian/eventdia/slick/slick-theme.css">
-  <link rel="stylesheet" href="http://caspian/eventdia/slick/slick.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/slick/slick-theme.css') }}">
+  <link rel="stylesheet" href="{{ asset('/eventdia/slick/slick.css') }}">
   <!-- Ticker css-->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/ticker.min.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/ticker.min.css') }}">
   <!-- Nav Menu CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/sm-core-css.css">
-  <link rel="stylesheet" href="http://caspian/eventdia/css/sm-mint.css">
-  <link rel="stylesheet" href="http://caspian/eventdia/css/sm-style.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/sm-core-css.css') }}">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/sm-mint.css') }}">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/sm-style.css') }}">
   <!-- Animate CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/animate.min.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/animate.min.css') }}">
   <!-- Main StyleSheet CSS -->
-  <link rel="stylesheet" href="http://caspian/eventdia/css/style.css">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/style.css') }}">
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->favicon) }}"
         type="image/png">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js') }}/1.4.2/respond.min.js') }}"></script>
   <![endif]-->
 </head>
 
@@ -117,7 +117,7 @@
                         padding: 5px 5px;
                         border-radius: 12px;
                         background-color: #ffffff;
-                        margin-left: 15px;" src="http://caspian/omnivus/images/flag-2.jpg" alt="">
+                        margin-left: 15px;" src="{{ asset('/omnivus/images/flag-2.jpg') }}" alt="">
                   </a>
                 </li>
                 @else
@@ -128,7 +128,7 @@
                           padding: 5px 5px;
                           border-radius: 12px;
                           background-color: #ffffff;
-                          margin-left: 15px;" src="http://caspian/omnivus/images/flag-1.jpg" alt="">
+                          margin-left: 15px;" src="{{ asset('/omnivus/images/flag-1.jpg') }}" alt="">
                   </a>
                 </li>
               @endif
@@ -165,7 +165,7 @@
         </div>
         <div class="footer-bottom">
           <div class="logo">
-            <a href="#"><img src="http://caspian/eventdia/img/logo.png" alt=""></a>
+            <a href="#"><img src="{{ asset('/eventdia/img/logo.png') }}" alt=""></a>
           </div>
           <div class="fb-text">
             {{--            <p> Copyright © 2020 eventdia ! All Rights Reserved By <a href="https://voidcoders.com/"--}}
@@ -195,29 +195,29 @@
 <!-- Scripts -->
 
 <!-- jQuery Plugin -->
-<script src="http://caspian/eventdia/js/jquery-3.4.1.min.js"></script>
+<script src="{{ asset('/eventdia/js/jquery-3.4.1.min.js') }}"></script>
 <!-- Bootstrap JS -->
-<script src="http://caspian/eventdia/js/bootstrap.min.js"></script>
+<script src="{{ asset('/eventdia/js/bootstrap.min.js') }}"></script>
 <!-- Jquery ui JS-->
-<script src="http://caspian/eventdia/js/jquery-ui.js"></script>
+<script src="{{ asset('/eventdia/js/jquery-ui.js') }}"></script>
 <!--  Nav  -->
-<script src="http://caspian/eventdia/js/jquery.smartmenus.js"></script>
+<script src="{{ asset('/eventdia/js/jquery.smartmenus.js') }}"></script>
 <!-- Slick Slider -->
-<script src="http://caspian/eventdia/slick/slick.min.js"></script>
+<script src="{{ asset('/eventdia/slick/slick.min.js') }}"></script>
 <!-- Main Counterup Plugin-->
-<script src="http://caspian/eventdia/js/jquery.counterup.min.js"></script>
+<script src="{{ asset('/eventdia/js/jquery.counterup.min.js') }}"></script>
 <!-- Main Counterdown Plugin-->
-<script src="http://caspian/eventdia/js/countdown.js"></script>
+<script src="{{ asset('/eventdia/js/countdown.js') }}"></script>
 <!-- Waypoint Js-->
-<script src="http://caspian/eventdia/js/waypoints.min.js"></script>
+<script src="{{ asset('/eventdia/js/waypoints.min.js') }}"></script>
 <!-- Fancybox Js-->
-<script src="http://caspian/eventdia/js/jquery.fancybox.min.js"></script>
+<script src="{{ asset('/eventdia/js/jquery.fancybox.min.js') }}"></script>
 <!-- Ticker Js Plugin-->
-<script src="http://caspian/eventdia/js/ticker.min.js"></script>
+<script src="{{ asset('/eventdia/js/ticker.min.js') }}"></script>
 <!-- WOW JS Plugin-->
-<script src="http://caspian/eventdia/js/wow.min.js"></script>
+<script src="{{ asset('/eventdia/js/wow.min.js') }}"></script>
 <!-- Main Script -->
-<script src="http://caspian/eventdia/js/theme.js"></script>
+<script src="{{ asset('/eventdia/js/theme.js') }}"></script>
 
 <script>
   $(function () {
