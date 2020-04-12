@@ -23,7 +23,7 @@ class Event extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        FilemanagerField::make('Logo', 'logo')
+        FilemanagerField::make('Banner')
             ->folder('events')
             ->displayAsImage()
             ->hideCreateFolderButton()

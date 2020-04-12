@@ -31,4 +31,5 @@ $factory->define(User::class, function (Faker $faker) {
       'password' => bcrypt(123123), // password
       'remember_token' => Str::random(10),
   ];
+
 });

@@ -4,7 +4,10 @@
 
 
   <!-- Hero Section-->
-  <section class="hero-2">
+  <section class="hero-2"
+           @if($data["event"]["banner"])
+              style="background-image: url({{Storage::disk('public')->url($data["event"]["banner"])}})"
+           @endif>
     <div class="container">
       <div class="row">
         <div class="col-md-12">

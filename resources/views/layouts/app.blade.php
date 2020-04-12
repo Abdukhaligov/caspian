@@ -174,10 +174,15 @@
           </div>
           <div class="fb-s-icon">
             <ul>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+              @php
+              @endphp
+              @foreach(json_decode(\App\Models\Pages\Initial::getData()->social_networks) as $network)
+                <li>
+                  <a href="{{ $network->attributes->link }}" target="_blank">
+                    <i class="fab {{ $network->attributes->network }}"></i>
+                  </a>
+                </li>
+              @endforeach
             </ul>
           </div>
         </div>

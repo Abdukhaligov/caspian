@@ -10,7 +10,7 @@ class CreateEventsTable extends Migration {
     Schema::create('events', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
-      $table->string('logo')->nullable();
+      $table->string('banner')->nullable();
       $table->text('description')->nullable();
       $table->text('address');
       $table->dateTime('date');
