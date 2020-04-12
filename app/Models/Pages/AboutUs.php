@@ -9,6 +9,6 @@ class AboutUs extends Model {
 
   protected $table = 'page_about_us';
   use HasTranslations;
-  public $translatable = ['title'];
+  public $translatable = ['title','body'];
 
 }

@@ -35,6 +35,26 @@
       </div>
     </div>
   </section>
+
+  <div class="container">
+    <div class="raw">
+      <div class="col-md-6">
+        <div class="amout-img">
+          <img src="http://caspian/eventdia/img/about/about.jpg" alt="">
+          <div class="bpw-btn">
+            <div class="pulse-box">
+              <div class="pulse-css">
+                <a href="#" data-toggle="modal" data-target="#myModal2">
+                  <i class="fas fa-play" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- /Gallery Section-->
 
 
