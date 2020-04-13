@@ -81,6 +81,7 @@ class PageController extends Controller {
 
   public function news() {
     $data = News::first();
+    $data["news"] = \App\Models\News::orderBy('created_at', 'desc')->paginate(9);
 
     return view('news', compact('data'));
   }

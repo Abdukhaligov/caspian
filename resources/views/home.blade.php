@@ -80,37 +80,39 @@
   </section>
   <!-- /About Section-->
 
+  @if($data["event"]["speakers"])
   <!-- Team Section-->
-  <section class="our-team our-team2">
-    <div class="ot-top">
-      <h1>Who Speaking?</h1>
-      <p>Welcome to the dedicated to building remarkable Speakers!</p>
-    </div>
-    <div class="container">
-      <div class="row">
-        @foreach($data["event"]["speakers"] as $speaker)
-          <div class="col-md-4">
-            <div class="single-team-member">
-              <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                <a href="{{ route('speakers')."/".$speaker->id }}"><img src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
-                <div class="stm-icon">
-                  <h4>{{ $speaker->name }}</h4>
-                  <p>{{ $speaker->job_title }}</p>
-                  <ul>
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                  </ul>
+    <section class="our-team our-team2">
+      <div class="ot-top">
+        <h1>Who Speaking?</h1>
+        <p>Welcome to the dedicated to building remarkable Speakers!</p>
+      </div>
+      <div class="container">
+        <div class="row">
+          @foreach($data["event"]["speakers"] as $speaker)
+            <div class="col-md-4">
+              <div class="single-team-member">
+                <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+                  <a href="{{ route('speakers')."/".$speaker->id }}"><img src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                  <div class="stm-icon">
+                    <h4>{{ $speaker->name }}</h4>
+                    <p>{{ $speaker->job_title }}</p>
+                    <ul>
+                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        @endforeach
+          @endforeach
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   <!-- /Team Section-->
+  @endif
 
   <!--Schedule Section-->
   <section class="schedule schedule2">
@@ -439,28 +441,21 @@
   </section>
   <!--/Pricing Section-->
 
-  <!--- Partner Section-->
-  <section class="partner partner2">
-    <h1>Sponsors & Partners</h1>
+  <!--- Partner Section -->
+  <section class="partner partner2 partner3 sponsor">
+    <span>WHO HELPS US</span>
+    <h1>Partners</h1>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="single-partner">
-            <ul>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-1.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-2.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-3.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-7.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-8.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-4.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-6.png" alt=""></a></li>
-              <li><a href="#"> <img src="http://caspian/eventdia/img/partner/partner-5.png" alt=""></a></li>
-            </ul>
+        @foreach(\App\Models\Partner::all() as $partner)
+          <div class="col-md-2">
+            <div class="single-partner">
+              <a href="{{ $partner->url }}"></a><img src="{{ Storage::disk('public')->url($partner->img) }}" alt="">
+            </div>
           </div>
-        </div>
+        @endforeach
       </div>
     </div>
-    <a href="#" class="btn-2">BECOME A SPONSOR</a>
   </section>
   <!--- /Partner Section-->
 
