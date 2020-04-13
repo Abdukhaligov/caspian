@@ -5,6 +5,7 @@ namespace App\Nova;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -43,6 +44,7 @@ class Speaker extends Resource {
                 Text::make('Link', 'link')
                     ->required(),
             ]),
+        BelongsToMany::make('Events'),
     ];
   }
 

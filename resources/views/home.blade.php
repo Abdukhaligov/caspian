@@ -88,108 +88,25 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-              <a href="#"><img src="http://caspian/eventdia/img/team/team-member1.jpg" alt=""></a>
-              <div class="stm-icon">
-                <h4>Roberto Berry</h4>
-                <p>CEO & Founder</p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
+        @foreach($data["event"]["speakers"] as $speaker)
+          <div class="col-md-4">
+            <div class="single-team-member">
+              <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+                <a href="{{ route('speakers')."/".$speaker->id }}"><img src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                <div class="stm-icon">
+                  <h4>{{ $speaker->name }}</h4>
+                  <p>{{ $speaker->job_title }}</p>
+                  <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay=".5s">
-              <a href="#"> <img src="http://caspian/eventdia/img/team/team-member2.jpg" alt=""></a>
-              <div class="stm-icon sil-1">
-                <h4>Frances B. Chandler</h4>
-                <p>Analisis </p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay="1s">
-              <a href="#"> <img src="http://caspian/eventdia/img/team/team-member3.jpg" alt=""></a>
-              <div class="stm-icon">
-                <h4>Thomas Childers</h4>
-                <p>Managing Director</p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-              <a href="#"><img src="http://caspian/eventdia/img/team/team-member4.jpg" alt=""></a>
-              <div class="stm-icon">
-                <h4>Melek Ozcan</h4>
-                <p>Founder</p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay=".6s">
-              <a href="#"><img src="http://caspian/eventdia/img/team/team-member5.jpg" alt=""></a>
-              <div class="stm-icon sil-1">
-                <h4>Tommy Martinez</h4>
-                <p>Painter, Conceptual Artist</p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="single-team-member">
-            <div class="stm-img wow fadeInUp" data-wow-delay="1s">
-              <a href="#"><img src="http://caspian/eventdia/img/team/team-member6.jpg" alt=""></a>
-              <div class="stm-icon">
-                <h4>Deirdre Adams</h4>
-                <p>Marketers</p>
-                <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </section>

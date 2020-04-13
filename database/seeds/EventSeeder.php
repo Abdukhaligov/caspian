@@ -7,6 +7,7 @@ class EventSeeder extends Seeder {
 
   public function run(Faker $faker) {
     $data = [];
+    $speakersOnEvent = [];
     for($i=0; $i<7; $i++){
       $data [] = [
           "name" => $faker->sentence(3),
@@ -16,11 +17,17 @@ class EventSeeder extends Seeder {
           "date" => $faker->dateTimeBetween("+2 days", "+ 2 months"),
           "active" => rand(1, 3) == 3 ? true : false
       ];
+
+      for($j=0;$j<4;$j++){
+        $speakersOnEvent [] = [
+            "event_id" => $i+1,
+            "speaker_id" => rand(1,8)
+        ];
+      }
     }
 
-
-
     DB::table('events')->insert($data);
+    DB::table('event_speaker')->insert($speakersOnEvent);
   }
 
 }

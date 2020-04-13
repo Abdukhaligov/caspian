@@ -8,4 +8,8 @@ class Event extends Model {
 
   protected $casts = ['date' => 'datetime'];
 
+  public function speakers(){
+    return $this->belongsToMany(Speaker::class);
+  }
+
 }

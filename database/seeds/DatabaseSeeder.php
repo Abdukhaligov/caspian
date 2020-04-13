@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
     factory(\App\User::class, 12)->create();
 
     factory(\App\Models\Report::class, 12)->create();
+    $this->call(SpeakerSeeder::class);
     $this->call(EventSeeder::class);
 
     /*  SINGLE PAGES */
@@ -28,7 +29,6 @@ class DatabaseSeeder extends Seeder {
     $this->call(PageCabinetSeeder::class);
     $this->call(PageInitialSeeder::class);
 
-    $this->call(SpeakerSeeder::class);
   }
 
 }

@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -35,6 +36,7 @@ class Event extends Resource {
             ->sortable(),
         DateTime::make('Date')
             ->sortable(),
+        BelongsToMany::make('Speakers'),
         DateTime::make('Created At')
             ->hideFromIndex(),
         DateTime::make('Updated At')
