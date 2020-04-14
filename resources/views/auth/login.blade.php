@@ -51,10 +51,10 @@
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
-              <button type="submit" id="submit">{{ __('static.login') }}</button>
+              <button style="float:left; margin-right: 15px" type="submit" id="submit">{{ __('static.login') }}</button>
             </form>
             <a href="{{ route('register') }}">
-              <button type="submit" id="submit">{{ __('static.registration') }}</button>
+              <button style="float:left;" type="submit" id="submit">{{ __('static.registration') }}</button>
             </a>
           </div>
         </div>
