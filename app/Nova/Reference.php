@@ -14,6 +14,7 @@ class Reference extends Resource {
   public static $group = 'Resources';
   public static $title = 'name';
   public static $search = ['id'];
+  public static $displayInNavigation = false;
 
 
   public function fields(Request $request) {
