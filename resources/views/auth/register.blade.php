@@ -2,15 +2,16 @@
 
 @section('content')
 
+  <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Hero Section-->
   <section class="inner-hero inner-hero4">
     <div class="container">
       <div class="ih-content">
-        <h1 class="wow fadeInUp" data-wow-delay=".4s">Contact us</h1>
+        <h1 class="wow fadeInUp" data-wow-delay=".4s">Registration</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            <li class="breadcrumb-item active" aria-current="page">Registration</li>
           </ol>
         </nav>
       </div>
@@ -18,7 +19,7 @@
   </section>
   <!-- /Hero Section-->
 
-  <?php $fake = TRUE ? $fakeUser = factory(\App\User::class)->make() : ''?>
+  <?php $fake = false ? $fakeUser = factory(\App\User::class)->make() : ''?>
   <!--contact Us Section-->
   <section class="contact-us"  id="app">
     <div class="container">
@@ -52,7 +53,7 @@
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('name') is-invalid @enderror"
                        name="name" id="name" placeholder="{{ __('static.full_name') }}"
-                       value="{{ $fake ? $fakeUser->name : old('name') }}" autocomplete="name" autofocus
+                       value="{{ $fake ? $fakeUser->name : old('name') }}" autocomplete="name"
                        onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.full_name') }}'">
                 @error('name')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -110,7 +111,7 @@
               </div>
               <div class="form-group cfdb1">
                 <label for="name" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
-                <select class="form-control cp1 @error('reference_id') is-invalid @enderror"
+                <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('reference_id') is-invalid @enderror"
                         name="reference_id" id="reference_id" autocomplete="reference_id">
                   @foreach($data['references'] as $reference)
                     <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
@@ -123,7 +124,7 @@
               </div>
               <div class="form-group cfdb1">
                 <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                <select class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('membership_id') is-invalid @enderror"
                         name="membership_id" id="membership_id" autocomplete="membership_id">
                   @foreach($data['membership'] as $membership)
                     <option @if($membership->hasChildren == true ) disabled @endif
