@@ -16,7 +16,7 @@ class News extends Resource {
   public static $model = 'App\Models\News';
   public static $group = 'Resources';
   public static $title = 'id';
-  public static $search = ['id'];
+  public static $search = ['id','created_at'];
 
 
   public function fields(Request $request) {
@@ -25,8 +25,7 @@ class News extends Resource {
         Text::make('Title'),
         Images::make('Preview', 'preview'),
         NovaTinyMCE::make('Body'),
-        DateTime::make('Created At')
-            ->hideFromIndex(),
+        DateTime::make('Created At', 'created_at'),
         Multilingual::make('Language'),
     ];
   }
