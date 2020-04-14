@@ -28,7 +28,11 @@
               <div class="single-blog">
                 <a href="#">
                   <div class="sb-img">
-                    <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
+                    @if($data["preview"])
+                      <img src="{{ Storage::disk('mediaFiles')->url($data["preview"]->id."/".$data["preview"]->file_name) }}" alt="">
+                    @else
+                      <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
+                    @endif
                   </div>
                 </a>
                 <div class="sb-content sbc-details">
