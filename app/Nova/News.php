@@ -25,7 +25,7 @@ class News extends Resource {
         Text::make('Title'),
         Images::make('Preview', 'preview'),
         NovaTinyMCE::make('Body'),
-        DateTime::make('Created At', 'created_at'),
+        DateTime::make('Created At', 'created_at')->sortable(),
         Multilingual::make('Language'),
     ];
   }
