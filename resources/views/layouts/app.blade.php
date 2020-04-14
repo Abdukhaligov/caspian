@@ -150,6 +150,44 @@
 </form>
 
 
+<!-- Blog Section-->
+<section class="blog blog-3">
+  <div class="container">
+    <div class="blog-top">
+      <span>From our blog</span>
+      <h1>Laest News</h1>
+    </div>
+    <div class="row">
+
+      @foreach(\App\Models\News::orderBy('created_at', 'desc')->limit(3)->get() as $news)
+        <div class="col-md-4">
+          <div class="single-blog wow fadeInUp" data-wow-delay=".4s">
+            <a href="{{ route('news')."/".$news->id }}">
+              <div class="sb-img">
+                @if($news->preview())
+                  <img src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}" alt="">
+                @else
+                  <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
+                @endif
+              </div>
+            </a>
+            <div class="sb-content">
+              <span>{{ date('M d, Y', strtotime($news->created_at)) }}</span>
+              <a href="{{ route('news')."/".$news->id }}"></a>
+              <h3>{{ $news->title }}</h3>
+              {!! $news->minimumDescription() !!}
+              <a href="{{ route('news')."/".$news->id }}">READ MORE</a>
+            </div>
+          </div>
+        </div>
+      @endforeach
+
+    </div>
+  </div>
+
+</section>
+<!-- /Blog Section-->
+
 <!-- Footer Section-->
 <footer class="footer-area footer-area-2">
   <div class="container">

@@ -27,20 +27,22 @@
         @foreach($data["news"] as $news)
           <div class="col-md-4">
             <div class="single-blog  wow fadeInUp" data-wow-delay=".4s">
-              <a href="single-post.html">
+              <a href="{{ route('news')."/".$news->id }}">
                 <div class="sb-img">
                   @if($news->preview())
                     <img src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}" alt="">
+                    @else
+                    <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
                   @endif
                 </div>
               </a>
               <div class="sb-content">
                 <span>{{ date('M d, Y', strtotime($news->created_at)) }}</span>
-                <a href="single-post.html">
+                <a href="{{ route('news')."/".$news->id }}">
                   <h3>{{ $news->title }}</h3>
                 </a>
                 {!! $news->minimumDescription() !!}
-                <a href="single-post.html">READ MORE</a>
+                <a href="{{ route('news')."/".$news->id }}">READ MORE</a>
               </div>
             </div>
           </div>

@@ -28,6 +28,7 @@ Route::group(['middleware' => ['locale']], function () {
   Route::prefix('media')->group(function () {
     Route::get('/gallery', 'PageController@gallery')->name('gallery');
     Route::get('/news', 'PageController@news')->name('news');
+    Route::get('/news/{id}', 'NewsController@index');
   });
 
   Route::group(['middleware' => ['auth']], function () {
