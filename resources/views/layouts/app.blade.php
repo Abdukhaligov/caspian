@@ -65,7 +65,7 @@
 <!--Scroll Top-->
 
 <!-- Header Area-->
-<header class="header-area">
+<header class="header-area nav-fixed">
   <div class="container">
     <div class="row">
       <div class="col-md-12">

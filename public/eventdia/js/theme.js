@@ -63,13 +63,13 @@ $(window).on('load', function() {
 
 //**================= Sticky =====================**//
 
-$(window).on('scroll', function() {
-  if ($(window).scrollTop() > 50) {
-      $('.header-area').addClass('nav-fixed');
-  } else {
-      $('.header-area').removeClass('nav-fixed');
-  }
-});
+// $(window).on('scroll', function() {
+//   if ($(window).scrollTop() > 50) {
+//       $('.header-area').addClass('nav-fixed');
+//   } else {
+//       $('.header-area').removeClass('nav-fixed');
+//   }
+// });
 
 //*==========Scroll Up Logo===============*//
 var initialSrc = "../eventdia/img/logo.png";
