@@ -12,7 +12,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_with_privileges_can_add_report() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport();
@@ -23,7 +23,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_with_privileges_can_add_only_limited_count_of_reports() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $this->tempReport("pending", true, 3);
@@ -35,7 +35,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_without_privileges_cannot_add_report() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser(rand(1, 4)));
     $report = $this->tempReport();
@@ -46,7 +46,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_can_delete_pending_reports() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport(["status" => "pending"], true);
@@ -57,7 +57,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_delete_not_own_reports() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
 
@@ -72,7 +72,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_delete_accepted_reports() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport(["status" => "accepted"], true);
@@ -83,7 +83,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_delete_canceled_reports() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport(["status" => "canceled"], true);
@@ -94,7 +94,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_can_add_file_to_report() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport(["status" => "accepted"], true);
@@ -117,7 +117,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_add_file_to_not_own_report() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport([
@@ -144,7 +144,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_add_file_to_report_with_file_already() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport([
@@ -170,7 +170,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_add_file_to_report_in_pending() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport("pending", true);
@@ -193,7 +193,7 @@ class ReportTest extends TestCase {
 
   /** @test */
   public function user_cannot_add_file_to_canceled_report() {
-    $this->tempSeeder(['InitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
+    $this->tempSeeder(['PageInitialSeeder', 'MembershipSeeder', 'TopicSeeder', 'UserSeeder']);
 
     $this->actingAs($this->tempUser());
     $report = $this->tempReport("canceled", true);

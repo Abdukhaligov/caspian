@@ -14,7 +14,7 @@ class AuthTest extends TestCase {
 
   /** @test */
   public function user_can_view_a_login_form() {
-    $this->tempSeeder(['InitialSeeder']);
+    $this->tempSeeder(['PageInitialSeeder']);
     $response = $this->get('/login');
 
     $response->assertSuccessful();
@@ -23,7 +23,7 @@ class AuthTest extends TestCase {
 
   /** @test */
   public function user_cannot_view_a_login_form_when_authenticated() {
-    $this->tempSeeder(['InitialSeeder']);
+    $this->tempSeeder(['PageInitialSeeder']);
     $user = factory(User::class)->make();
 
     $response = $this->actingAs($user)->get('/login');
@@ -32,7 +32,7 @@ class AuthTest extends TestCase {
 
   /** @test */
   public function user_can_login_with_correct_credentials() {
-    $this->tempSeeder(['InitialSeeder']);
+    $this->tempSeeder(['PageInitialSeeder']);
 
     $user = factory(User::class)->create([
         'password' => bcrypt($password = '123123'),
