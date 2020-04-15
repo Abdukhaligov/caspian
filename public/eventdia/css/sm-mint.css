@@ -92,7 +92,8 @@
  
 
   header.header-area.nav-fixed nav ul.sm-mint > li > a {
-    color: rgb(0, 0, 0);
+    /*color: rgb(0, 0, 0);*/
+    color: #2D2BC0;
 }
 
 header.header-area.nav-fixed nav ul.sm-mint > li > a .sub-arrow{
@@ -119,7 +120,8 @@ header.header-area.error nav ul.sm-mint > li > a {
     width: 0;
     transition: .5s ease;
     height: 3px;
-    background: #ff007a;
+    /*background: #ff007a;*/
+    background: #2D2BC0;
     bottom: 7px;
 }
 .sm-mint>li>a:hover::before{
@@ -149,7 +151,9 @@ header.header-area.error nav ul.sm-mint > li > a {
   }
   .sm-mint a, .sm-mint a:hover, .sm-mint a:focus, .sm-mint a:active, .sm-mint a.highlighted {
     padding: 14px 20px;
-    color: rgb(255, 255, 255);
+    /*color: rgb(255, 255, 255);*/
+    color: #2D2BC0;
+    font-weight:600;
 
   }
  
@@ -214,7 +218,8 @@ header.header-area.error nav ul.sm-mint > li > a {
   }
   .sm-mint ul a:hover, .sm-mint ul a:focus, .sm-mint ul a:active, .sm-mint ul a.highlighted {
     background: #ffffff00;
-    color: #ff007a;
+    /*color: #ff007a;*/
+    color: #2D2BC0;
     box-shadow: none;
   }
   .sm-mint ul a.disabled {

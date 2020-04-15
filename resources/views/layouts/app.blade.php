@@ -116,7 +116,7 @@
 
             </li>
               @if(App::getLocale() == "en")
-                <li>
+                <li style="display: none">
                   <a class="btn-4" style="padding: 0; background: none; border-radius: 0;" href="{{ Request::root()."/lang/ru" }}">
                     <img style="
                         width: 54px;
@@ -127,7 +127,7 @@
                   </a>
                 </li>
                 @else
-                <li>
+                <li style="display: none">
                   <a class="btn-4" style="padding: 0; background: none; border-radius: 0;" href="{{ Request::root()."/lang/eng" }}">
                     <img style="
                           width: 54px;
