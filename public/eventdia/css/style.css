@@ -3135,15 +3135,15 @@ footer.footer-area {
         footer.footer-area .subscribe form .sub-btn:focus {
           border: none;
           box-shadow: none;
-          background: #fd058e; }
+          background: #1a41c9; }
         footer.footer-area .subscribe form .sub-btn:hover {
           border: none;
           box-shadow: none;
-          background: #fd058e; }
+          background: #1a41c9; }
         footer.footer-area .subscribe form .sub-btn:active {
           border: none;
           box-shadow: none;
-          background: #fd058e; }
+          background: #1a41c9; }
   footer.footer-area .footer-nav {
     position: relative;
     padding-bottom: 25px; }
@@ -3151,7 +3151,7 @@ footer.footer-area {
       color: #fafcff;
       padding: 10px 15px; }
       footer.footer-area .footer-nav ul li a:hover {
-        color: #fd058e; }
+        color: #1a41c9; }
   footer.footer-area .footer-bottom {
     position: relative;
     width: 100%;
@@ -3172,7 +3172,7 @@ footer.footer-area {
         footer.footer-area .footer-bottom .fb-text p a {
           color: #fff; }
           footer.footer-area .footer-bottom .fb-text p a:hover {
-            color: #fd058e; }
+            color: #1a41c9; }
     footer.footer-area .footer-bottom .fb-s-icon {
       position: relative;
       width: 19%;
@@ -3190,7 +3190,7 @@ footer.footer-area {
           padding: 9px 10px;
           display: block; }
           footer.footer-area .footer-bottom .fb-s-icon ul li a:hover {
-            color: #fd058e; }
+            color: #1a41c9; }
 
 footer.footer-area-2 {
   background-image: url(../img/bg-img/footer-bg2.jpg); }
