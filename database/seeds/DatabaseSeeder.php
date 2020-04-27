@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 
     factory(\App\Models\Report::class, 12)->create();
     $this->call(SpeakerSeeder::class);
+    $this->call(ChairmanSeeder::class);
     $this->call(EventSeeder::class);
     $this->call(PartnerSeeder::class);
     $this->call(NewsSeeder::class);
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder {
     $this->call(PageTopicsSeeder::class);
     $this->call(PageCommitteeSeeder::class);
     $this->call(PageSpeakersSeeder::class);
+    $this->call(PageChairmanSeeder::class);
     $this->call(PageNewsSeeder::class);
     $this->call(PageCabinetSeeder::class);
     $this->call(PageInitialSeeder::class);

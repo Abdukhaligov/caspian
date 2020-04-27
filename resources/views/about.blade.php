@@ -32,7 +32,7 @@
 
 
   <!-- Team Section-->
-  <section class="our-team ot-inner">
+  <section class="our-team ot-inner" style="display:none;">
     <div class="ot-top">
       <span>Our Team</span>
       <h1>People Behind the World </h1>

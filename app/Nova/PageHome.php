@@ -3,6 +3,8 @@
 namespace App\Nova;
 
 use Digitalcloud\MultilingualNova\Multilingual;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\Text;
@@ -25,6 +27,11 @@ class PageHome extends Resource {
   public function fields(Request $request) {
     return [
         Text::make('Title'),
+        NovaTinyMCE::make('Description'),
+        FilemanagerField::make('Description IMG', 'description_img')
+            ->displayAsImage()
+            ->hideCreateFolderButton()
+            ->hideDeleteFileButton(),
         Multilingual::make('Language'),
     ];
   }

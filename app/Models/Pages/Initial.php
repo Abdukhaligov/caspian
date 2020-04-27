@@ -49,6 +49,11 @@ class Initial extends Model {
                     "link" => route('speakers'),
                     "active" => Request::url() == route('speakers') ? true : false,
                 ],
+                [
+                    "title" => App\Models\Pages\Chairmen::first()->title,
+                    "link" => route('chairmen'),
+                    "active" => Request::url() == route('chairmen') ? true : false,
+                ],
             ]
         ],
         [

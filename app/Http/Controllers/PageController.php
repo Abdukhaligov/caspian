@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chairman;
 use App\Models\Event;
 use App\Models\Membership;
+use App\Models\Pages\Chairmen;
 use App\Models\Speaker;
 use App\Models\Reference;
 use App\Models\Pages\AboutUs;
@@ -91,6 +93,13 @@ class PageController extends Controller {
     $data["speakers"] = Speaker::all();
 
     return view('speakers', compact('data'));
+  }
+
+  public function chairmen() {
+    $data = Chairmen::first();
+    $data["chairmen"] = Chairman::all();
+
+    return view('chairmen', compact('data'));
   }
 
   public function topics() {

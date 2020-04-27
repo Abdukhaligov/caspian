@@ -23,6 +23,8 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/committee', 'PageController@committee')->name('committee');
     Route::get('/speakers', 'PageController@speakers')->name('speakers');
       Route::get('/speakers/{id}', 'SpeakerController@index');
+    Route::get('/chairmen', 'PageController@chairmen')->name('chairmen');
+//      Route::get('/speakers/{id}', 'SpeakerController@index');
   });
 
   Route::prefix('media')->group(function () {

@@ -61,18 +61,12 @@
       <div class="row">
         <div class="col-md-6">
           <div class="about-content">
-            <h1>Welcome to the World
-              Digital Conference</h1>
-            <p>welcome to eventmat, start with a greeting to your audience that's appropriate to the situation. Dolor
-              sit amet consectetur elit sed do eiusmod tempor incd idunt labore et dolore magna aliqua enim ad minim
-              veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat.</p>
-
-            <a href="#" class="btn-2">Learn More</a>
+            {!! $data->description !!}
           </div>
         </div>
         <div class="col-md-6">
           <div class="amout-img">
-            <img src="http://caspian/eventdia/img/about/about.jpg" alt="">
+            <img src="{{ Storage::disk('public')->url($data->description_img) }}" alt="">
           </div>
         </div>
       </div>
@@ -82,7 +76,7 @@
 
   @if($data["event"]["speakers"])
   <!-- Team Section-->
-    <section class="our-team our-team2">
+    <section class="our-team ot-inner">
       <div class="ot-top">
         <h1>Who Speaking?</h1>
         <p>Welcome to the dedicated to building remarkable Speakers!</p>
@@ -90,20 +84,21 @@
       <div class="container">
         <div class="row">
           @foreach($data["event"]["speakers"] as $speaker)
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="single-team-member">
                 <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
                   <a href="{{ route('speakers')."/".$speaker->id }}"><img src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
                   <div class="stm-icon">
-                    <h4>{{ $speaker->name }}</h4>
-                    <p>{{ $speaker->job_title }}</p>
                     <ul>
                       <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                       <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                       <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                     </ul>
                   </div>
+                </div>
+                <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+                  <h4>{{ $speaker->name }}</h4>
+                  <p>{{ $speaker->job_title }}</p>
                 </div>
               </div>
             </div>
@@ -114,8 +109,10 @@
   <!-- /Team Section-->
   @endif
 
+
+
   <!--Schedule Section-->
-  <section class="schedule schedule2">
+  <section class="schedule schedule2" style="display: none">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -343,7 +340,7 @@
   <!--/Schedule Section-->
 
   <!--Pricing Section-->
-  <section id="ticket" class="pricing pricing2">
+  <section id="ticket" class="pricing pricing2" style="display: none">
     <div class="pp-2-bg">
       <div class="pricing-top">
         <h1>Get Your Ticket</h1>
