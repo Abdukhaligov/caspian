@@ -27,7 +27,7 @@
   text-align: center;
   text-shadow: none;
   color: #fff;
-  background: #ff007a;
+  background: #1a41c9;
   border-radius: 4px;
 }
 .sm-mint a .sub-arrow::before {
@@ -121,7 +121,7 @@ header.header-area.error nav ul.sm-mint > li > a {
     width: 0;
     transition: .5s ease;
     height: 3px;
-    /*background: #ff007a;*/
+    /*background: #1a41c9;*/
     background: #2D2BC0;
     bottom: 7px;
 }
@@ -220,7 +220,7 @@ header.header-area.error nav ul.sm-mint > li > a {
   }
   .sm-mint ul a:hover, .sm-mint ul a:focus, .sm-mint ul a:active, .sm-mint ul a.highlighted {
     background: #ffffff00;
-    /*color: #ff007a;*/
+    /*color: #1a41c9;*/
     color: #2D2BC0;
     box-shadow: none;
   }
@@ -240,10 +240,10 @@ header.header-area.error nav ul.sm-mint > li > a {
   }
   .sm-mint ul a:hover .sub-arrow, .sm-mint ul a:focus .sub-arrow, .sm-mint ul a:active .sub-arrow, .sm-mint ul a.highlighted .sub-arrow {
 
-    border-color: transparent transparent transparent #ff007a !important;
+    border-color: transparent transparent transparent #1a41c9 !important;
   }
   .sm-mint ul a.disabled .sub-arrow {
-    border-color: transparent transparent transparent #ff007a;
+    border-color: transparent transparent transparent #1a41c9;
   }
   .sm-mint .scroll-up,
   .sm-mint .scroll-down {
@@ -366,13 +366,13 @@ header.header-area .main-menu-btn-icon, header.header-area .main-menu-btn-icon:b
   background: #fff;
 }
 header.header-area.nav-fixed .main-menu-btn-icon, header.header-area.nav-fixed .main-menu-btn-icon:before, header.header-area.nav-fixed .main-menu-btn-icon:after {
-  background: #ff007a;
+  background: #1a41c9;
 }
 header.header-area.h-style3 .main-menu-btn-icon, header.header-area.h-style3 .main-menu-btn-icon:before, header.header-area.h-style3 .main-menu-btn-icon:after {
   background: #fff;
 }
 header.header-area.error .main-menu-btn-icon, header.header-area.error .main-menu-btn-icon:before, header.header-area.error .main-menu-btn-icon:after {
-  background: #ff007a;
+  background: #1a41c9;
 }
 
 ul.sm-mint>li>a{

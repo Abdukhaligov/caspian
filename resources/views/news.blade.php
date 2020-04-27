@@ -53,8 +53,8 @@
 
       <style>
         .active{
-          background-color: #ff007a !important;
-          border: 1.5px solid #ff007a !important;
+          background-color: #1a41c9 !important;
+          border: 1.5px solid #1a41c9 !important;
         }
         .active a{
           color: #fff !important;
