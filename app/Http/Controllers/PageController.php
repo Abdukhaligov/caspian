@@ -99,7 +99,9 @@ class PageController extends Controller {
 
   public function chairmen() {
     $data = Chairmen::first();
-    $data["chairmen"] = Chairman::all();
+    $data["chairmen_1"] = Chairman::where('rank',1)->get();
+    $data["chairmen_2"] = Chairman::where('rank',2)->get();
+    $data["chairmen_3"] = Chairman::where('rank',3)->get();
 
     return view('chairmen', compact('data'));
   }
