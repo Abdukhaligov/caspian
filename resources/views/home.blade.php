@@ -6,8 +6,8 @@
   <!-- Hero Section-->
   <section class="hero-2"
            @if($data["event"]["banner"])
-              style="background-image: url({{Storage::disk('public')->url($data["event"]["banner"])}})"
-           @endif>
+           style="background-image: url({{Storage::disk('public')->url($data["event"]["banner"])}})"
+      @endif>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -75,7 +75,7 @@
   <!-- /About Section-->
 
   @if($data["event"]["speakers"])
-  <!-- Team Section-->
+    <!-- Team Section-->
     <section class="our-team ot-inner">
       <div class="ot-top">
         <h1>Who Speaking?</h1>
@@ -87,7 +87,8 @@
             <div class="col-md-3">
               <div class="single-team-member">
                 <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                  <a href="{{ route('speakers')."/".$speaker->id }}"><img src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                  <a href="{{ route('speakers')."/".$speaker->id }}"><img
+                        src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
                   <div class="stm-icon">
                     <ul>
                       <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -106,7 +107,7 @@
         </div>
       </div>
     </section>
-  <!-- /Team Section-->
+    <!-- /Team Section-->
   @endif
 
 
@@ -437,6 +438,39 @@
     </div>
   </section>
   <!--/Pricing Section-->
+
+  <section class="our-team ot-inner">
+    <div class="ot-top">
+      <span>WHO HELPS US</span>
+      <h1>Sponsors</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        @foreach($data["sponsors"] as $speaker)
+          <div class="col-md-6">
+            <div class="single-team-member">
+              <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+                <a href="{{ route('speakers')."/".$speaker->id }}"><img
+                      src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                <div class="stm-icon">
+                  <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+                <h4>{{ $speaker->name }}</h4>
+                <p>{{ $speaker->job_title }}</p>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  </section>
+
 
   <!--- Partner Section -->
   <section class="partner partner2 partner3 sponsor">

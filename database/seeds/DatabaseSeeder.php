@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
     $this->call(ChairmanSeeder::class);
     $this->call(EventSeeder::class);
     $this->call(PartnerSeeder::class);
+    $this->call(SponsorSeeder::class);
     $this->call(NewsSeeder::class);
 
     /*  SINGLE PAGES */

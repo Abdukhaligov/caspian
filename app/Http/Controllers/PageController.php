@@ -17,6 +17,7 @@ use App\Models\Pages\Home;
 use App\Models\Pages\News;
 use App\Models\Pages\Speakers;
 use App\Models\Pages\Topics;
+use App\Models\Sponsor;
 use App\Models\Topic;
 use Auth;
 
@@ -77,6 +78,7 @@ class PageController extends Controller {
   public function home() {
     $data = Home::first();
     $data["event"] =  Event::where('active', true)->first();
+    $data["sponsors"] =  Sponsor::all();
 
     return view('home', compact('data'));
   }
