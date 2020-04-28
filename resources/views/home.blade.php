@@ -445,7 +445,7 @@
       <h1>Sponsors</h1>
     </div>
     <div class="container">
-      <div class="row">
+      <div class="row col-md-8 m-auto">
         @foreach($data["sponsors"] as $speaker)
           <div class="col-md-6">
             <div class="single-team-member">
