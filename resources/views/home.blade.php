@@ -154,6 +154,7 @@
             </div>
         </div>
       </div>
+      </div>
     </section>
     <!-- /Team Section-->
   @endif
@@ -531,7 +532,7 @@
     <div class="container">
       <div class="row">
         @foreach($data["partnersGold"] as $partner)
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="single-partner">
               <a href="{{ $partner->url }}"></a><img src="{{ Storage::disk('public')->url($partner->img) }}" alt="">
             </div>
