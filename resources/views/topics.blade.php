@@ -53,7 +53,7 @@
                           @if($child->description)
                             <div id="collapse{{ $child->id }}" class="panel-collapse collapse in">
                               <div class="card-block">
-                                <p>{{ $child->description }}</p>
+                                <p>{!! $child->description !!}</p>
                               </div>
                             </div>
                           @endif
