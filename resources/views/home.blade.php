@@ -19,6 +19,30 @@
     .card h5{
       font-size:  15px !important;
     }
+    .swiper-container {
+      width: 100%;
+      height: max-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 50px !important
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center
+    }
   </style>
 
   <!-- Hero Section-->
@@ -101,32 +125,40 @@
       </div>
       <div class="container">
         <div class="row">
-          @foreach($data["event"]["speakers"] as $speaker)
-            <div class="col-md-3">
-              <div class="single-team-member">
-                <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                  <a href="{{ route('speakers')."/".$speaker->id }}"><img
-                        src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
-                  <div class="stm-icon">
-                    <ul>
-                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    </ul>
+          <div class="swiper-container h-brands swp-cnt-brands">
+            <div class="swiper-wrapper">
+              @foreach($data["event"]["speakers"] as $speaker)
+                <div class="swiper-slide">
+                  <div class="col-md-12">
+                    <div class="single-team-member">
+                      <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+                        <a href="{{ route('speakers')."/".$speaker->id }}"><img
+                              src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                        <div class="stm-icon">
+                          <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+                        <h5>{{ $speaker->name }}</h5>
+                        <p>{{ $speaker->job_title }}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                  <h5>{{ $speaker->name }}</h5>
-                  <p>{{ $speaker->job_title }}</p>
-                </div>
-              </div>
+              @endforeach
+              <div class="swiper-pagination swp-pg-brands"></div>
             </div>
-          @endforeach
         </div>
       </div>
     </section>
     <!-- /Team Section-->
   @endif
+
+
 
 
 

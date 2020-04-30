@@ -19,7 +19,7 @@
         rel="stylesheet">
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}') }}" defer></script>
+  <script src="{{ asset('js/app.js') }} }}"></script>
   <!-- CSS -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{{ asset('/eventdia/css/bootstrap.min.css') }}">
@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="{{ asset('/eventdia/css/animate.min.css') }}">
   <!-- Main StyleSheet CSS -->
   <link rel="stylesheet" href="{{ asset('/eventdia/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('/css/swiper.min.css') }}">
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->favicon) }}"
         type="image/png">
@@ -296,6 +297,7 @@
 <script src="{{ asset('/eventdia/js/wow.min.js') }}"></script>
 <!-- Main Script -->
 <script src="{{ asset('/eventdia/js/theme.js') }}"></script>
+<script src="{{ asset('/js/swiper.min.js') }}"></script>
 
 <script>
   $(function () {
@@ -304,6 +306,35 @@
     $("#navFormButton").on('click', function () {
       $(".navForm").toggle('slow');
     });
+
+    new Swiper(".swp-cnt-brands", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      loop: !0,
+      pagination: {
+        el: ".swp-pg-brands",
+        clickable: !0
+      },
+      speed: 750,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: !1
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+      }
+    })
 
     if ($('body').find('#clockdiv').length !== 0) {
 
