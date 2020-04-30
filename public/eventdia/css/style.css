@@ -2072,25 +2072,26 @@ section.counter {
     box-shadow: 0px 6px 40px 0px rgba(0, 0, 0, 0.08);
     position: relative;
     margin-top: -15%;
-    width: 100%; }
+    width: 100%;
+    padding: 0 10%; }
     section.counter #clockdiv .time {
       display: inline-block;
-      width: 210px;
-      padding: 50px 20px;
+      width: 113px;
+      padding: 10px 20px;
       text-align: center; }
       section.counter #clockdiv .time span {
-        font-size: 90px;
+        font-size: 40px;
         color: #1a41c9;
         font-weight: 700;
         line-height: 100px; }
       section.counter #clockdiv .time .smalltext {
-        font-size: 22px;
+        font-size: 17px;
         color: #8e8d8e;
         font-weight: 600; }
     section.counter #clockdiv .dot {
       font-size: 50px;
       color: #8e8d8e;
-      padding: 100px 10px; }
+      padding: 40px 10px; }
 
 section.counter-2 {
   position: relative;

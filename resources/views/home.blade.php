@@ -27,7 +27,7 @@
   <section class="counter wow fadeInUp" data-wow-delay=".8s">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-7 offset-md-1 m-auto">
           <div id="clockdiv">
             <div class="time">
               <span class="days"></span>

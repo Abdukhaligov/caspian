@@ -13,6 +13,7 @@ class Initial extends Model {
 
   protected $table = 'page_initial';
   use HasTranslations;
+
   public $translatable = ['title'];
 
   public static function getData() { return self::first(); }
@@ -39,8 +40,13 @@ class Initial extends Model {
                     "link" => route('topics'),
                     "active" => Request::url() == route('topics') ? true : false,
                 ],
+//                [
+//                    "title" => App\Models\Pages\Committee::first()->title,
+//                    "link" => route('committee'),
+//                    "active" => Request::url() == route('committee') ? true : false,
+//                ],
                 [
-                    "title" => App\Models\Pages\Committee::first()->title,
+                    "title" => "Program",
                     "link" => route('committee'),
                     "active" => Request::url() == route('committee') ? true : false,
                 ],
@@ -49,17 +55,22 @@ class Initial extends Model {
                     "link" => route('speakers'),
                     "active" => Request::url() == route('speakers') ? true : false,
                 ],
+//                [
+//                    "title" => App\Models\Pages\Chairmen::first()->title,
+//                    "link" => route('chairmen'),
+//                    "active" => Request::url() == route('chairmen') ? true : false,
+//                ],
                 [
-                    "title" => App\Models\Pages\Chairmen::first()->title,
+                    "title" => "Committee",
                     "link" => route('chairmen'),
                     "active" => Request::url() == route('chairmen') ? true : false,
                 ],
             ]
         ],
         [
-            "title" => App\Models\Pages\Contacts::first()->title,
-            "link" => route('contacts'),
-            "active" => Request::url() == route('contacts') ? true : false,
+            "title" => App\Models\Pages\News::first()->title,
+            "link" => route('news'),
+            "active" => Request::url() == route('news') ? true : false,
         ],
         [
             "title" => __('static.media'),
@@ -71,13 +82,13 @@ class Initial extends Model {
                     "link" => route('gallery'),
                     "active" => Request::url() == route('gallery') ? true : false,
                 ],
-                [
-                    "title" => App\Models\Pages\News::first()->title,
-                    "link" => route('news'),
-                    "active" => Request::url() == route('news') ? true : false,
-                ],
             ]
-        ]
+        ],
+        [
+            "title" => App\Models\Pages\Contacts::first()->title,
+            "link" => route('contacts'),
+            "active" => Request::url() == route('contacts') ? true : false,
+        ],
     ];
 
     return $routes;
