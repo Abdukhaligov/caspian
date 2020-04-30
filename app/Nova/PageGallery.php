@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Digitalcloud\MultilingualNova\Multilingual;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\Text;
@@ -28,7 +29,7 @@ class PageGallery extends Resource {
     return [
         Text::make('Title'),
         Multilingual::make('Language'),
-        Images::make('Photos', 'photos'),
+        Media::make('Photos', 'photos'),
 
         Flexible::make('Videos')
             ->addLayout('Adding video', 'Videos', [
