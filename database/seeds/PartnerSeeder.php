@@ -11,7 +11,8 @@ class PartnerSeeder extends Seeder {
       $data[] = [
           "name" => $faker->company,
           "img" => "partners/partner-".$i.".png",
-          "url" => "https://google.com"
+          "url" => "https://google.com",
+          "gold" => rand(0,1)
       ];
     }
 

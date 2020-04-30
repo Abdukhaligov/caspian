@@ -2,6 +2,24 @@
 
 @section('content')
 
+  <style>
+    .stm-text{
+      padding: 10px !important;
+      max-height: 72px;
+      overflow: hidden;
+    }
+    .stm-text p{
+      font-size: 13px !important;
+      line-height: 30px !important;
+    }
+    .card p {
+      font-size: 12px !important;
+      line-height: 32px;
+    }
+    .card h5{
+      font-size:  15px !important;
+    }
+  </style>
 
   <!-- Hero Section-->
   <section class="hero-2"
@@ -98,7 +116,7 @@
                   </div>
                 </div>
                 <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                  <h4>{{ $speaker->name }}</h4>
+                  <h5>{{ $speaker->name }}</h5>
                   <p>{{ $speaker->job_title }}</p>
                 </div>
               </div>
@@ -442,7 +460,7 @@
   <section class="our-team ot-inner">
     <div class="ot-top">
       <span>WHO HELPS US</span>
-      <h1>Sponsors</h1>
+      <h1>Organizers of the event </h1>
     </div>
     <div class="container">
       <div class="row col-md-8 m-auto">
@@ -461,7 +479,7 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h4>{{ $speaker->name }}</h4>
+                <h5>{{ $speaker->name }}</h5>
                 <p>{{ $speaker->job_title }}</p>
               </div>
             </div>
@@ -476,9 +494,11 @@
   <section class="partner partner2 partner3 sponsor">
     <span>WHO HELPS US</span>
     <h1>Partners</h1>
+
+    <h3 style="text-decoration: underline">Gold Partners</h3>
     <div class="container">
       <div class="row">
-        @foreach(\App\Models\Partner::all() as $partner)
+        @foreach($data["partnersGold"] as $partner)
           <div class="col-md-2">
             <div class="single-partner">
               <a href="{{ $partner->url }}"></a><img src="{{ Storage::disk('public')->url($partner->img) }}" alt="">
@@ -487,6 +507,20 @@
         @endforeach
       </div>
     </div>
+
+    <h3 style="text-decoration: underline">Partners</h3>
+    <div class="container">
+      <div class="row">
+        @foreach($data["partners"] as $partner)
+          <div class="col-md-2">
+            <div class="single-partner">
+              <a href="{{ $partner->url }}"></a><img src="{{ Storage::disk('public')->url($partner->img) }}" alt="">
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+
   </section>
   <!--- /Partner Section-->
 

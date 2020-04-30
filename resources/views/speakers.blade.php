@@ -1,7 +1,24 @@
 \@extends('layouts.app')
 
 @section('content')
-
+  <style>
+    .stm-text{
+      padding: 10px !important;
+      max-height: 72px;
+      overflow: hidden;
+    }
+    .stm-text p{
+      font-size: 13px !important;
+      line-height: 30px !important;
+    }
+    .card p {
+      font-size: 12px !important;
+      line-height: 32px;
+    }
+    .card h5{
+      font-size:  15px !important;
+    }
+  </style>
   <!-- Hero Section-->
   <section class="inner-hero">
     <div class="container">
@@ -40,7 +57,7 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h4>{{ $speaker->name }}</h4>
+                <h5>{{ $speaker->name }}</h5>
                 <p>{{ $speaker->job_title }}</p>
               </div>
             </div>

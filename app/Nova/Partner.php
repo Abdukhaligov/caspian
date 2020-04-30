@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
@@ -27,6 +28,7 @@ class Partner extends Resource {
             ->hideDeleteFileButton(),
         Text::make('Name')
             ->sortable(),
+        Boolean::make('Gold'),
         Text::make('Url'),
     ];
   }

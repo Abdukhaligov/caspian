@@ -19,6 +19,7 @@ use App\Models\Pages\Speakers;
 use App\Models\Pages\Topics;
 use App\Models\Sponsor;
 use App\Models\Topic;
+use App\Models\Partner;
 use Auth;
 
 class PageController extends Controller {
@@ -79,6 +80,8 @@ class PageController extends Controller {
     $data = Home::first();
     $data["event"] =  Event::where('active', true)->first();
     $data["sponsors"] =  Sponsor::all();
+    $data["partnersGold"] =  Partner::where('gold', 1)->get();
+    $data["partners"] =  Partner::where('gold', 0)->get();
 
     return view('home', compact('data'));
   }
