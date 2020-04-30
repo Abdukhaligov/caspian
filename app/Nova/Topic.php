@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -18,9 +19,10 @@ class Topic extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        Text::make('name')
+        Text::make('Name')
             ->sortable(),
-        Select::make('parent_id')
+        NovaTinyMCE::make('Description'),
+        Select::make('Parent Topic','parent_id')
             ->options(Topic::pluck('name', 'id'))
             ->nullable(true),
         HasMany::make('Topics', 'children'),
