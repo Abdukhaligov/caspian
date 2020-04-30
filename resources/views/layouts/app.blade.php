@@ -77,9 +77,9 @@
           </label>
           <h2 class="nav-brand">
             <a href="/" style="margin: 0; padding: 0">
-            <img class="top-logo"
-                  src="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->logo) }}">
-                </a></h2>
+              <img class="top-logo"
+                   src="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->logo) }}">
+            </a></h2>
           <!-- Sample menu definition -->
           <ul id="main-menu" class="sm sm-mint">
             @foreach(\App\Models\Pages\Initial::getRoutes() as $route)
@@ -105,35 +105,71 @@
                   {{  __('static.logout') }}
                 </a>
               @else
-                <a class="btn-1 blue" href="{{ route('login') }}">
+                <a id="navFormButtonMobile" class="btn-1 blue" href="{{ route('login') }}">
                   {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}
                 </a>
+                <a id="navFormButton" class="btn-1 blue" style="cursor: pointer">
+                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}
+                </a>
+                <div class="navForm">
+                  <section class="contact-us">
+                    <div class="contact-information">
+                      <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="form-group cfdb1">
+                          <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
+                                 name="email" id="email" placeholder="{{ __('static.e_mail_address') }}"
+                                 value="{{ old('email') }}" autocomplete="email"
+                                 onfocus="this.placeholder = ''"
+                                 onblur="this.placeholder ='{{ __('static.e_mail_address') }}'">
+                          @error('email')
+                          <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                          @enderror
+                        </div>
+                        <div class="form-group cfdb1">
+                          <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
+                                 name="password" id="password" placeholder="{{ __('static.password') }}"
+                                 value="" autocomplete="password">
+                          @error('password')
+                          <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                          @enderror
+                        </div>
+                        <button style="float:left; margin-bottom: 0px" type="submit"
+                                id="submit">{{ __('static.login') }}</button>
+                        <a href="{{ route('register') }}">{{ __('static.registration') }}</a>
+                      </form>
+                    </div>
+                  </section>
+
+                </div>
               @endguest
 
             </li>
-              @if(App::getLocale() == "en")
-                <li style="display: none">
-                  <a class="btn-4" style="padding: 0; background: none; border-radius: 0;" href="{{ Request::root()."/lang/ru" }}">
-                    <img style="
+            @if(App::getLocale() == "en")
+              <li style="display: none">
+                <a class="btn-4" style="padding: 0; background: none; border-radius: 0;"
+                   href="{{ Request::root()."/lang/ru" }}">
+                  <img style="
                         width: 54px;
                         padding: 5px 5px;
                         border-radius: 12px;
                         background-color: #ffffff;
                         margin-left: 15px;" src="{{ asset('/omnivus/images/flag-2.jpg') }}" alt="">
-                  </a>
-                </li>
-                @else
-                <li style="display: none">
-                  <a class="btn-4" style="padding: 0; background: none; border-radius: 0;" href="{{ Request::root()."/lang/eng" }}">
-                    <img style="
+                </a>
+              </li>
+            @else
+              <li style="display: none">
+                <a class="btn-4" style="padding: 0; background: none; border-radius: 0;"
+                   href="{{ Request::root()."/lang/eng" }}">
+                  <img style="
                           width: 54px;
                           padding: 5px 5px;
                           border-radius: 12px;
                           background-color: #ffffff;
                           margin-left: 15px;" src="{{ asset('/omnivus/images/flag-1.jpg') }}" alt="">
-                  </a>
-                </li>
-              @endif
+                </a>
+              </li>
+            @endif
 
           </ul>
         </nav>
@@ -167,7 +203,9 @@
             <a href="{{ route('news')."/".$news->id }}">
               <div class="sb-img">
                 @if($news->preview())
-                  <img src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}" alt="">
+                  <img
+                      src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}"
+                      alt="">
                 @else
                   <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
                 @endif
@@ -215,7 +253,7 @@
           <div class="fb-s-icon">
             <ul>
               @php
-              @endphp
+                  @endphp
               @foreach(json_decode(\App\Models\Pages\Initial::getData()->social_networks) as $network)
                 <li>
                   <a href="{{ $network->attributes->link }}" target="_blank">
@@ -262,6 +300,10 @@
 <script>
   $(function () {
     //Timer Js//
+
+    $("#navFormButton").on('click', function () {
+      $(".navForm").toggle('slow');
+    });
 
     if ($('body').find('#clockdiv').length !== 0) {
 
