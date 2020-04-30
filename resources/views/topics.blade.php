@@ -28,7 +28,8 @@
                 <div class="card-header">
                   <h4 class="card-header">
                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                       href="#collapse{{ $topic->id }}">{{ $topic->name }} <i class="fas fa-minus-circle faq-icon"></i> <i
+                       href="#collapse{{ $topic->id }}">{{ $topic->name }} <i class="fas fa-minus-circle faq-icon"></i>
+                      <i
                           class="fas fa-plus-circle"></i></a>
                   </h4>
                 </div>
@@ -41,15 +42,21 @@
                           <div class="card-header">
                             <h4 class="card-header">
                               <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                                 href="#collapse{{ $child->id }}">{{ $child->name }} <i class="fas fa-minus-circle faq-icon"></i> <i
-                                    class="fas fa-plus-circle"></i></a>
+                                 href="#collapse{{ $child->id }}">{{ $child->name }}
+                                @if($child->description)
+                                  <i class="fas fa-minus-circle faq-icon"></i>
+                                  <i class="fas fa-plus-circle"></i>
+                                @endif
+                              </a>
                             </h4>
                           </div>
-                          <div id="collapse{{ $child->id }}" class="panel-collapse collapse in">
-                            <div class="card-block">
-                              <p>{{ $child->description }}</p>
+                          @if($child->description)
+                            <div id="collapse{{ $child->id }}" class="panel-collapse collapse in">
+                              <div class="card-block">
+                                <p>{{ $child->description }}</p>
+                              </div>
                             </div>
-                          </div>
+                          @endif
                         </div>
                       @endforeach
                     @endif
