@@ -78,10 +78,6 @@
           <h2 class="nav-brand">
             <a href="/" style="margin: 0; padding: 0">
             <img class="top-logo"
-                  style="width: 85px;
-                  height: auto;
-                  margin-top: -12px;
-                  margin-bottom: -15px;" 
                   src="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->logo) }}">
                 </a></h2>
           <!-- Sample menu definition -->
