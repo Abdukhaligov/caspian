@@ -79,6 +79,7 @@ class PageController extends Controller {
   public function home() {
     $data = Home::first();
     $data["event"] =  Event::where('active', true)->first();
+    $data["eventBanners"] = $data["event"]->getMedia('banners');
     $data["sponsors"] =  Sponsor::all();
     $data["partnersGold"] =  Partner::where('gold', 1)->get();
     $data["partners"] =  Partner::where('gold', 0)->get();

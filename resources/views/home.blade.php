@@ -48,8 +48,34 @@
   <!-- Hero Section-->
   <section class="hero-2"
            @if($data["event"]["banner"])
-           style="background-image: url({{Storage::disk('public')->url($data["event"]["banner"])}})"
-      @endif>
+            style="overflow: hidden; background-image: none"
+          @endif>
+    <div style="position: absolute;z-index: -1; height: 50px; width: 100%" class="wow fadeInUp" data-wow-delay=".8s">
+
+
+      <div class="swiper-container h-brands swp-cnt-home">
+        <div class="swiper-wrapper">
+
+              @if($data["eventBanners"])
+                @foreach($data["eventBanners"] as $image)
+
+              <div class="swiper-slide">
+                {{--              {{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}--}}
+                {{--              {{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}--}}
+{{--                <img src="{{Storage::disk('public')->url($data["event"]["banner"])}}" alt="">--}}
+                <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="">
+              </div>
+              @endforeach
+
+              @endif
+
+
+
+          <div class="swiper-pagination swp-pg-home"></div>
+        </div>
+      </div>
+
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">

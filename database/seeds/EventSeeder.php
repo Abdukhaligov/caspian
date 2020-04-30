@@ -11,7 +11,7 @@ class EventSeeder extends Seeder {
     for($i=0; $i<7; $i++){
       $data [] = [
           "name" => $faker->sentence(3),
-          "banner" => "events/banner" . rand(1, 4) . ".jpg",
+//          "banner" => "events/banner" . rand(1, 4) . ".jpg",
           "description" => $faker->paragraphs(3, true),
           "address" => $faker->address,
           "date" => $faker->dateTimeBetween("+2 days", "+ 2 months"),

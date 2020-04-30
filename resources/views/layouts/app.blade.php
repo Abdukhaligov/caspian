@@ -336,6 +336,21 @@
       }
     })
 
+    new Swiper(".swp-cnt-home", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: !0,
+      pagination: {
+        el: ".swp-pg-home",
+        clickable: !0
+      },
+      speed: 750,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: !1
+      },
+    })
+
     if ($('body').find('#clockdiv').length !== 0) {
 
       function getTimeRemaining(endtime) {

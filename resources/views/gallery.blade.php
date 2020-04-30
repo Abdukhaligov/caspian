@@ -25,7 +25,9 @@
         @if($data["photos"])
           @foreach($data["photos"] as $image)
           <div class="col-md-3" style="padding: 0">
-            <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s"> <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+            <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
+              <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+                {{ pathinfo($image->file_name, PATHINFO_EXTENSION) }}
                 <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt=""></a>
             </div>
           </div>
@@ -43,14 +45,14 @@
           @foreach($data["videos"] as $video)
             <div class="col-md-3" style="padding: 0">
               <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
-                <a data-fancybox="gallery" href="https://youtu.be/{{ $video->attributes->url }}">
+                <a data-fancybox="youtube" href="https://youtu.be/{{ $video->attributes->url }}">
                   <img src="{{ Storage::disk('public')->url($video->attributes->cover) }}" alt="">
                   <div class="bpw-btn">
                     <div class="pulse-box">
                       <div class="pulse-css">
-                        <a data-fancybox="gallery" href="https://youtu.be/{{ $video->attributes->url }}">
+                        <div>
                           <i class="fas fa-play" aria-hidden="true"></i>
-                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
