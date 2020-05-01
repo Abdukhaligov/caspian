@@ -24,23 +24,38 @@
 
         @if($data["photos"])
           @foreach($data["photos"] as $image)
-            <div class="col-md-3" style="padding: 0">
-              <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
-                @if(pathinfo($image->file_name, PATHINFO_EXTENSION) !== "mp4")
-                  <a data-fancybox="gallery"
-                     href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                    <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img">
-                  </a>
-                @else
-                  <a data-fancybox="gallery"
-                     href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                    <video  loop="true" mute="true" playsinline="true"
-                           src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img"
-                           style=""></video>
-                  </a>
-                @endif
+            @if(pathinfo($image->file_name, PATHINFO_EXTENSION) !== "mp4")
+              <div class="col-md-3" style="padding: 0">
+                <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
+              <a data-fancybox="gallery"
+                 href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+                <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img">
+              </a>
+                </div>
               </div>
-            </div>
+            @else
+
+              <div class="col-md-3" style="padding: 0">
+                <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
+                  <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+                    <video  loop="true" mute="true" playsinline="true"
+                            src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img"
+                            style=""></video>
+                    <div class="bpw-btn">
+                      <div class="pulse-box">
+                        <div class="pulse-css">
+                          <div>
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            @endif
+
+
           @endforeach
         @endif
 
