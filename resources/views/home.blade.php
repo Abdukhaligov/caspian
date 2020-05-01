@@ -88,7 +88,8 @@
                     <h3 style="margin-top:10px;font-size: 30px;line-height: 30px;margin-bottom: 0px;color: #fff;"
                         data-animation="fadeInUp" data-delay="0.8s"><i
                           class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</h3>
-                    <p data-animation="fadeInUp" data-delay="1.2s"><i
+                    <h3 style="margin-top:10px;font-size: 30px;line-height: 30px;margin-bottom: 0px;color: #fff;"
+                        data-animation="fadeInUp" data-delay="1.2s"><i
                           class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</p>
                   </div>
                 </div>
