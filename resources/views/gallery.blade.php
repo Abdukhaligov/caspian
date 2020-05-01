@@ -24,13 +24,23 @@
 
         @if($data["photos"])
           @foreach($data["photos"] as $image)
-          <div class="col-md-3" style="padding: 0">
-            <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
-              <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                {{ pathinfo($image->file_name, PATHINFO_EXTENSION) }}
-                <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt=""></a>
+            <div class="col-md-3" style="padding: 0">
+              <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
+                @if(pathinfo($image->file_name, PATHINFO_EXTENSION) !== "mp4")
+                  <a data-fancybox="gallery"
+                     href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+                    <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img">
+                  </a>
+                @else
+                  <a data-fancybox="gallery"
+                     href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
+                    <video autoplay="false" loop="true" mute="true" playsinline="true"
+                           src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img"
+                           style=""></video>
+                  </a>
+                @endif
+              </div>
             </div>
-          </div>
           @endforeach
         @endif
 
