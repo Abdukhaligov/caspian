@@ -47,6 +47,9 @@
       -webkit-align-items: center;
       align-items: center
     }
+    .eventDescription{
+      margin-top:10px;font-size: 30px;line-height: 30px;margin-bottom: 0px;color: #fff;
+    }
   </style>
 
   {{--  <!-- Hero Section-->--}}
@@ -85,12 +88,11 @@
                 <div class="col-md-12">
                   <div class="hero-slide-content">
                     <h1 data-animation="fadeInUp" data-delay="0.5s">{{$data["event"]["name"]}}</h1>
-                    <h3 style="margin-top:10px;font-size: 30px;line-height: 30px;margin-bottom: 0px;color: #fff;"
-                        data-animation="fadeInUp" data-delay="0.8s"><i
+                    <h3 class="eventDescription" data-animation="fadeInUp" data-delay="0.8s"><i
                           class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</h3>
-                    <h3 style="margin-top:10px;font-size: 30px;line-height: 30px;margin-bottom: 0px;color: #fff;"
+                    <h3 class="eventDescription"
                         data-animation="fadeInUp" data-delay="1.2s"><i
-                          class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</p>
+                          class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</h3>
                   </div>
                 </div>
               </div>

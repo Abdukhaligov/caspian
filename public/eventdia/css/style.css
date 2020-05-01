@@ -676,15 +676,15 @@ section.hero-1 {
     width: 100%; }
     section.hero-1 .hero-slide1 .slide {
       position: relative; }
-      section.hero-1 .hero-slide1 .slide::before {
-        position: absolute;
-        content: '';
-        background-color: blueviolet;
-        opacity: .722;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        z-index: 1; }
+      /*section.hero-1 .hero-slide1 .slide::before {*/
+      /*  position: absolute;*/
+      /*  content: '';*/
+      /*  background-color: blueviolet;*/
+      /*  opacity: .722;*/
+      /*  height: 100%;*/
+      /*  width: 100%;*/
+      /*  top: 0;*/
+      /*  z-index: 1; }*/
       section.hero-1 .hero-slide1 .slide .hero-slide-wrapper {
         position: relative;
         width: 100%; }
