@@ -34,9 +34,9 @@
                 @else
                   <a data-fancybox="gallery"
                      href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                    <video autoplay="false" loop="true" mute="true" playsinline="true"
-                           src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img"
-                           style=""></video>
+                    <video preload="none" alt="img"
+                           src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}"
+                          ></video>
                   </a>
                 @endif
               </div>
