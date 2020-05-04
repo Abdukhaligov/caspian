@@ -110,6 +110,15 @@ class PageController extends Controller {
     return view('chairmen', compact('data'));
   }
 
+  public function register() {
+    $data = Chairmen::first();
+    $data["chairmen_1"] = Chairman::where('rank',1)->get();
+    $data["chairmen_2"] = Chairman::where('rank',2)->get();
+    $data["chairmen_3"] = Chairman::where('rank',3)->get();
+
+    return view('auth.register', compact('data'));
+  }
+
   public function topics() {
     $data = Topics::first();
 

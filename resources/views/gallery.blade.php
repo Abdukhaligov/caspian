@@ -21,7 +21,6 @@
   <section class="gallery">
     <div class="container">
       <div class="row">
-
         @if($data["photos"])
           @foreach($data["photos"] as $image)
             @if(pathinfo($image->file_name, PATHINFO_EXTENSION) !== "mp4")
@@ -29,18 +28,15 @@
                 <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
               <a data-fancybox="gallery"
                  href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img">
+                <div class="portfolio-img-block" style="background-image: url({{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }});"></div>
               </a>
                 </div>
               </div>
             @else
-
               <div class="col-md-3" style="padding: 0">
                 <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
                   <a data-fancybox="gallery" href="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}">
-                    <video  loop="true" mute="true" playsinline="true"
-                            src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img"
-                            style=""></video>
+                    <video loop="true" mute="true" playsinline="true" src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="img"></video>
                     <div class="bpw-btn">
                       <div class="pulse-box">
                         <div class="pulse-css">

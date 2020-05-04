@@ -16,6 +16,10 @@ class UserRequest extends FormRequest {
         'phone' => ['required', 'regex: (^[+]994[\s]{1}[(][0-9]{2}[)][\s]{1}[0-9]{3}[-][0-9]{2}[-][0-9]{2}$)', 'unique:users,phone'],
         'membership_id' => ['required', 'exists:memberships,id'],
         'reference_id' => ['required', 'exists:references,id'],
+
+        'abstract_name' => 'sometimes|required',
+        'abstract_description' => 'sometimes|required',
+        'abstract_topic_id' => 'sometimes|exists:topics,id'
     ];
   }
 

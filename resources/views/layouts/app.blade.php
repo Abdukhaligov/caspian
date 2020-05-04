@@ -18,8 +18,6 @@
   <link href="{{ asset('/eventdia/css/cssbbf1.css') }}?family=Montserrat:400,500,600&amp;display=swap"
         rel="stylesheet">
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }} }}"></script>
   <!-- CSS -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{{ asset('/eventdia/css/bootstrap.min.css') }}">
@@ -275,6 +273,8 @@
 
 <!-- jQuery Plugin -->
 <script src="{{ asset('/eventdia/js/jquery-3.4.1.min.js') }}"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
 <!-- Bootstrap JS -->
 <script src="{{ asset('/eventdia/js/bootstrap.min.js') }}"></script>
 <!-- Jquery ui JS-->
@@ -302,6 +302,33 @@
 <script>
   $(function () {
     //Timer Js//
+
+    $('#phone').inputmask("+\\9\\94 (99) 999-99-99");
+
+    let membership = $("#membership_id");
+    let abstractForm = $("#abstractForm");
+    console.log(membership.val());
+
+    if(membership.val() === "5" || membership.val() === "6"){
+      abstractForm.show();
+      console.log("norm")
+    }else{
+      abstractForm.hide();
+      console.log("nenorm")
+    }
+
+
+    membership.on('change', function () {
+      console.log($(this).val());
+      if($(this).val() === "5" || $(this).val() === "6"){
+        abstractForm.show();
+        console.log("norm")
+      }else{
+        abstractForm.hide();
+        console.log("nenorm")
+      }
+    })
+
 
     $("#navFormButton").on('click', function () {
       $(".navForm").toggle('slow');

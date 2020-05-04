@@ -2,7 +2,6 @@
 
 @section('content')
 
-  <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Hero Section-->
   <section class="inner-hero inner-hero4">
     <div class="container">
@@ -21,7 +20,7 @@
 
   <?php $fake = false ? $fakeUser = factory(\App\User::class)->make() : ''?>
   <!--contact Us Section-->
-  <section class="contact-us"  id="app">
+  <section class="contact-us">
     <div class="container">
       <div class="row">
         <div class="col-md-5">
@@ -61,7 +60,7 @@
               </div>
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
-                       name="email" id="email" placeholder="{{ __('static.e_mail_address') }}"
+                       name="email" placeholder="{{ __('static.e_mail_address') }}"
                        value="{{ $fake ? $fakeUser->email : old('email') }}" autocomplete="email"
                        onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.e_mail_address') }}'">
                 @error('email')
@@ -70,7 +69,7 @@
               </div>
               <div class="form-group cfdb1">
                 <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                       name="password" id="password" placeholder="{{ __('static.password') }}"
+                       name="password" placeholder="{{ __('static.password') }}"
                        value="{{ $fake ? "123123" : '' }}" autocomplete="new-password">
                 @error('password')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -87,8 +86,7 @@
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('phone') is-invalid @enderror"
                        name="phone" id="phone" placeholder="{{ __('static.phone_number') }}"
-                       value="+{{ $fake ? $fakeUser->phone : old('phone') }}" autocomplete="phone"
-                       v-mask="'+\\9\\94 (99) 999-99-99'">
+                       value="+{{ $fake ? $fakeUser->phone : old('phone') }}" autocomplete="phone">
                 @error('phone')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -110,8 +108,99 @@
                 @enderror
               </div>
               <div class="form-group cfdb1">
-                <label for="name" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
-                <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('reference_id') is-invalid @enderror"
+                <label for="degree" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="form-control cp1 @error('degree') is-invalid @enderror"
+                        name="degree" id="degree" autocomplete="degree">
+                  <option selected value="0">No degree</option>
+                  <option value="1">PhD</option>
+                  <option value="2">Doctor</option>
+                  <option value="3">Corresponding member</option>
+                  <option value="5">Academician</option>
+                </select>
+                @error('degree')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1">
+                <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                        name="membership_id" id="membership_id" autocomplete="membership_id">
+                  @foreach($data['membership'] as $membership)
+{{--                    <option @if($membership->hasChildren == true ) disabled @endif--}}
+{{--                    @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected--}}
+{{--                            @endif value="{{ $membership->id }}">{{ $membership->name }}</option>    --}}
+
+                    <option @if($membership->hasChildren == true ) disabled @endif
+                    @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected @endif
+                    @if($membership->id != 3)value="{{ $membership->id }}" @endif>{{ $membership->name }}</option>
+                    @if($membership->hasChildren == true )
+                      @foreach($membership->children as $child)
+                        <option
+                            @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $child->id ) selected @endif
+                            @if($_GET["speaker"] == $child->id) selected @endif
+                            value="{{ $child->id }}">— {{ $child->name }}</option>
+                      @endforeach
+                    @endif
+                  @endforeach
+                </select>
+                @error('membership_id')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+
+              <div style="display: none" id="abstractForm">
+                <div class="form-group cfdb1">
+                  <label for="abstract_topic_id" class="col-form-label">Topic</label>
+                  <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
+                          name="abstract_topic_id" id="abstract_topic_id" autocomplete="abstract_topic_id">
+                    @foreach($data['topics'] as $topic)
+                      @if($topic->hasChildren == true )
+                        <option disabled>{{ $topic->name }}</option>
+                      @else
+                        <option
+                            @if(old('abstract_topic_id') == $topic->id ) selected
+                            @endif
+                            value="{{ $topic->id }}">{{ $topic->name }}
+                        </option>
+                      @endif
+                      @if($topic->hasChildren == true )
+                        @foreach($topic->children as $child)
+                          <option @if(old('abstract_topic_id') == $child->id ) selected @endif
+                          value="{{ $child->id }}">— {{ $child->name }}
+                          </option>
+                        @endforeach
+                      @endif
+                    @endforeach
+                  </select>
+                  @error('abstract_topic_id')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+                <div class="form-group cfdb1">
+                  <input type="text" class="form-control cp1 @error('abstract_name') is-invalid @enderror" name="abstract_name" id="abstract_name" placeholder="Title of the abstract"
+                         onfocus="this.placeholder = ''" onblur="this.placeholder ='Name'"
+                  value="{{old('abstract_name') }}">
+                  @error('abstract_name')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+                <div class="form-group cfdb1">
+                  <textarea rows="8" class="form-control cp1 @error('abstract_description') is-invalid @enderror"
+                            name="abstract_description" id="abstract_description"
+                            placeholder="Abstract body (max 250 words)"
+                            onfocus="this.placeholder =''" onblur="this.placeholder ='Comment'">{{old('abstract_description') }}</textarea>
+                  @error('abstract_description')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+              </div>
+
+              <div class="form-group cfdb1">
+                <label for="reference_id" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="form-control cp1 @error('reference_id') is-invalid @enderror"
                         name="reference_id" id="reference_id" autocomplete="reference_id">
                   @foreach($data['references'] as $reference)
                     <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
@@ -122,30 +211,8 @@
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                        name="membership_id" id="membership_id" autocomplete="membership_id">
-                  @foreach($data['membership'] as $membership)
-                    <option @if($membership->hasChildren == true ) disabled @endif
-                    @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected
-                            @endif value="{{ $membership->id }}">{{ $membership->name }}</option>
-                    @if($membership->hasChildren == true )
-                      @foreach($membership->children as $child)
-                        <option
-                            @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $child->id ) selected
-                            @endif
-                            value="{{ $child->id }}">— {{ $child->name }}
-                        </option>
-                      @endforeach
-                    @endif
-                  @endforeach
-                </select>
-                @error('membership_id')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <button type="submit" id="submit">{{ __('static.registration') }}</button>
+
+              <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
               <div class="col-md-12 text-center">
                 <div class="cf-msg"></div>
               </div>

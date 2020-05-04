@@ -182,9 +182,11 @@ img {
   width: 100%; }
 
 video {
-  max-width: 100%;
+  max-width: 120%;
   height: auto;
-  width: 100%; }
+/* width: 100%;  */
+}
+
 
 button,
 input,
@@ -706,12 +708,15 @@ section.hero-1 {
           width: 100%;
           position: relative;
           padding: 200px 0px 180px;
+          text-align: center;
           z-index: 1; }
           section.hero-1 .hero-slide1 .slide .hero-slide-wrapper .hero-slide-content h1 {
-            font-size: 72px;
-            line-height: 86px;
+            /*font-size: 72px;*/
+            /*line-height: 86px;*/
             margin-bottom: 0px;
-            color: #fff; }
+            font-size: 90px;
+            line-height: 120px;
+            color: #fff;}
           section.hero-1 .hero-slide1 .slide .hero-slide-wrapper .hero-slide-content p {
             color: #ffffff;
             width: 476px;
@@ -767,6 +772,9 @@ section.hero-2 {
       line-height: 120px;
       color: #fff; }
     section.hero-2 .hero-content span {
+      color: #fff;
+      margin-left: 30px;}
+    section.hero-1 .hero-slide-content span {
       color: #fff;
       margin-left: 30px; }
 
@@ -2237,6 +2245,8 @@ section.gallery {
       -ms-transform: scale(1.1);
       -o-transform: scale(1.1); }
     section.gallery .portfolio-img video {
+      min-width: 100%;
+      min-height: 100%;
       transition: all .5s ease-in-out;
       -webkit-transition: all .5s ease-in-out;
       -moz-transition: all .5s ease-in-out;
@@ -3079,12 +3089,12 @@ section.contact-us {
       position: relative;
       padding: 25px 20px;
       font-size: 14px;
-      margin-bottom: 25px;
+      /*margin-bottom: 25px;*/
       border-radius: 0; }
     section.contact-us .contact-information textarea.cp1 {
       font-size: 14px;
       padding: 25px 20px;
-      margin-bottom: 25px;
+      /*margin-bottom: 25px;*/
       border-radius: 0; }
     section.contact-us .contact-information button {
       padding: 8px 25px;
@@ -3881,6 +3891,11 @@ Responsive Style
     margin-right: 10px;
     font-size: 12px; }
 
+  section.hero-1 .hero-slide-content span {
+    margin-left: 0;
+    margin-right: 10px;
+    font-size: 12px; }
+
   section.counter #clockdiv .dot {
     font-size: 40px;
     padding: 45px 10px; }
@@ -4171,6 +4186,10 @@ Responsive Style
     margin-right: 6px;
     font-size: 8px; }
 
+  section.hero-1 .hero-slide-content span {
+    margin-right: 6px;
+    font-size: 8px; }
+
   section.hero-3 .hero-3-img {
     top: 50%; }
 
@@ -4368,4 +4387,34 @@ Responsive Style
   color: #2D2BC0;
   padding: 0px;
   font-weight: normal;
+}
+
+.portfolio-img img{
+
+}
+.portfolio-img-block{
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 180px;
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+}
+.portfolio-img-block:hover{
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
 }

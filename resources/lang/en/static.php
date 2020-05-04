@@ -18,8 +18,9 @@ return array (
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
     'phone_number' => 'Phone Number',
-    'company' => 'Company',
-    'job_title' => 'Job Title',
-    'referred_by' => 'Referred by',
-    'member_as' => 'Member as',
+    'company' => 'Working Place',
+    'job_title' => 'Position',
+    'referred_by' => 'How did you know about the event ?',
+    'member_as' => 'Participation',
+    'degree' => 'Degree',
 );

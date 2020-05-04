@@ -16,7 +16,9 @@ class MembershipSeeder extends Seeder {
 
     $memberships = [
         ["name" => "{\"en\":\"Speaker\",\"ru\":\"устное выступление\"}", "parent_id" => 3],
-        ["name" => "{\"en\":\"Presenter\",\"ru\":\"постерное выступление\"}", "parent_id" => 3],
+        ["name" => "{\"en\":\"Poster\",\"ru\":\"постерное выступление\"}", "parent_id" => 3],
+        ["name" => "{\"en\":\"Accompanying\",\"ru\":\"пресса\"}", "parent_id" => null],
+        ["name" => "{\"en\":\"Media\",\"ru\":\"пресса\"}", "parent_id" => null],
     ];
 
     DB::table('memberships')->insert($memberships);

@@ -32,7 +32,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Information</h4>
+              <h4 class="modal-title">Abstract</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -42,8 +42,8 @@
               <div class="contact-information">
                 <form method="POST" action="{{ route('report_create') }}">
                   @csrf
-                  <div class="form-group cfdb1">
-                    <label for="name" class="col-form-label text-md-right">{{ __('Topic') }}</label>
+                  <div class="form-group cfdb1 text-left">
+                    <label for="name" class="col-form-label" style="padding-left: 10px;margin-top: 10px;">Topic</label>
                     <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('topic_id') is-invalid @enderror"
                             name="topic_id" id="topic_id" autocomplete="topic_id">
                       @foreach($data['topics'] as $topic)
@@ -71,15 +71,16 @@
                   </div>
 
                   <div class="form-group cfdb1">
-                    <input type="text" class="form-control cp1" name="name" id="name" placeholder="Name"
+                    <input type="text" class="form-control cp1" name="name" id="name" placeholder="Title of the abstract"
                            onfocus="this.placeholder = ''" onblur="this.placeholder ='Name'">
                   </div>
 
                   <div class="form-group cfdb1">
-                  <textarea rows="8"  minlength="200" maxlength="600" class="form-control cp1" name="description" id="description" placeholder="Description"
+                  <textarea rows="8" class="form-control cp1" name="description" id="description"
+                            placeholder="Abstract body (max 250 words)"
                             onfocus="this.placeholder =''" onblur="this.placeholder ='Comment'"></textarea>
                   </div>
-                  <button type="submit" id="submit">Send</button>
+                  <button type="submit" id="submit">Create</button>
                   <div class="col-md-12 text-center">
                     <div class="cf-msg"></div>
                   </div>
@@ -126,11 +127,11 @@
         <div class="col-md-7">
           <div class="contact-information">
             @if($data["reports"]->count() > 0)
-              <h3>Reports: </h3>
+              <h3>Abstracts: </h3>
             @endif
             @if( $data["user"]->canAddReport )
 
-              <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3" data-toggle="modal" data-target="#myModal">New report</a>
+              <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3" data-toggle="modal" data-target="#myModal">New abstract</a>
 
             @endif
             @if($data["reports"])

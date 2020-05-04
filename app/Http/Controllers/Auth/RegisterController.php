@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Reference;
 use App\Models\Membership;
+use App\Models\Report;
+use App\Models\Topic;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -22,6 +24,11 @@ class RegisterController extends Controller {
   }
 
   protected function validator(array $data) {
+    if($data["membership_id"] != 5 && $data["membership_id"] != 6){
+      unset($data["abstract_topic_id"]);
+      unset($data["abstract_name"]);
+      unset($data["abstract_description"]);
+    }
     return Validator::make($data, UserRequest::rules());
   }
 
@@ -37,12 +44,22 @@ class RegisterController extends Controller {
     $user->membership_id = $data['membership_id'];
     $user->save();
 
+    if($data["membership_id"] == 5 || $data["membership_id"] == 6){
+      Report::create([
+          'user_id' => $user->id,
+          'name' => $data['abstract_name'],
+          'description' => $data['abstract_description'],
+          'topic_id' => $data['abstract_topic_id']
+      ]);
+    }
+
     return $user;
   }
 
   public function showRegistrationForm() {
     $data['references'] = Reference::all();
     $data['membership'] = Membership::showTree();
+    $data["topics"] = Topic::showTree();
 
     return view('auth.register', compact('data'));
   }

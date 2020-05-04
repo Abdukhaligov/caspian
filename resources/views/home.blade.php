@@ -52,57 +52,46 @@
     }
   </style>
 
-  {{--  <!-- Hero Section-->--}}
-  {{--  <section class="hero-2" style="overflow: hidden; background-image: none">--}}
 
-  {{--    <div class="container">--}}
-
-  {{--      <div style="position: absolute;z-index: -1; height: 50px; width: 100%" class="wow fadeInUp" data-wow-delay=".8s">--}}
-  {{--        <div class="swiper-container h-brands swp-cnt-home">--}}
-  {{--          <div class="swiper-wrapper">--}}
-  {{--            @if($data["eventBanners"])--}}
-  {{--              @foreach($data["eventBanners"] as $image)--}}
-  {{--                <div class="swiper-slide">--}}
-  {{--                  <img style="width: 100%; height: 100%" src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="">--}}
-  {{--                </div>--}}
-  {{--              @endforeach--}}
-  {{--            @endif--}}
-  {{--            <div class="swiper-pagination swp-pg-home"></div>--}}
-  {{--          </div>--}}
-  {{--        </div>--}}
-  {{--      </div>--}}
-
-
-  <!-- Hero Section-->
-  <section class="hero-1">
-    <div class="hero-slide1">
-      @foreach($data["eventBanners"] as $image)
-        <div class="slide">
-          <div class="hero-slide-wrapper">
-            <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="" class="h-bag">
-{{--            <img src="{{ asset('/eventdia/img/hero/hero-effect.png') }}" alt="" class="hero-effect"--}}
-{{--                 data-animation="fadeInUp"--}}
-{{--                 data-delay="0.5s">--}}
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="hero-slide-content">
-                    <h1 data-animation="fadeInUp" data-delay="0.5s">{{$data["event"]["name"]}}</h1>
-                    <h3 class="eventDescription" data-animation="fadeInUp" data-delay="0.8s"><i
-                          class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</h3>
-                    <h3 class="eventDescription"
-                        data-animation="fadeInUp" data-delay="1.2s"><i
-                          class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</h3>
+  @if(count($data["eventBanners"]))
+    <section class="hero-1">
+      <div class="hero-slide1">
+        @foreach($data["eventBanners"] as $image)
+          <div class="slide">
+            <div class="hero-slide-wrapper">
+              <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="" class="h-bag">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="hero-slide-content">
+                      <h1 class="wow fadeInUp" data-wow-delay="0.5s">{{$data["event"]["name"]}}</h1>
+                      <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
+                      <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        @endforeach
+      </div>
+    </section>
+  @else
+    <section class="hero-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="hero-content">
+              <h1 class="wow fadeInUp" data-wow-delay=".3s">{{$data["event"]["name"]}}</h1>
+              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
+              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+            </div>
+          </div>
         </div>
-      @endforeach
+      </div>
+    </section>
+  @endif
 
-    </div>
-  </section>
 
   <!-- Counter Section-->
   <section class="counter">
@@ -143,6 +132,7 @@
         <div class="col-md-6">
           <div class="about-content">
             {!! $data->description !!}
+            <a href="/register?speaker=5" class="btn-2">Join to Us</a>
           </div>
         </div>
         <div class="col-md-6">
