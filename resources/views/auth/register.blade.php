@@ -139,7 +139,9 @@
                       @foreach($membership->children as $child)
                         <option
                             @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $child->id ) selected @endif
-                            @if($_GET["speaker"] == $child->id) selected @endif
+
+                            @if(isset($_GET["speaker"])) @if($_GET["speaker"] == $child->id) selected @endif @endif
+
                             value="{{ $child->id }}">— {{ $child->name }}</option>
                       @endforeach
                     @endif
