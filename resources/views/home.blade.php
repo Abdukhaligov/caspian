@@ -107,40 +107,54 @@
         </div>
       </section>
     @endif
-  @endif
-
-
-  <!-- Counter Section-->
-  <section class="counter">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7 offset-md-1 m-auto">
-          <div id="clockdiv">
-            <div class="time">
-              <span class="days"></span>
-              <div class="smalltext">Days</div>
-            </div>
-            <div class="dot">:</div>
-            <div class="time">
-              <span class="hours"></span>
-              <div class="smalltext">Hrs</div>
-            </div>
-            <div class="dot">:</div>
-            <div class="time">
-              <span class="minutes"></span>
-              <div class="smalltext">Minutes</div>
-            </div>
-            <div class="dot">:</div>
-            <div class="time">
-              <span class="seconds"></span>
-              <div class="smalltext">Seconds</div>
+    <!-- Counter Section-->
+    <section class="counter">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 offset-md-1 m-auto">
+            <div id="clockdiv">
+              <div class="time">
+                <span class="days"></span>
+                <div class="smalltext">Days</div>
+              </div>
+              <div class="dot">:</div>
+              <div class="time">
+                <span class="hours"></span>
+                <div class="smalltext">Hrs</div>
+              </div>
+              <div class="dot">:</div>
+              <div class="time">
+                <span class="minutes"></span>
+                <div class="smalltext">Minutes</div>
+              </div>
+              <div class="dot">:</div>
+              <div class="time">
+                <span class="seconds"></span>
+                <div class="smalltext">Seconds</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- /Counter Section-->
+    </section>
+    <!-- /Counter Section-->
+  @else
+    <section class="hero-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="hero-content">
+              <h1 class="wow fadeInUp" data-wow-delay=".3s"></h1>
+              <h1 class="wow fadeInUp" data-wow-delay=".5s"></h1>
+              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i></span>
+              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  @endif
+
 
   <!-- About Section-->
   <section class="about-section ab-section2">
