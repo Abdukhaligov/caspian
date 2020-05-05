@@ -144,10 +144,10 @@
         <div class="row">
           <div class="col-md-12">
             <div class="hero-content">
-              <h1 class="wow fadeInUp" data-wow-delay=".3s"></h1>
-              <h1 class="wow fadeInUp" data-wow-delay=".5s"></h1>
-              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i></span>
-              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i></span>
+              <h1 class="wow fadeInUp" data-wow-delay=".3s">Caspian forum</h1>
+{{--              <h1 class="wow fadeInUp" data-wow-delay=".5s"></h1>--}}
+{{--              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i></span>--}}
+{{--              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i></span>--}}
             </div>
           </div>
         </div>
