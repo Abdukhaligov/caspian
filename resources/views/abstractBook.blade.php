@@ -27,9 +27,19 @@
 
             @foreach($data["books"] as $book)
               <div>
-                <a target="_blank" href="{{ Storage::disk('public')->url($book->attributes->file) }}">
-                  {{ $book->attributes->name }}
-                </a>
+
+                <div class="card" style="margin-bottom: 15px">
+                  <div class="card-header">
+                    <h4 style="float:left;">
+                      {{ $book->attributes->name }}
+                    </h4>
+                    <span style="float:right;">
+                       <a target="_blank" href="{{ Storage::disk('public')->url($book->attributes->file) }}">
+                        Download
+                      </a>
+                    </span>
+                  </div>
+                </div>
               </div>
             @endforeach
 
