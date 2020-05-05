@@ -24,24 +24,25 @@
       <div class="row">
         <div class="col-md-12">
           <div class="about-content">
+            @if($data["books"])
+              @foreach($data["books"] as $book)
+                <div>
 
-            @foreach($data["books"] as $book)
-              <div>
-
-                <div class="card" style="margin-bottom: 15px">
-                  <div class="card-header">
-                    <h4 style="float:left;">
-                      {{ $book->attributes->name }}
-                    </h4>
-                    <span style="float:right;">
+                  <div class="card" style="margin-bottom: 15px">
+                    <div class="card-header">
+                      <h4 style="float:left;">
+                        {{ $book->attributes->name }}
+                      </h4>
+                      <span style="float:right;">
                        <a target="_blank" href="{{ Storage::disk('public')->url($book->attributes->file) }}">
                         Download
                       </a>
                     </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endforeach
+              @endforeach
+            @endif
 
           </div>
         </div>
