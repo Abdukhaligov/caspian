@@ -87,8 +87,8 @@ class PageController extends Controller {
   public function home() {
     $data = Home::first();
     $data["event"] =  Event::where('active', true)->first();
-    
-    if($data["event"]->getMedia('banners')){
+
+    if($data["event"]){
       $data["eventBanners"] = $data["event"]->getMedia('banners');
     }
 
