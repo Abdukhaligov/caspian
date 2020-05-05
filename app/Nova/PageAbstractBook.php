@@ -31,7 +31,7 @@ class PageAbstractBook extends Resource {
             ->addLayout('Abstract book', 'Data', [
                 Text::make('Name', 'name')
                     ->required(),
-                FilemanagerField::make('File','file',)
+                FilemanagerField::make('File','file')
                     ->required()
                     ->folder('books')
                     ->displayAsImage()
