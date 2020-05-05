@@ -82,6 +82,11 @@ class Initial extends Model {
                     "link" => route('gallery'),
                     "active" => Request::url() == route('gallery') ? true : false,
                 ],
+                [
+                    "title" => App\Models\Pages\AbstractBook::first()->title,
+                    "link" => route('abstractBook'),
+                    "active" => Request::url() == route('abstractBook') ? true : false,
+                ],
             ]
         ],
         [

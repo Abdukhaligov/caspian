@@ -13,6 +13,8 @@ class CreateSpeakersTable extends Migration {
       $table->longText('description');
       $table->string('photo');
       $table->string('job_title');
+      $table->string('company')->nullable();
+      $table->string('degree')->nullable();
       $table->json('social_networks')->nullable();
       $table->timestamps();
     });

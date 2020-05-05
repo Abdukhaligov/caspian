@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chairman;
 use App\Models\Event;
 use App\Models\Membership;
+use App\Models\Pages\AbstractBook;
 use App\Models\Pages\Chairmen;
 use App\Models\Speaker;
 use App\Models\Reference;
@@ -65,6 +66,13 @@ class PageController extends Controller {
     $data = AboutUs::first();
 
     return view('about', compact('data'));
+  }
+
+  public function abstractBook() {
+    $data = AbstractBook::first();
+    $data->books = json_decode($data->books);
+
+    return view('abstractBook', compact('data'));
   }
 
   public function gallery() {

@@ -4,12 +4,21 @@
   <style>
     .stm-text{
       padding: 10px !important;
-      max-height: 72px;
+      max-height: 130px;
       overflow: hidden;
     }
-    .stm-text p{
+    .stm-text p {
       font-size: 13px !important;
-      line-height: 30px !important;
+      line-height: 20px !important;
+    }
+    .stm-text h5 {
+      font-size: 17px;
+      line-height: 20px !important;
+    }
+
+    .stm-text h6 {
+      font-weight: normal;
+      line-height: 20px !important;
     }
     .card p {
       font-size: 12px !important;
@@ -57,8 +66,9 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $speaker->name }}</h5>
-                <p>{{ $speaker->job_title }}</p>
+                <h5>{{ $speaker->degree }} {{ $speaker->name }}</h5>
+                <h6>{{ $speaker->job_title }}</h6>
+                <p>{{ $speaker->company }}</p>
               </div>
             </div>
           </div>

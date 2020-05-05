@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder {
     $this->call(PageGallerySeeder::class);
     $this->call(PageTopicsSeeder::class);
     $this->call(PageCommitteeSeeder::class);
+    $this->call(PageAbstractBook::class);
     $this->call(PageSpeakersSeeder::class);
     $this->call(PageChairmanSeeder::class);
     $this->call(PageNewsSeeder::class);

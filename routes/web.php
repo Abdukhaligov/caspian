@@ -30,6 +30,7 @@ Route::group(['middleware' => ['locale']], function () {
   Route::prefix('media')->group(function () {
     Route::get('/gallery', 'PageController@gallery')->name('gallery');
     Route::get('/news', 'PageController@news')->name('news');
+    Route::get('/abstract-book', 'PageController@abstractBook')->name('abstractBook');
     Route::get('/news/{id}', 'NewsController@index');
   });
 
