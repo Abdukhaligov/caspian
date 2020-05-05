@@ -13,10 +13,12 @@
       font-size: 13px !important;
       line-height: 20px !important;
     }
+
     .stm-text h5 {
       font-size: 17px;
       line-height: 20px !important;
     }
+
     .stm-text h6 {
       font-weight: normal;
       line-height: 20px !important;
@@ -55,49 +57,56 @@
       -webkit-align-items: center;
       align-items: center
     }
-    .eventDescription{
-      margin-top:10px;font-size: 30px;line-height: 30px;margin-bottom: 0px;color: #fff;
+
+    .eventDescription {
+      margin-top: 10px;
+      font-size: 30px;
+      line-height: 30px;
+      margin-bottom: 0px;
+      color: #fff;
     }
   </style>
 
-
-  @if(count($data["eventBanners"]))
-    <section class="hero-1">
-      <div class="hero-slide1">
-        @foreach($data["eventBanners"] as $image)
-          <div class="slide">
-            <div class="hero-slide-wrapper">
-              <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt="" class="h-bag">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="hero-slide-content">
-                      <h1 class="wow fadeInUp" data-wow-delay="0.5s">{{$data["event"]["name"]}}</h1>
-                      <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
-                      <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+  @if($data["eventBanners"])
+    @if(count($data["eventBanners"]))
+      <section class="hero-1">
+        <div class="hero-slide1">
+          @foreach($data["eventBanners"] as $image)
+            <div class="slide">
+              <div class="hero-slide-wrapper">
+                <img src="{{ Storage::disk('mediaFiles')->url($image->id."/".$image->file_name) }}" alt=""
+                     class="h-bag">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="hero-slide-content">
+                        <h1 class="wow fadeInUp" data-wow-delay="0.5s">{{$data["event"]["name"]}}</h1>
+                        <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
+                        <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        @endforeach
-      </div>
-    </section>
-  @else
-    <section class="hero-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="hero-content">
-              <h1 class="wow fadeInUp" data-wow-delay=".3s">{{$data["event"]["name"]}}</h1>
-              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
-              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+          @endforeach
+        </div>
+      </section>
+    @else
+      <section class="hero-2">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="hero-content">
+                <h1 class="wow fadeInUp" data-wow-delay=".3s">{{$data["event"]["name"]}}</h1>
+                <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
+                <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    @endif
   @endif
 
 
