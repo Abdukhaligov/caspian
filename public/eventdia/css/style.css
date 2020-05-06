@@ -1814,8 +1814,8 @@ section.schedule3 {
       section.schedule3 .event-schedule nav .nav-tabs .nav-link {
         border: 1px solid #d6d6d6;
         border-radius: 0;
-        padding: 15px;
-        margin: 10px; }
+        padding: 10px;
+        margin: 5px; }
         section.schedule3 .event-schedule nav .nav-tabs .nav-link .es-day {
           position: relative;
           display: inline-flex; }
@@ -1918,9 +1918,9 @@ section.schedule4 .event-schedule {
     margin: 35px auto 50px; }
     section.schedule4 .event-schedule nav .nav-tabs .nav-link .es-day .es-day-details {
       position: relative;
-      margin-right: 20px; }
+      margin-right: 15px; }
       section.schedule4 .event-schedule nav .nav-tabs .nav-link .es-day .es-day-details span {
-        font-size: 60px;
+        font-size: 30px;
         line-height: 56px;
         font-weight: 700;
         color: #8a2be2; }
@@ -1928,11 +1928,11 @@ section.schedule4 .event-schedule {
       position: relative;
       text-align: left; }
       section.schedule4 .event-schedule nav .nav-tabs .nav-link .es-day .es-day-details2 span {
-        line-height: 20px;
-        font-size: 14px;
+        line-height: 17px;
+        font-size: 13px;
         color: #8e8d8e; }
         section.schedule4 .event-schedule nav .nav-tabs .nav-link .es-day .es-day-details2 span:first-child {
-          font-size: 20px;
+          font-size: 17px;
           font-weight: 600;
           color: #8a2be2; }
     section.schedule4 .event-schedule nav .nav-tabs .nav-link.active {

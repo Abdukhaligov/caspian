@@ -26,7 +26,7 @@
         <div class="col-md-12">
           <div class="event-schedule">
             <nav>
-              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="width: 100%">
                 <a class="nav-item nav-link active" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab"
                    aria-controls="nav-terms" aria-selected="true">
                   <div class="es-day">
@@ -56,6 +56,42 @@
                   <div class="es-day">
                     <div class="es-day-details">
                       <span>3</span>
+                    </div>
+                    <div class="es-day-details2">
+                      <span>Day</span><br>
+                      <span>13th January 2020</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="nav-item nav-link" id="nav-agreement-tab" data-toggle="tab" href="#nav-a" role="tab"
+                   aria-controls="nav-agreement" aria-selected="false">
+                  <div class="es-day">
+                    <div class="es-day-details">
+                      <span>4</span>
+                    </div>
+                    <div class="es-day-details2">
+                      <span>Day</span><br>
+                      <span>13th January 2020</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="nav-item nav-link" id="nav-agreement-tab" data-toggle="tab" href="#nav-b" role="tab"
+                   aria-controls="nav-agreement" aria-selected="false">
+                  <div class="es-day">
+                    <div class="es-day-details">
+                      <span>5</span>
+                    </div>
+                    <div class="es-day-details2">
+                      <span>Day</span><br>
+                      <span>13th January 2020</span>
+                    </div>
+                  </div>
+                </a>
+                <a class="nav-item nav-link" id="nav-agreement-tab" data-toggle="tab" href="#nav-c" role="tab"
+                   aria-controls="nav-agreement" aria-selected="false">
+                  <div class="es-day">
+                    <div class="es-day-details">
+                      <span>6</span>
                     </div>
                     <div class="es-day-details2">
                       <span>Day</span><br>
@@ -211,6 +247,65 @@
                     <span><i class="far fa-clock"></i> 11:00 am - 1:00 am</span>
                   </div>
                 </div>
+                <div class="event-details">
+                  <div class="ed-img">
+                    <img src="{{ asset('eventdia/img/team/team-member16.jpg') }}" alt="">
+                    <a href="#">
+                      <h5>Thomas Childers</h5>
+                    </a>
+                    <p>CEO & Founder</p>
+                  </div>
+                  <div class="ed-content">
+                    <h5>Managing International Enterprises</h5>
+                    <p>In order to save time you have to break down the content strategy for the event or conference you
+                      are planning step by step. Creating this process from scratch will take the longest amount of time
+                      to build, but once you have content production.</p>
+                    <span><i class="fas fa-map-marker-alt"></i> Waterfront Hotel, Canada</span>
+                    <span><i class="far fa-clock"></i> 1:00 am - 3:00 am</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-a" role="tabpanel" aria-labelledby="nav-agreement-tab">
+                <div class="event-details">
+                  <div class="ed-img">
+                    <img src="{{ asset('eventdia/img/team/team-member15.jpg') }}" alt="">
+                    <a href="#">
+                      <h5>Hubert Aguilar</h5>
+                    </a>
+                    <p>CEO & Founder</p>
+                  </div>
+                  <div class="ed-content">
+                    <h5>Business Management Techniques</h5>
+                    <p>This presentation will describe seven essential actions that could unleash the power of
+                      prevention and substantially reduce the prevalence of behavioral health problems and inequality in
+                      health and behavior outcomes in the U.S. population. substantially reduce the prevalence of
+                      behavio.</p>
+                    <span><i class="fas fa-map-marker-alt"></i> Waterfront Hotel, Canada</span>
+                    <span><i class="far fa-clock"></i> 9:00 am - 11:00 am</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-b" role="tabpanel" aria-labelledby="nav-agreement-tab">
+                <div class="event-details">
+                  <div class="ed-img">
+                    <img src="{{ asset('eventdia/img/team/team-member17.jpg') }}" alt="">
+                    <a href="#">
+                      <h5>Frances Chandler</h5>
+                    </a>
+                    <p>Analisis </p>
+                  </div>
+                  <div class="ed-content">
+                    <h5>How to Build a Successful Startup</h5>
+                    <p>We care for more than 200 thousand exhibits spanning billions of years and welcome more than five
+                      million way visitors annually. We care for more than 200 thousand exhibits spanning billions of
+                      years and welcome more than five million way visitors annually.We care for more than 200 thousand
+                      exhibits spanning.</p>
+                    <span><i class="fas fa-map-marker-alt"></i> Waterfront Hotel, Canada</span>
+                    <span><i class="far fa-clock"></i> 11:00 am - 1:00 am</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-c" role="tabpanel" aria-labelledby="nav-agreement-tab">
                 <div class="event-details">
                   <div class="ed-img">
                     <img src="{{ asset('eventdia/img/team/team-member16.jpg') }}" alt="">
