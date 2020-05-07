@@ -135,7 +135,7 @@
                           <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                           @enderror
                         </div>
-                        <button style="float:left; margin-bottom: 0px" type="submit"
+                        <button style="float:left; margin-bottom: 0px; background-color: #B3B3B3" type="submit"
                                 id="submit">{{ __('static.login') }}</button>
                         <a href="{{ route('register') }}">{{ __('static.registration') }}</a>
                       </form>
