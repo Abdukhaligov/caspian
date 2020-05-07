@@ -105,10 +105,12 @@
                 </a>
               @else
                 <a id="navFormButtonMobile" class="btn-1 blue" href="{{ route('login') }}">
-                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}
+                  LOGIN
+{{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
                 </a>
                 <a id="navFormButton" class="btn-1 blue" style="cursor: pointer">
-                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}
+                  LOGIN
+{{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
                 </a>
                 <div class="navForm">
                   <section class="contact-us">

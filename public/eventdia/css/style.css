@@ -603,9 +603,11 @@ header.header-area {
       color: #000000; }
     header.header-area .sm-mint li .btn-1.blue {
       /*background: #27bdb5;*/
-      background: rgb(11,6,102);
-      background: linear-gradient(90deg, rgba(11,6,102,1) 0%, rgba(45,43,192,1) 51%, rgba(81,80,190,1) 100%);
-      transition: .5s ease !important; }
+      background: #1a41c9;
+      /*background: rgb(11,6,102);*/
+      /*background: linear-gradient(90deg, rgba(11,6,102,1) 0%, rgba(45,43,192,1) 51%, rgba(81,80,190,1) 100%);*/
+      /*transition: .5s ease !important; */
+      }
       header.header-area .sm-mint li .btn-1.blue:hover {
         /*background: #1a41c9; */ }
     header.header-area .sm-mint li .btn-1 {
@@ -634,10 +636,12 @@ header.header-area.nav-fixed {
       color: #fff; }
   header.header-area.nav-fixed .sm-mint li .btn-1.blue {
     color: #fff;
+    background: #1a41c9;
     /*background: #27bdb5;*/
-    background: rgb(11,6,102);
-    background: linear-gradient(90deg, rgba(11,6,102,1) 0%, rgba(45,43,192,1) 51%, rgba(81,80,190,1) 100%);
-    transition: .5s ease !important; }
+    /*background: rgb(11,6,102);*/
+    /*background: linear-gradient(90deg, rgba(11,6,102,1) 0%, rgba(45,43,192,1) 51%, rgba(81,80,190,1) 100%);*/
+    /*transition: .5s ease !important;*/
+    }
     header.header-area.nav-fixed .sm-mint li .btn-1.blue:hover {
       /*background: #1a41c9; */ }
   header.header-area.nav-fixed .sm-mint li .btn-1 {
@@ -3582,8 +3586,9 @@ Responsive Style
       /*background-image: -moz-linear-gradient(-9deg, #9b3bf5 3%, #fb239a 100%);*/
       /*background-image: -webkit-linear-gradient(-9deg, #9b3bf5 3%, #fb239a 100%);*/
       /*background-image: -ms-linear-gradient(-9deg, #9b3bf5 3%, #fb239a 100%);*/
-      background: rgb(81,80,190);
-      background: linear-gradient(90deg, rgba(81,80,190,1) 0%, rgba(45,43,192,1) 51%, rgba(11,6,102,1) 100%);
+      /*background: rgb(81,80,190);*/
+      background: #1a41c9;
+      /*background: linear-gradient(90deg, rgba(81,80,190,1) 0%, rgba(45,43,192,1) 51%, rgba(11,6,102,1) 100%);*/
       z-index: -1; }
     .sm-mint > li > a.btn-1:hover::before {
       opacity: 1; }
