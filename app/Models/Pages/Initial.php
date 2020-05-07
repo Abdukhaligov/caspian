@@ -69,7 +69,7 @@ class Initial extends Model {
         ],
         [
             "title" => "Registration",
-            "link" => "http://caspian/register?speaker=5"
+            "link" => route('register')."/?speaker=5"
         ],
         [
             "title" => App\Models\Pages\News::first()->title,
