@@ -40,31 +40,33 @@ class Initial extends Model {
                     "link" => route('topics'),
                     "active" => Request::url() == route('topics') ? true : false,
                 ],
+                [
+                    "title" => "Committee",
+                    "link" => route('chairmen'),
+                    "active" => Request::url() == route('chairmen') ? true : false,
+                ],
 //                [
 //                    "title" => App\Models\Pages\Committee::first()->title,
 //                    "link" => route('committee'),
 //                    "active" => Request::url() == route('committee') ? true : false,
 //                ],
                 [
-                    "title" => "Program",
-                    "link" => route('committee'),
-                    "active" => Request::url() == route('committee') ? true : false,
-                ],
-                [
                     "title" => App\Models\Pages\Speakers::first()->title,
                     "link" => route('speakers'),
                     "active" => Request::url() == route('speakers') ? true : false,
                 ],
+                [
+                    "title" => "Program",
+                    "link" => route('committee'),
+                    "active" => Request::url() == route('committee') ? true : false,
+                ],
+
 //                [
 //                    "title" => App\Models\Pages\Chairmen::first()->title,
 //                    "link" => route('chairmen'),
 //                    "active" => Request::url() == route('chairmen') ? true : false,
 //                ],
-                [
-                    "title" => "Committee",
-                    "link" => route('chairmen'),
-                    "active" => Request::url() == route('chairmen') ? true : false,
-                ],
+
             ]
         ],
         [
