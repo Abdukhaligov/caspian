@@ -32,7 +32,7 @@ class User extends Authenticatable {
   public function canAddReports() {
     if ($this->isAdmin()) return true;
 
-    return $this->checkMembership([5, 6]) && $this->checkAccessCount(Initial::getData()->max_report_count);
+    return $this->checkMembership([2, 3]) && $this->checkAccessCount(Initial::getData()->max_report_count);
   }
 
   private function checkMembership(array $ids = []) {

@@ -163,7 +163,7 @@
         <div class="col-md-6">
           <div class="about-content">
             {!! $data->description !!}
-            <a href="/register?speaker=5" class="btn-2">Join to Us</a>
+            <a href="/register?speaker=2" class="btn-2">Join to Us</a>
           </div>
         </div>
         <div class="col-md-6">

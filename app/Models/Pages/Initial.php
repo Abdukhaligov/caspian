@@ -71,7 +71,7 @@ class Initial extends Model {
         ],
         [
             "title" => "Registration",
-            "link" => route('register')."/?speaker=5"
+            "link" => route('register')."/?speaker=2"
         ],
         [
             "title" => App\Models\Pages\News::first()->title,

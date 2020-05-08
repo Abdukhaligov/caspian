@@ -24,7 +24,7 @@ class RegisterController extends Controller {
   }
 
   protected function validator(array $data) {
-    if($data["membership_id"] != 5 && $data["membership_id"] != 6){
+    if($data["membership_id"] != 2 && $data["membership_id"] != 3){
       unset($data["abstract_topic_id"]);
       unset($data["abstract_name"]);
       unset($data["abstract_description"]);
@@ -44,7 +44,7 @@ class RegisterController extends Controller {
     $user->membership_id = $data['membership_id'];
     $user->save();
 
-    if($data["membership_id"] == 5 || $data["membership_id"] == 6){
+    if($data["membership_id"] == 2 || $data["membership_id"] == 3){
       Report::create([
           'user_id' => $user->id,
           'name' => $data['abstract_name'],

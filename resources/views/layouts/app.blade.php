@@ -311,7 +311,7 @@
     let abstractForm = $("#abstractForm");
     console.log(membership.val());
 
-    if(membership.val() === "5" || membership.val() === "6"){
+    if(membership.val() === "2" || membership.val() === "3"){
       abstractForm.show();
       console.log("norm")
     }else{
@@ -322,7 +322,7 @@
 
     membership.on('change', function () {
       console.log($(this).val());
-      if($(this).val() === "5" || $(this).val() === "6"){
+      if($(this).val() === "2" || $(this).val() === "3"){
         abstractForm.show();
         console.log("norm")
       }else{

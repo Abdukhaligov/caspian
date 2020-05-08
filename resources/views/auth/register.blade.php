@@ -127,6 +127,7 @@
                 <select style="height: 52px;font-size: 14px;"
                         class="form-control cp1 @error('membership_id') is-invalid @enderror"
                         name="membership_id" id="membership_id" autocomplete="membership_id">
+                  <option disabled selected>Select</option>
                   @foreach($data['membership'] as $membership)
 {{--                    <option @if($membership->hasChildren == true ) disabled @endif--}}
 {{--                    @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected--}}
