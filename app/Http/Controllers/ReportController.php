@@ -18,40 +18,71 @@ class ReportController extends Controller {
     $request->file->store('public/reports');
     $report->update(['file' => $fileName]);
 
-    return $this->back200();
+    return redirect()->back();
+    //return $this->back200();
   }
 
   private function deleteReport($report) {
     $report->delete();
 
-    return $this->back200();
+    //return $this->back200();
   }
 
   public function store(ReportRequest $request) {
     $request['user_id'] = Auth::user()->id;
 
-    return
-        Auth::user()->canAddReports() && Report::create($request->all())
-            ? $this->back200()
-            : $this->back403();
+    if(Auth::user()->canAddReports()){
+      if(Report::create($request->all())){
+        return redirect()->back();
+      }else{
+        return redirect()->back();
+      }
+    }else{
+      return redirect()->back();
+    }
+
+    //return
+    //   Auth::user()->canAddReports() && Report::create($request->all())
+    //       ? $this->back200()
+    //       : $this->back403();
   }
 
   public function update(Request $request) {
     $report = Report::find($request->report_id);
 
-    return
-        $report->canAttachFile() && $request->file
-            ? $this->addFile($request, $report)
-            : $this->back403();
+    if($report->canAttachFile()){
+      if($request->file){
+        $this->addFile($request, $report);
+      }else{
+        return redirect()->back();
+      }
+    }else{
+      return redirect()->back();
+    }
+
+    //return
+    //   $report->canAttachFile() && $request->file
+    //      ? $this->addFile($request, $report)
+    //      : $this->back403();
   }
 
   public function destroy(Request $request) {
     $report = Report::find($request->id);
 
-    return
-        $report->canDeleteReport()
-            ? $this->deleteReport($report)
-            : $this->back403();
+    if($report->canDeleteReport()){
+
+      $report->delete();
+      return redirect()->back();
+
+    }else{
+      return redirect()->back();
+    }
+
+    //return
+    //    $report->canDeleteReport()
+    //        ? $this->deleteReport($report)
+    //        : $this->back403();
+
   }
 
 }

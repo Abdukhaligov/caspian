@@ -54,6 +54,15 @@
   <![endif]-->
 </head>
 
+<style>
+  .loginButton{
+    float:left; margin-bottom: 0px;
+    background-color: #B3B3B3 !important;
+  }
+  .loginButton:hover{
+    background-color: #1a41c9!important;
+  }
+</style>
 <body>
 <!---Preloder-->
 <div id="preloader-2"></div>
@@ -94,23 +103,24 @@
               </li>
             @endforeach
 
-            <li>
+            <li style="margin-left: 40px;">
               @auth
                 <a class="btn-1 blue" href="{{ route('cabinet') }}">
                   {{  __('static.personal_cabinet') }}
                 </a>
-                <a class="btn-1 blue" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                <a class="" style="float: right"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                    href="{{ route('logout') }}">
                   {{  __('static.logout') }}
                 </a>
               @else
                 <a id="navFormButtonMobile" class="btn-1 blue" href="{{ route('login') }}">
                   LOGIN
-{{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
+                  {{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
                 </a>
                 <a id="navFormButton" class="btn-1 blue" style="cursor: pointer">
                   LOGIN
-{{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
+                  {{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
                 </a>
                 <div class="navForm">
                   <section class="contact-us">
@@ -135,7 +145,7 @@
                           <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                           @enderror
                         </div>
-                        <button style="float:left; margin-bottom: 0px; background-color: #B3B3B3" type="submit"
+                        <button class="loginButton" type="submit"
                                 id="submit">{{ __('static.login') }}</button>
                         <a href="{{ route('register') }}">{{ __('static.registration') }}</a>
                       </form>
@@ -311,10 +321,10 @@
     let abstractForm = $("#abstractForm");
     console.log(membership.val());
 
-    if(membership.val() === "2" || membership.val() === "3"){
+    if (membership.val() === "2" || membership.val() === "3") {
       abstractForm.show();
       console.log("norm")
-    }else{
+    } else {
       abstractForm.hide();
       console.log("nenorm")
     }
@@ -322,10 +332,10 @@
 
     membership.on('change', function () {
       console.log($(this).val());
-      if($(this).val() === "2" || $(this).val() === "3"){
+      if ($(this).val() === "2" || $(this).val() === "3") {
         abstractForm.show();
         console.log("norm")
-      }else{
+      } else {
         abstractForm.hide();
         console.log("nenorm")
       }
