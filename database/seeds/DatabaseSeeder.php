@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder {
     factory(\App\Models\Topic::class, 12)->create();
 
     $this->call(UserSeeder::class);
-    factory(\App\User::class, 12)->create();
+    factory(\App\User::class, 23)->create();
 
     factory(\App\Models\Report::class, 12)->create();
     $this->call(SpeakerSeeder::class);
-    $this->call(ChairmanSeeder::class);
+    $this->call(MemberSeeder::class);
     $this->call(EventSeeder::class);
     $this->call(PartnerSeeder::class);
     $this->call(SponsorSeeder::class);
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder {
     $this->call(PageCommitteeSeeder::class);
     $this->call(PageAbstractBook::class);
     $this->call(PageSpeakersSeeder::class);
-    $this->call(PageChairmanSeeder::class);
+    $this->call(PageProgramSeeder::class);
     $this->call(PageNewsSeeder::class);
     $this->call(PageCabinetSeeder::class);
     $this->call(PageInitialSeeder::class);

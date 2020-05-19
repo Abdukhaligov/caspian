@@ -42,14 +42,9 @@ class Initial extends Model {
                 ],
                 [
                     "title" => "Committee",
-                    "link" => route('chairmen'),
-                    "active" => Request::url() == route('chairmen') ? true : false,
+                    "link" => route('committee'),
+                    "active" => Request::url() == route('committee') ? true : false,
                 ],
-//                [
-//                    "title" => App\Models\Pages\Committee::first()->title,
-//                    "link" => route('committee'),
-//                    "active" => Request::url() == route('committee') ? true : false,
-//                ],
                 [
                     "title" => App\Models\Pages\Speakers::first()->title,
                     "link" => route('speakers'),
@@ -57,21 +52,15 @@ class Initial extends Model {
                 ],
                 [
                     "title" => "Program",
-                    "link" => route('committee'),
-                    "active" => Request::url() == route('committee') ? true : false,
+                    "link" => route('program'),
+                    "active" => Request::url() == route('program') ? true : false,
                 ],
-
-//                [
-//                    "title" => App\Models\Pages\Chairmen::first()->title,
-//                    "link" => route('chairmen'),
-//                    "active" => Request::url() == route('chairmen') ? true : false,
-//                ],
 
             ]
         ],
         [
             "title" => "Registration",
-            "link" => route('register')."/?speaker=2"
+            "link" => route('register') . "/?speaker=2"
         ],
         [
             "title" => App\Models\Pages\News::first()->title,

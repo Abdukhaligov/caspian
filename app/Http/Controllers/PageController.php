@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chairman;
 use App\Models\Event;
+use App\Models\Member;
 use App\Models\Membership;
 use App\Models\Pages\AbstractBook;
-use App\Models\Pages\Chairmen;
+use App\Models\Pages\Program;
 use App\Models\Speaker;
 use App\Models\Reference;
 use App\Models\Pages\AboutUs;
@@ -35,7 +35,20 @@ class PageController extends Controller {
   public function committee() {
     $data = Committee::first();
 
+    $data["chairmen_1"] = Member::where('rank',1)->get();
+    $data["chairmen_2"] = Member::where('rank',2)->get();
+    $data["chairmen_3"] = Member::where('rank',3)->get();
+
     return view('committee', compact('data'));
+  }
+
+  public function program() {
+    $data = Program::first();
+    $data->event = Event::where('active', true)->first();
+    $data->program = $data->event->program;
+
+
+    return view('program', compact('data'));
   }
 
   public function cabinet() {
@@ -78,7 +91,7 @@ class PageController extends Controller {
   public function gallery() {
     $data = Gallery::first();
 
-    $data["photos"] = $data->getMedia('photos');
+    $data["media"] = $data->getMedia('media');
     $data["videos"] = json_decode($data->videos);
 
     return view('gallery', compact('data'));
@@ -108,25 +121,13 @@ class PageController extends Controller {
 
   public function speakers() {
     $data = Speakers::first();
+
     $data["speakers"] = Speaker::all();
 
     return view('speakers', compact('data'));
   }
 
-  public function chairmen() {
-    $data = Chairmen::first();
-    $data["chairmen_1"] = Chairman::where('rank',1)->get();
-    $data["chairmen_2"] = Chairman::where('rank',2)->get();
-    $data["chairmen_3"] = Chairman::where('rank',3)->get();
-
-    return view('chairmen', compact('data'));
-  }
-
   public function register() {
-    $data = Chairmen::first();
-    $data["chairmen_1"] = Chairman::where('rank',1)->get();
-    $data["chairmen_2"] = Chairman::where('rank',2)->get();
-    $data["chairmen_3"] = Chairman::where('rank',3)->get();
 
     return view('auth.register', compact('data'));
   }

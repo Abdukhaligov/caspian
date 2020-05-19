@@ -29,32 +29,32 @@ class PageAboutUs extends Resource {
         Text::make('Title'),
         NovaTinyMCE::make('Body'),
         Multilingual::make('Language'),
-        Flexible::make('Team')
-            ->addLayout('Member', 'Data', [
-                Text::make('Name', 'name')
-                    ->required(),
-                Text::make('Job Title', 'job_title')
-                    ->required(),
-                FilemanagerField::make('Photo', 'photo')
-                    ->required()
-                    ->folder('team')
-                    ->displayAsImage()
-                    ->hideCreateFolderButton()
-                    ->hideDeleteFileButton(),
-                Flexible::make('Social Networks', 'social_networks')
-                    ->addLayout('Social Network', 'Data', [
-                        Select::make('Network', 'network')->options([
-                            'fa-facebook-f' => 'Facebook',
-                            'fa-twitter' => 'Twitter',
-                            'fa-behance' => 'Behance',
-                            'fa-linkedin-in' => 'LinkedIn',
-                            'fa-instagram' => 'Instagram',
-                            'fa-youtube' => 'YouTube',])
-                            ->required(),
-                        Text::make('Link', 'link')
-                            ->required(),
-                    ]),
-            ]),
+//        Flexible::make('Team')
+//            ->addLayout('Member', 'Data', [
+//                Text::make('Name', 'name')
+//                    ->required(),
+//                Text::make('Job Title', 'job_title')
+//                    ->required(),
+//                FilemanagerField::make('Photo', 'photo')
+//                    ->required()
+//                    ->folder('team')
+//                    ->displayAsImage()
+//                    ->hideCreateFolderButton()
+//                    ->hideDeleteFileButton(),
+//                Flexible::make('Social Networks', 'social_networks')
+//                    ->addLayout('Social Network', 'Data', [
+//                        Select::make('Network', 'network')->options([
+//                            'fa-facebook-f' => 'Facebook',
+//                            'fa-twitter' => 'Twitter',
+//                            'fa-behance' => 'Behance',
+//                            'fa-linkedin-in' => 'LinkedIn',
+//                            'fa-instagram' => 'Instagram',
+//                            'fa-youtube' => 'YouTube',])
+//                            ->required(),
+//                        Text::make('Link', 'link')
+//                            ->required(),
+//                    ]),
+//            ]),
     ];
   }
 

@@ -11,7 +11,7 @@ class CreatePageAboutUsTable extends Migration {
       $table->increments('id');
       $table->json('title');
       $table->json('body');
-      $table->json('team')->nullable();
+//      $table->json('team')->nullable();
       $table->timestamps();
     });
   }

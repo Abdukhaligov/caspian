@@ -204,7 +204,7 @@
   <div class="container">
     <div class="blog-top">
       <span>From our blog</span>
-      <h1>Laest News</h1>
+      <h1>Latest News</h1>
     </div>
     <div class="row">
 

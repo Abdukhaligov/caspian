@@ -53,6 +53,7 @@
     <div class="container">
       <div class="row">
         @foreach($data["speakers"] as $speaker)
+          @php $speakerDetails = App\User::find($speaker->user_id) @endphp
           <div class="col-md-3">
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
@@ -66,9 +67,9 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $speaker->degree }} {{ $speaker->name }}</h5>
-                <h6>{{ $speaker->job_title }}</h6>
-                <p>{{ $speaker->company }}</p>
+                <h5>{{ $speakerDetails->degree }} {{ $speakerDetails->name }}</h5>
+                <h6>{{ $speakerDetails->job_title }}</h6>
+                <p>{{ $speakerDetails->company }}</p>
               </div>
             </div>
           </div>

@@ -10,10 +10,10 @@ class CreateEventsTable extends Migration {
     Schema::create('events', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
-//      $table->string('banner')->nullable();
       $table->text('description')->nullable();
       $table->text('address');
-      $table->dateTime('date');
+      $table->dateTime('date')->nullable();
+      $table->json('program')->nullable();
       $table->boolean('active')->default(false);
       $table->timestamps();
     });

@@ -29,7 +29,7 @@ class PageGallery extends Resource {
     return [
         Text::make('Title'),
         Multilingual::make('Language'),
-        Media::make('Photos', 'photos'),
+        Media::make('Media'),
 
         Flexible::make('Videos')
             ->addLayout('Adding video', 'Videos', [

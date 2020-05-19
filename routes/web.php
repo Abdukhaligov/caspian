@@ -22,8 +22,8 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/topics', 'PageController@topics')->name('topics');
     Route::get('/committee', 'PageController@committee')->name('committee');
     Route::get('/speakers', 'PageController@speakers')->name('speakers');
-      Route::get('/speakers/{id}', 'SpeakerController@index');
-    Route::get('/chairmen', 'PageController@chairmen')->name('chairmen');
+    Route::get('/speakers/{id}', 'SpeakerController@index');
+    Route::get('/program', 'PageController@program')->name('program');
 //      Route::get('/speakers/{id}', 'SpeakerController@index');
   });
 

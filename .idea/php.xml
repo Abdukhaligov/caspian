@@ -155,6 +155,8 @@
       <path value="$PROJECT_DIR$/vendor/genealabs/nova-map-marker-field" />
       <path value="$PROJECT_DIR$/vendor/symfony/thanks" />
       <path value="$PROJECT_DIR$/vendor/josrom/nova-map-address" />
+      <path value="$PROJECT_DIR$/vendor/laraning/nova-time-field" />
+      <path value="$PROJECT_DIR$/vendor/64robots/nova-fields" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

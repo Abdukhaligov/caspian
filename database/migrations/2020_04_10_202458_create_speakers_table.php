@@ -9,13 +9,10 @@ class CreateSpeakersTable extends Migration {
   public function up() {
     Schema::create('speakers', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('name');
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users');
       $table->longText('description');
       $table->string('photo');
-      $table->string('job_title');
-      $table->string('company')->nullable();
-      $table->string('degree')->nullable();
-      $table->json('social_networks')->nullable();
       $table->timestamps();
     });
   }
