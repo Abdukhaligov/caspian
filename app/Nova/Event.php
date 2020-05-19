@@ -37,6 +37,8 @@ class Event extends Resource {
         Text::make('Name')
             ->sortable(),
         Textarea::make('Description'),
+        Text::make('Address', 'address'),
+
         Boolean::make('Active')
             ->sortable(),
 
