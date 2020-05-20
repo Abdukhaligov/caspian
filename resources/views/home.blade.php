@@ -176,7 +176,7 @@
   </section>
   <!-- /About Section-->
 
-  @if($data["event"]["speakers"])
+  @if($data["event"]["users"])
     <!-- Team Section-->
     <section class="our-team ot-inner">
       <div class="ot-top">
@@ -187,14 +187,13 @@
         <div class="row">
           <div class="swiper-container h-brands swp-cnt-brands">
             <div class="swiper-wrapper">
-              @foreach($data["event"]["speakers"] as $speaker)
-                @php $speakerDetails = App\User::find($speaker->user_id) @endphp
+              @foreach($data["event"]["users"] as $user)
                 <div class="swiper-slide">
                   <div class="col-md-12">
                     <div class="single-team-member">
                       <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                        <a href="{{ route('speakers')."/".$speaker->id }}"><img
-                              src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                        <a href="{{ route('speakers')."/".$user->id }}"><img
+                              src="{{ Storage::disk('public')->url($user->avatar) }}" alt=""></a>
                         <div class="stm-icon">
                           <ul>
                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -204,9 +203,9 @@
                         </div>
                       </div>
                       <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                        <h5>{{ $speakerDetails->degree }} {{ $speakerDetails->name }}</h5>
-                        <h6>{{ $speakerDetails->job_title }}</h6>
-                        <p>{{ $speakerDetails->company }}</p>
+                        <h5>{{ $user->degree }} {{ $user->name }}</h5>
+                        <h6>{{ $user->job_title }}</h6>
+                        <p>{{ $user->company }}</p>
                       </div>
                     </div>
                   </div>
@@ -559,12 +558,12 @@
     </div>
     <div class="container">
       <div class="row col-md-8 m-auto">
-        @foreach($data["sponsors"] as $speaker)
+        @foreach($data["sponsors"] as $sponsor)
           <div class="col-md-6">
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                <a href="{{ route('speakers')."/".$speaker->id }}"><img
-                      src="{{ Storage::disk('public')->url($speaker->photo) }}" alt=""></a>
+                <a href="{{ route('speakers')."/".$sponsor->id }}"><img
+                      src="{{ Storage::disk('public')->url($sponsor->photo) }}" alt=""></a>
                 <div class="stm-icon">
                   <ul>
                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -574,8 +573,8 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $speaker->name }}</h5>
-                <p>{{ $speaker->job_title }}</p>
+                <h5>{{ $sponsor->name }}</h5>
+                <p>{{ $sponsor->job_title }}</p>
               </div>
             </div>
           </div>
