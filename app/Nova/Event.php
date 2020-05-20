@@ -43,7 +43,7 @@ class Event extends Resource {
             ->sortable(),
 
         Flexible::make('Program')
-            ->addLayout('Day', 'Data', [
+            ->addLayout('Day', 'day', [
                 DateTime::make('Event Date', 'event_begin')
                     ->resolveUsing(function ($date){
                       return Carbon::parse($date);
@@ -51,7 +51,7 @@ class Event extends Resource {
                     ->format('DD MMM Y hh:mm:ss')
                     ->required(),
                 Flexible::make('Speaker', 'speaker')
-                    ->addLayout('Speaker', 'Data', [
+                    ->addLayout('Speaker', 'speaker', [
                         Select::make('Speaker', 'speaker')->options(
                             \App\Models\Speaker::forSelection()
                         )
