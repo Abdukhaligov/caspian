@@ -12,6 +12,7 @@
         "ext-json": "*",
         "64robots/nova-fields": "^0.17.0",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "bayareawebpro/nova-field-ckeditor": "^1.0",
         "bissolli/nova-phone-field": "^0.0.4",
         "daniel-de-wit/nova-single-record-resource": "^1.1",
         "david-griffiths/nova-dark-theme": "*",
@@ -31,6 +32,7 @@
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.2",
+        "maatwebsite/laravel-nova-excel": "^1.2",
         "media24si/nova-youtube-field": "^1.0",
         "michielkempen/nova-polymorphic-field": "^1.0",
         "whitecube/nova-flexible-content": "^0.1.15"

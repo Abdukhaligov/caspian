@@ -431,7 +431,7 @@
         var timeinterval = setInterval(updateClock, 1000);
       }
 
-      var deadline = new Date("{{  \App\Models\Event::where('active', true)->first()["date"] }}");
+      var deadline = new Date("{{  \App\Models\Event::activeEvent()["date"] }}");
       initializeClock('clockdiv', deadline);
     }
   }(jQuery));

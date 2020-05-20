@@ -76,10 +76,10 @@ return [
             'visibility' => 'public',
         ],
 
-        'presenters' => [
+        'avatars' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/presenters'),
-            'url' => env('APP_URL').'/storage/presenters',
+            'root' => storage_path('app/public/avatars'),
+            'url' => env('APP_URL').'/storage/avatars',
             'visibility' => 'public',
         ],
 

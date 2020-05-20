@@ -9,12 +9,23 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
 
   $number = rand(0, 4);
-  switch ($number){
-    case(0): $number = '55';break;
-    case(1): $number = '50';break;
-    case(2): $number = '51';break;
-    case(3): $number = '70';break;
-    case(4): $number = '77';break;
+
+  switch ($number) {
+    case(0):
+      $number = '55';
+      break;
+    case(1):
+      $number = '50';
+      break;
+    case(2):
+      $number = '51';
+      break;
+    case(3):
+      $number = '70';
+      break;
+    case(4):
+      $number = '77';
+      break;
   }
 
   $number = '994' . $number . rand(221, 795) . rand(21, 98) . rand(10, 85);
@@ -26,6 +37,8 @@ $factory->define(User::class, function (Faker $faker) {
       'phone' => $number,
       'company' => $faker->company,
       'degree' => $faker->title,
+      'description' => $faker->paragraph(25),
+      'avatar' => 'avatars/avatar' . rand(1, 19) . '.jpg',
       'job_title' => $faker->jobTitle,
       'reference_id' => rand(1, 6),
       'membership_id' => rand(1, 6),

@@ -50,10 +50,10 @@ class Event extends Resource {
                     })
                     ->format('DD MMM Y hh:mm:ss')
                     ->required(),
-                Flexible::make('Speaker', 'speaker')
-                    ->addLayout('Speaker', 'speaker', [
-                        Select::make('Speaker', 'speaker')->options(
-                            \App\Models\Speaker::forSelection()
+                Flexible::make('User', 'user')
+                    ->addLayout('User', 'user', [
+                        Select::make('User', 'user')->options(
+                            \App\User::forSelection()
                         )
                             ->required(),
                         Text::make('Title', 'title')
@@ -69,7 +69,9 @@ class Event extends Resource {
 
         DateTime::make('Date', 'date')
             ->sortable(),
-        BelongsToMany::make('Speakers'),
+
+        BelongsToMany::make('Users'),
+
         DateTime::make('Created At')
             ->hideFromIndex(),
         DateTime::make('Updated At')

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\Member;
 use App\Models\Membership;
 use App\Models\Pages\AbstractBook;
 use App\Models\Pages\Program;
-use App\Models\Speaker;
 use App\Models\Reference;
 use App\Models\Pages\AboutUs;
 use App\Models\Pages\Cabinet;
@@ -21,6 +19,7 @@ use App\Models\Pages\Topics;
 use App\Models\Sponsor;
 use App\Models\Topic;
 use App\Models\Partner;
+use App\User;
 use Auth;
 
 class PageController extends Controller {
@@ -35,16 +34,16 @@ class PageController extends Controller {
   public function committee() {
     $data = Committee::first();
 
-    $data["chairmen_1"] = Member::where('rank',1)->get();
-    $data["chairmen_2"] = Member::where('rank',2)->get();
-    $data["chairmen_3"] = Member::where('rank',3)->get();
+    $data["users_1"] = User::where([['rank','1'],['show_on_site', true]])->get();
+    $data["users_2"] = User::where([['rank','2'],['show_on_site', true]])->get();
+    $data["users_3"] = User::where([['rank','3'],['show_on_site', true]])->get();
 
     return view('committee', compact('data'));
   }
 
   public function program() {
     $data = Program::first();
-    $data->event = Event::where('active', true)->first();
+    $data->event = Event::activeEvent();
     $data->program = $data->event->program;
 
 
@@ -99,7 +98,7 @@ class PageController extends Controller {
 
   public function home() {
     $data = Home::first();
-    $data["event"] =  Event::where('active', true)->first();
+    $data["event"] =  Event::activeEvent();
 
     if($data["event"]){
       $data["eventBanners"] = $data["event"]->getMedia('banners');
@@ -122,7 +121,7 @@ class PageController extends Controller {
   public function speakers() {
     $data = Speakers::first();
 
-    $data["speakers"] = Speaker::all();
+    $data["speakers"] = User::speakers()->where('show_on_site', true);
 
     return view('speakers', compact('data'));
   }

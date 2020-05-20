@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class Report extends Resource {
 
@@ -19,13 +20,25 @@ class Report extends Resource {
   public static $title = 'id';
   public static $search = ['id'];
 
+  public function actions(Request $request) {
+    return [
+        new DownloadExcel,
+    ];
+  }
+
+  public function filters(Request $request)
+  {
+    return [
+        new Filters\ReportStatus(),
+    ];
+  }
 
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
         Text::make('Name')
             ->displayUsing(function ($value) {
-                return substr($value, 0,20);
+              return substr($value, 0, 20);
             })
             ->sortable(),
         BelongsTo::make('User')

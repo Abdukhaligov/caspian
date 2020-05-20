@@ -10,8 +10,7 @@ class CreateMembershipsTable extends Migration {
     Schema::create('memberships', function (Blueprint $table) {
       $table->increments('id');
       $table->json('name');
-      $table->integer('parent_id')->unsigned()->nullable();
-      $table->foreign('parent_id')->references('id')->on('memberships');
+      $table->boolean('reporter')->default(false);
       $table->timestamps();
     });
   }

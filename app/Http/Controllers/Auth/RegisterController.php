@@ -58,7 +58,7 @@ class RegisterController extends Controller {
 
   public function showRegistrationForm() {
     $data['references'] = Reference::all();
-    $data['membership'] = Membership::showTree();
+    $data['membership'] = Membership::all();
     $data["topics"] = Topic::showTree();
 
     return view('auth.register', compact('data'));

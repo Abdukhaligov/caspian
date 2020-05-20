@@ -128,24 +128,14 @@
                         class="form-control cp1 @error('membership_id') is-invalid @enderror"
                         name="membership_id" id="membership_id" autocomplete="membership_id">
                   <option disabled selected>Select</option>
+                  <option disabled>Reporter</option>
+
                   @foreach($data['membership'] as $membership)
-{{--                    <option @if($membership->hasChildren == true ) disabled @endif--}}
-{{--                    @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected--}}
-{{--                            @endif value="{{ $membership->id }}">{{ $membership->name }}</option>    --}}
-
-                    <option @if($membership->hasChildren == true ) disabled @endif
-                    @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected @endif
-                    @if($membership->id != 3)value="{{ $membership->id }}" @endif>{{ $membership->name }}</option>
-                    @if($membership->hasChildren == true )
-                      @foreach($membership->children as $child)
-                        <option
-                            @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $child->id ) selected @endif
-
-                            @if(isset($_GET["speaker"])) @if($_GET["speaker"] == $child->id) selected @endif @endif
-
-                            value="{{ $child->id }}">— {{ $child->name }}</option>
-                      @endforeach
-                    @endif
+                    <option
+                        @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected
+                        @endif
+                        value="{{ $membership->id }}"> @if($membership->reporter == true )
+                        - {{ $membership->name }} @else {{ $membership->name }} @endif</option>
                   @endforeach
                 </select>
                 @error('membership_id')
@@ -156,7 +146,8 @@
               <div style="display: none" id="abstractForm">
                 <div class="form-group cfdb1">
                   <label for="abstract_topic_id" class="col-form-label">Topic</label>
-                  <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
+                  <select style="height: 52px;font-size: 14px;"
+                          class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
                           name="abstract_topic_id" id="abstract_topic_id" autocomplete="abstract_topic_id">
                     @foreach($data['topics'] as $topic)
                       @if($topic->hasChildren == true )
@@ -182,9 +173,10 @@
                   @enderror
                 </div>
                 <div class="form-group cfdb1">
-                  <input type="text" class="form-control cp1 @error('abstract_name') is-invalid @enderror" name="abstract_name" id="abstract_name" placeholder="Title of the abstract"
+                  <input type="text" class="form-control cp1 @error('abstract_name') is-invalid @enderror"
+                         name="abstract_name" id="abstract_name" placeholder="Title of the abstract"
                          onfocus="this.placeholder = ''" onblur="this.placeholder ='Name'"
-                  value="{{old('abstract_name') }}">
+                         value="{{old('abstract_name') }}">
                   @error('abstract_name')
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                   @enderror
@@ -193,7 +185,8 @@
                   <textarea rows="8" class="form-control cp1 @error('abstract_description') is-invalid @enderror"
                             name="abstract_description" id="abstract_description"
                             placeholder="Abstract body (max 250 words)"
-                            onfocus="this.placeholder =''" onblur="this.placeholder ='Comment'">{{old('abstract_description') }}</textarea>
+                            onfocus="this.placeholder =''"
+                            onblur="this.placeholder ='Comment'">{{old('abstract_description') }}</textarea>
                   @error('abstract_description')
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                   @enderror

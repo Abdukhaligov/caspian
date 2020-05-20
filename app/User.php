@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Event;
 use App\Models\Membership;
 use App\Models\Pages\Initial;
 use App\Models\Reference;
@@ -29,17 +30,45 @@ class User extends Authenticatable {
 
   public function pendingReports() { return $this->reports()->where('status', '=', 'pending'); }
 
+  public static function forSelection() {
+    $array = array();
+
+//    App\Models\Event::where('active', true)->first()->speakers)
+//    foreach (Speaker::all('id', 'user_id') as $speaker) {
+
+    foreach (Event::activeEvent()->users as $user) {
+
+      $array[$user->id] = $user->name;
+    }
+
+    return $array;
+  }
+
+  public function events() {
+    return $this->belongsToMany(Event::class);
+  }
+
+
   public function canAddReports() {
-    if ($this->isAdmin()) return true;
+    if ($this->isAdmin() || $this->rank) return true;
 
-    return $this->checkMembership([2, 3]) && $this->checkAccessCount(Initial::getData()->max_report_count);
+
+
+//    return $this->checkMembership([2, 3]) && $this->checkAccessCount(Initial::getData()->max_report_count);
+    return $this->membership->reporter && $this->checkAccessCount(Initial::getData()->max_report_count);
   }
 
-  private function checkMembership(array $ids = []) {
-    if (!count($ids)) return false;
-
-    return in_array($this->membership->id, $ids);
+  public static function speakers(){
+    return User::whereHas('membership', function($q) {
+      $q->where('reporter', true);
+    })->get();
   }
+
+//  private function checkMembership(array $ids = []) {
+//    if (!count($ids)) return false;
+//
+//    return in_array($this->membership->id, $ids);
+//  }
 
   private function checkAccessCount(int $count = 0) {
     return $this->pendingReports->count() < $count;

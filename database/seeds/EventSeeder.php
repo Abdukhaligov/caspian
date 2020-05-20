@@ -18,11 +18,11 @@ class EventSeeder extends Seeder {
 //    }
 
     for ($i = 0; $i < 7; $i++) {
-      $speakersTemp = [];
+      $usersTemp = [];
       for ($j = 0; $j < 4; $j++) {
-        $speakersOnEvent [] = [
+        $usersOnEvent [] = [
             "event_id" => $i + 1,
-            "speaker_id" => $speakersTemp[] = rand(1, 8)
+            "user_id" => $usersTemp[] = rand(1, 24)
         ];
       }
 
@@ -30,17 +30,17 @@ class EventSeeder extends Seeder {
       $program = array();
       for ($j = 0; $j < 6; $j++) {
 
-        $speakers = array();
+        $users = array();
 
         for ($k=0 ; $k<rand(1,3); $k++){
-          $speakers [] = array(
+          $users [] = array(
               "key" => uniqid(),
-              "layout" => "speaker",
+              "layout" => "user",
               "attributes" => array(
                   "key" => uniqid(),
                   "title" => "$faker->sentence",
                   "address" => "$faker->address",
-                  "speaker" => $speakersTemp[rand(0,3)],
+                  "user" => $usersTemp[rand(0,3)],
                   "event_end" => "12:00:00",
                   "description" => "<p>$faker->paragraph</p>",
                   "event_start" => "12:00:00"
@@ -49,7 +49,7 @@ class EventSeeder extends Seeder {
         }
 
         $days = array(
-            "speaker" => $speakers,
+            "user" => $users,
             "event_begin" => Carbon::now()->addDays($j+2),
         );
 
@@ -73,7 +73,7 @@ class EventSeeder extends Seeder {
     }
 
     DB::table('events')->insert($data);
-    DB::table('event_speaker')->insert($speakersOnEvent);
+    DB::table('event_user')->insert($usersOnEvent);
   }
 
 }

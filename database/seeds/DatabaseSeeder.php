@@ -11,11 +11,12 @@ class DatabaseSeeder extends Seeder {
     factory(\App\Models\Topic::class, 12)->create();
 
     $this->call(UserSeeder::class);
-    factory(\App\User::class, 23)->create();
+    factory(\App\User::class, 2)->create(["rank" => '1', 'show_on_site' => true]);
+    factory(\App\User::class, 4)->create(["rank" => '2', 'show_on_site' => true]);
+    factory(\App\User::class, 12)->create(["rank" => '3', 'show_on_site' => true]);
+    factory(\App\User::class, 10)->create();
 
     factory(\App\Models\Report::class, 12)->create();
-    $this->call(SpeakerSeeder::class);
-    $this->call(MemberSeeder::class);
     $this->call(EventSeeder::class);
     $this->call(PartnerSeeder::class);
     $this->call(SponsorSeeder::class);
