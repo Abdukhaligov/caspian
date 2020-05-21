@@ -31,17 +31,16 @@ $factory->define(User::class, function (Faker $faker) {
   $number = '994' . $number . rand(221, 795) . rand(21, 98) . rand(10, 85);
 
   return [
-      'name' => $faker->name,
+      'name' => $faker->firstName." ".$faker->lastName,
       'email' => $faker->unique()->safeEmail,
       'email_verified_at' => now(),
       'phone' => $number,
       'company' => $faker->company,
       'degree' => $faker->title,
       'description' => $faker->paragraph(25),
-      'avatar' => 'avatars/avatar' . rand(1, 19) . '.jpg',
       'job_title' => $faker->jobTitle,
       'reference_id' => rand(1, 6),
-      'membership_id' => rand(1, 6),
+      'membership_id' => rand(3, 6),
       'password' => bcrypt(123456), // password
       'remember_token' => Str::random(10),
   ];

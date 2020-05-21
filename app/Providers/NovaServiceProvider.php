@@ -7,6 +7,8 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Joedixon\NovaTranslation\NovaTranslation;
+use CodencoDev\NovaGridSystem\NovaGridSystem;
+
 
 
 class NovaServiceProvider extends NovaApplicationServiceProvider {
@@ -74,6 +76,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
   public function tools() {
     return [
 //        new \Infinety\Filemanager\FilemanagerTool(),
+        new NovaGridSystem
     ];
   }
 

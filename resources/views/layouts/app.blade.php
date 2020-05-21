@@ -320,24 +320,27 @@
     let membership = $("#membership_id");
     let abstractForm = $("#abstractForm");
 
-    if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
-      abstractForm.show();
-      console.log("reporter selected")
-    } else {
-      abstractForm.hide();
-      console.log("not reporter selected")
-    }
-
-
-    membership.on('change', function () {
-      if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
+    if(membership[0]){
+      if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
         abstractForm.show();
         console.log("reporter selected")
       } else {
         abstractForm.hide();
-        console.log("not reporter selected")
+        console.log("not reporter selected");
       }
-    })
+
+
+      membership.on('change', function () {
+        if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
+          abstractForm.show();
+          console.log("reporter selected")
+        } else {
+          abstractForm.hide();
+          console.log("not reporter selected")
+        }
+      });
+    }
+
 
 
     $("#navFormButton").on('click', function () {

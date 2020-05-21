@@ -14,7 +14,6 @@ class CreateUsersTable extends Migration {
       $table->integer('membership_id')->unsigned()->nullable();
       $table->foreign('membership_id')->references('id')->on('memberships');
       $table->longText('description')->nullable();
-      $table->string('avatar')->nullable();
       $table->string('name')->nullable();
       $table->string('email')->unique()->nullable();
       $table->boolean('is_admin')->default(false);

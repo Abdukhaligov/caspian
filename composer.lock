@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b06d6e3eff2b17c93177ce8ac71de34a",
+    "content-hash": "9eb3d8a8c2f1769022b1478bd41c88af",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -420,6 +420,60 @@
                 "time"
             ],
             "time": "2019-11-30T02:33:19+00:00"
+        },
+        {
+            "name": "codenco-dev/nova-grid-system",
+            "version": "0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codenco-dev/nova-grid-system.git",
+                "reference": "f39e2f824be053c209fed618b776f7d3891319f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codenco-dev/nova-grid-system/zipball/f39e2f824be053c209fed618b776f7d3891319f8",
+                "reference": "f39e2f824be053c209fed618b776f7d3891319f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CodencoDev\\NovaGridSystem\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CodencoDev\\NovaGridSystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dominic THOMAS",
+                    "email": "dthomas@codenco.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova tool to have a grid system",
+            "keywords": [
+                "grid",
+                "laravel",
+                "layout",
+                "nova"
+            ],
+            "time": "2020-05-18T17:02:37+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1599,6 +1653,47 @@
                 "tiny"
             ],
             "time": "2019-07-08T11:07:05+00:00"
+        },
+        {
+            "name": "epartment/nova-dependency-container",
+            "version": "1.2.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/epartment/nova-dependency-container.git",
+                "reference": "d4081499c45b86111d5d95ef3c4457db4dd4bbdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/epartment/nova-dependency-container/zipball/d4081499c45b86111d5d95ef3c4457db4dd4bbdf",
+                "reference": "d4081499c45b86111d5d95ef3c4457db4dd4bbdf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Epartment\\NovaDependencyContainer\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Epartment\\NovaDependencyContainer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field container allowing to depend on other fields values",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-12-01T02:45:45+00:00"
         },
         {
             "name": "fideloper/proxy",

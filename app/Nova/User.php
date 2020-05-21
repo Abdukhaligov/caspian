@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Bissolli\NovaPhoneField\PhoneNumber;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
@@ -12,6 +13,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
@@ -26,17 +28,26 @@ class User extends Resource {
   public static $title = 'name';
   public static $search = ['id', 'name', 'email',];
 
+
   public function fields(Request $request) {
     return [
+
+
         ID::make()->sortable(),
-        FilemanagerField::make('Avatar')
-            ->folder('avatars')
-            ->displayAsImage()
-            ->hideCreateFolderButton(),
+
+            Media::make('Avatar'),
+
+//        FilemanagerField::make('Avatar')
+//            ->folder('avatars')
+//            ->displayAsImage()
+//            ->hideCreateFolderButton()
+//            ->sizeOnDetail('w-1/2'),
         Text::make('Name')
             ->sortable()
-            ->rules('required', 'max:255'),
+            ->rules('required', 'max:255')
+            ->sizeOnDetail('w-1/2'),
         PhoneNumber::make('Phone')
+            ->sizeOnDetail('w-1/2')
             ->sortable()
             ->withCustomFormats('+994 (##) ###-##-##')
             ->onlyCustomFormats(),

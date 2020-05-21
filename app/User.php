@@ -10,10 +10,29 @@ use App\Models\Report;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements HasMedia {
 
   use HasApiTokens, Notifiable;
+  use HasMediaTrait;
+
+  public function registerMediaConversions(Media $media = null) {
+    $this->addMediaConversion('thumb')
+        ->width(130)
+        ->height(130);
+  }
+
+  public function registerMediaCollections() {
+    $this
+        ->addMediaCollection('avatar')
+        ->useDisk('mediaFiles')
+        ->singleFile();
+
+  }
+
 
   protected $guarded = [];
   protected $fillable = ['name', 'email', 'password', 'phone', 'company', 'job_title', 'reference_id', 'membership_id', 'topic_id'];
@@ -49,13 +68,12 @@ class User extends Authenticatable {
     if ($this->isAdmin() || $this->rank) return true;
 
 
-
 //    return $this->checkMembership([2, 3]) && $this->checkAccessCount(Initial::getData()->max_report_count);
     return $this->membership->reporter && $this->checkAccessCount(Initial::getData()->max_report_count);
   }
 
-  public static function speakers(){
-    return User::whereHas('membership', function($q) {
+  public static function speakers() {
+    return User::whereHas('membership', function ($q) {
       $q->where('reporter', true);
     })->get();
   }

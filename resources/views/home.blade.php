@@ -192,8 +192,9 @@
                   <div class="col-md-12">
                     <div class="single-team-member">
                       <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                        <a href="{{ route('speakers')."/".$user->id }}"><img
-                              src="{{ Storage::disk('public')->url($user->avatar) }}" alt=""></a>
+                        <a href="{{ route('speakers')."/".$user->id }}">
+                          {{ $user->getMedia('avatar')->first() }}
+                        </a>
                         <div class="stm-icon">
                           <ul>
                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
