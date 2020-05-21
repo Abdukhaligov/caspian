@@ -9,14 +9,6 @@ class EventSeeder extends Seeder {
   public function run(Faker $faker) {
     $data = [];
 
-//    $this->checkMembership([2, 3])
-//
-//    private function checkMembership(array $ids = []) {
-//      if (!count($ids)) return false;
-//
-//      return in_array($this->membership->id, $ids);
-//    }
-
     for ($i = 0; $i < 7; $i++) {
       $usersTemp = [];
       for ($j = 0; $j < 4; $j++) {
@@ -66,7 +58,7 @@ class EventSeeder extends Seeder {
           "description" => $faker->paragraphs(3, true),
           "address" => $faker->address,
           "date" => $faker->dateTimeBetween("+2 days", "+ 2 months"),
-          "active" => rand(1, 3) == 3 ? true : false,
+          "active" => rand(1, 3) == 3,
           "program" => json_encode($program)
       ];
 

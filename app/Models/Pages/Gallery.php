@@ -31,8 +31,6 @@ class Gallery extends Model implements HasMedia {
 
   public function registerMediaCollections() {
     $this->addMediaCollection('media')->useDisk('mediaFiles');
-//        $this->addMediaCollection('main')->singleFile()->useDisk('mediaFiles');
-//        $this->addMediaCollection('my_multi_collection')->useDisk('mediaFiles');
   }
 
 }

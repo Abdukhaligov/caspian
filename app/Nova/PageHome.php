@@ -31,7 +31,7 @@ class PageHome extends Resource {
         FilemanagerField::make('Description IMG', 'description_img')
             ->displayAsImage()
             ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+            ->folder('main'),
         Multilingual::make('Language'),
     ];
   }

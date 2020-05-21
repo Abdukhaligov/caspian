@@ -26,8 +26,7 @@ class Sponsor extends Resource
         FilemanagerField::make('Photo')
             ->folder('speakers')
             ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+            ->hideCreateFolderButton(),
         Text::make('Job Title', 'job_title')
             ->sortable(),
         NovaTinyMCE::make('Description'),

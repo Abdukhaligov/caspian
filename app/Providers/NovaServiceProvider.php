@@ -73,7 +73,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
    */
   public function tools() {
     return [
-        new \Infinety\Filemanager\FilemanagerTool(),
+//        new \Infinety\Filemanager\FilemanagerTool(),
     ];
   }
 

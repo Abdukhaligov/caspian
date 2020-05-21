@@ -80,9 +80,9 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="hero-slide-content">
-                        <h1 class="wow fadeInUp" data-wow-delay="0.5s">{{$data["event"]["name"]}}</h1>
-                        <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
-                        <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+                        <h1>{{$data["event"]["name"]}}</h1>
+                        <span><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
+                        <span><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
                       </div>
                     </div>
                   </div>
@@ -145,9 +145,9 @@
           <div class="col-md-12">
             <div class="hero-content">
               <h1 class="wow fadeInUp" data-wow-delay=".3s">Caspian forum</h1>
-{{--              <h1 class="wow fadeInUp" data-wow-delay=".5s"></h1>--}}
-{{--              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i></span>--}}
-{{--              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i></span>--}}
+              {{--              <h1 class="wow fadeInUp" data-wow-delay=".5s"></h1>--}}
+              {{--              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="fas fa-map-marker-alt"></i></span>--}}
+              {{--              <span class="wow fadeInUp" data-wow-delay=".8s"><i class="far fa-clock"></i></span>--}}
             </div>
           </div>
         </div>
@@ -163,7 +163,7 @@
         <div class="col-md-6">
           <div class="about-content">
             {!! $data->description !!}
-            <a href="/register?speaker=2" class="btn-2">Join to Us</a>
+            <a href="@guest {{ route('register') }}?speaker=2 @endauth @auth{{ route('cabinet') }}@endauth" class="btn-2">Join to Us</a>
           </div>
         </div>
         <div class="col-md-6">
@@ -593,9 +593,13 @@
     <div class="container">
       <div class="row">
         @foreach($data["partnersGold"] as $partner)
+          @php $media = $partner->getMedia('partners')->first(); @endphp
           <div class="col-md-3">
             <div class="single-partner">
-              <a href="{{ $partner->url }}"></a><img src="{{ Storage::disk('public')->url($partner->img) }}" alt="">
+              <a href="{{ $partner->url }}"></a>
+              @if($media)
+                {{ $media }}
+              @endif
             </div>
           </div>
         @endforeach
@@ -606,9 +610,13 @@
     <div class="container">
       <div class="row">
         @foreach($data["partners"] as $partner)
+          @php $media = $partner->getMedia('partners')->first(); @endphp
           <div class="col-md-2">
             <div class="single-partner">
-              <a href="{{ $partner->url }}"></a><img src="{{ Storage::disk('public')->url($partner->img) }}" alt="">
+              <a href="{{ $partner->url }}"></a>
+              @if($media)
+                {{ $media }}
+              @endif
             </div>
           </div>
         @endforeach

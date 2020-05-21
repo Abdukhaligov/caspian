@@ -32,8 +32,7 @@ class User extends Resource {
         FilemanagerField::make('Avatar')
             ->folder('avatars')
             ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+            ->hideCreateFolderButton(),
         Text::make('Name')
             ->sortable()
             ->rules('required', 'max:255'),

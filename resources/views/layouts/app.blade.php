@@ -319,25 +319,23 @@
 
     let membership = $("#membership_id");
     let abstractForm = $("#abstractForm");
-    console.log(membership.val());
 
-    if (membership.val() === "2" || membership.val() === "3") {
+    if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
       abstractForm.show();
-      console.log("norm")
+      console.log("reporter selected")
     } else {
       abstractForm.hide();
-      console.log("nenorm")
+      console.log("not reporter selected")
     }
 
 
     membership.on('change', function () {
-      console.log($(this).val());
-      if ($(this).val() === "2" || $(this).val() === "3") {
+      if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
         abstractForm.show();
-        console.log("norm")
+        console.log("reporter selected")
       } else {
         abstractForm.hide();
-        console.log("nenorm")
+        console.log("not reporter selected")
       }
     })
 

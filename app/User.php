@@ -33,11 +33,7 @@ class User extends Authenticatable {
   public static function forSelection() {
     $array = array();
 
-//    App\Models\Event::where('active', true)->first()->speakers)
-//    foreach (Speaker::all('id', 'user_id') as $speaker) {
-
     foreach (Event::activeEvent()->users as $user) {
-
       $array[$user->id] = $user->name;
     }
 

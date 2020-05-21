@@ -19,6 +19,8 @@ class Initial extends Model {
   public static function getData() { return self::first(); }
 
   public static function getRoutes() {
+    $registerUrl = Auth::user() ? route('cabinet') : route('register') . "/?speaker=2";
+
     $routes = [
         [
             "title" => App\Models\Pages\Home::first()->title,
@@ -60,7 +62,7 @@ class Initial extends Model {
         ],
         [
             "title" => "Registration",
-            "link" => route('register') . "/?speaker=2"
+            "link" => $registerUrl
         ],
         [
             "title" => App\Models\Pages\News::first()->title,

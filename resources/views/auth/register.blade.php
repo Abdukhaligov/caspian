@@ -131,9 +131,10 @@
                   <option disabled>Reporter</option>
 
                   @foreach($data['membership'] as $membership)
+
                     <option
-                        @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id )selected
-                        @endif
+                        reporter="{{ $membership->reporter }}"
+                        @if($_GET["speaker"] == $membership->id) selected @elseif(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected @endif
                         value="{{ $membership->id }}"> @if($membership->reporter == true )
                         - {{ $membership->name }} @else {{ $membership->name }} @endif</option>
                   @endforeach

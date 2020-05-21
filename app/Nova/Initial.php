@@ -32,14 +32,14 @@ class Initial extends Resource {
         FilemanagerField::make('Favicon')
             ->displayAsImage()
             ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+            ->folder('main'),
         Text::make('Phone'),
         Text::make('Email'),
         Number::make('Max Report Count','max_report_count'),
         FilemanagerField::make('Logo')
+            ->folder('main')
             ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+            ->hideCreateFolderButton(),
         Text::make('Copyright'),
         Flexible::make('Social Networks', 'social_networks')
             ->addLayout('Social Network', 'Data', [

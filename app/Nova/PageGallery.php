@@ -32,15 +32,14 @@ class PageGallery extends Resource {
         Media::make('Media'),
 
         Flexible::make('Videos')
-            ->addLayout('Adding video', 'Videos', [
+            ->addLayout('Video', 'videos', [
                 Youtube::make('Url', 'url')
                     ->required(),
                 FilemanagerField::make('Cover', 'cover')
                     ->required()
-                    ->folder('videos')
+                    ->folder('video_covers')
                     ->displayAsImage()
-                    ->hideCreateFolderButton()
-                    ->hideDeleteFileButton(),
+                    ->hideCreateFolderButton(),
             ])
     ];
   }

@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Event extends Model implements HasMedia {
 
-  protected $casts = ['date' => 'datetime','program' => "array"];
+  protected $casts = ['date' => 'datetime', 'program' => "array"];
 
   use HasMediaTrait;
 
@@ -24,14 +24,12 @@ class Event extends Model implements HasMedia {
         ->height(130);
   }
 
-  public static function activeEvent(){
+  public static function activeEvent() {
     return Event::where('active', true)->first();
   }
 
   public function registerMediaCollections() {
     $this->addMediaCollection('banners')->useDisk('mediaFiles');
-//        $this->addMediaCollection('main')->singleFile()->useDisk('mediaFiles');
-//        $this->addMediaCollection('my_multi_collection')->useDisk('mediaFiles');
   }
 
 

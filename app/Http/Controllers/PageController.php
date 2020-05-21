@@ -69,7 +69,7 @@ class PageController extends Controller {
     $data["reports"] = $user->reports;
     $data["topics"] = Topic::showTree();
     $data['references'] = Reference::all();
-    $data['membership'] = Membership::showTree();
+
 
     return view('cabinet', compact('data'));
   }

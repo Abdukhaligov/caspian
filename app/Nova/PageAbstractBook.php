@@ -35,8 +35,7 @@ class PageAbstractBook extends Resource {
                     ->required()
                     ->folder('books')
                     ->displayAsImage()
-                    ->hideCreateFolderButton()
-                    ->hideDeleteFileButton(),
+                    ->hideCreateFolderButton(),
             ]),
         Multilingual::make('Language'),
     ];

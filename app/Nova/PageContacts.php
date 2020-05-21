@@ -47,8 +47,7 @@ class PageContacts extends Resource {
             ->required()
             ->folder('videos')
             ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+            ->hideCreateFolderButton(),
         Multilingual::make('Language'),
     ];
   }

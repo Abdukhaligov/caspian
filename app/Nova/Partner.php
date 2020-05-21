@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
 use Laravel\Nova\Fields\Boolean;
@@ -21,13 +22,12 @@ class Partner extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        FilemanagerField::make('Img', 'img')
-            ->folder('partners')
-            ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->hideDeleteFileButton(),
+
         Text::make('Name')
             ->sortable(),
+        Media::make('Img', 'partners')
+            ->sortable(),
+
         Boolean::make('Gold'),
         Text::make('Url'),
     ];

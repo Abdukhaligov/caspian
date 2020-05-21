@@ -10,8 +10,8 @@ class PageInitialSeeder extends Seeder {
         "phone" => "+994 70 226 26 26",
         "email" => "test@mail.ru",
         "copyright" => "Copyright test@mail.ru Caspian - 2020",
-        "logo" => "LOGO_MART_2.png",
-        "favicon" => "favicon.ico",
+        "logo" => "main/LOGO_MART_2.png",
+        "favicon" => "main/favicon.ico",
         "social_networks" => "[
             {\"key\": \"126a213bb01780d4\",
                 \"layout\": \"Data\",

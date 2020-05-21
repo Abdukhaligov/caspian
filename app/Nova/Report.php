@@ -55,6 +55,7 @@ class Report extends Resource {
         File::make('File')
             ->hideFromIndex()
             ->disk('reports'),
+
         Select::make('Status')->options([
             'pending' => 'pending',
             'canceled' => 'canceled',

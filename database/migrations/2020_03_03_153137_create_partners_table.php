@@ -9,10 +9,9 @@ class CreatePartnersTable extends Migration {
   public function up() {
     Schema::create('partners', function (Blueprint $table) {
       $table->increments('id');
-      $table->boolean('gold');
+      $table->boolean('gold')->default(false);
       $table->string('name');
-      $table->string('img');
-      $table->string('url');
+      $table->string('url')->nullable();
       $table->timestamps();
     });
   }

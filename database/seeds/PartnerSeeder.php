@@ -10,7 +10,6 @@ class PartnerSeeder extends Seeder {
     for ($i = 1; $i <= 17; $i++) {
       $data[] = [
           "name" => $faker->company,
-          "img" => "partners/partner-".$i.".png",
           "url" => "https://google.com",
           "gold" => rand(0,1)
       ];
