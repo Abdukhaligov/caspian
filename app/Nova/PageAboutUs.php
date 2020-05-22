@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use BayAreaWebPro\NovaFieldCkEditor\CkEditor;
 use Digitalcloud\MultilingualNova\Multilingual;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
@@ -28,7 +29,12 @@ class PageAboutUs extends Resource {
     return [
         Text::make('Title'),
         NovaTinyMCE::make('Body'),
+        CkEditor::make('Body')
+          ->mediaBrowser(),
+
         Multilingual::make('Language'),
+
+
 //        Flexible::make('Team')
 //            ->addLayout('Member', 'Data', [
 //                Text::make('Name', 'name')

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use BayAreaWebPro\NovaFieldCkEditor\CkEditor;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
@@ -35,59 +36,85 @@ class User extends Resource {
 
         ID::make()->sortable(),
 
-            Media::make('Avatar'),
+        Media::make('Avatar')
+            ->size('w-1/4'),
+        CkEditor::make('Description')
+            ->hideFromIndex()
+            ->size('w-3/4'),
 
-//        FilemanagerField::make('Avatar')
-//            ->folder('avatars')
-//            ->displayAsImage()
-//            ->hideCreateFolderButton()
-//            ->sizeOnDetail('w-1/2'),
+
         Text::make('Name')
             ->sortable()
             ->rules('required', 'max:255')
-            ->sizeOnDetail('w-1/2'),
-        PhoneNumber::make('Phone')
-            ->sizeOnDetail('w-1/2')
-            ->sortable()
+            ->size('w-1/4'),
+        PhoneNumber::make('Phone')->sortable()
             ->withCustomFormats('+994 (##) ###-##-##')
-            ->onlyCustomFormats(),
+            ->onlyCustomFormats()
+            ->size('w-1/4'),
         Email::make('Email')
             ->alwaysClickable()
-            ->sortable(),
-
-        NovaTinyMCE::make('Description'),
-        BelongsToMany::make('Events'),
-        Text::make('Company')
             ->sortable()
-            ->hideFromIndex(),
+            ->size('w-1/4'),
+        BelongsTo::make('Membership')
+            ->sortable()
+            ->size('w-1/4'),
+
+
         Text::make('Job Title', 'job_title')
             ->sortable()
-            ->hideFromIndex(),
-        HasMany::make('Reports'),
+            ->hideFromIndex()
+            ->size('w-1/4'),
+        Text::make('Degree')
+            ->sortable()
+            ->hideFromIndex()
+            ->sizeOnForms('w-1/6')
+            ->sizeOnDetail('w-1/4'),
+        Text::make('Company')
+            ->sortable()
+            ->hideFromIndex()
+            ->size('w-1/4'),
+        Select::make('Rank in Committee', 'rank')
+            ->options(
+                [
+                    "0" => "Not in committee",
+                    "1" => 1,
+                    "2" => 2,
+                    "3" => 3,
+                ]
+            )
+            ->sizeOnForms('w-1/6')
+            ->sizeOnDetail('w-1/4'),
+        Boolean::make('Show on site', 'show_on_site')
+            ->sortable()
+            ->onlyOnForms()
+            ->size('w-1/6'),
+
+
         BelongsTo::make('Reference')
             ->sortable()
-            ->hideFromIndex(),
-        BelongsTo::make('Membership')
-            ->sortable(),
-        Boolean::make('Administrator permission', 'is_admin')
-            ->hideFromIndex(),
-        Boolean::make('Show on site', 'show_on_site')
-            ->sortable(),
-        Select::make('rank')->options(
-            [
-                "0" => 0,
-                "1" => 1,
-                "2" => 2,
-                "3" => 3,
-            ]
-        ),
+            ->hideFromIndex()
+            ->sizeOnForms('w-1/3')
+            ->sizeOnDetail('w-1/4'),
+        DateTime::make('Updated At')
+            ->hideFromIndex()
+            ->size('w-1/4'),
+        DateTime::make('Created At')
+            ->size('w-1/4'),
+        Boolean::make('Administrator', 'is_admin')
+            ->hideFromIndex()
+            ->sizeOnForms('w-1/6')
+            ->sizeOnDetail('w-1/4'),
+
+
         Password::make('Password')
             ->onlyOnForms()
-            ->creationRules('required', 'string', 'min:8')
-            ->updateRules('nullable', 'string', 'min:8'),
-        DateTime::make('Created At'),
-        DateTime::make('Updated At')
-            ->hideFromIndex(),
+            ->creationRules('required', 'string', 'min:6')
+            ->updateRules('nullable', 'string', 'min:6'),
+
+
+        HasMany::make('Reports'),
+        BelongsToMany::make('Events'),
+
         Impersonate::make($this)
             ->showOnDetail(),
     ];
