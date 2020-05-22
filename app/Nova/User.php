@@ -2,19 +2,16 @@
 
 namespace App\Nova;
 
-use BayAreaWebPro\NovaFieldCkEditor\CkEditor;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
-use Infinety\Filemanager\FilemanagerField;
 use Inspheric\Fields\Email;
 use KABBOUCHI\NovaImpersonate\Impersonate;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
@@ -38,8 +35,15 @@ class User extends Resource {
 
         Media::make('Avatar')
             ->size('w-1/4'),
-        CkEditor::make('Description')
-            ->hideFromIndex()
+
+        NovaTinyMCE::make('Description')
+            ->options([
+                'plugins' => [
+                    'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                ],
+                'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                'use_lfm' => true
+            ])
             ->size('w-3/4'),
 
 
@@ -84,10 +88,12 @@ class User extends Resource {
             )
             ->sizeOnForms('w-1/6')
             ->sizeOnDetail('w-1/4'),
-        Boolean::make('Show on site', 'show_on_site')
-            ->sortable()
-            ->onlyOnForms()
-            ->size('w-1/6'),
+
+
+        Boolean::make('Administrator', 'is_admin')
+            ->hideFromIndex()
+            ->hideFromDetail()
+            ->sizeOnForms('w-1/6'),
 
 
         BelongsTo::make('Reference')
@@ -100,17 +106,16 @@ class User extends Resource {
             ->size('w-1/4'),
         DateTime::make('Created At')
             ->size('w-1/4'),
-        Boolean::make('Administrator', 'is_admin')
-            ->hideFromIndex()
-            ->sizeOnForms('w-1/6')
-            ->sizeOnDetail('w-1/4'),
 
+        Boolean::make('Show on site', 'show_on_site')
+            ->sortable()
+            ->hideFromIndex()
+            ->size('w-1/6'),
 
         Password::make('Password')
             ->onlyOnForms()
             ->creationRules('required', 'string', 'min:6')
             ->updateRules('nullable', 'string', 'min:6'),
-
 
         HasMany::make('Reports'),
         BelongsToMany::make('Events'),

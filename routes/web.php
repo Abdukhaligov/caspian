@@ -1,5 +1,10 @@
 <?php
 
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth','admin']], function () {
+  \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 Route::group(['middleware' => ['locale']], function () {
 
   Route::get('/lang/{key}', function ($key) {

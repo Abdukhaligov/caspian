@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="sd-img">
-            <img src="{{ Storage::disk('public')->url($data->avatar) }}" alt="">
+            {{ $data->getMedia('avatar')->first() }}
           </div>
         </div>
         <div class="col-md-6">

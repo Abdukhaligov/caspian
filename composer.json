@@ -19,7 +19,7 @@
         "david-griffiths/nova-dark-theme": "*",
         "digitalcloud/multilingual-nova": "^2.0",
         "ebess/advanced-nova-media-library": "^2.9",
-        "energon7/nova-tinymce": " 0.5.5",
+        "emilianotisato/nova-tinymce": "^1.1",
         "epartment/nova-dependency-container": "^1.2",
         "fideloper/proxy": "^4.0",
         "genealabs/nova-map-marker-field": "^0.1.16",
@@ -37,6 +37,7 @@
         "maatwebsite/laravel-nova-excel": "^1.2",
         "media24si/nova-youtube-field": "^1.0",
         "michielkempen/nova-polymorphic-field": "^1.0",
+        "unisharp/laravel-filemanager": "^2.1",
         "whitecube/nova-flexible-content": "^0.1.15"
     },
     "require-dev": {
