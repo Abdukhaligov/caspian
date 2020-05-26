@@ -7,6 +7,7 @@ use App\Models\Membership;
 use App\Models\Pages\Initial;
 use App\Models\Reference;
 use App\Models\Report;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
