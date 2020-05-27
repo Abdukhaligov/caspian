@@ -36,7 +36,7 @@ $factory->define(User::class, function (Faker $faker) {
       'email_verified_at' => now(),
       'phone' => $number,
       'company' => $faker->company,
-      'degree' => $faker->title,
+      'degree_id' => rand(1,4),
       'description' => $faker->paragraph(25),
       'job_title' => $faker->jobTitle,
       'reference_id' => rand(1, 6),

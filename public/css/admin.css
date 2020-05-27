@@ -1,24 +1,30 @@
 svg.fill-current.text-danger, svg.fill-current.text-success {
   margin-bottom: -10px;
 }
+
 svg.fill-current.mr-2 {
   display: none;
 }
+
 select.form-control.form-select.w-full {
   margin-bottom: -4px;
 }
+
 select#rank {
   margin-bottom: 0px;
 }
+
 input#show_on_site, input#is_admin {
   margin: 0;
   height: 2.25rem;
   width: 2.25rem;
 }
+
 .flex.border-b.border-40.remove-bottom-border {
   position: absolute;
   right: 50px;
 }
+
 .flex.border-b.border-40.flex-col {
   border: none;
 }

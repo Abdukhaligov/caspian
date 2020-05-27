@@ -17,6 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/codenco-dev/nova-grid-system" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/daniel-de-wit/nova-single-record-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/day4/tree-view" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/defuse/php-encryption" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/digitalcloud/multilingual-nova" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
@@ -50,7 +51,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/joedixon/laravel-translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/joedixon/nova-translation" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/josrom/nova-map-address" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kabbouchi/nova-impersonate" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/lab404/laravel-impersonate" />
@@ -165,6 +165,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/whitecube/nova-flexible-content" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/whitecube/nova-google-maps" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

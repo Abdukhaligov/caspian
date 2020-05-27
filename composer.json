@@ -17,6 +17,7 @@
         "codenco-dev/nova-grid-system": "^0.9.0",
         "daniel-de-wit/nova-single-record-resource": "^1.1",
         "david-griffiths/nova-dark-theme": "*",
+        "day4/tree-view": "^0.5.0",
         "digitalcloud/multilingual-nova": "^2.0",
         "ebess/advanced-nova-media-library": "^2.9",
         "emilianotisato/nova-tinymce": "^1.1",
@@ -26,7 +27,6 @@
         "infinety-es/nova-filemanager": "^2.6",
         "inspheric/nova-email-field": "^1.42",
         "joedixon/nova-translation": "^1.0",
-        "josrom/nova-map-address": "^0.1.0",
         "kabbouchi/nova-impersonate": "^1.1",
         "laraning/nova-time-field": "^0.3.0",
         "laravel/framework": "^6.8",
@@ -38,7 +38,8 @@
         "media24si/nova-youtube-field": "^1.0",
         "michielkempen/nova-polymorphic-field": "^1.0",
         "unisharp/laravel-filemanager": "^2.1",
-        "whitecube/nova-flexible-content": "^0.1.15"
+        "whitecube/nova-flexible-content": "^0.1.15",
+        "whitecube/nova-google-maps": "^0.0.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

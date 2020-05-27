@@ -24,7 +24,7 @@ class RegisterController extends Controller {
   }
 
   protected function validator(array $data) {
-    if($data["membership_id"] != 2 && $data["membership_id"] != 3){
+    if(!Membership::find($data["membership_id"])->reporter){
       unset($data["abstract_topic_id"]);
       unset($data["abstract_name"]);
       unset($data["abstract_description"]);
@@ -36,6 +36,7 @@ class RegisterController extends Controller {
     $user = new User();
     $user->name = $data['name'];
     $user->email = $data['email'];
+    $user->degree = $data['degree'];
     $user->password = Hash::make($data['password']);
     $user->phone = preg_replace('/[^0-9]/', '', $data['phone']);
     $user->company = $data['company'];
@@ -44,7 +45,9 @@ class RegisterController extends Controller {
     $user->membership_id = $data['membership_id'];
     $user->save();
 
-    if($data["membership_id"] == 2 || $data["membership_id"] == 3){
+
+
+    if(Membership::find($data["membership_id"])->reporter){
       Report::create([
           'user_id' => $user->id,
           'name' => $data['abstract_name'],

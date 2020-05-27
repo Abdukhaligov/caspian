@@ -275,32 +275,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //***================== End YouTube Video Pause-Play-Stop =============******//
 
 
-//**=================== Google Map ==========================**//
 
-if ($('#googleMap').length > 0) { 
-var user_lat, user_lng;
-    var map;
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('googleMap'), {
-            center: {
-                lat: 23.782062,
-                lng: 90.416053
-            },
-            zoom: 15,
-            scrollwheel: false
-        });
-              
-      var marker = new google.maps.Marker({
-        position:  {  lat: 23.782062, lng: 90.416053},
-        map: map,
-        icon: "assets/img/locator.png"
-      });
-
-          } 
-        }
-
-//*================ End Google Map ============*//
 
 
 //**=================== Google Map2 ==========================**//

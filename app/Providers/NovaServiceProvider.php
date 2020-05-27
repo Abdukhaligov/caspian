@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Day4\TreeView\TreeView;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -10,24 +11,15 @@ use Joedixon\NovaTranslation\NovaTranslation;
 use CodencoDev\NovaGridSystem\NovaGridSystem;
 
 
-
 class NovaServiceProvider extends NovaApplicationServiceProvider {
-  /**
-   * Bootstrap any application services.
-   *
-   * @return void
-   */
+
   public function boot() {
     parent::boot();
 
     Nova::style('admin', public_path('css/admin.css'));
   }
 
-  /**
-   * Register the Nova routes.
-   *
-   * @return void
-   */
+
   protected function routes() {
     Nova::routes()
         ->withAuthenticationRoutes()
@@ -35,13 +27,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
         ->register();
   }
 
-  /**
-   * Register the Nova gate.
-   *
-   * This gate determines who can access Nova in non-local environments.
-   *
-   * @return void
-   */
+
   protected function gate() {
     Gate::define('viewNova', function ($user) {
       return in_array($user->email, [
@@ -50,35 +36,24 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
     });
   }
 
-  /**
-   * Get the cards that should be displayed on the default Nova dashboard.
-   *
-   * @return array
-   */
+
   protected function cards() {
     return [
 
     ];
   }
 
-  /**
-   * Get the extra dashboards that should be displayed on the Nova dashboard.
-   *
-   * @return array
-   */
   protected function dashboards() {
     return [];
   }
 
-  /**
-   * Get the tools that should be listed in the Nova sidebar.
-   *
-   * @return array
-   */
   public function tools() {
     return [
 //        new \Infinety\Filemanager\FilemanagerTool(),
-        new NovaGridSystem
+        new NovaGridSystem,
+        new TreeView([
+            ['Categories', 'categories']
+        ])
     ];
   }
 

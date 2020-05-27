@@ -18,7 +18,7 @@
   </section>
   <!-- /Hero Section-->
 
-  <?php $fake = false ? $fakeUser = factory(\App\User::class)->make() : ''?>
+  <?php $fake = true ? $fakeUser = factory(\App\User::class)->make() : ''?>
   <!--contact Us Section-->
   <section class="contact-us">
     <div class="container">
@@ -83,7 +83,22 @@
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
+              <div class="form-group cfdb1" style="float:left; width: 22%;">
+                <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="selectpicker form-control cp1 @error('region') is-invalid @enderror"
+                        name="region" id="region" autocomplete="region">
+                  @foreach(\App\Region::all() as $region)
+                    <option value="{{ $region->id }}" @if($region->id == 15) selected
+                            @endif data-code="{{ $region->code }}"> {!! $region->name !!}</option>
+                  @endforeach
+                </select>
+                @error('region')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1" style="float:right; width: 77%">
+                <label for="degree" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
                 <input type="text" class="form-control cp1 @error('phone') is-invalid @enderror"
                        name="phone" id="phone" placeholder="{{ __('static.phone_number') }}"
                        value="+{{ $fake ? $fakeUser->phone : old('phone') }}" autocomplete="phone">
@@ -113,10 +128,9 @@
                         class="form-control cp1 @error('degree') is-invalid @enderror"
                         name="degree" id="degree" autocomplete="degree">
                   <option selected value="0">No degree</option>
-                  <option value="1">PhD</option>
-                  <option value="2">Doctor</option>
-                  <option value="3">Corresponding member</option>
-                  <option value="5">Academician</option>
+                  @foreach(\App\Models\Degree::all() as $degree)
+                    <option value="{{ $degree->id }}">{{ $degree->name }}</option>
+                  @endforeach
                 </select>
                 @error('degree')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -134,7 +148,9 @@
 
                     <option
                         reporter="{{ $membership->reporter }}"
-                        @if(isset($_GET["speaker"]) && $_GET["speaker"] == $membership->id) selected @elseif(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected @endif
+                        @if(isset($_GET["speaker"]) && $_GET["speaker"] == $membership->id) selected
+                        @elseif(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected
+                        @endif
                         value="{{ $membership->id }}"> @if($membership->reporter == true )
                         - {{ $membership->name }} @else {{ $membership->name }} @endif</option>
                   @endforeach
@@ -222,4 +238,37 @@
 
 
 
+
+@endsection
+
+@section('scripts')
+  <script>
+    $(function () {
+      //Timer Js//
+
+      $('#region').change(function () {
+        let code = this.options[this.selectedIndex].getAttribute('data-code').toString();
+        let mask = "";
+        console.log(code);
+
+        for (let i = 0; i < code.length; i++) {
+          if(code.charAt(i) === "9"){
+            mask = mask.concat("\\"+code.charAt(i));
+          }else{
+            mask = mask.concat(code.charAt(i));
+          }
+        }
+        $('#phone').inputmask("+"+(mask.toString())+" *");
+
+        console.log(mask);
+
+      })
+
+
+
+      $('#phone').inputmask("+\\9\\94 (99) ###-##-##");
+
+
+    }(jQuery));
+  </script>
 @endsection

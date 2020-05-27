@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Degree;
 use App\Models\Event;
 use App\Models\Membership;
 use App\Models\Pages\Initial;
@@ -45,6 +46,8 @@ class User extends Authenticatable implements HasMedia {
   public function reference() { return $this->belongsTo(Reference::class); }
 
   public function membership() { return $this->belongsTo(Membership::class); }
+
+  public function degree() { return $this->belongsTo(Degree::class); }
 
   public function reports() { return $this->hasMany(Report::class); }
 

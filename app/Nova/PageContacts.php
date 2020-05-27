@@ -5,10 +5,10 @@ namespace App\Nova;
 use Digitalcloud\MultilingualNova\Multilingual;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
-use Josrom\MapAddress\MapAddress;
 use Laravel\Nova\Fields\Text;
 use Media24si\NovaYoutubeField\Youtube;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Whitecube\NovaGoogleMaps\GoogleMaps;
 
 class PageContacts extends Resource {
 
@@ -27,13 +27,15 @@ class PageContacts extends Resource {
   public function fields(Request $request) {
     return [
         Text::make('Title'),
-        Text::make('Phone'),
+        Text::make('Phone')
+            ->size('w-1/3'),
       // You can set the initial map location. By default (Spain)
-        MapAddress::make('Location')
-            ->setLocation($this->latitude, $this->longitude)
-            ->zoom(12),
-        Text::make('Email'),
-        Text::make('Address'),
+        Text::make('Email')
+            ->size('w-1/3'),
+        Text::make('Address')
+            ->size('w-1/3'),
+        GoogleMaps::make('Map')
+            ->zoom(15), // Optionally set the zoom level
         Flexible::make('Social Networks', 'social_networks')
             ->addLayout('Social Networks', 'Data', [
                 Text::make('title')
@@ -42,13 +44,15 @@ class PageContacts extends Resource {
                     ->required(),
             ]),
         Youtube::make('Video Youtube', 'video_url')
-            ->required(),
+            ->required()
+            ->size('w-1/2'),
         FilemanagerField::make('Video Cover', 'video_cover')
             ->required()
-            ->folder('videos')
+            ->folder('video_covers')
             ->displayAsImage()
-            ->hideCreateFolderButton(),
-        Multilingual::make('Language'),
+            ->hideCreateFolderButton()
+            ->size('w-1/2'),
+//        Multilingual::make('Language'),
     ];
   }
 

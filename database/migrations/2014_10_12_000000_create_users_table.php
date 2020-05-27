@@ -13,6 +13,8 @@ class CreateUsersTable extends Migration {
       $table->foreign('reference_id')->references('id')->on('references');
       $table->integer('membership_id')->unsigned()->nullable();
       $table->foreign('membership_id')->references('id')->on('memberships');
+      $table->integer('degree_id')->unsigned()->nullable();
+      $table->foreign('degree_id')->references('id')->on('degrees');
       $table->longText('description')->nullable();
       $table->string('name')->nullable();
       $table->string('email')->unique()->nullable();
@@ -21,7 +23,8 @@ class CreateUsersTable extends Migration {
       $table->boolean('show_on_site')->default(false);
       $table->string('phone')->nullable();
       $table->string('company')->nullable();
-      $table->string('degree')->nullable();
+
+
       $table->string('job_title')->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password')->default(bcrypt(123123));

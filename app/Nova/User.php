@@ -64,11 +64,13 @@ class User extends Resource {
             ->size('w-1/4'),
 
 
-        Text::make('Job Title', 'job_title')
+        BelongsTo::make('Degree')
+            ->hideFromIndex()
             ->sortable()
             ->hideFromIndex()
-            ->size('w-1/4'),
-        Text::make('Degree')
+            ->sizeOnForms('w-1/3')
+            ->sizeOnDetail('w-1/4'),
+        Text::make('Job Title', 'job_title')
             ->sortable()
             ->hideFromIndex()
             ->sizeOnForms('w-1/6')
@@ -76,7 +78,8 @@ class User extends Resource {
         Text::make('Company')
             ->sortable()
             ->hideFromIndex()
-            ->size('w-1/4'),
+            ->sizeOnForms('w-1/6')
+            ->sizeOnDetail('w-1/4'),
         Select::make('Rank in Committee', 'rank')
             ->options(
                 [

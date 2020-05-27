@@ -38,7 +38,7 @@
         <div class="col-md-6 order-md-1 order-2">
           <div class="map">
             <div class="" id="googleMap">
-
+{{--              {{ $data->map }}--}}
             </div>
           </div>
         </div>
@@ -68,6 +68,42 @@
   </section>
   <!--/contact Us Section-->
 
+@endsection
+
+@section('scripts')
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRm7Mq4riVzL1TkDhuTIXKmeZKkr-qJu8&callback=initMap">
+  </script>
+
+  <script>
+    //**=================== Google Map ==========================**//
+
+    if ($('#googleMap').length > 0) {
+      var user_lat, user_lng;
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('googleMap'), {
+          center: {
+            lat: {{ json_decode($data->map)->latlng->lat }},
+            lng: {{ json_decode($data->map)->latlng->lng }}
+          },
+          zoom: 15,
+          scrollwheel: false
+        });
 
 
+        var marker = new google.maps.Marker({
+          position:  {
+            lat: {{ json_decode($data->map)->latlng->lat }},
+            lng: {{ json_decode($data->map)->latlng->lng }}
+          },
+          map: map,
+        });
+
+      }
+    }
+
+    //*================ End Google Map ============*//
+  </script>
 @endsection
