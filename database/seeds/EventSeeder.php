@@ -41,8 +41,8 @@ class EventSeeder extends Seeder {
         }
 
         $days = array(
-            "user" => $users,
             "event_begin" => Carbon::now()->addDays($j+2),
+            "event" => $users,
         );
 
         $program[] = array(

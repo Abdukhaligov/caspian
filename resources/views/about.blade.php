@@ -17,7 +17,12 @@
     </div>
   </section>
   <!-- /Hero Section-->
-
+<style>
+  .about-content img{
+    height: auto !important;
+    width: auto !important;
+  }
+</style>
   <!-- About Section-->
   <section class="about-section">
     <div class="container">

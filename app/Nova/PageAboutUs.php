@@ -28,11 +28,14 @@ class PageAboutUs extends Resource {
   public function fields(Request $request) {
     return [
         Text::make('Title'),
-        NovaTinyMCE::make('Body'),
-        CkEditor::make('Body')
-          ->mediaBrowser(),
-
-        Multilingual::make('Language'),
+        NovaTinyMCE::make('Body')
+            ->options([
+                'plugins' => [
+                    'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                ],
+                'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                'use_lfm' => true
+            ]),
 
 
 //        Flexible::make('Team')

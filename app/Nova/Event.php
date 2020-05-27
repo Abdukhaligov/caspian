@@ -28,32 +28,56 @@ class Event extends Resource {
     $fields = array(
         ID::make()->sortable(),
 
-        Media::make('Banners', 'banners'),
+        Media::make('Banners', 'banners')
+            ->size('w-1/2'),
+
+        NovaTinyMCE::make('Description')
+            ->options([
+                'plugins' => [
+                    'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                ],
+                'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                'use_lfm' => true
+            ])
+            ->size('w-1/2'),
+
 
         Text::make('Name')
-            ->sortable(),
-//            ->withMeta(['value' => $request->resourceId]),
-        Textarea::make('Description'),
-        Text::make('Address', 'address')
-            ->required(),
-
-        Boolean::make('Active')
-            ->sortable(),
-
+            ->sortable()
+            ->required()
+            ->size('w-1/3'),
         DateTime::make('Date', 'date')
-            ->sortable(),
+            ->sortable()
+            ->required()
+            ->size('w-1/3'),
+        Boolean::make('Active')
+            ->sortable()
+            ->size('w-1/3'),
+
+//            ->withMeta(['value' => $request->resourceId]),
+
+
+        Text::make('Address', 'address')
+            ->required()
+            ->size('w-1/3'),
+        DateTime::make('Created At')
+            ->hideFromIndex()
+            ->size('w-1/3'),
+
+
+
+
+        DateTime::make('Updated At')
+            ->hideFromIndex()
+            ->size('w-1/3'),
+
 
         BelongsToMany::make('Users'),
 
-        DateTime::make('Created At')
-            ->hideFromIndex(),
-        DateTime::make('Updated At')
-            ->hideFromIndex(),
+
     );
 
-
     if ($request->resourceId) {
-
       return $fields = array_merge($fields, array(
           Flexible::make('Program')
               ->addLayout('Day', 'day', [
@@ -63,22 +87,48 @@ class Event extends Resource {
                       })
                       ->format('DD MMM Y hh:mm:ss')
                       ->required(),
-                  Flexible::make('User', 'user')
+                  Flexible::make('Event', 'event')
                       ->addLayout('User', 'user', [
                           Select::make('User', 'user')->options(
                               \App\Models\Event::findOrFail($request->resourceId)->usersForSelection()
                           )
                               ->required(),
+                          TimeField::make('Start Time', 'event_start'),
+                          TimeField::make('End Time', 'event_end'),
+
                           Text::make('Title', 'title')
                               ->required(),
                           NovaTinyMCE::make('Description', 'description')
+                              ->options([
+                                  'plugins' => [
+                                      'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                                  ],
+                                  'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                                  'use_lfm' => true
+                              ])
+                              ->required(),
+                          Text::make('Address', 'address'),
+                      ])
+                      ->addLayout('Event', 'event', [
+                          Text::make('Title', 'title')
+                              ->required(),
+                          NovaTinyMCE::make('Description', 'description')
+                              ->options([
+                                  'plugins' => [
+                                      'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                                  ],
+                                  'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                                  'use_lfm' => true
+                              ])
                               ->required(),
                           Text::make('Address', 'address'),
                           TimeField::make('Start Time', 'event_start'),
                           TimeField::make('End Time', 'event_end'),
 
-                      ]),
+                      ])
+                      ->button('New Event'),
               ])
+              ->button('New Day!')
       ));
     } else {
       return $fields;

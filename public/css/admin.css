@@ -14,7 +14,7 @@ select#rank {
   margin-bottom: 0px;
 }
 
-input#show_on_site, input#is_admin, input#gold {
+input#show_on_site, input#is_admin, input#gold , input#active {
   margin: 0;
   height: 2.25rem;
   width: 2.25rem;
