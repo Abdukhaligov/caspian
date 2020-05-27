@@ -58,7 +58,7 @@ class EventSeeder extends Seeder {
           "description" => $faker->paragraphs(3, true),
           "address" => $faker->address,
           "date" => $faker->dateTimeBetween("+2 days", "+ 2 months"),
-          "active" => rand(1, 3) == 3,
+          "active" => false,
           "program" => json_encode($program)
       ];
 

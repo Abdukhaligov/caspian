@@ -82,7 +82,8 @@
                       <div class="hero-slide-content">
                         <h1>{{$data["event"]["name"]}}</h1>
                         <span><i class="fas fa-map-marker-alt"></i> {{$data["event"]["address"]}}</span>
-                        <span><i class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
+                        <span><i
+                              class="far fa-clock"></i> {{ date('d M, Y', strtotime($data["event"]["date"])) }}</span>
                       </div>
                     </div>
                   </div>
@@ -163,7 +164,8 @@
         <div class="col-md-6">
           <div class="about-content">
             {!! $data->description !!}
-            <a href="@guest {{ route('register') }}?speaker=2 @endauth @auth{{ route('cabinet') }}@endauth" class="btn-2">Join to Us</a>
+            <a href="@guest {{ route('register') }}?speaker=2 @endauth @auth{{ route('cabinet') }}@endauth"
+               class="btn-2">Join to Us</a>
           </div>
         </div>
         <div class="col-md-6">
@@ -175,50 +177,51 @@
     </div>
   </section>
   <!-- /About Section-->
-
-  @if($data["event"]["users"])
-    <!-- Team Section-->
-    <section class="our-team ot-inner">
-      <div class="ot-top">
-        <h1>Who Speaking?</h1>
-        <p>Welcome to the dedicated to building remarkable Speakers!</p>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="swiper-container h-brands swp-cnt-brands">
-            <div class="swiper-wrapper">
-              @foreach($data["event"]["users"] as $user)
-                <div class="swiper-slide">
-                  <div class="col-md-12">
-                    <div class="single-team-member">
-                      <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                        <a href="{{ route('speakers')."/".$user->id }}">
-                          {{ $user->getMedia('avatar')->first() }}
-                        </a>
-                        <div class="stm-icon">
-                          <ul>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                          </ul>
+  @if($data["event"])
+    @if($data["event"]["users"])
+      <!-- Team Section-->
+      <section class="our-team ot-inner">
+        <div class="ot-top">
+          <h1>Who Speaking?</h1>
+          <p>Welcome to the dedicated to building remarkable Speakers!</p>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="swiper-container h-brands swp-cnt-brands">
+              <div class="swiper-wrapper">
+                @foreach($data["event"]["users"] as $user)
+                  <div class="swiper-slide">
+                    <div class="col-md-12">
+                      <div class="single-team-member">
+                        <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+                          <a href="{{ route('speakers')."/".$user->id }}">
+                            {{ $user->getMedia('avatar')->first() }}
+                          </a>
+                          <div class="stm-icon">
+                            <ul>
+                              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                          </div>
                         </div>
-                      </div>
-                      <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                        <h5>{{ \App\Models\Degree::find($user->degree_id)->name }} {{ $user->name }}</h5>
-                        <h6>{{ $user->job_title }}</h6>
-                        <p>{{ $user->company }}</p>
+                        <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+                          <h5>{{ $user->degree_id->name }} {{ $user->name }}</h5>
+                          <h6>{{ $user->job_title }}</h6>
+                          <p>{{ $user->company }}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              @endforeach
-              <div class="swiper-pagination swp-pg-brands"></div>
+                @endforeach
+                <div class="swiper-pagination swp-pg-brands"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- /Team Section-->
+      </section>
+      <!-- /Team Section-->
+    @endif
   @endif
 
 

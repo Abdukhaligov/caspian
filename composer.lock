@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdde81648e53e38fc2a473c122052e4f",
+    "content-hash": "b5cb86d5c628793f111f220d08808512",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -897,48 +897,6 @@
                 "theme"
             ],
             "time": "2019-02-16T22:07:27+00:00"
-        },
-        {
-            "name": "day4/tree-view",
-            "version": "0.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://bitbucket.org/day4/nova-treeview.git",
-                "reference": "b291eca6834c76e13d6485017ade5ac83aad1f7d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://bitbucket.org/day4/nova-treeview/get/b291eca6834c76e13d6485017ade5ac83aad1f7d.zip",
-                "reference": "b291eca6834c76e13d6485017ade5ac83aad1f7d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Day4\\TreeView\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Day4\\TreeView\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "homepage": "https://bitbucket.org/day4/nova-treeview",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2020-04-24T13:56:53+00:00"
         },
         {
             "name": "defuse/php-encryption",

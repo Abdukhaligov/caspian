@@ -167,7 +167,6 @@
       <path value="$PROJECT_DIR$/vendor/unisharp/laravel-filemanager" />
       <path value="$PROJECT_DIR$/vendor/emilianotisato/nova-tinymce" />
       <path value="$PROJECT_DIR$/vendor/whitecube/nova-google-maps" />
-      <path value="$PROJECT_DIR$/vendor/day4/tree-view" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

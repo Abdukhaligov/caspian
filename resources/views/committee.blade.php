@@ -87,7 +87,7 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $user->degree }} {{ $user->name }}</h5>
+                <h5>{{ $user->degree->name }} {{ $user->name }}</h5>
                 <h6>{{ $user->job_title }}</h6>
                 <p>{{ $user->company }}</p>
               </div>
@@ -111,7 +111,7 @@
                 </div>
               </div>
               <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $user->degree }} {{ $user->name }}</h5>
+                <h5>{{ $user->degree->name }} {{ $user->name }}</h5>
                 <h6>{{ $user->job_title }}</h6>
                 <p>{{ $user->company }}</p>
               </div>
@@ -124,7 +124,7 @@
         @foreach($data["users_3"] as $user)
           <div class="col-md-2 wow fadeInUp" data-wow-delay=".10s">
             <div class="card">
-              <h5>{{ $user->degree }} {{ $user->name }}</h5>
+              <h5>{{ $user->degree->name }} {{ $user->name }}</h5>
               <h6>{{ $user->job_title }}</h6>
               <p>{{ $user->company }}</p>
             </div>

@@ -1,0 +1,3017 @@
+Illuminate\Database\Eloquent\Builder {#1815
+#query: Illuminate\Database\Query\Builder {#1831
++connection: Illuminate\Database\MySqlConnection {#550
+#pdo: Doctrine\DBAL\Driver\PDOConnection {#1539
+inTransaction: true
+attributes: {
+CASE: NATURAL
+ERRMODE: EXCEPTION
+AUTOCOMMIT: 1
+PERSISTENT: false
+DRIVER_NAME: "mysql"
+SERVER_INFO: "Uptime: 17823  Threads: 2  Questions: 396579  Slow queries: 0  Opens: 1555  Flush tables: 3  Open tables: 762  Queries per second avg: 22.250"
+ORACLE_NULLS: NATURAL
+CLIENT_VERSION: "mysqlnd 7.4.4"
+SERVER_VERSION: "8.0.19"
+STATEMENT_CLASS: array:2 [
+0 => "Doctrine\DBAL\Driver\PDOStatement"
+1 => []
+]
+EMULATE_PREPARES: 0
+CONNECTION_STATUS: "127.0.0.1 via TCP/IP"
+DEFAULT_FETCH_MODE: BOTH
+}
+}
+#readPdo: null
+#database: "caspian"
+#tablePrefix: ""
+#config: array:15 [
+"driver" => "mysql"
+"host" => "127.0.0.1"
+"port" => "3306"
+"database" => "caspian"
+"username" => "root"
+"password" => "root"
+"unix_socket" => ""
+"charset" => "utf8mb4"
+"collation" => "utf8mb4_unicode_ci"
+"prefix" => ""
+"prefix_indexes" => true
+"strict" => true
+"engine" => null
+"options" => []
+"name" => "mysql"
+]
+#reconnector: Closure($connection) {#33
+class: "Illuminate\Database\DatabaseManager"
+this: Illuminate\Database\DatabaseManager {#53 …}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php"
+line: "64 to 66"
+}
+#queryGrammar: Illuminate\Database\Query\Grammars\MySqlGrammar {#551
+#operators: array:1 [
+0 => "sounds like"
+]
+#selectComponents: array:11 [
+0 => "aggregate"
+1 => "columns"
+2 => "from"
+3 => "joins"
+4 => "wheres"
+5 => "groups"
+6 => "havings"
+7 => "orders"
+8 => "limit"
+9 => "offset"
+10 => "lock"
+]
+#tablePrefix: ""
+}
+#schemaGrammar: null
+#postProcessor: Illuminate\Database\Query\Processors\MySqlProcessor {#552}
+#events: Illuminate\Events\Dispatcher {#38
+#container: Illuminate\Foundation\Application {#6
+#basePath: "D:\WebProjects\caspian"
+#hasBeenBootstrapped: true
+#booted: true
+#bootingCallbacks: array:3 [
+0 => Closure() {#265
+class: "Illuminate\Foundation\Application"
+this: Illuminate\Foundation\Application {#6}
+use: {
+$instance: Illuminate\Validation\ValidationServiceProvider {#262
+#app: Illuminate\Foundation\Application {#6}
+}
+}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Foundation\Application.php"
+line: "753 to 755"
+}
+1 => Closure() {#270
+class: "Illuminate\Foundation\Application"
+this: Illuminate\Foundation\Application {#6}
+use: {
+$instance: JoeDixon\Translation\TranslationBindingsServiceProvider {#267
+#app: Illuminate\Foundation\Application {#6}
+}
+}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Foundation\Application.php"
+line: "753 to 755"
+}
+2 => Closure() {#319
+class: "Illuminate\Foundation\Application"
+this: Illuminate\Foundation\Application {#6}
+use: {
+$instance: Illuminate\Queue\QueueServiceProvider {#313
+#app: Illuminate\Foundation\Application {#6}
+}
+}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Foundation\Application.php"
+line: "753 to 755"
+}
+]
+#bootedCallbacks: array:8 [
+0 => Closure() {#282
+class: "Digitalcloud\MultilingualNova\FieldServiceProvider"
+this: Digitalcloud\MultilingualNova\FieldServiceProvider {#124
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\digitalcloud\multilingual-nova\src\FieldServiceProvider.php"
+line: "38 to 40"
+}
+1 => Closure() {#283
+class: "Ebess\AdvancedNovaMediaLibrary\AdvancedNovaMediaLibraryServiceProvider"
+this: Ebess\AdvancedNovaMediaLibrary\AdvancedNovaMediaLibraryServiceProvider {#125
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\ebess\advanced-nova-media-library\src\AdvancedNovaMediaLibraryServiceProvider.php"
+line: "18 to 20"
+}
+2 => Closure() {#339
+class: "Infinety\Filemanager\FilemanagerServiceProvider"
+this: Infinety\Filemanager\FilemanagerServiceProvider {#149
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\infinety-es\nova-filemanager\src\FilemanagerServiceProvider.php"
+line: "26 to 28"
+}
+3 => Closure() {#355
+class: "Joedixon\NovaTranslation\ToolServiceProvider"
+this: Joedixon\NovaTranslation\ToolServiceProvider {#167
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\joedixon\nova-translation\src\ToolServiceProvider.php"
+line: "22 to 24"
+}
+4 => Closure() {#359
+class: "KABBOUCHI\NovaImpersonate\ToolServiceProvider"
+this: KABBOUCHI\NovaImpersonate\ToolServiceProvider {#168
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\kabbouchi\nova-impersonate\src\ToolServiceProvider.php"
+line: "33 to 38"
+}
+5 => Closure() {#371
+class: "Maatwebsite\LaravelNovaExcel\LaravelNovaExcelServiceProvider"
+this: Maatwebsite\LaravelNovaExcel\LaravelNovaExcelServiceProvider {#196
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\maatwebsite\laravel-nova-excel\src\LaravelNovaExcelServiceProvider.php"
+line: "17 to 19"
+}
+6 => Closure() {#428
+class: "Illuminate\Foundation\Support\Providers\RouteServiceProvider"
+this: App\Providers\RouteServiceProvider {#220
+#namespace: "App\Http\Controllers"
+#app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Foundation\Support\Providers\RouteServiceProvider.php"
+line: "38 to 41"
+}
+7 => Closure() {#520
+class: "Barryvdh\Debugbar\LaravelDebugbar"
+this: Barryvdh\Debugbar\LaravelDebugbar {#517
+#app: Illuminate\Foundation\Application {#6}
+#version: "6.18.15"
+#booted: true
+#enabled: true
+#is_lumen: false
+#collectors: array:10 [ …10]
+#data: null
+#jsRenderer: Barryvdh\Debugbar\JavascriptRenderer {#593 …23}
+#requestIdGenerator: null
+#requestId: null
+#storage: Barryvdh\Debugbar\Storage\FilesystemStorage {#516 …4}
+#httpDriver: Barryvdh\Debugbar\SymfonyHttpDriver {#518 …2}
+#stackSessionNamespace: "PHPDEBUGBAR_STACK_DATA"
+#stackAlwaysUseSessionStorage: false
+}
+use: {
+$debugbar: Barryvdh\Debugbar\LaravelDebugbar {#517}
+}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-debugbar\src\LaravelDebugbar.php"
+line: "152 to 157"
+}
+]
+#terminatingCallbacks: []
+#serviceProviders: array:61 [
+0 => Illuminate\Events\EventServiceProvider {#17 …}
+1 => Illuminate\Log\LogServiceProvider {#19
+#app: Illuminate\Foundation\Application {#6}
+}
+2 => Illuminate\Routing\RoutingServiceProvider {#21
+#app: Illuminate\Foundation\Application {#6}
+}
+3 => Illuminate\Auth\AuthServiceProvider {#50
+#app: Illuminate\Foundation\Application {#6}
+}
+4 => Illuminate\Cookie\CookieServiceProvider {#64
+#app: Illuminate\Foundation\Application {#6}
+}
+5 => Illuminate\Database\DatabaseServiceProvider {#66
+#app: Illuminate\Foundation\Application {#6}
+}
+6 => Illuminate\Encryption\EncryptionServiceProvider {#73
+#app: Illuminate\Foundation\Application {#6}
+}
+7 => Illuminate\Filesystem\FilesystemServiceProvider {#76
+#app: Illuminate\Foundation\Application {#6}
+}
+8 => Illuminate\Foundation\Providers\FormRequestServiceProvider {#82
+#app: Illuminate\Foundation\Application {#6}
+}
+9 => Illuminate\Foundation\Providers\FoundationServiceProvider {#81
+#providers: array:1 [
+0 => "Illuminate\Foundation\Providers\FormRequestServiceProvider"
+]
+#instances: array:1 [
+0 => Illuminate\Foundation\Providers\FormRequestServiceProvider {#82}
+]
+#app: Illuminate\Foundation\Application {#6}
+}
+10 => Illuminate\Notifications\NotificationServiceProvider {#86
+#app: Illuminate\Foundation\Application {#6}
+}
+11 => Illuminate\Pagination\PaginationServiceProvider {#88
+#app: Illuminate\Foundation\Application {#6}
+}
+12 => Illuminate\Session\SessionServiceProvider {#92
+#app: Illuminate\Foundation\Application {#6}
+}
+13 => Illuminate\View\ViewServiceProvider {#96
+#app: Illuminate\Foundation\Application {#6}
+}
+14 => R64\NovaFields\FieldServiceProvider {#101
+#app: Illuminate\Foundation\Application {#6}
+}
+15 => Barryvdh\Debugbar\ServiceProvider {#102
+#defer: false
+#app: Illuminate\Foundation\Application {#6}
+}
+16 => Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider {#106
+#defer: true
+#app: Illuminate\Foundation\Application {#6}
+}
+17 => BayAreaWebPro\NovaFieldCkEditor\FieldServiceProvider {#117
+#app: Illuminate\Foundation\Application {#6}
+}
+18 => Bissolli\NovaPhoneField\FieldServiceProvider {#119
+#app: Illuminate\Foundation\Application {#6}
+}
+19 => CodencoDev\NovaGridSystem\ToolServiceProvider {#120
+#app: Illuminate\Foundation\Application {#6}
+}
+20 => DanielDeWit\NovaSingleRecordResource\Providers\NovaSingleRecordResourceServiceProvider {#121
+#app: Illuminate\Foundation\Application {#6}
+}
+21 => DavidGriffiths\NovaDarkTheme\ThemeServiceProvider {#122
+#commands: array:4 [
+0 => "DavidGriffiths\NovaDarkTheme\Commands\AddSwitch"
+1 => "DavidGriffiths\NovaDarkTheme\Commands\RemoveSwitch"
+2 => "DavidGriffiths\NovaDarkTheme\Commands\On"
+3 => "DavidGriffiths\NovaDarkTheme\Commands\Off"
+]
+#app: Illuminate\Foundation\Application {#6}
+}
+22 => Digitalcloud\MultilingualNova\FieldServiceProvider {#124}
+23 => Ebess\AdvancedNovaMediaLibrary\AdvancedNovaMediaLibraryServiceProvider {#125}
+24 => Emilianotisato\NovaTinyMCE\FieldServiceProvider {#126
+#app: Illuminate\Foundation\Application {#6}
+}
+25 => Epartment\NovaDependencyContainer\FieldServiceProvider {#127
+#app: Illuminate\Foundation\Application {#6}
+}
+26 => Facade\Ignition\IgnitionServiceProvider {#128
+#app: Illuminate\Foundation\Application {#6}
+}
+27 => Fideloper\Proxy\TrustedProxyServiceProvider {#150
+#app: Illuminate\Foundation\Application {#6}
+}
+28 => GeneaLabs\NovaMapMarkerField\Providers\Service {#153
+#app: Illuminate\Foundation\Application {#6}
+}
+29 => Infinety\Filemanager\FilemanagerServiceProvider {#149}
+30 => Inspheric\Fields\EmailFieldServiceProvider {#154
+#app: Illuminate\Foundation\Application {#6}
+}
+31 => Intervention\Image\ImageServiceProvider {#161
+#defer: false
+#provider: Intervention\Image\ImageServiceProviderLaravelRecent {#162
+#app: Illuminate\Foundation\Application {#6}
+}
+#app: Illuminate\Foundation\Application {#6}
+}
+32 => JoeDixon\Translation\TranslationServiceProvider {#164
+#app: Illuminate\Foundation\Application {#6}
+}
+33 => Joedixon\NovaTranslation\ToolServiceProvider {#167}
+34 => KABBOUCHI\NovaImpersonate\ToolServiceProvider {#168}
+35 => Lab404\Impersonate\ImpersonateServiceProvider {#169
+#configName: "laravel-impersonate"
+#app: Illuminate\Foundation\Application {#6}
+}
+36 => Laraning\NovaTimeField\FieldServiceProvider {#177
+#app: Illuminate\Foundation\Application {#6}
+}
+37 => Laravel\Nova\NovaCoreServiceProvider {#178
+#app: Illuminate\Foundation\Application {#6}
+}
+38 => Laravel\Passport\PassportServiceProvider {#179
+#app: Illuminate\Foundation\Application {#6}
+}
+39 => Maatwebsite\Excel\ExcelServiceProvider {#185
+#app: Illuminate\Foundation\Application {#6}
+}
+40 => Maatwebsite\LaravelNovaExcel\LaravelNovaExcelServiceProvider {#196}
+41 => Media24si\NovaYoutubeField\FieldServiceProvider {#197
+#app: Illuminate\Foundation\Application {#6}
+}
+42 => MichielKempen\NovaPolymorphicField\FieldServiceProvider {#198
+#app: Illuminate\Foundation\Application {#6}
+}
+43 => Carbon\Laravel\ServiceProvider {#199
+#app: Illuminate\Foundation\Application {#6}
+}
+44 => NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider {#200
+#defer: true
+#app: Illuminate\Foundation\Application {#6}
+}
+45 => Spatie\MediaLibrary\MediaLibraryServiceProvider {#201
+#app: Illuminate\Foundation\Application {#6}
+}
+46 => Spatie\Translatable\TranslatableServiceProvider {#210
+#app: Illuminate\Foundation\Application {#6}
+}
+47 => UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider {#211
+#app: Illuminate\Foundation\Application {#6}
+}
+48 => Whitecube\NovaFlexibleContent\FieldServiceProvider {#213
+#app: Illuminate\Foundation\Application {#6}
+}
+49 => Whitecube\NovaGoogleMaps\FieldServiceProvider {#214
+#app: Illuminate\Foundation\Application {#6}
+}
+50 => App\Providers\NovaServiceProvider {#217
+#app: Illuminate\Foundation\Application {#6}
+}
+51 => App\Providers\AppServiceProvider {#216
+#app: Illuminate\Foundation\Application {#6}
+}
+52 => App\Providers\AuthServiceProvider {#218
+#policies: array:7 [
+"App\Models\Pages\Initial" => "App\Policies\SinglePagePolicy"
+"App\Models\Pages\Home" => "App\Policies\SinglePagePolicy"
+"App\Models\Pages\AboutUs" => "App\Policies\SinglePagePolicy"
+"App\Models\Pages\Contacts" => "App\Policies\SinglePagePolicy"
+"App\Models\Pages\Gallery" => "App\Policies\SinglePagePolicy"
+"App\Models\Pages\Topics" => "App\Policies\SinglePagePolicy"
+"App\Models\Pages\Cabinet" => "App\Policies\SinglePagePolicy"
+]
+#app: Illuminate\Foundation\Application {#6}
+}
+53 => App\Providers\EventServiceProvider {#219
+#listen: array:1 [
+"Illuminate\Auth\Events\Registered" => array:1 [ …1]
+]
+#subscribe: []
+#app: Illuminate\Foundation\Application {#6}
+}
+54 => App\Providers\RouteServiceProvider {#220}
+55 => Illuminate\Validation\ValidationServiceProvider {#262}
+56 => JoeDixon\Translation\TranslationBindingsServiceProvider {#267}
+57 => Illuminate\Queue\QueueServiceProvider {#313}
+58 => Illuminate\Mail\MailServiceProvider {#566
+#app: Illuminate\Foundation\Application {#6}
+}
+59 => Laravel\Nova\NovaServiceProvider {#592
+#app: Illuminate\Foundation\Application {#6}
+}
+60 => Illuminate\Hashing\HashServiceProvider {#731
+#app: Illuminate\Foundation\Application {#6}
+}
+]
+#loadedProviders: array:61 [
+"Illuminate\Events\EventServiceProvider" => true
+"Illuminate\Log\LogServiceProvider" => true
+"Illuminate\Routing\RoutingServiceProvider" => true
+"Illuminate\Auth\AuthServiceProvider" => true
+"Illuminate\Cookie\CookieServiceProvider" => true
+"Illuminate\Database\DatabaseServiceProvider" => true
+"Illuminate\Encryption\EncryptionServiceProvider" => true
+"Illuminate\Filesystem\FilesystemServiceProvider" => true
+"Illuminate\Foundation\Providers\FormRequestServiceProvider" => true
+"Illuminate\Foundation\Providers\FoundationServiceProvider" => true
+"Illuminate\Notifications\NotificationServiceProvider" => true
+"Illuminate\Pagination\PaginationServiceProvider" => true
+"Illuminate\Session\SessionServiceProvider" => true
+"Illuminate\View\ViewServiceProvider" => true
+"R64\NovaFields\FieldServiceProvider" => true
+"Barryvdh\Debugbar\ServiceProvider" => true
+"Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" => true
+"BayAreaWebPro\NovaFieldCkEditor\FieldServiceProvider" => true
+"Bissolli\NovaPhoneField\FieldServiceProvider" => true
+"CodencoDev\NovaGridSystem\ToolServiceProvider" => true
+"DanielDeWit\NovaSingleRecordResource\Providers\NovaSingleRecordResourceServiceProvider" => true
+"DavidGriffiths\NovaDarkTheme\ThemeServiceProvider" => true
+"Digitalcloud\MultilingualNova\FieldServiceProvider" => true
+"Ebess\AdvancedNovaMediaLibrary\AdvancedNovaMediaLibraryServiceProvider" => true
+"Emilianotisato\NovaTinyMCE\FieldServiceProvider" => true
+"Epartment\NovaDependencyContainer\FieldServiceProvider" => true
+"Facade\Ignition\IgnitionServiceProvider" => true
+"Fideloper\Proxy\TrustedProxyServiceProvider" => true
+"GeneaLabs\NovaMapMarkerField\Providers\Service" => true
+"Infinety\Filemanager\FilemanagerServiceProvider" => true
+"Inspheric\Fields\EmailFieldServiceProvider" => true
+"Intervention\Image\ImageServiceProvider" => true
+"JoeDixon\Translation\TranslationServiceProvider" => true
+"Joedixon\NovaTranslation\ToolServiceProvider" => true
+"KABBOUCHI\NovaImpersonate\ToolServiceProvider" => true
+"Lab404\Impersonate\ImpersonateServiceProvider" => true
+"Laraning\NovaTimeField\FieldServiceProvider" => true
+"Laravel\Nova\NovaCoreServiceProvider" => true
+"Laravel\Passport\PassportServiceProvider" => true
+"Maatwebsite\Excel\ExcelServiceProvider" => true
+"Maatwebsite\LaravelNovaExcel\LaravelNovaExcelServiceProvider" => true
+"Media24si\NovaYoutubeField\FieldServiceProvider" => true
+"MichielKempen\NovaPolymorphicField\FieldServiceProvider" => true
+"Carbon\Laravel\ServiceProvider" => true
+"NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider" => true
+"Spatie\MediaLibrary\MediaLibraryServiceProvider" => true
+"Spatie\Translatable\TranslatableServiceProvider" => true
+"UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider" => true
+"Whitecube\NovaFlexibleContent\FieldServiceProvider" => true
+"Whitecube\NovaGoogleMaps\FieldServiceProvider" => true
+"App\Providers\NovaServiceProvider" => true
+"App\Providers\AppServiceProvider" => true
+"App\Providers\AuthServiceProvider" => true
+"App\Providers\EventServiceProvider" => true
+"App\Providers\RouteServiceProvider" => true
+"Illuminate\Validation\ValidationServiceProvider" => true
+"JoeDixon\Translation\TranslationBindingsServiceProvider" => true
+"Illuminate\Queue\QueueServiceProvider" => true
+"Illuminate\Mail\MailServiceProvider" => true
+"Laravel\Nova\NovaServiceProvider" => true
+"Illuminate\Hashing\HashServiceProvider" => true
+]
+#deferredServices: array:102 [
+"Illuminate\Broadcasting\BroadcastManager" => "Illuminate\Broadcasting\BroadcastServiceProvider"
+"Illuminate\Contracts\Broadcasting\Factory" => "Illuminate\Broadcasting\BroadcastServiceProvider"
+"Illuminate\Contracts\Broadcasting\Broadcaster" => "Illuminate\Broadcasting\BroadcastServiceProvider"
+"Illuminate\Bus\Dispatcher" => "Illuminate\Bus\BusServiceProvider"
+"Illuminate\Contracts\Bus\Dispatcher" => "Illuminate\Bus\BusServiceProvider"
+"Illuminate\Contracts\Bus\QueueingDispatcher" => "Illuminate\Bus\BusServiceProvider"
+"cache" => "Illuminate\Cache\CacheServiceProvider"
+"cache.store" => "Illuminate\Cache\CacheServiceProvider"
+"cache.psr6" => "Illuminate\Cache\CacheServiceProvider"
+"memcached.connector" => "Illuminate\Cache\CacheServiceProvider"
+"command.cache.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.cache.forget" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.clear-compiled" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.auth.resets.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.config.cache" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.config.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.db.wipe" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.down" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.environment" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.event.cache" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.event.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.event.list" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.key.generate" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.optimize" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.optimize.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.package.discover" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.preset" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.failed" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.flush" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.forget" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.listen" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.restart" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.retry" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.work" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.route.cache" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.route.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.route.list" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.seed" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"Illuminate\Console\Scheduling\ScheduleFinishCommand" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"Illuminate\Console\Scheduling\ScheduleRunCommand" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.storage.link" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.up" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.view.cache" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.view.clear" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.cache.table" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.channel.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.console.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.controller.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.event.generate" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.event.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.exception.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.factory.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.job.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.listener.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.mail.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.middleware.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.model.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.notification.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.notification.table" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.observer.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.policy.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.provider.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.failed-table" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.queue.table" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.request.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.resource.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.rule.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.seeder.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.session.table" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.serve" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.test.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.vendor.publish" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"migrator" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"migration.repository" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"migration.creator" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.fresh" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.install" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.refresh" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.reset" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.rollback" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.status" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"command.migrate.make" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"composer" => "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider"
+"hash.driver" => "Illuminate\Hashing\HashServiceProvider"
+"swift.mailer" => "Illuminate\Mail\MailServiceProvider"
+"swift.transport" => "Illuminate\Mail\MailServiceProvider"
+"Illuminate\Mail\Markdown" => "Illuminate\Mail\MailServiceProvider"
+"Illuminate\Contracts\Pipeline\Hub" => "Illuminate\Pipeline\PipelineServiceProvider"
+"queue.worker" => "Illuminate\Queue\QueueServiceProvider"
+"queue.listener" => "Illuminate\Queue\QueueServiceProvider"
+"queue.failer" => "Illuminate\Queue\QueueServiceProvider"
+"queue.connection" => "Illuminate\Queue\QueueServiceProvider"
+"redis" => "Illuminate\Redis\RedisServiceProvider"
+"redis.connection" => "Illuminate\Redis\RedisServiceProvider"
+"auth.password" => "Illuminate\Auth\Passwords\PasswordResetServiceProvider"
+"auth.password.broker" => "Illuminate\Auth\Passwords\PasswordResetServiceProvider"
+"translation.loader" => "JoeDixon\Translation\TranslationBindingsServiceProvider"
+"validation.presence" => "Illuminate\Validation\ValidationServiceProvider"
+"command.tinker" => "Laravel\Tinker\TinkerServiceProvider"
+"Laravel\Ui\AuthCommand" => "Laravel\Ui\UiServiceProvider"
+"Laravel\Ui\UiCommand" => "Laravel\Ui\UiServiceProvider"
+]
+#appPath: null
+#databasePath: null
+#storagePath: null
+#environmentPath: null
+#environmentFile: ".env"
+#isRunningInConsole: false
+#namespace: "App\"
+#resolved: array:75 [
+"events" => true
+"router" => true
+"App\Http\Kernel" => true
+"Illuminate\Contracts\Http\Kernel" => true
+"Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables" => true
+"Illuminate\Foundation\Bootstrap\LoadConfiguration" => true
+"Illuminate\Foundation\Bootstrap\HandleExceptions" => true
+"env" => true
+"Illuminate\Foundation\Bootstrap\RegisterFacades" => true
+"Illuminate\Foundation\Bootstrap\RegisterProviders" => true
+"files" => true
+"Facade\Ignition\LogRecorder\LogRecorder" => true
+"Facade\Ignition\DumpRecorder\DumpRecorder" => true
+"Facade\Ignition\QueryRecorder\QueryRecorder" => true
+"flare.http" => true
+"flare.client" => true
+"Facade\Ignition\Middleware\SetNotifierName" => true
+"Facade\Ignition\Middleware\AddEnvironmentInformation" => true
+"Facade\Ignition\Middleware\AddLogs" => true
+"Facade\Ignition\Middleware\AddDumps" => true
+"Facade\Ignition\Middleware\AddQueries" => true
+"Facade\IgnitionContracts\SolutionProviderRepository" => true
+"Facade\Ignition\Middleware\AddSolutions" => true
+"auth" => true
+"Illuminate\Foundation\Bootstrap\BootProviders" => true
+"db.factory" => true
+"db" => true
+"url" => true
+"session" => true
+"session.store" => true
+"redirect" => true
+"translation.loader" => true
+"translator" => true
+"validation.presence" => true
+"validator" => true
+"Laravel\Nova\Http\Requests\NovaRequest" => true
+"view.engine.resolver" => true
+"blade.compiler" => true
+"log" => true
+"queue" => true
+"Illuminate\Contracts\Auth\Access\Gate" => true
+"App\Http\Middleware\TrustProxies" => true
+"App\Http\Middleware\CheckForMaintenanceMode" => true
+"Illuminate\Foundation\Http\Middleware\ValidatePostSize" => true
+"App\Http\Middleware\TrimStrings" => true
+"Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull" => true
+"Barryvdh\Debugbar\LaravelDebugbar" => true
+"Barryvdh\Debugbar\Middleware\InjectDebugbar" => true
+"Barryvdh\Debugbar\DataCollector\RouteCollector" => true
+"view.finder" => true
+"view" => true
+"swift.transport" => true
+"swift.mailer" => true
+"mailer" => true
+"Barryvdh\Debugbar\DataCollector\GateCollector" => true
+"Laravel\Nova\Http\Middleware\ServeNova" => true
+"KABBOUCHI\NovaImpersonate\Http\Middleware\Impersonate" => true
+"Illuminate\Routing\Contracts\ControllerDispatcher" => true
+"Laravel\Nova\Http\Controllers\ResourceStoreController" => true
+"encrypter" => true
+"App\Http\Middleware\EncryptCookies" => true
+"cookie" => true
+"Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse" => true
+"Illuminate\Session\Middleware\StartSession" => true
+"Illuminate\View\Middleware\ShareErrorsFromSession" => true
+"App\Http\Middleware\VerifyCsrfToken" => true
+"Illuminate\Routing\Middleware\SubstituteBindings" => true
+"Laravel\Nova\Http\Middleware\Authenticate" => true
+"hash" => true
+"Laravel\Nova\Http\Middleware\DispatchServingNovaEvent" => true
+"Laravel\Nova\Http\Middleware\BootTools" => true
+"Laravel\Nova\Http\Middleware\Authorize" => true
+"Whitecube\NovaFlexibleContent\Http\Middleware\InterceptFlexibleAttributes" => true
+"Laravel\Nova\Http\Requests\CreateResourceRequest" => true
+"Spatie\MediaLibrary\MediaRepository" => true
+]
+#bindings: array:94 [
+"Illuminate\Foundation\Mix" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#7
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"events" => array:2 [
+"concrete" => Closure($app) {#18
+class: "Illuminate\Events\EventServiceProvider"
+this: Illuminate\Events\EventServiceProvider {#17 …}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\EventServiceProvider.php"
+line: "17 to 21"
+}
+"shared" => true
+]
+"log" => array:2 [
+"concrete" => Closure() {#20
+class: "Illuminate\Log\LogServiceProvider"
+this: Illuminate\Log\LogServiceProvider {#19}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Log\LogServiceProvider.php"
+line: "16 to 18"
+}
+"shared" => true
+]
+"router" => array:2 [
+"concrete" => Closure($app) {#22
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "45 to 47"
+}
+"shared" => true
+]
+"url" => array:2 [
+"concrete" => Closure($app) {#23
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "57 to 70"
+}
+"shared" => true
+]
+"redirect" => array:2 [
+"concrete" => Closure($app) {#25
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "114 to 125"
+}
+"shared" => true
+]
+"Psr\Http\Message\ServerRequestInterface" => array:2 [
+"concrete" => Closure($app) {#26
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "135 to 148"
+}
+"shared" => false
+]
+"Psr\Http\Message\ResponseInterface" => array:2 [
+"concrete" => Closure() {#27
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "158 to 168"
+}
+"shared" => false
+]
+"Illuminate\Contracts\Routing\ResponseFactory" => array:2 [
+"concrete" => Closure($app) {#28
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "178 to 180"
+}
+"shared" => true
+]
+"Illuminate\Routing\Contracts\ControllerDispatcher" => array:2 [
+"concrete" => Closure($app) {#29
+class: "Illuminate\Routing\RoutingServiceProvider"
+this: Illuminate\Routing\RoutingServiceProvider {#21}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\RoutingServiceProvider.php"
+line: "190 to 192"
+}
+"shared" => true
+]
+"Illuminate\Contracts\Http\Kernel" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#30
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"Illuminate\Contracts\Console\Kernel" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#31
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"Illuminate\Contracts\Debug\ExceptionHandler" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#1727
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"env" => array:2 [
+"concrete" => Closure() {#47
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "1257 to 1259"
+}
+"shared" => false
+]
+"auth" => array:2 [
+"concrete" => Closure($app) {#46
+class: "Illuminate\Auth\AuthServiceProvider"
+this: Illuminate\Auth\AuthServiceProvider {#50}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php"
+line: "37 to 44"
+}
+"shared" => true
+]
+"auth.driver" => array:2 [
+"concrete" => Closure($app) {#42
+class: "Illuminate\Auth\AuthServiceProvider"
+this: Illuminate\Auth\AuthServiceProvider {#50}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php"
+line: "46 to 48"
+}
+"shared" => true
+]
+"Illuminate\Contracts\Auth\Authenticatable" => array:2 [
+"concrete" => Closure($app) {#51
+class: "Illuminate\Auth\AuthServiceProvider"
+this: Illuminate\Auth\AuthServiceProvider {#50}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php"
+line: "59 to 61"
+}
+"shared" => false
+]
+"Illuminate\Contracts\Auth\Access\Gate" => array:2 [
+"concrete" => Closure($app) {#48
+class: "Illuminate\Auth\AuthServiceProvider"
+this: Illuminate\Auth\AuthServiceProvider {#50}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php"
+line: "72 to 76"
+}
+"shared" => true
+]
+"Illuminate\Auth\Middleware\RequirePassword" => array:2 [
+"concrete" => Closure($app) {#49
+class: "Illuminate\Auth\AuthServiceProvider"
+this: Illuminate\Auth\AuthServiceProvider {#50}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php"
+line: "87 to 93"
+}
+"shared" => false
+]
+"cookie" => array:2 [
+"concrete" => Closure($app) {#65
+class: "Illuminate\Cookie\CookieServiceProvider"
+this: Illuminate\Cookie\CookieServiceProvider {#64}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Cookie\CookieServiceProvider.php"
+line: "16 to 22"
+}
+"shared" => true
+]
+"db.factory" => array:2 [
+"concrete" => Closure($app) {#67
+class: "Illuminate\Database\DatabaseServiceProvider"
+this: Illuminate\Database\DatabaseServiceProvider {#66}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseServiceProvider.php"
+line: "61 to 63"
+}
+"shared" => true
+]
+"db" => array:2 [
+"concrete" => Closure($app) {#68
+class: "Illuminate\Database\DatabaseServiceProvider"
+this: Illuminate\Database\DatabaseServiceProvider {#66}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseServiceProvider.php"
+line: "68 to 70"
+}
+"shared" => true
+]
+"db.connection" => array:2 [
+"concrete" => Closure($app) {#69
+class: "Illuminate\Database\DatabaseServiceProvider"
+this: Illuminate\Database\DatabaseServiceProvider {#66}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseServiceProvider.php"
+line: "72 to 74"
+}
+"shared" => false
+]
+"Faker\Generator" => array:2 [
+"concrete" => Closure($app, $parameters) {#70
+class: "Illuminate\Database\DatabaseServiceProvider"
+this: Illuminate\Database\DatabaseServiceProvider {#66}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseServiceProvider.php"
+line: "84 to 94"
+}
+"shared" => true
+]
+"Illuminate\Database\Eloquent\Factory" => array:2 [
+"concrete" => Closure($app) {#71
+class: "Illuminate\Database\DatabaseServiceProvider"
+this: Illuminate\Database\DatabaseServiceProvider {#66}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseServiceProvider.php"
+line: "96 to 100"
+}
+"shared" => true
+]
+"Illuminate\Contracts\Queue\EntityResolver" => array:2 [
+"concrete" => Closure() {#72
+class: "Illuminate\Database\DatabaseServiceProvider"
+this: Illuminate\Database\DatabaseServiceProvider {#66}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Database\DatabaseServiceProvider.php"
+line: "110 to 112"
+}
+"shared" => true
+]
+"encrypter" => array:2 [
+"concrete" => Closure($app) {#74
+class: "Illuminate\Encryption\EncryptionServiceProvider"
+this: Illuminate\Encryption\EncryptionServiceProvider {#73}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Encryption\EncryptionServiceProvider.php"
+line: "30 to 34"
+}
+"shared" => true
+]
+"files" => array:2 [
+"concrete" => Closure() {#77
+class: "Illuminate\Filesystem\FilesystemServiceProvider"
+this: Illuminate\Filesystem\FilesystemServiceProvider {#76}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Filesystem\FilesystemServiceProvider.php"
+line: "28 to 30"
+}
+"shared" => true
+]
+"filesystem" => array:2 [
+"concrete" => Closure() {#78
+class: "Illuminate\Filesystem\FilesystemServiceProvider"
+this: Illuminate\Filesystem\FilesystemServiceProvider {#76}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Filesystem\FilesystemServiceProvider.php"
+line: "58 to 60"
+}
+"shared" => true
+]
+"filesystem.disk" => array:2 [
+"concrete" => Closure() {#79
+class: "Illuminate\Filesystem\FilesystemServiceProvider"
+this: Illuminate\Filesystem\FilesystemServiceProvider {#76}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Filesystem\FilesystemServiceProvider.php"
+line: "42 to 44"
+}
+"shared" => true
+]
+"filesystem.cloud" => array:2 [
+"concrete" => Closure() {#80
+class: "Illuminate\Filesystem\FilesystemServiceProvider"
+this: Illuminate\Filesystem\FilesystemServiceProvider {#76}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Filesystem\FilesystemServiceProvider.php"
+line: "46 to 48"
+}
+"shared" => true
+]
+"Illuminate\Notifications\ChannelManager" => array:2 [
+"concrete" => Closure($app) {#87
+class: "Illuminate\Notifications\NotificationServiceProvider"
+this: Illuminate\Notifications\NotificationServiceProvider {#86}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Notifications\NotificationServiceProvider.php"
+line: "34 to 36"
+}
+"shared" => true
+]
+"session" => array:2 [
+"concrete" => Closure($app) {#93
+class: "Illuminate\Session\SessionServiceProvider"
+this: Illuminate\Session\SessionServiceProvider {#92}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Session\SessionServiceProvider.php"
+line: "31 to 33"
+}
+"shared" => true
+]
+"session.store" => array:2 [
+"concrete" => Closure($app) {#94
+class: "Illuminate\Session\SessionServiceProvider"
+this: Illuminate\Session\SessionServiceProvider {#92}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Session\SessionServiceProvider.php"
+line: "43 to 48"
+}
+"shared" => true
+]
+"Illuminate\Session\Middleware\StartSession" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#95
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"view" => array:2 [
+"concrete" => Closure($app) {#97
+class: "Illuminate\View\ViewServiceProvider"
+this: Illuminate\View\ViewServiceProvider {#96}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php"
+line: "37 to 55"
+}
+"shared" => true
+]
+"view.finder" => array:2 [
+"concrete" => Closure($app) {#98
+class: "Illuminate\View\ViewServiceProvider"
+this: Illuminate\View\ViewServiceProvider {#96}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php"
+line: "78 to 80"
+}
+"shared" => false
+]
+"blade.compiler" => array:2 [
+"concrete" => Closure() {#99
+class: "Illuminate\View\ViewServiceProvider"
+this: Illuminate\View\ViewServiceProvider {#96}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php"
+line: "90 to 94"
+}
+"shared" => true
+]
+"view.engine.resolver" => array:2 [
+"concrete" => Closure() {#100
+class: "Illuminate\View\ViewServiceProvider"
+this: Illuminate\View\ViewServiceProvider {#96}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php"
+line: "104 to 115"
+}
+"shared" => true
+]
+"Barryvdh\Debugbar\LaravelDebugbar" => array:2 [
+"concrete" => Closure() {#105
+class: "Barryvdh\Debugbar\ServiceProvider"
+this: Barryvdh\Debugbar\ServiceProvider {#102}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-debugbar\src\ServiceProvider.php"
+line: "35 to 45"
+}
+"shared" => true
+]
+"command.debugbar.clear" => array:2 [
+"concrete" => Closure($app) {#103
+class: "Barryvdh\Debugbar\ServiceProvider"
+this: Barryvdh\Debugbar\ServiceProvider {#102}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-debugbar\src\ServiceProvider.php"
+line: "51 to 53"
+}
+"shared" => true
+]
+"command.ide-helper.generate" => array:2 [
+"concrete" => Closure($app) {#112
+class: "Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider"
+this: Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider {#106}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-ide-helper\src\IdeHelperServiceProvider.php"
+line: "67 to 69"
+}
+"shared" => true
+]
+"command.ide-helper.models" => array:2 [
+"concrete" => Closure($app) {#113
+class: "Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider"
+this: Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider {#106}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-ide-helper\src\IdeHelperServiceProvider.php"
+line: "74 to 76"
+}
+"shared" => true
+]
+"command.ide-helper.meta" => array:2 [
+"concrete" => Closure($app) {#114
+class: "Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider"
+this: Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider {#106}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-ide-helper\src\IdeHelperServiceProvider.php"
+line: "81 to 83"
+}
+"shared" => true
+]
+"command.ide-helper.eloquent" => array:2 [
+"concrete" => Closure($app) {#115
+class: "Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider"
+this: Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider {#106}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\barryvdh\laravel-ide-helper\src\IdeHelperServiceProvider.php"
+line: "88 to 90"
+}
+"shared" => true
+]
+"ckeditor-media-storage" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#118
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"Facade\IgnitionContracts\SolutionProviderRepository" => array:2 [
+"concrete" => Closure() {#129
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "162 to 166"
+}
+"shared" => true
+]
+"Facade\Ignition\ErrorPage\Renderer" => array:2 [
+"concrete" => Closure() {#130
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "173 to 175"
+}
+"shared" => false
+]
+"Whoops\Handler\HandlerInterface" => array:2 [
+"concrete" => Closure(Application $app) {#131
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "182 to 184"
+}
+"shared" => false
+]
+"Facade\Ignition\IgnitionConfig" => array:2 [
+"concrete" => Closure() {#132
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "191 to 203"
+}
+"shared" => true
+]
+"flare.http" => array:2 [
+"concrete" => Closure() {#133
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "210 to 216"
+}
+"shared" => true
+]
+"flare.client" => array:2 [
+"concrete" => Closure() {#134
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "220 to 226"
+}
+"shared" => true
+]
+"Facade\Ignition\LogRecorder\LogRecorder" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#137
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"Facade\Ignition\DumpRecorder\DumpRecorder" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#135
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"Facade\Ignition\QueryRecorder\QueryRecorder" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#140
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"image" => array:2 [
+"concrete" => Closure($app) {#163
+class: "Intervention\Image\ImageServiceProviderLaravelRecent"
+this: Intervention\Image\ImageServiceProviderLaravelRecent {#162}
+file: "D:\WebProjects\caspian\vendor\intervention\image\src\Intervention\Image\ImageServiceProviderLaravelRecent.php"
+line: "50 to 52"
+}
+"shared" => true
+]
+"JoeDixon\Translation\Scanner" => array:2 [
+"concrete" => Closure() {#165
+class: "JoeDixon\Translation\TranslationServiceProvider"
+this: JoeDixon\Translation\TranslationServiceProvider {#164}
+file: "D:\WebProjects\caspian\vendor\joedixon\laravel-translation\src\TranslationServiceProvider.php"
+line: "171 to 175"
+}
+"shared" => true
+]
+"JoeDixon\Translation\Drivers\Translation" => array:2 [
+"concrete" => Closure($app) {#166
+class: "JoeDixon\Translation\TranslationServiceProvider"
+this: JoeDixon\Translation\TranslationServiceProvider {#164}
+file: "D:\WebProjects\caspian\vendor\joedixon\laravel-translation\src\TranslationServiceProvider.php"
+line: "177 to 179"
+}
+"shared" => true
+]
+"Lab404\Impersonate\Services\ImpersonateManager" => array:2 [
+"concrete" => Closure($app) {#171
+class: "Lab404\Impersonate\ImpersonateServiceProvider"
+this: Lab404\Impersonate\ImpersonateServiceProvider {#169}
+file: "D:\WebProjects\caspian\vendor\lab404\laravel-impersonate\src\ImpersonateServiceProvider.php"
+line: "36 to 38"
+}
+"shared" => true
+]
+"auth.loaded" => array:2 [
+"concrete" => Closure() {#173
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "1257 to 1259"
+}
+"shared" => false
+]
+"League\OAuth2\Server\AuthorizationServer" => array:2 [
+"concrete" => Closure() {#180
+class: "Laravel\Passport\PassportServiceProvider"
+this: Laravel\Passport\PassportServiceProvider {#179}
+file: "D:\WebProjects\caspian\vendor\laravel\passport\src\PassportServiceProvider.php"
+line: "106 to 136"
+}
+"shared" => true
+]
+"League\OAuth2\Server\ResourceServer" => array:2 [
+"concrete" => Closure() {#181
+class: "Laravel\Passport\PassportServiceProvider"
+this: Laravel\Passport\PassportServiceProvider {#179}
+file: "D:\WebProjects\caspian\vendor\laravel\passport\src\PassportServiceProvider.php"
+line: "229 to 234"
+}
+"shared" => true
+]
+"Maatwebsite\Excel\Transactions\TransactionManager" => array:2 [
+"concrete" => Closure() {#186
+class: "Maatwebsite\Excel\ExcelServiceProvider"
+this: Maatwebsite\Excel\ExcelServiceProvider {#185}
+file: "D:\WebProjects\caspian\vendor\maatwebsite\excel\src\ExcelServiceProvider.php"
+line: "45 to 47"
+}
+"shared" => false
+]
+"Maatwebsite\Excel\Transactions\TransactionHandler" => array:2 [
+"concrete" => Closure() {#187
+class: "Maatwebsite\Excel\ExcelServiceProvider"
+this: Maatwebsite\Excel\ExcelServiceProvider {#185}
+file: "D:\WebProjects\caspian\vendor\maatwebsite\excel\src\ExcelServiceProvider.php"
+line: "49 to 51"
+}
+"shared" => false
+]
+"Maatwebsite\Excel\Files\TemporaryFileFactory" => array:2 [
+"concrete" => Closure() {#188
+class: "Maatwebsite\Excel\ExcelServiceProvider"
+this: Maatwebsite\Excel\ExcelServiceProvider {#185}
+file: "D:\WebProjects\caspian\vendor\maatwebsite\excel\src\ExcelServiceProvider.php"
+line: "53 to 59"
+}
+"shared" => false
+]
+"Maatwebsite\Excel\Files\Filesystem" => array:2 [
+"concrete" => Closure() {#189
+class: "Maatwebsite\Excel\ExcelServiceProvider"
+this: Maatwebsite\Excel\ExcelServiceProvider {#185}
+file: "D:\WebProjects\caspian\vendor\maatwebsite\excel\src\ExcelServiceProvider.php"
+line: "61 to 63"
+}
+"shared" => false
+]
+"excel" => array:2 [
+"concrete" => Closure() {#190
+class: "Maatwebsite\Excel\ExcelServiceProvider"
+this: Maatwebsite\Excel\ExcelServiceProvider {#185}
+file: "D:\WebProjects\caspian\vendor\maatwebsite\excel\src\ExcelServiceProvider.php"
+line: "65 to 72"
+}
+"shared" => false
+]
+"Spatie\MediaLibrary\MediaRepository" => array:2 [
+"concrete" => Closure() {#204
+class: "Spatie\MediaLibrary\MediaLibraryServiceProvider"
+this: Spatie\MediaLibrary\MediaLibraryServiceProvider {#201}
+file: "D:\WebProjects\caspian\vendor\spatie\laravel-medialibrary\src\MediaLibraryServiceProvider.php"
+line: "42 to 46"
+}
+"shared" => true
+]
+"command.medialibrary:regenerate" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#202
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"command.medialibrary:clear" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#203
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"command.medialibrary:clean" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#205
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"Spatie\MediaLibrary\Filesystem\Filesystem" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#206
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\WidthCalculator" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#207
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\TinyPlaceholderGenerator" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#208
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"laravel-filemanager" => array:2 [
+"concrete" => Closure() {#212
+class: "UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider"
+this: UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider {#211}
+file: "D:\WebProjects\caspian\vendor\unisharp\laravel-filemanager\src\LaravelFilemanagerServiceProvider.php"
+line: "54 to 56"
+}
+"shared" => true
+]
+"validation.presence" => array:2 [
+"concrete" => Closure($app) {#263
+class: "Illuminate\Validation\ValidationServiceProvider"
+this: Illuminate\Validation\ValidationServiceProvider {#262}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Validation\ValidationServiceProvider.php"
+line: "50 to 52"
+}
+"shared" => true
+]
+"validator" => array:2 [
+"concrete" => Closure($app) {#264
+class: "Illuminate\Validation\ValidationServiceProvider"
+this: Illuminate\Validation\ValidationServiceProvider {#262}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Validation\ValidationServiceProvider.php"
+line: "29 to 40"
+}
+"shared" => true
+]
+"translation.loader" => array:2 [
+"concrete" => Closure($app) {#268
+class: "Illuminate\Translation\TranslationServiceProvider"
+this: JoeDixon\Translation\TranslationBindingsServiceProvider {#267}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Translation\TranslationServiceProvider.php"
+line: "42 to 44"
+}
+"shared" => true
+]
+"translator" => array:2 [
+"concrete" => Closure($app) {#269
+class: "Illuminate\Translation\TranslationServiceProvider"
+this: JoeDixon\Translation\TranslationBindingsServiceProvider {#267}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Translation\TranslationServiceProvider.php"
+line: "19 to 32"
+}
+"shared" => true
+]
+"flare.logger" => array:2 [
+"concrete" => Closure($app) {#295
+class: "Facade\Ignition\IgnitionServiceProvider"
+this: Facade\Ignition\IgnitionServiceProvider {#128}
+file: "D:\WebProjects\caspian\vendor\facade\ignition\src\IgnitionServiceProvider.php"
+line: "235 to 248"
+}
+"shared" => true
+]
+"command.flare:test" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#310
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"command.make:solution" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#312
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => false
+]
+"queue" => array:2 [
+"concrete" => Closure($app) {#314
+class: "Illuminate\Queue\QueueServiceProvider"
+this: Illuminate\Queue\QueueServiceProvider {#313}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Queue\QueueServiceProvider.php"
+line: "46 to 53"
+}
+"shared" => true
+]
+"queue.connection" => array:2 [
+"concrete" => Closure($app) {#315
+class: "Illuminate\Queue\QueueServiceProvider"
+this: Illuminate\Queue\QueueServiceProvider {#313}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Queue\QueueServiceProvider.php"
+line: "63 to 65"
+}
+"shared" => true
+]
+"queue.worker" => array:2 [
+"concrete" => Closure() {#316
+class: "Illuminate\Queue\QueueServiceProvider"
+this: Illuminate\Queue\QueueServiceProvider {#313}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Queue\QueueServiceProvider.php"
+line: "166 to 177"
+}
+"shared" => true
+]
+"queue.listener" => array:2 [
+"concrete" => Closure() {#317
+class: "Illuminate\Queue\QueueServiceProvider"
+this: Illuminate\Queue\QueueServiceProvider {#313}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Queue\QueueServiceProvider.php"
+line: "187 to 189"
+}
+"shared" => true
+]
+"queue.failer" => array:2 [
+"concrete" => Closure() {#318
+class: "Illuminate\Queue\QueueServiceProvider"
+this: Illuminate\Queue\QueueServiceProvider {#313}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Queue\QueueServiceProvider.php"
+line: "199 to 209"
+}
+"shared" => true
+]
+"Facade\Ignition\DumpRecorder\MultiDumpHandler" => array:2 [
+"concrete" => Closure($container, $parameters = []) {#332
+class: "Illuminate\Container\Container"
+this: Illuminate\Foundation\Application {#6}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Container\Container.php"
+line: "259 to 267"
+}
+"shared" => true
+]
+"swift.transport" => array:2 [
+"concrete" => Closure($app) {#567
+class: "Illuminate\Mail\MailServiceProvider"
+this: Illuminate\Mail\MailServiceProvider {#566}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Mail\MailServiceProvider.php"
+line: "105 to 107"
+}
+"shared" => true
+]
+"swift.mailer" => array:2 [
+"concrete" => Closure($app) {#568
+class: "Illuminate\Mail\MailServiceProvider"
+this: Illuminate\Mail\MailServiceProvider {#566}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Mail\MailServiceProvider.php"
+line: "87 to 95"
+}
+"shared" => true
+]
+"mailer" => array:2 [
+"concrete" => Closure($app) {#569
+class: "Illuminate\Mail\MailServiceProvider"
+this: Illuminate\Mail\MailServiceProvider {#566}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Mail\MailServiceProvider.php"
+line: "33 to 55"
+}
+"shared" => true
+]
+"Illuminate\Mail\Markdown" => array:2 [
+"concrete" => Closure($app) {#570
+class: "Illuminate\Mail\MailServiceProvider"
+this: Illuminate\Mail\MailServiceProvider {#566}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Mail\MailServiceProvider.php"
+line: "123 to 130"
+}
+"shared" => true
+]
+"hash" => array:2 [
+"concrete" => Closure($app) {#739
+class: "Illuminate\Hashing\HashServiceProvider"
+this: Illuminate\Hashing\HashServiceProvider {#731}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Hashing\HashServiceProvider.php"
+line: "17 to 19"
+}
+"shared" => true
+]
+"hash.driver" => array:2 [
+"concrete" => Closure($app) {#743
+class: "Illuminate\Hashing\HashServiceProvider"
+this: Illuminate\Hashing\HashServiceProvider {#731}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Hashing\HashServiceProvider.php"
+line: "21 to 23"
+}
+"shared" => true
+]
+]
+#methodBindings: []
+#instances: array:54 [
+"path" => "D:\WebProjects\caspian\app"
+"path.base" => "D:\WebProjects\caspian"
+"path.lang" => "D:\WebProjects\caspian\resources\lang"
+"path.config" => "D:\WebProjects\caspian\config"
+"path.public" => "D:\WebProjects\caspian\public"
+"path.storage" => "D:\WebProjects\caspian\storage"
+"path.database" => "D:\WebProjects\caspian\database"
+"path.resources" => "D:\WebProjects\caspian\resources"
+"path.bootstrap" => "D:\WebProjects\caspian\bootstrap"
+"app" => Illuminate\Foundation\Application {#6}
+"Illuminate\Container\Container" => Illuminate\Foundation\Application {#6}
+"Illuminate\Foundation\PackageManifest" => Illuminate\Foundation\PackageManifest {#8
++files: Illuminate\Filesystem\Filesystem {#9}
++basePath: "D:\WebProjects\caspian"
++vendorPath: "D:\WebProjects\caspian/vendor"
++manifestPath: "D:\WebProjects\caspian\bootstrap\cache/packages.php"
++manifest: array:38 [
+"64robots/nova-fields" => array:1 [ …1]
+"barryvdh/laravel-debugbar" => array:2 [ …2]
+"barryvdh/laravel-ide-helper" => array:1 [ …1]
+"bayareawebpro/nova-field-ckeditor" => array:1 [ …1]
+"bissolli/nova-phone-field" => array:1 [ …1]
+"codenco-dev/nova-grid-system" => array:1 [ …1]
+"daniel-de-wit/nova-single-record-resource" => array:1 [ …1]
+"david-griffiths/nova-dark-theme" => array:1 [ …1]
+"digitalcloud/multilingual-nova" => array:1 [ …1]
+"ebess/advanced-nova-media-library" => array:1 [ …1]
+"emilianotisato/nova-tinymce" => array:1 [ …1]
+"epartment/nova-dependency-container" => array:1 [ …1]
+"facade/ignition" => array:2 [ …2]
+"fideloper/proxy" => array:1 [ …1]
+"genealabs/nova-map-marker-field" => array:1 [ …1]
+"infinety-es/nova-filemanager" => array:1 [ …1]
+"inspheric/nova-email-field" => array:1 [ …1]
+"intervention/image" => array:2 [ …2]
+"joedixon/laravel-translation" => array:1 [ …1]
+"joedixon/nova-translation" => array:1 [ …1]
+"kabbouchi/nova-impersonate" => array:1 [ …1]
+"lab404/laravel-impersonate" => array:1 [ …1]
+"laraning/nova-time-field" => array:1 [ …1]
+"laravel/nova" => array:2 [ …2]
+"laravel/passport" => array:1 [ …1]
+"laravel/tinker" => array:1 [ …1]
+"laravel/ui" => array:1 [ …1]
+"maatwebsite/excel" => array:2 [ …2]
+"maatwebsite/laravel-nova-excel" => array:1 [ …1]
+"media24si/nova-youtube-field" => array:1 [ …1]
+"michielkempen/nova-polymorphic-field" => array:1 [ …1]
+"nesbot/carbon" => array:1 [ …1]
+"nunomaduro/collision" => array:1 [ …1]
+"spatie/laravel-medialibrary" => array:1 [ …1]
+"spatie/laravel-translatable" => array:1 [ …1]
+"unisharp/laravel-filemanager" => array:2 [ …2]
+"whitecube/nova-flexible-content" => array:1 [ …1]
+"whitecube/nova-google-maps" => array:1 [ …1]
+]
+}
+"events" => Illuminate\Events\Dispatcher {#38}
+"router" => Illuminate\Routing\Router {#37
+#events: Illuminate\Events\Dispatcher {#38}
+#container: Illuminate\Foundation\Application {#6}
+#routes: Illuminate\Routing\RouteCollection {#40
+#routes: array:7 [
+"GET" => array:119 [ …119]
+"HEAD" => array:119 [ …119]
+"POST" => array:38 [ …38]
+"DELETE" => array:13 [ …13]
+"PUT" => array:6 [ …6]
+"PATCH" => array:2 [ …2]
+"OPTIONS" => array:2 [ …2]
+]
+#allRoutes: array:170 [
+"HEADnova-r64-api/{resource}/associatable/{field}" => Illuminate\Routing\Route {#228 …14}
+"POSTnova-r64-api/{resource}/computed/{field}" => Illuminate\Routing\Route {#229 …14}
+"HEADnova-r64-api/{resource}/{resourceId}/download/{field}" => Illuminate\Routing\Route {#230 …14}
+"HEAD_debugbar/open" => Illuminate\Routing\Route {#231 …14}
+"HEAD_debugbar/clockwork/{id}" => Illuminate\Routing\Route {#232 …14}
+"HEAD_debugbar/telescope/{id}" => Illuminate\Routing\Route {#233 …14}
+"HEAD_debugbar/assets/stylesheets" => Illuminate\Routing\Route {#234 …14}
+"HEAD_debugbar/assets/javascript" => Illuminate\Routing\Route {#235 …14}
+"DELETE_debugbar/cache/{key}/{tags?}" => Illuminate\Routing\Route {#236 …14}
+"HEAD_ignition/health-check" => Illuminate\Routing\Route {#297 …14}
+"POST_ignition/execute-solution" => Illuminate\Routing\Route {#296 …14}
+"POST_ignition/share-report" => Illuminate\Routing\Route {#306 …14}
+"HEAD_ignition/scripts/{script}" => Illuminate\Routing\Route {#307 …14}
+"HEAD_ignition/styles/{style}" => Illuminate\Routing\Route {#308 …14}
+"HEADlanguages" => Illuminate\Routing\Route {#346 …14}
+"HEADlanguages/create" => Illuminate\Routing\Route {#347 …14}
+"POSTlanguages" => Illuminate\Routing\Route {#348 …14}
+"HEADlanguages/{language}/translations" => Illuminate\Routing\Route {#349 …14}
+"POSTlanguages/{language}" => Illuminate\Routing\Route {#350 …14}
+"HEADlanguages/{language}/translations/create" => Illuminate\Routing\Route {#351 …14}
+"POSTlanguages/{language}/translations" => Illuminate\Routing\Route {#352 …14}
+"HEADfilemanager" => Illuminate\Routing\Route {#394 …14}
+"HEADfilemanager/errors" => Illuminate\Routing\Route {#395 …14}
+"OPTIONSfilemanager/upload" => Illuminate\Routing\Route {#396 …14}
+"HEADfilemanager/jsonitems" => Illuminate\Routing\Route {#397 …14}
+"HEADfilemanager/move" => Illuminate\Routing\Route {#398 …14}
+"HEADfilemanager/domove" => Illuminate\Routing\Route {#399 …14}
+"HEADfilemanager/newfolder" => Illuminate\Routing\Route {#400 …14}
+"HEADfilemanager/folders" => Illuminate\Routing\Route {#401 …14}
+"HEADfilemanager/crop" => Illuminate\Routing\Route {#402 …14}
+"HEADfilemanager/cropimage" => Illuminate\Routing\Route {#403 …14}
+"HEADfilemanager/cropnewimage" => Illuminate\Routing\Route {#404 …14}
+"HEADfilemanager/rename" => Illuminate\Routing\Route {#405 …14}
+"HEADfilemanager/resize" => Illuminate\Routing\Route {#406 …14}
+"HEADfilemanager/doresize" => Illuminate\Routing\Route {#407 …14}
+"HEADfilemanager/download" => Illuminate\Routing\Route {#408 …14}
+"HEADfilemanager/delete" => Illuminate\Routing\Route {#409 …14}
+"HEADfilemanager/demo" => Illuminate\Routing\Route {#410 …14}
+"HEADadmin/login" => Illuminate\Routing\Route {#416 …14}
+"POSTadmin/login" => Illuminate\Routing\Route {#417 …14}
+"HEADadmin/logout" => Illuminate\Routing\Route {#418 …14}
+"HEADadmin/password/reset" => Illuminate\Routing\Route {#419 …14}
+"POSTadmin/password/email" => Illuminate\Routing\Route {#420 …14}
+"HEADadmin/password/reset/{token}" => Illuminate\Routing\Route {#421 …14}
+"POSTadmin/password/reset" => Illuminate\Routing\Route {#422 …14}
+"HEADlaravel-filemanager" => Illuminate\Routing\Route {#433 …14}
+"HEADlaravel-filemanager/errors" => Illuminate\Routing\Route {#434 …14}
+"OPTIONSlaravel-filemanager/upload" => Illuminate\Routing\Route {#435 …14}
+"HEADlaravel-filemanager/jsonitems" => Illuminate\Routing\Route {#436 …14}
+"HEADlaravel-filemanager/move" => Illuminate\Routing\Route {#437 …14}
+"HEADlaravel-filemanager/domove" => Illuminate\Routing\Route {#438 …14}
+"HEADlaravel-filemanager/newfolder" => Illuminate\Routing\Route {#439 …14}
+"HEADlaravel-filemanager/folders" => Illuminate\Routing\Route {#440 …14}
+"HEADlaravel-filemanager/crop" => Illuminate\Routing\Route {#441 …14}
+"HEADlaravel-filemanager/cropimage" => Illuminate\Routing\Route {#442 …14}
+"HEADlaravel-filemanager/cropnewimage" => Illuminate\Routing\Route {#443 …14}
+"HEADlaravel-filemanager/rename" => Illuminate\Routing\Route {#444 …14}
+"HEADlaravel-filemanager/resize" => Illuminate\Routing\Route {#445 …14}
+"HEADlaravel-filemanager/doresize" => Illuminate\Routing\Route {#446 …14}
+"HEADlaravel-filemanager/download" => Illuminate\Routing\Route {#447 …14}
+"HEADlaravel-filemanager/delete" => Illuminate\Routing\Route {#448 …14}
+"HEADlaravel-filemanager/demo" => Illuminate\Routing\Route {#449 …14}
+"HEADlang/{key}" => Illuminate\Routing\Route {#450 …14}
+"HEADlogin" => Illuminate\Routing\Route {#451 …14}
+"POSTlogin" => Illuminate\Routing\Route {#452 …14}
+"POSTlogout" => Illuminate\Routing\Route {#453 …14}
+"HEADregister" => Illuminate\Routing\Route {#454 …14}
+"POSTregister" => Illuminate\Routing\Route {#455 …14}
+"HEADpassword/reset" => Illuminate\Routing\Route {#456 …14}
+"POSTpassword/email" => Illuminate\Routing\Route {#457 …14}
+"HEADpassword/reset/{token}" => Illuminate\Routing\Route {#458 …14}
+"POSTpassword/reset" => Illuminate\Routing\Route {#459 …14}
+"HEADpassword/confirm" => Illuminate\Routing\Route {#460 …14}
+"POSTpassword/confirm" => Illuminate\Routing\Route {#461 …14}
+"HEAD/" => Illuminate\Routing\Route {#462 …14}
+"HEADcontacts" => Illuminate\Routing\Route {#463 …14}
+…94
+]
+#nameList: array:68 [ …68]
+#actionList: array:151 [ …151]
+}
+#current: Illuminate\Routing\Route {#653
++uri: "nova-api/{resource}"
++methods: array:1 [ …1]
++action: array:8 [ …8]
++isFallback: false
++controller: Laravel\Nova\Http\Controllers\ResourceStoreController {#674 …1}
++defaults: []
++wheres: []
++parameters: array:1 [ …1]
++parameterNames: array:1 [ …1]
+#originalParameters: array:1 [ …1]
++computedMiddleware: array:1 [ …1]
++compiled: Symfony\Component\Routing\CompiledRoute {#718 …8}
+#router: Illuminate\Routing\Router {#37}
+#container: Illuminate\Foundation\Application {#6}
+}
+#currentRequest: Illuminate\Http\Request {#54
+#json: Symfony\Component\HttpFoundation\ParameterBag {#258
+#parameters: []
+}
+#convertedFiles: []
+#userResolver: Closure($guard = null) {#600
+class: "Illuminate\Auth\AuthServiceProvider"
+this: Illuminate\Auth\AuthServiceProvider {#50}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php"
+line: "105 to 107"
+}
+#routeResolver: Closure() {#676
+class: "Illuminate\Routing\Router"
+this: Illuminate\Routing\Router {#37}
+use: { …1}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Routing\Router.php"
+line: "651 to 653"
+}
++attributes: Symfony\Component\HttpFoundation\ParameterBag {#56
+#parameters: []
+}
++request: Symfony\Component\HttpFoundation\ParameterBag {#55
+#parameters: array:11 [ …11]
+}
++query: Symfony\Component\HttpFoundation\ParameterBag {#62
+#parameters: array:2 [ …2]
+}
++server: Symfony\Component\HttpFoundation\ServerBag {#58
+#parameters: array:48 [ …48]
+}
++files: Symfony\Component\HttpFoundation\FileBag {#59
+#parameters: []
+}
++cookies: Symfony\Component\HttpFoundation\ParameterBag {#57
+#parameters: array:2 [ …2]
+}
++headers: Symfony\Component\HttpFoundation\HeaderBag {#60
+#headers: array:16 [ …16]
+#cacheControl: []
+}
+#content: ""
+#languages: null
+#charsets: null
+#encodings: null
+#acceptableContentTypes: null
+#pathInfo: "/nova-api/events"
+#requestUri: "/nova-api/events?editing=true&editMode=create"
+#baseUrl: ""
+#basePath: null
+#method: "POST"
+#format: null
+#session: Illuminate\Session\Store {#261
+#id: "whJaTAXS2iLlkCHukjRT2oFrCFtA5x2EVWIlsuTZ"
+#name: "laravel_session"
+#attributes: array:5 [ …5]
+#handler: Illuminate\Session\FileSessionHandler {#260 …3}
+#started: true
+}
+#locale: null
+#defaultLocale: "en"
+-preferredFormat: null
+-isHostValid: true
+-isForwardedValid: true
+basePath: ""
+format: "html"
+}
+#middleware: array:14 [
+"auth" => "App\Http\Middleware\Authenticate"
+"auth.basic" => "Illuminate\Auth\Middleware\AuthenticateWithBasicAuth"
+"bindings" => "Illuminate\Routing\Middleware\SubstituteBindings"
+"cache.headers" => "Illuminate\Http\Middleware\SetCacheHeaders"
+"can" => "Illuminate\Auth\Middleware\Authorize"
+"guest" => "App\Http\Middleware\RedirectIfAuthenticated"
+"password.confirm" => "Illuminate\Auth\Middleware\RequirePassword"
+"signed" => "Illuminate\Routing\Middleware\ValidateSignature"
+"throttle" => "Illuminate\Routing\Middleware\ThrottleRequests"
+"verified" => "Illuminate\Auth\Middleware\EnsureEmailIsVerified"
+"locale" => "App\Http\Middleware\LanguageMiddleware"
+"admin" => "App\Http\Middleware\Admin"
+"impersonate.protect" => "Lab404\Impersonate\Middleware\ProtectFromImpersonation"
+"nova.guest" => "Laravel\Nova\Http\Middleware\RedirectIfAuthenticated"
+]
+#middlewareGroups: array:3 [
+"web" => array:6 [ …6]
+"api" => array:2 [ …2]
+"nova" => array:6 [ …6]
+]
++middlewarePriority: array:7 [
+0 => "Illuminate\Session\Middleware\StartSession"
+1 => "Illuminate\View\Middleware\ShareErrorsFromSession"
+2 => "App\Http\Middleware\Authenticate"
+3 => "Illuminate\Routing\Middleware\ThrottleRequests"
+4 => "Illuminate\Session\Middleware\AuthenticateSession"
+5 => "Illuminate\Routing\Middleware\SubstituteBindings"
+6 => "Illuminate\Auth\Middleware\Authorize"
+]
+#binders: []
+#patterns: []
+#groupStack: []
+}
+"Illuminate\Contracts\Http\Kernel" => App\Http\Kernel {#41
+#middleware: array:8 [
+0 => "App\Http\Middleware\TrustProxies"
+1 => "App\Http\Middleware\CheckForMaintenanceMode"
+2 => "Illuminate\Foundation\Http\Middleware\ValidatePostSize"
+3 => "App\Http\Middleware\TrimStrings"
+4 => "Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull"
+5 => "Barryvdh\Debugbar\Middleware\InjectDebugbar"
+6 => "Laravel\Nova\Http\Middleware\ServeNova"
+7 => "KABBOUCHI\NovaImpersonate\Http\Middleware\Impersonate"
+]
+#middlewareGroups: array:2 [
+"web" => array:6 [ …6]
+"api" => array:2 [ …2]
+]
+#routeMiddleware: array:12 [
+"auth" => "App\Http\Middleware\Authenticate"
+"auth.basic" => "Illuminate\Auth\Middleware\AuthenticateWithBasicAuth"
+"bindings" => "Illuminate\Routing\Middleware\SubstituteBindings"
+"cache.headers" => "Illuminate\Http\Middleware\SetCacheHeaders"
+"can" => "Illuminate\Auth\Middleware\Authorize"
+"guest" => "App\Http\Middleware\RedirectIfAuthenticated"
+"password.confirm" => "Illuminate\Auth\Middleware\RequirePassword"
+"signed" => "Illuminate\Routing\Middleware\ValidateSignature"
+"throttle" => "Illuminate\Routing\Middleware\ThrottleRequests"
+"verified" => "Illuminate\Auth\Middleware\EnsureEmailIsVerified"
+"locale" => "App\Http\Middleware\LanguageMiddleware"
+"admin" => "App\Http\Middleware\Admin"
+]
+#middlewarePriority: array:7 [
+0 => "Illuminate\Session\Middleware\StartSession"
+1 => "Illuminate\View\Middleware\ShareErrorsFromSession"
+2 => "App\Http\Middleware\Authenticate"
+3 => "Illuminate\Routing\Middleware\ThrottleRequests"
+4 => "Illuminate\Session\Middleware\AuthenticateSession"
+5 => "Illuminate\Routing\Middleware\SubstituteBindings"
+6 => "Illuminate\Auth\Middleware\Authorize"
+]
+#app: Illuminate\Foundation\Application {#6}
+#router: Illuminate\Routing\Router {#37}
+#bootstrappers: array:6 [
+0 => "Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables"
+1 => "Illuminate\Foundation\Bootstrap\LoadConfiguration"
+2 => "Illuminate\Foundation\Bootstrap\HandleExceptions"
+3 => "Illuminate\Foundation\Bootstrap\RegisterFacades"
+4 => "Illuminate\Foundation\Bootstrap\RegisterProviders"
+5 => "Illuminate\Foundation\Bootstrap\BootProviders"
+]
+}
+"request" => Illuminate\Http\Request {#54}
+"config" => Illuminate\Config\Repository {#45
+#items: array:36 [
+"app" => array:13 [ …13]
+"auth" => array:5 [ …5]
+"broadcasting" => array:2 [ …2]
+"cache" => array:3 [ …3]
+"database" => array:4 [ …4]
+"debugbar" => array:13 [ …13]
+"excel" => array:6 [ …6]
+"filemanager" => array:9 [ …9]
+"filesystems" => array:3 [ …3]
+"hashing" => array:3 [ …3]
+"ide-helper" => array:18 [ …18]
+"lfm" => array:21 [ …21]
+"logging" => array:2 [ …2]
+"mail" => array:10 [ …10]
+"map-address" => array:2 [ …2]
+"medialibrary" => array:17 [ …17]
+"multilingual" => array:5 [ …5]
+"nova" => array:10 [ …10]
+"nova-ckeditor" => array:7 [ …7]
+"nova-grid-system" => array:7 [ …7]
+"nova-media-library" => array:1 [ …1]
+"nova-tinymce" => array:1 [ …1]
+"queue" => array:3 [ …3]
+"services" => array:3 [ …3]
+"session" => array:15 [ …15]
+"translatable" => array:1 [ …1]
+"translation" => array:6 [ …6]
+"view" => array:2 [ …2]
+"flare" => array:3 [ …3]
+"ignition" => array:9 [ …9]
+"image" => array:1 [ …1]
+"nova-impersonate" => array:11 [ …11]
+"laravel-impersonate" => array:6 [ …6]
+"passport" => array:3 [ …3]
+"nova-google-maps" => array:2 [ …2]
+"trustedproxy" => array:2 [ …2]
+]
+}
+"files" => Illuminate\Filesystem\Filesystem {#110}
+"Facade\Ignition\LogRecorder\LogRecorder" => Facade\Ignition\LogRecorder\LogRecorder {#138
+#logMessages: []
+#app: Illuminate\Foundation\Application {#6}
+}
+"Facade\Ignition\DumpRecorder\DumpRecorder" => Facade\Ignition\DumpRecorder\DumpRecorder {#136
+#dumps: []
+#app: Illuminate\Foundation\Application {#6}
+}
+"Facade\Ignition\QueryRecorder\QueryRecorder" => Facade\Ignition\QueryRecorder\QueryRecorder {#139
+#queries: array:1 [
+0 => Facade\Ignition\QueryRecorder\Query {#1631 …5}
+]
+#app: Illuminate\Foundation\Application {#6}
+}
+"flare.http" => Facade\FlareClient\Http\Client {#143
+-apiToken: null
+-apiSecret: null
+-baseUrl: "https://flareapp.io/api"
+-timeout: 10
+}
+"flare.client" => Facade\FlareClient\Flare {#144
+-client: Facade\FlareClient\Http\Client {#143}
+-api: Facade\FlareClient\Api {#145
+-client: Facade\FlareClient\Http\Client {#143}
+-queue: []
+}
+-middleware: array:9 [
+0 => Facade\FlareClient\Middleware\AddGlows {#146 …1}
+1 => Facade\FlareClient\Middleware\AnonymizeIp {#147}
+2 => Facade\Ignition\Middleware\SetNotifierName {#151}
+3 => Facade\Ignition\Middleware\AddEnvironmentInformation {#152}
+4 => Facade\Ignition\Middleware\AddLogs {#155 …1}
+5 => Facade\Ignition\Middleware\AddDumps {#156 …1}
+6 => Facade\Ignition\Middleware\AddQueries {#157 …1}
+7 => Facade\Ignition\Middleware\AddSolutions {#160 …1}
+8 => Facade\Ignition\Middleware\AddGitInformation {#148}
+]
+-recorder: Facade\FlareClient\Glows\Recorder {#141
+-glows: []
+}
+-applicationPath: "D:\WebProjects\caspian"
+-container: Illuminate\Foundation\Application {#6}
+-contextDetector: Facade\Ignition\Context\LaravelContextDetector {#142}
+-previousExceptionHandler: null
+-previousErrorHandler: null
+-messageLevel: null
+-stage: "local"
+-userProvidedContext: []
+}
+"Facade\IgnitionContracts\SolutionProviderRepository" => Facade\Ignition\SolutionProviders\SolutionProviderRepository {#158
+#solutionProviders: Illuminate\Support\Collection {#159
+#items: array:14 [ …14]
+}
+}
+"auth" => Illuminate\Auth\AuthManager {#174
+#app: Illuminate\Foundation\Application {#6}
+#customCreators: array:2 [
+"session" => Closure(Application $app, $name, array $config) {#176 …5}
+"passport" => Closure($app, $name, array $config) {#183 …4}
+]
+#guards: array:1 [
+"web" => Lab404\Impersonate\Guard\SessionGuard {#745 …11}
+]
+#userResolver: Closure($name = null) {#747
+class: "Illuminate\Auth\AuthManager"
+this: Illuminate\Auth\AuthManager {#174}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Auth\AuthManager.php"
+line: "203 to 205"
+}
+#customProviderCreators: []
+}
+"db.factory" => Illuminate\Database\Connectors\ConnectionFactory {#52
+#container: Illuminate\Foundation\Application {#6}
+}
+"db" => Illuminate\Database\DatabaseManager {#53 …}
+"routes" => Illuminate\Routing\RouteCollection {#40}
+"url" => Illuminate\Routing\UrlGenerator {#246
+#routes: Illuminate\Routing\RouteCollection {#40}
+#request: Illuminate\Http\Request {#54}
+#assetRoot: null
+#forcedRoot: null
+#forceScheme: null
+#cachedRoot: "http://caspian"
+#cachedScheme: "http://"
+#rootNamespace: "App\Http\Controllers"
+#sessionResolver: Closure() {#244 …4}
+#keyResolver: Closure() {#243 …4}
+#formatHostUsing: null
+#formatPathUsing: null
+#routeGenerator: null
+}
+"session" => Illuminate\Session\SessionManager {#259
+#container: Illuminate\Foundation\Application {#6}
+#app: Illuminate\Foundation\Application {#6}
+#config: Illuminate\Config\Repository {#45}
+#customCreators: []
+#drivers: array:1 [ …1]
+}
+"session.store" => Illuminate\Session\Store {#261}
+"redirect" => Illuminate\Routing\Redirector {#247
+#generator: Illuminate\Routing\UrlGenerator {#246}
+#session: Illuminate\Session\Store {#261}
+}
+"translation.loader" => Illuminate\Translation\FileLoader {#271
+#files: Illuminate\Filesystem\Filesystem {#110}
+#path: "D:\WebProjects\caspian\resources\lang"
+#jsonPaths: array:1 [ …1]
+#hints: array:3 [ …3]
+}
+"translator" => Illuminate\Translation\Translator {#272
+#loader: Illuminate\Translation\FileLoader {#271}
+#locale: "en"
+#fallback: "en"
+#loaded: []
+#selector: null
+#parsed: []
+}
+"validation.presence" => Illuminate\Validation\DatabasePresenceVerifier {#273
+#db: Illuminate\Database\DatabaseManager {#53 …}
+#connection: null
+}
+"validator" => Illuminate\Validation\Factory {#266
+#translator: Illuminate\Translation\Translator {#272}
+#verifier: Illuminate\Validation\DatabasePresenceVerifier {#273}
+#container: Illuminate\Foundation\Application {#6}
+#extensions: []
+#implicitExtensions: []
+#dependentExtensions: []
+#replacers: []
+#fallbackMessages: []
+#resolver: null
+}
+"view.engine.resolver" => Illuminate\View\Engines\EngineResolver {#292
+#resolvers: array:3 [ …3]
+#resolved: []
+}
+"blade.compiler" => Illuminate\View\Compilers\BladeCompiler {#298
+#extensions: []
+#customDirectives: array:6 [ …6]
+#conditions: []
+#path: null
+#compilers: array:4 [ …4]
+#rawTags: array:2 [ …2]
+#contentTags: array:2 [ …2]
+#escapedTags: array:2 [ …2]
+#echoFormat: "e(%s)"
+#footer: []
+#rawBlocks: []
+#files: Illuminate\Filesystem\Filesystem {#110}
+#cachePath: "D:\WebProjects\caspian\storage\framework\views"
+#firstCaseInSwitch: true
+-encodingOptions: 15
+#lastSection: null
+#forElseCounter: 0
+}
+"log" => Illuminate\Log\LogManager {#309
+#app: Illuminate\Foundation\Application {#6}
+#channels: array:2 [ …2]
+#customCreators: array:1 [ …1]
+#dateFormat: "Y-m-d H:i:s"
+#levels: array:8 [ …8]
+}
+"queue" => Illuminate\Queue\QueueManager {#320
+#app: Illuminate\Foundation\Application {#6}
+#connections: []
+#connectors: array:6 [ …6]
+}
+"date" => Illuminate\Support\DateFactory {#382}
+"Illuminate\Contracts\Auth\Access\Gate" => Illuminate\Auth\Access\Gate {#425
+#container: Illuminate\Foundation\Application {#6}
+#userResolver: Closure() {#426 …5}
+#abilities: array:1 [ …1]
+#policies: array:7 [ …7]
+#beforeCallbacks: []
+#afterCallbacks: array:1 [ …1]
+#stringCallbacks: []
+#guessPolicyNamesUsingCallback: null
+}
+"Barryvdh\Debugbar\LaravelDebugbar" => Barryvdh\Debugbar\LaravelDebugbar {#517}
+"view" => Illuminate\View\Factory {#573
+#engines: Illuminate\View\Engines\EngineResolver {#292}
+#finder: Illuminate\View\FileViewFinder {#572 …5}
+#events: Illuminate\Events\Dispatcher {#38}
+#container: Illuminate\Foundation\Application {#6}
+#shared: array:3 [ …3]
+#extensions: array:4 [ …4]
+#composers: []
+#renderCount: 0
+#componentStack: []
+#componentData: []
+#slots: []
+#slotStack: []
+#sections: []
+#sectionStack: []
+#loopsStack: []
+#pushes: []
+#prepends: []
+#pushStack: []
+#translationReplacements: []
+}
+"swift.transport" => Illuminate\Mail\TransportManager {#577
+#container: Illuminate\Foundation\Application {#6}
+#app: Illuminate\Foundation\Application {#6}
+#config: Illuminate\Config\Repository {#45}
+#customCreators: []
+#drivers: array:1 [ …1]
+}
+"swift.mailer" => Swift_Mailer {#576
+-transport: Swift_SmtpTransport {#578 …11}
+}
+"mailer" => Illuminate\Mail\Mailer {#571
+#views: Illuminate\View\Factory {#573}
+#swift: Swift_Mailer {#576}
+#events: Illuminate\Events\Dispatcher {#38}
+#from: null
+#replyTo: null
+#to: null
+#queue: Illuminate\Queue\QueueManager {#320}
+#failedRecipients: []
+}
+"Illuminate\Routing\Route" => Illuminate\Routing\Route {#653}
+"Illuminate\Routing\Contracts\ControllerDispatcher" => Illuminate\Routing\ControllerDispatcher {#678
+#container: Illuminate\Foundation\Application {#6}
+}
+"encrypter" => Illuminate\Encryption\Encrypter {#733
+#key: b"þ¼ý¯$ıßz¼ì┴}§úÈÀ&ÍÏ$Êí2\x05\x1D´`\x07ú¹@ú"
+#cipher: "AES-256-CBC"
+}
+"cookie" => Illuminate\Cookie\CookieJar {#735
+#path: "/"
+#domain: null
+#secure: false
+#sameSite: null
+#queued: []
+}
+"Illuminate\Session\Middleware\StartSession" => Illuminate\Session\Middleware\StartSession {#737
+#manager: Illuminate\Session\SessionManager {#259}
+}
+"hash" => Illuminate\Hashing\HashManager {#744
+#container: Illuminate\Foundation\Application {#6}
+#app: Illuminate\Foundation\Application {#6}
+#config: Illuminate\Config\Repository {#45}
+#customCreators: []
+#drivers: []
+}
+"Spatie\MediaLibrary\MediaRepository" => Spatie\MediaLibrary\MediaRepository {#1774
+#model: Spatie\MediaLibrary\Models\Media {#1775 …26}
+}
+]
+#aliases: array:82 [
+"Illuminate\Foundation\Application" => "app"
+"Illuminate\Contracts\Container\Container" => "app"
+"Illuminate\Contracts\Foundation\Application" => "app"
+"Psr\Container\ContainerInterface" => "app"
+"Illuminate\Auth\AuthManager" => "auth"
+"Illuminate\Contracts\Auth\Factory" => "auth"
+"Illuminate\Contracts\Auth\Guard" => "auth.driver"
+"Illuminate\View\Compilers\BladeCompiler" => "blade.compiler"
+"Illuminate\Cache\CacheManager" => "cache"
+"Illuminate\Contracts\Cache\Factory" => "cache"
+"Illuminate\Cache\Repository" => "cache.store"
+"Illuminate\Contracts\Cache\Repository" => "cache.store"
+"Psr\SimpleCache\CacheInterface" => "cache.store"
+"Symfony\Component\Cache\Adapter\Psr16Adapter" => "cache.psr6"
+"Symfony\Component\Cache\Adapter\AdapterInterface" => "cache.psr6"
+"Psr\Cache\CacheItemPoolInterface" => "cache.psr6"
+"Illuminate\Config\Repository" => "config"
+"Illuminate\Contracts\Config\Repository" => "config"
+"Illuminate\Cookie\CookieJar" => "cookie"
+"Illuminate\Contracts\Cookie\Factory" => "cookie"
+"Illuminate\Contracts\Cookie\QueueingFactory" => "cookie"
+"Illuminate\Encryption\Encrypter" => "encrypter"
+"Illuminate\Contracts\Encryption\Encrypter" => "encrypter"
+"Illuminate\Database\DatabaseManager" => "db"
+"Illuminate\Database\ConnectionResolverInterface" => "db"
+"Illuminate\Database\Connection" => "db.connection"
+"Illuminate\Database\ConnectionInterface" => "db.connection"
+"Illuminate\Events\Dispatcher" => "events"
+"Illuminate\Contracts\Events\Dispatcher" => "events"
+"Illuminate\Filesystem\Filesystem" => "files"
+"Illuminate\Filesystem\FilesystemManager" => "filesystem"
+"Illuminate\Contracts\Filesystem\Factory" => "filesystem"
+"Illuminate\Contracts\Filesystem\Filesystem" => "filesystem.disk"
+"Illuminate\Contracts\Filesystem\Cloud" => "filesystem.cloud"
+"Illuminate\Hashing\HashManager" => "hash"
+"Illuminate\Contracts\Hashing\Hasher" => "hash.driver"
+"Illuminate\Translation\Translator" => "translator"
+"Illuminate\Contracts\Translation\Translator" => "translator"
+"Illuminate\Log\LogManager" => "log"
+"Psr\Log\LoggerInterface" => "log"
+"Illuminate\Mail\Mailer" => "mailer"
+"Illuminate\Contracts\Mail\Mailer" => "mailer"
+"Illuminate\Contracts\Mail\MailQueue" => "mailer"
+"Illuminate\Auth\Passwords\PasswordBrokerManager" => "auth.password"
+"Illuminate\Contracts\Auth\PasswordBrokerFactory" => "auth.password"
+"Illuminate\Auth\Passwords\PasswordBroker" => "auth.password.broker"
+"Illuminate\Contracts\Auth\PasswordBroker" => "auth.password.broker"
+"Illuminate\Queue\QueueManager" => "queue"
+"Illuminate\Contracts\Queue\Factory" => "queue"
+"Illuminate\Contracts\Queue\Monitor" => "queue"
+"Illuminate\Contracts\Queue\Queue" => "queue.connection"
+"Illuminate\Queue\Failed\FailedJobProviderInterface" => "queue.failer"
+"Illuminate\Routing\Redirector" => "redirect"
+"Illuminate\Redis\RedisManager" => "redis"
+"Illuminate\Contracts\Redis\Factory" => "redis"
+"Illuminate\Redis\Connections\Connection" => "redis.connection"
+"Illuminate\Contracts\Redis\Connection" => "redis.connection"
+"Illuminate\Http\Request" => "request"
+"Symfony\Component\HttpFoundation\Request" => "request"
+"Illuminate\Routing\Router" => "router"
+"Illuminate\Contracts\Routing\Registrar" => "router"
+"Illuminate\Contracts\Routing\BindingRegistrar" => "router"
+"Illuminate\Session\SessionManager" => "session"
+"Illuminate\Session\Store" => "session.store"
+"Illuminate\Contracts\Session\Session" => "session.store"
+"Illuminate\Routing\UrlGenerator" => "url"
+"Illuminate\Contracts\Routing\UrlGenerator" => "url"
+"Illuminate\Validation\Factory" => "validator"
+"Illuminate\Contracts\Validation\Factory" => "validator"
+"Illuminate\View\Factory" => "view"
+"Illuminate\Contracts\View\Factory" => "view"
+"Illuminate\Contracts\Notifications\Dispatcher" => "Illuminate\Notifications\ChannelManager"
+"Illuminate\Contracts\Notifications\Factory" => "Illuminate\Notifications\ChannelManager"
+"DebugBar\DataFormatter\DataFormatterInterface" => "DebugBar\DataFormatter\DataFormatter"
+"debugbar" => "Barryvdh\Debugbar\LaravelDebugbar"
+"Facade\FlareClient\Http\Client" => "flare.http"
+"Facade\FlareClient\Flare" => "flare.client"
+"Intervention\Image\ImageManager" => "image"
+"impersonate" => "Lab404\Impersonate\Services\ImpersonateManager"
+"Maatwebsite\Excel\Excel" => "excel"
+"Maatwebsite\Excel\Exporter" => "excel"
+"Maatwebsite\Excel\Importer" => "excel"
+]
+#abstractAliases: array:45 [
+"app" => array:4 [
+0 => "Illuminate\Foundation\Application"
+1 => "Illuminate\Contracts\Container\Container"
+2 => "Illuminate\Contracts\Foundation\Application"
+3 => "Psr\Container\ContainerInterface"
+]
+"auth" => array:2 [
+0 => "Illuminate\Auth\AuthManager"
+1 => "Illuminate\Contracts\Auth\Factory"
+]
+"auth.driver" => array:1 [
+0 => "Illuminate\Contracts\Auth\Guard"
+]
+"blade.compiler" => array:1 [
+0 => "Illuminate\View\Compilers\BladeCompiler"
+]
+"cache" => array:2 [
+0 => "Illuminate\Cache\CacheManager"
+1 => "Illuminate\Contracts\Cache\Factory"
+]
+"cache.store" => array:3 [
+0 => "Illuminate\Cache\Repository"
+1 => "Illuminate\Contracts\Cache\Repository"
+2 => "Psr\SimpleCache\CacheInterface"
+]
+"cache.psr6" => array:3 [
+0 => "Symfony\Component\Cache\Adapter\Psr16Adapter"
+1 => "Symfony\Component\Cache\Adapter\AdapterInterface"
+2 => "Psr\Cache\CacheItemPoolInterface"
+]
+"config" => array:2 [
+0 => "Illuminate\Config\Repository"
+1 => "Illuminate\Contracts\Config\Repository"
+]
+"cookie" => array:3 [
+0 => "Illuminate\Cookie\CookieJar"
+1 => "Illuminate\Contracts\Cookie\Factory"
+2 => "Illuminate\Contracts\Cookie\QueueingFactory"
+]
+"encrypter" => array:2 [
+0 => "Illuminate\Encryption\Encrypter"
+1 => "Illuminate\Contracts\Encryption\Encrypter"
+]
+"db" => array:2 [
+0 => "Illuminate\Database\DatabaseManager"
+1 => "Illuminate\Database\ConnectionResolverInterface"
+]
+"db.connection" => array:2 [
+0 => "Illuminate\Database\Connection"
+1 => "Illuminate\Database\ConnectionInterface"
+]
+"events" => array:2 [
+0 => "Illuminate\Events\Dispatcher"
+1 => "Illuminate\Contracts\Events\Dispatcher"
+]
+"files" => array:1 [
+0 => "Illuminate\Filesystem\Filesystem"
+]
+"filesystem" => array:2 [
+0 => "Illuminate\Filesystem\FilesystemManager"
+1 => "Illuminate\Contracts\Filesystem\Factory"
+]
+"filesystem.disk" => array:1 [
+0 => "Illuminate\Contracts\Filesystem\Filesystem"
+]
+"filesystem.cloud" => array:1 [
+0 => "Illuminate\Contracts\Filesystem\Cloud"
+]
+"hash" => array:1 [
+0 => "Illuminate\Hashing\HashManager"
+]
+"hash.driver" => array:1 [
+0 => "Illuminate\Contracts\Hashing\Hasher"
+]
+"translator" => array:2 [
+0 => "Illuminate\Translation\Translator"
+1 => "Illuminate\Contracts\Translation\Translator"
+]
+"log" => array:2 [
+0 => "Illuminate\Log\LogManager"
+1 => "Psr\Log\LoggerInterface"
+]
+"mailer" => array:3 [
+0 => "Illuminate\Mail\Mailer"
+1 => "Illuminate\Contracts\Mail\Mailer"
+2 => "Illuminate\Contracts\Mail\MailQueue"
+]
+"auth.password" => array:2 [
+0 => "Illuminate\Auth\Passwords\PasswordBrokerManager"
+1 => "Illuminate\Contracts\Auth\PasswordBrokerFactory"
+]
+"auth.password.broker" => array:2 [
+0 => "Illuminate\Auth\Passwords\PasswordBroker"
+1 => "Illuminate\Contracts\Auth\PasswordBroker"
+]
+"queue" => array:3 [
+0 => "Illuminate\Queue\QueueManager"
+1 => "Illuminate\Contracts\Queue\Factory"
+2 => "Illuminate\Contracts\Queue\Monitor"
+]
+"queue.connection" => array:1 [
+0 => "Illuminate\Contracts\Queue\Queue"
+]
+"queue.failer" => array:1 [
+0 => "Illuminate\Queue\Failed\FailedJobProviderInterface"
+]
+"redirect" => array:1 [
+0 => "Illuminate\Routing\Redirector"
+]
+"redis" => array:2 [
+0 => "Illuminate\Redis\RedisManager"
+1 => "Illuminate\Contracts\Redis\Factory"
+]
+"redis.connection" => array:2 [
+0 => "Illuminate\Redis\Connections\Connection"
+1 => "Illuminate\Contracts\Redis\Connection"
+]
+"request" => array:2 [
+0 => "Illuminate\Http\Request"
+1 => "Symfony\Component\HttpFoundation\Request"
+]
+"router" => array:3 [
+0 => "Illuminate\Routing\Router"
+1 => "Illuminate\Contracts\Routing\Registrar"
+2 => "Illuminate\Contracts\Routing\BindingRegistrar"
+]
+"session" => array:1 [
+0 => "Illuminate\Session\SessionManager"
+]
+"session.store" => array:2 [
+0 => "Illuminate\Session\Store"
+1 => "Illuminate\Contracts\Session\Session"
+]
+"url" => array:2 [
+0 => "Illuminate\Routing\UrlGenerator"
+1 => "Illuminate\Contracts\Routing\UrlGenerator"
+]
+"validator" => array:2 [
+0 => "Illuminate\Validation\Factory"
+1 => "Illuminate\Contracts\Validation\Factory"
+]
+"view" => array:2 [
+0 => "Illuminate\View\Factory"
+1 => "Illuminate\Contracts\View\Factory"
+]
+"Illuminate\Notifications\ChannelManager" => array:2 [
+0 => "Illuminate\Contracts\Notifications\Dispatcher"
+1 => "Illuminate\Contracts\Notifications\Factory"
+]
+"DebugBar\DataFormatter\DataFormatter" => array:1 [
+0 => "DebugBar\DataFormatter\DataFormatterInterface"
+]
+"Barryvdh\Debugbar\LaravelDebugbar" => array:1 [
+0 => "debugbar"
+]
+"flare.http" => array:1 [
+0 => "Facade\FlareClient\Http\Client"
+]
+"flare.client" => array:1 [
+0 => "Facade\FlareClient\Flare"
+]
+"image" => array:1 [
+0 => "Intervention\Image\ImageManager"
+]
+"Lab404\Impersonate\Services\ImpersonateManager" => array:1 [
+0 => "impersonate"
+]
+"excel" => array:3 [
+0 => "Maatwebsite\Excel\Excel"
+1 => "Maatwebsite\Excel\Exporter"
+2 => "Maatwebsite\Excel\Importer"
+]
+]
+#extenders: array:1 [
+"url" => array:1 [
+0 => Closure(UrlGenerator $url, $app) {#24 …4}
+]
+]
+#tags: []
+#buildStack: []
+#with: []
++contextual: []
+#reboundCallbacks: array:3 [
+"request" => array:3 [
+0 => Closure($app, $request) {#61 …4}
+1 => Closure($app, $request) {#245 …4}
+2 => Closure($app, $instance) {#746 …5}
+]
+"events" => array:1 [
+0 => Closure($app, $dispatcher) {#63 …4}
+]
+"routes" => array:1 [
+0 => Closure($app, $routes) {#241 …4}
+]
+]
+#globalResolvingCallbacks: []
+#globalAfterResolvingCallbacks: []
+#resolvingCallbacks: array:1 [
+"Illuminate\Foundation\Http\FormRequest" => array:1 [
+0 => Closure($request, $app) {#222 …4}
+]
+]
+#afterResolvingCallbacks: array:6 [
+"blade.compiler" => array:1 [
+0 => Closure(BladeCompiler $bladeCompiler) {#172 …4}
+]
+"auth" => array:1 [
+0 => Closure($service) {#184 …4}
+]
+"Illuminate\Contracts\Validation\ValidatesWhenResolved" => array:1 [
+0 => Closure($resolved) {#221 …4}
+]
+"view" => array:12 [
+0 => Closure($view) {#223 …5}
+1 => Closure($view) {#224 …5}
+2 => Closure($view) {#227 …5}
+3 => Closure($view) {#279 …5}
+4 => Closure($view) {#338 …5}
+5 => Closure($view) {#344 …5}
+6 => Closure($view) {#354 …5}
+7 => Closure($view) {#358 …5}
+8 => Closure($view) {#369 …5}
+9 => Closure($view) {#385 …5}
+10 => Closure($view) {#391 …5}
+11 => Closure($view) {#603 …5}
+]
+"migrator" => array:2 [
+0 => Closure($migrator) {#345 …5}
+1 => Closure($migrator) {#606 …5}
+]
+"translator" => array:4 [
+0 => Closure($translator) {#353 …5}
+1 => Closure($translator) {#386 …5}
+2 => Closure($translator) {#604 …5}
+3 => Closure($translator) {#605 …5}
+]
+]
+}
+#listeners: array:18 [
+"Laravel\Nova\Events\ServingNova" => array:22 [
+0 => Closure($event, $payload) {#226
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+1 => Closure($event, $payload) {#238
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+2 => Closure($event, $payload) {#240
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+3 => Closure($event, $payload) {#277
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+4 => Closure($event, $payload) {#278
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+5 => Closure($event, $payload) {#281
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+6 => Closure($event, $payload) {#285
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+7 => Closure($event, $payload) {#287
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+8 => Closure($event, $payload) {#291
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+9 => Closure($event, $payload) {#337
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+10 => Closure($event, $payload) {#341
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+11 => Closure($event, $payload) {#343
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+12 => Closure($event, $payload) {#357
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+13 => Closure($event, $payload) {#361
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+14 => Closure($event, $payload) {#367
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+15 => Closure($event, $payload) {#373
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+16 => Closure($event, $payload) {#375
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+17 => Closure($event, $payload) {#393
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+18 => Closure($event, $payload) {#412
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+19 => Closure($event, $payload) {#424
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+20 => Closure($event, $payload) {#602
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+21 => Closure($event, $payload) {#669
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Laravel\Nova\Events\NovaServiceProviderRegistered" => array:2 [
+0 => Closure($event, $payload) {#289
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+1 => Closure($event, $payload) {#415
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Queue\Events\Looping" => array:1 [
+0 => Closure($event, $payload) {#328
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Database\Events\QueryExecuted" => array:2 [
+0 => Closure($event, $payload) {#329
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+1 => Closure($event, $payload) {#553
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Log\Events\MessageLogged" => array:2 [
+0 => Closure($event, $payload) {#330
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+1 => Closure($event, $payload) {#536
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Auth\Events\Login" => array:1 [
+0 => Closure($event, $payload) {#363
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Auth\Events\Logout" => array:2 [
+0 => Closure($event, $payload) {#365
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+1 => Closure($event, $payload) {#368
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Foundation\Events\LocaleUpdated" => array:1 [
+0 => Closure($event, $payload) {#384
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"eloquent.creating: Spatie\MediaLibrary\Models\Media" => array:1 [
+0 => Closure($event, $payload) {#387
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "382 to 390"
+}
+]
+"eloquent.updating: Spatie\MediaLibrary\Models\Media" => array:1 [
+0 => Closure($event, $payload) {#388
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "382 to 390"
+}
+]
+"eloquent.updated: Spatie\MediaLibrary\Models\Media" => array:1 [
+0 => Closure($event, $payload) {#389
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "382 to 390"
+}
+]
+"eloquent.deleted: Spatie\MediaLibrary\Models\Media" => array:1 [
+0 => Closure($event, $payload) {#390
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "382 to 390"
+}
+]
+"Illuminate\Auth\Events\Registered" => array:1 [
+0 => Closure($event, $payload) {#427
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "382 to 390"
+}
+]
+"Illuminate\Database\Events\TransactionBeginning" => array:1 [
+0 => Closure($event, $payload) {#555
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Database\Events\TransactionCommitted" => array:1 [
+0 => Closure($event, $payload) {#557
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"Illuminate\Database\Events\TransactionRolledBack" => array:1 [
+0 => Closure($event, $payload) {#559
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"eloquent.deleting: App\User" => array:1 [
+0 => Closure($event, $payload) {#749
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"eloquent.deleting: App\Models\Event" => array:1 [
+0 => Closure($event, $payload) {#1739
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+]
+#wildcards: array:4 [
+"composing:*" => array:1 [
+0 => Closure($event, $payload) {#531
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"connection.*.beganTransaction" => array:1 [
+0 => Closure($event, $payload) {#561
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"connection.*.committed" => array:1 [
+0 => Closure($event, $payload) {#563
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+"connection.*.rollingBack" => array:1 [
+0 => Closure($event, $payload) {#565
+class: "Illuminate\Events\Dispatcher"
+this: Illuminate\Events\Dispatcher {#38}
+use: { …2}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\Dispatcher.php"
+line: "364 to 370"
+}
+]
+]
+#wildcardsCache: array:13 [
+"Laravel\Nova\Events\NovaServiceProviderRegistered" => []
+"Illuminate\Routing\Events\RouteMatched" => []
+"eloquent.booting: App\User" => []
+"eloquent.booted: App\User" => []
+"Illuminate\Database\Events\StatementPrepared" => []
+"Illuminate\Database\Events\QueryExecuted" => []
+"eloquent.retrieved: App\User" => []
+"Illuminate\Auth\Events\Authenticated" => []
+"Laravel\Nova\Events\ServingNova" => []
+"eloquent.booting: App\Models\Event" => []
+"eloquent.booted: App\Models\Event" => []
+"Illuminate\Database\Events\TransactionBeginning" => []
+"eloquent.saving: App\Models\Event" => []
+]
+#queueResolver: Closure() {#39
+class: "Illuminate\Events\EventServiceProvider"
+this: Illuminate\Events\EventServiceProvider {#17 …}
+use: {
+$app: Illuminate\Foundation\Application {#6}
+}
+file: "D:\WebProjects\caspian\vendor\laravel\framework\src\Illuminate\Events\EventServiceProvider.php"
+line: "18 to 20"
+}
+}
+#fetchMode: 5
+#transactions: 1
+#recordsModified: false
+#queryLog: []
+#loggingQueries: false
+#pretending: false
+#doctrineConnection: null
+}
++grammar: Illuminate\Database\Query\Grammars\MySqlGrammar {#551}
++processor: Illuminate\Database\Query\Processors\MySqlProcessor {#552}
++bindings: array:9 [
+"select" => []
+"from" => []
+"join" => []
+"where" => []
+"groupBy" => []
+"having" => []
+"order" => []
+"union" => []
+"unionOrder" => []
+]
++aggregate: null
++columns: null
++distinct: false
++from: "events"
++joins: null
++wheres: []
++groups: null
++havings: null
++orders: null
++limit: null
++offset: null
++unions: null
++unionLimit: null
++unionOffset: null
++unionOrders: null
++lock: null
++operators: array:30 [
+0 => "="
+1 => "<"
+2 => ">"
+3 => "<="
+4 => ">="
+5 => "<>"
+6 => "!="
+7 => "<=>"
+8 => "like"
+9 => "like binary"
+10 => "not like"
+11 => "ilike"
+12 => "&"
+13 => "|"
+14 => "^"
+15 => "<<"
+16 => ">>"
+17 => "rlike"
+18 => "not rlike"
+19 => "regexp"
+20 => "not regexp"
+21 => "~"
+22 => "~*"
+23 => "!~"
+24 => "!~*"
+25 => "similar to"
+26 => "not similar to"
+27 => "not ilike"
+28 => "~~*"
+29 => "!~~*"
+]
++useWritePdo: false
+}
+#model: App\Models\Event {#1755
+#casts: array:2 [
+"date" => "datetime"
+"program" => "array"
+]
+#fillable: array:1 [
+0 => "status"
+]
+#connection: null
+#table: null
+#primaryKey: "id"
+#keyType: "int"
++incrementing: true
+#with: []
+#withCount: []
+#perPage: 15
++exists: false
++wasRecentlyCreated: false
+#attributes: array:8 [
+"name" => "fdgd"
+"description" => "dfggd"
+"address" => "dg"
+"active" => true
+"program" => "[]"
+"date" => null
+"created_at" => null
+"updated_at" => null
+]
+#original: []
+#changes: []
+#dates: []
+#dateFormat: null
+#appends: []
+#dispatchesEvents: []
+#observables: []
+#relations: []
+#touches: []
++timestamps: true
+#hidden: []
+#visible: []
+#guarded: array:1 [
+0 => "*"
+]
++mediaConversions: []
++mediaCollections: array:1 [
+0 => Spatie\MediaLibrary\MediaCollection\MediaCollection {#1838
++name: "banners"
++diskName: "mediaFiles"
++mediaConversionRegistrations: Closure() {#1836
+class: "Spatie\MediaLibrary\MediaCollection\MediaCollection"
+this: Spatie\MediaLibrary\MediaCollection\MediaCollection {#1838}
+file: "D:\WebProjects\caspian\vendor\spatie\laravel-medialibrary\src\MediaCollection\MediaCollection.php"
+line: "45 to 46"
+}
++generateResponsiveImages: false
++acceptsFile: Closure() {#1835
+class: "Spatie\MediaLibrary\MediaCollection\MediaCollection"
+this: Spatie\MediaLibrary\MediaCollection\MediaCollection {#1838}
+file: "D:\WebProjects\caspian\vendor\spatie\laravel-medialibrary\src\MediaCollection\MediaCollection.php"
+line: "48 to 50"
+}
++acceptsMimeTypes: []
++collectionSizeLimit: false
++singleFile: false
++fallbackUrl: ""
++fallbackPath: ""
+}
+]
+#deletePreservingMedia: false
+#unAttachedMediaLibraryItems: []
+}
+#eagerLoad: []
+#localMacros: []
+#onDelete: null
+#passthru: array:17 [
+0 => "insert"
+1 => "insertOrIgnore"
+2 => "insertGetId"
+3 => "insertUsing"
+4 => "getBindings"
+5 => "toSql"
+6 => "dump"
+7 => "dd"
+8 => "exists"
+9 => "doesntExist"
+10 => "count"
+11 => "min"
+12 => "max"
+13 => "avg"
+14 => "average"
+15 => "sum"
+16 => "getConnection"
+]
+#scopes: []
+#removedScopes: []
+}

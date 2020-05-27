@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder {
     $this->call(PartnerSeeder::class);
     $this->call(SponsorSeeder::class);
     $this->call(NewsSeeder::class);
-    $this->call(AvatarsMediaSeeder::class);
+    $this->call(MediaSeeder::class);
 
     /*  SINGLE PAGES */
     $this->call(PageHomeSeeder::class);

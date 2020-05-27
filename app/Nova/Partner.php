@@ -23,13 +23,20 @@ class Partner extends Resource {
     return [
         ID::make()->sortable(),
 
-        Text::make('Name')
-            ->sortable(),
         Media::make('Img', 'partners')
-            ->sortable(),
+            ->sortable()
+            ->size('w-1/4'),
+        Text::make('Name')
+            ->sortable()
+            ->size('w-1/4'),
 
-        Boolean::make('Gold'),
-        Text::make('Url'),
+        Text::make('Url')
+            ->size('w-1/4'),
+
+        Boolean::make('Gold')
+            ->sortable()
+            ->size('w-1/4'),
+
     ];
   }
 

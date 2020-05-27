@@ -51,9 +51,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
     return [
 //        new \Infinety\Filemanager\FilemanagerTool(),
         new NovaGridSystem,
-        new TreeView([
-            ['Categories', 'categories']
-        ])
     ];
   }
 

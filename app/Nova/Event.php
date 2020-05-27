@@ -33,7 +33,8 @@ class Event extends Resource {
         Text::make('Name')
             ->sortable(),
         Textarea::make('Description'),
-        Text::make('Address', 'address'),
+        Text::make('Address', 'address')
+            ->required(),
 
         Boolean::make('Active')
             ->sortable(),
@@ -46,21 +47,21 @@ class Event extends Resource {
                     })
                     ->format('DD MMM Y hh:mm:ss')
                     ->required(),
-                Flexible::make('User', 'user')
-                    ->addLayout('User', 'user', [
-                        Select::make('User', 'user')->options(
-                            \App\User::forSelection()
-                        )
-                            ->required(),
-                        Text::make('Title', 'title')
-                            ->required(),
-                        NovaTinyMCE::make('Description', 'description')
-                            ->required(),
-                        Text::make('Address', 'address'),
-                        TimeField::make('Start Time', 'event_start'),
-                        TimeField::make('End Time', 'event_end'),
-
-                    ]),
+//                Flexible::make('User', 'user')
+//                    ->addLayout('User', 'user', [
+//                        Select::make('User', 'user')->options(
+//                            \App\User::forSelection()
+//                        )
+//                            ->required(),
+//                        Text::make('Title', 'title')
+//                            ->required(),
+//                        NovaTinyMCE::make('Description', 'description')
+//                            ->required(),
+//                        Text::make('Address', 'address'),
+//                        TimeField::make('Start Time', 'event_start'),
+//                        TimeField::make('End Time', 'event_end'),
+//
+//                    ]),
             ]),
 
         DateTime::make('Date', 'date')
