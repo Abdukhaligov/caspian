@@ -25,44 +25,20 @@ class Event extends Resource {
 
 
   public function fields(Request $request) {
-    return [
+    $fields = array(
         ID::make()->sortable(),
 
         Media::make('Banners', 'banners'),
 
         Text::make('Name')
             ->sortable(),
+//            ->withMeta(['value' => $request->resourceId]),
         Textarea::make('Description'),
         Text::make('Address', 'address')
             ->required(),
 
         Boolean::make('Active')
             ->sortable(),
-
-        Flexible::make('Program')
-            ->addLayout('Day', 'day', [
-                DateTime::make('Event Date', 'event_begin')
-                    ->resolveUsing(function ($date){
-                      return Carbon::parse($date);
-                    })
-                    ->format('DD MMM Y hh:mm:ss')
-                    ->required(),
-//                Flexible::make('User', 'user')
-//                    ->addLayout('User', 'user', [
-//                        Select::make('User', 'user')->options(
-//                            \App\User::forSelection()
-//                        )
-//                            ->required(),
-//                        Text::make('Title', 'title')
-//                            ->required(),
-//                        NovaTinyMCE::make('Description', 'description')
-//                            ->required(),
-//                        Text::make('Address', 'address'),
-//                        TimeField::make('Start Time', 'event_start'),
-//                        TimeField::make('End Time', 'event_end'),
-//
-//                    ]),
-            ]),
 
         DateTime::make('Date', 'date')
             ->sortable(),
@@ -73,7 +49,40 @@ class Event extends Resource {
             ->hideFromIndex(),
         DateTime::make('Updated At')
             ->hideFromIndex(),
-    ];
+    );
+
+
+    if ($request->resourceId) {
+
+      return $fields = array_merge($fields, array(
+          Flexible::make('Program')
+              ->addLayout('Day', 'day', [
+                  DateTime::make('Event Date', 'event_begin')
+                      ->resolveUsing(function ($date) {
+                        return Carbon::parse($date);
+                      })
+                      ->format('DD MMM Y hh:mm:ss')
+                      ->required(),
+                  Flexible::make('User', 'user')
+                      ->addLayout('User', 'user', [
+                          Select::make('User', 'user')->options(
+                              \App\Models\Event::findOrFail($request->resourceId)->usersForSelection()
+                          )
+                              ->required(),
+                          Text::make('Title', 'title')
+                              ->required(),
+                          NovaTinyMCE::make('Description', 'description')
+                              ->required(),
+                          Text::make('Address', 'address'),
+                          TimeField::make('Start Time', 'event_start'),
+                          TimeField::make('End Time', 'event_end'),
+
+                      ]),
+              ])
+      ));
+    } else {
+      return $fields;
+    }
   }
 
 }

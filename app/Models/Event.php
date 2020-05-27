@@ -17,7 +17,16 @@ class Event extends Model implements HasMedia {
   use HasMediaTrait;
 
 
+  public function usersForSelection() {
+    $array = array();
 
+      foreach ($this->users as $user) {
+        $array[$user->id] = $user->name;
+      }
+
+
+    return $array;
+  }
 
   public function users() {
     return $this->belongsToMany(User::class);

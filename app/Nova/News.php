@@ -24,7 +24,13 @@ class News extends Resource {
         ID::make()->sortable(),
         Text::make('Title'),
         Images::make('Preview', 'preview'),
-        NovaTinyMCE::make('Body'),
+        NovaTinyMCE::make('Body')->options([
+                'plugins' => [
+                    'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                ],
+                'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                'use_lfm' => true,
+                ]),
         DateTime::make('Created At', 'created_at')->sortable(),
         Multilingual::make('Language'),
     ];

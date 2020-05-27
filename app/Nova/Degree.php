@@ -17,7 +17,7 @@ class Degree extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        Text::make('name')->sortable(),
+        Text::make('Name')->sortable(),
     ];
   }
 

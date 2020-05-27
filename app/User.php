@@ -53,15 +53,6 @@ class User extends Authenticatable implements HasMedia {
 
   public function pendingReports() { return $this->reports()->where('status', '=', 'pending'); }
 
-  public static function forSelection() {
-    $array = array();
-
-    foreach (Event::activeEvent()->users as $user) {
-      $array[$user->id] = $user->name;
-    }
-
-    return $array;
-  }
 
   public function events() {
     return $this->belongsToMany(Event::class);

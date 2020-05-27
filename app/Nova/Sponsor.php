@@ -21,15 +21,23 @@ class Sponsor extends Resource
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        Text::make('Name')
-            ->sortable(),
+
         FilemanagerField::make('Photo')
-            ->folder('speakers')
+            ->folder('sponsors')
             ->displayAsImage()
-            ->hideCreateFolderButton(),
+            ->hideCreateFolderButton()
+            ->size('w-1/4'),
+        NovaTinyMCE::make('Description')
+            ->size('w-3/4'),
+        Text::make('Name')
+            ->sortable()
+            ->size('w-1/2'),
         Text::make('Job Title', 'job_title')
-            ->sortable(),
-        NovaTinyMCE::make('Description'),
+            ->sortable()
+            ->size('w-1/2'),
+
+
+
         Flexible::make('Social Networks', 'social_networks')
             ->addLayout('Social Network', 'Data', [
                 Select::make('Network', 'network')->options([
