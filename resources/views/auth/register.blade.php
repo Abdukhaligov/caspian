@@ -88,9 +88,9 @@
                 <select style="height: 52px;font-size: 14px;"
                         class="selectpicker form-control cp1 @error('region') is-invalid @enderror"
                         name="region" id="region" autocomplete="region">
-                  @foreach(\App\Region::all() as $region)
-                    <option value="{{ $region->id }}" @if($region->id == 15) selected
-                            @endif data-code="{{ $region->code }}"> {!! $region->name !!}</option>
+                  @foreach(\App\Region::scopeOrdered() as $region)
+                    <option value="{{ $region->id }}" @if($region->id == 20) selected
+                            @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
                   @endforeach
                 </select>
                 @error('region')
@@ -123,10 +123,10 @@
                 @enderror
               </div>
               <div class="form-group cfdb1">
-                <label for="degree" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
+                <label for="degree_id" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
                 <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('degree') is-invalid @enderror"
-                        name="degree" id="degree" autocomplete="degree">
+                        class="form-control cp1 @error('degree_id') is-invalid @enderror"
+                        name="degree_id" id="degree_id" autocomplete="degree">
                   <option selected value="0">No degree</option>
                   @foreach(\App\Models\Degree::all() as $degree)
                     <option value="{{ $degree->id }}">{{ $degree->name }}</option>
@@ -245,30 +245,19 @@
   <script>
     $(function () {
       //Timer Js//
-
       $('#region').change(function () {
-        let code = this.options[this.selectedIndex].getAttribute('data-code').toString();
-        let mask = "";
-        console.log(code);
-
-        for (let i = 0; i < code.length; i++) {
-          if(code.charAt(i) === "9"){
-            mask = mask.concat("\\"+code.charAt(i));
-          }else{
-            mask = mask.concat(code.charAt(i));
+        let mask = this.options[this.selectedIndex].getAttribute('data-mask');
+        let temp = "";
+        for (let i = 0; i < mask.length; i++) {
+          if (mask.charAt(i) === "9") {
+            temp = temp.concat("\\" + mask.charAt(i));
+          } else {
+            temp = temp.concat(mask.charAt(i));
           }
         }
-        $('#phone').inputmask("+"+(mask.toString())+" *");
-
-        console.log(mask);
-
+        $('#phone').inputmask((temp.toString()));
       })
-
-
-
       $('#phone').inputmask("+\\9\\94 (99) ###-##-##");
-
-
     }(jQuery));
   </script>
 @endsection

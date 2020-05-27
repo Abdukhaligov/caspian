@@ -204,7 +204,7 @@
                         </div>
                       </div>
                       <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                        <h5>{{ $user->degree }} {{ $user->name }}</h5>
+                        <h5>{{ \App\Models\Degree::find($user->degree_id)->name }} {{ $user->name }}</h5>
                         <h6>{{ $user->job_title }}</h6>
                         <p>{{ $user->company }}</p>
                       </div>

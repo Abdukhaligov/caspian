@@ -20,9 +20,7 @@
 
   <!-- CSS -->
   <!-- Bootstrap CSS -->
-{{--  <link rel="stylesheet" href="{{ asset('/eventdia/css/bootstrap.min.css') }}">--}}
-  <link rel="stylesheet" href="{{ asset('/mdb/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/mdb/css/mdb.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/eventdia/css/bootstrap.min.css') }}">
   <!-- Jquery ui CSS -->
   <link rel="stylesheet" href="{{ asset('/eventdia/css/jquery-ui.css') }}">
   <!-- Fancybox CSS -->
@@ -45,8 +43,6 @@
   <!-- Main StyleSheet CSS -->
   <link rel="stylesheet" href="{{ asset('/eventdia/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/swiper.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/ImageSelect.css') }}">
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->favicon) }}"
         type="image/png">
@@ -294,7 +290,7 @@
 
 <!-- Bootstrap JS -->
 {{--<script src="{{ asset('/eventdia/js/bootstrap.min.js') }}"></script>--}}
-<script src="{{ asset('mdb/js/mdb.min.js') }}"></script>
+<script src="{{ asset('/eventdia/js/bootstrap.min.js') }}"></script>
 <!-- Jquery ui JS-->
 <script src="{{ asset('/eventdia/js/jquery-ui.js') }}"></script>
 <!--  Nav  -->
@@ -317,8 +313,6 @@
 <script src="{{ asset('/eventdia/js/theme.js') }}"></script>
 <script src="{{ asset('/js/swiper.min.js') }}"></script>
 
-<script href="{{ asset('js/select2.min.js') }}"></script>
-<script href="{{ asset('js/ImageSelect.jquery.js') }}"></script>
 
 
 @yield('scripts')
@@ -327,7 +321,6 @@
 <script>
   $(function () {
     //Timer Js//
-
     let membership = $("#membership_id");
     let abstractForm = $("#abstractForm");
 

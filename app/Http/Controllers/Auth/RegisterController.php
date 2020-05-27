@@ -29,6 +29,10 @@ class RegisterController extends Controller {
       unset($data["abstract_name"]);
       unset($data["abstract_description"]);
     }
+    if(!$data['degree_id']){
+      unset($data["degree_id"]);
+    }
+
     return Validator::make($data, UserRequest::rules());
   }
 
@@ -36,13 +40,15 @@ class RegisterController extends Controller {
     $user = new User();
     $user->name = $data['name'];
     $user->email = $data['email'];
-    $user->degree = $data['degree'];
     $user->password = Hash::make($data['password']);
     $user->phone = preg_replace('/[^0-9]/', '', $data['phone']);
     $user->company = $data['company'];
     $user->job_title = $data['job_title'];
     $user->reference_id = $data['reference_id'];
     $user->membership_id = $data['membership_id'];
+    if($data['degree_id']){
+      $user->degree_id = $data['degree_id'];
+    }
     $user->save();
 
 

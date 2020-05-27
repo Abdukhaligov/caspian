@@ -9,10 +9,12 @@ class CreateRegionsTable extends Migration {
   public function up() {
     Schema::create('regions', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('name');
-      $table->string('iso');
-      $table->integer('code');
-      $table->string('style');
+      $table->string('name_en')->nullable();
+      $table->string('desc_en')->nullable();
+      $table->string('name_ru')->nullable();
+      $table->string('desc_ru')->nullable();
+      $table->string('cc')->nullable();
+      $table->string('mask')->nullable();
     });
   }
 
