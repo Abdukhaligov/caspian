@@ -14,7 +14,7 @@ class EventSeeder extends Seeder {
       for ($j = 0; $j < 4; $j++) {
         $usersOnEvent [] = [
             "event_id" => $i + 1,
-            "user_id" => $usersTemp[] = rand(1, 24)
+            "user_id" => $usersTemp[] = rand(3, 32)
         ];
       }
 

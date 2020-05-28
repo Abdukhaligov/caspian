@@ -98,7 +98,7 @@
                 @enderror
               </div>
               <div class="form-group cfdb1" style="float:right; width: 77%">
-                <label for="degree" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
+                <label for="phone" class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
                 <input type="text" class="form-control cp1 @error('phone') is-invalid @enderror"
                        name="phone" id="phone" placeholder="{{ __('static.phone_number') }}"
                        value="+{{ $fake ? $fakeUser->phone : old('phone') }}" autocomplete="phone">
@@ -191,19 +191,22 @@
                 </div>
                 <div class="form-group cfdb1">
                   <input type="text" class="form-control cp1 @error('abstract_name') is-invalid @enderror"
-                         name="abstract_name" id="abstract_name" placeholder="Title of the abstract"
-                         onfocus="this.placeholder = ''" onblur="this.placeholder ='Name'"
+                         name="abstract_name" id="abstract_name" placeholder="Abstract title"
+                         onfocus="this.placeholder = ''" onblur="this.placeholder ='Abstract title'"
                          value="{{old('abstract_name') }}">
                   @error('abstract_name')
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                   @enderror
                 </div>
-                <div class="form-group cfdb1">
+                <div class="form-group cfdb1" style="margin-bottom: 10px">
                   <textarea rows="8" class="form-control cp1 @error('abstract_description') is-invalid @enderror"
                             name="abstract_description" id="abstract_description"
-                            placeholder="Abstract body (max 250 words)"
-                            onfocus="this.placeholder =''"
+                            onkeyup="countChar(this)"
+                            placeholder="Abstract description (max 300 words)"
+                            maxlength="300"
+                            onfocus="this.placeholder ='Abstract description (max 300 words)'"
                             onblur="this.placeholder ='Comment'">{{old('abstract_description') }}</textarea>
+                  <div style="right: 0;position: absolute;" id="charNum">0/300</div>
                   @error('abstract_description')
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                   @enderror
@@ -243,7 +246,19 @@
 
 @section('scripts')
   <script>
+
+    function countChar(val) {
+      var len = val.value.length;
+      if (len >= 500) {
+        val.value = val.value.substring(0, 300);
+      } else {
+        $('#charNum').text(len+"/300");
+      }
+    }
+
+
     $(function () {
+
       //Timer Js//
       $('#region').change(function () {
         let mask = this.options[this.selectedIndex].getAttribute('data-mask');

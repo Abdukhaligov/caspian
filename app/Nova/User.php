@@ -112,7 +112,6 @@ class User extends Resource {
 
         Boolean::make('Show on site', 'show_on_site')
             ->sortable()
-            ->hideFromIndex()
             ->size('w-1/6'),
 
         Password::make('Password')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Mail\WelcomeMail;
 use App\Models\Reference;
 use App\Models\Membership;
 use App\Models\Report;
@@ -13,6 +14,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Mail;
 
 class RegisterController extends Controller {
   use RegistersUsers;
@@ -49,6 +51,10 @@ class RegisterController extends Controller {
     if($data['degree_id']){
       $user->degree_id = $data['degree_id'];
     }
+
+    Mail::to($user->email)->send(new WelcomeMail($user));
+
+
     $user->save();
 
 
@@ -61,6 +67,9 @@ class RegisterController extends Controller {
           'topic_id' => $data['abstract_topic_id']
       ]);
     }
+
+
+
 
     return $user;
   }

@@ -36,37 +36,65 @@ class Report extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        Text::make('Name')
-            ->displayUsing(function ($value) {
-              return substr($value, 0, 20);
-            })
-            ->sortable(),
+
         BelongsTo::make('User')
-            ->sortable(),
-        BelongsTo::make('Topic')
-            ->sortable(),
-        Textarea::make('Description')
-            ->hideFromIndex(),
+            ->sortable()
+            ->size('w-1/2'),
+
         Status::make('Status')
             ->loadingWhen(['pending'])
             ->failedWhen(['canceled'])
             ->hideFromDetail()
-            ->sortable(),
-        File::make('File')
-            ->hideFromIndex()
-            ->disk('reports'),
+            ->sortable()
+            ->size('w-1/2'),
+
 
         Select::make('Status')->options([
             'pending' => 'pending',
             'canceled' => 'canceled',
             'accepted' => 'accepted',
         ])
-            ->hideFromIndex(),
+            ->hideFromIndex()
+            ->size('w-1/2'),
+
+
+        BelongsTo::make('Topic')
+            ->sortable()
+            ->size('w-1/2'),
+
+
+        Text::make('Title', 'name')
+            ->displayUsing(function ($value) {
+              return substr($value, 0, 20);
+            })
+            ->sortable()
+            ->size('w-1/2'),
+
+
+        File::make('File')
+            ->hideFromIndex()
+            ->disk('reports')
+            ->size('w-1/2'),
+
+
+        Textarea::make('Description')
+            ->hideFromIndex()
+            ->size('w-1/2'),
+
+
+
+
+
+
         DateTime::make('Created At')
-            ->sortable(),
+            ->sortable()
+            ->size('w-1/2'),
+
         DateTime::make('Updated At')
             ->sortable()
-            ->hideFromIndex(),
+            ->hideFromIndex()
+            ->size('w-1/2'),
+
     ];
   }
 

@@ -566,7 +566,7 @@
           <div class="col-md-6">
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                <a href="{{ route('speakers')."/".$sponsor->id }}"><img
+                <a><img
                       src="{{ Storage::disk('public')->url($sponsor->photo) }}" alt=""></a>
                 <div class="stm-icon">
                   <ul>

@@ -5,6 +5,9 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth',
   \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+Route::post('reset_password_without_token', 'UserController@validatePasswordRequest');
+Route::post('reset_password_with_token', 'UserController@resetPassword');
+
 Route::group(['middleware' => ['locale']], function () {
 
   Route::get('/lang/{key}', function ($key) {

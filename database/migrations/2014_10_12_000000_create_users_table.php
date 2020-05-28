@@ -1,4 +1,4 @@
-<?php
+5<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration {
       $table->string('name')->nullable();
       $table->string('email')->unique()->nullable();
       $table->boolean('is_admin')->default(false);
-      $table->enum('rank',[0,1,2,3])->default(0);
-      $table->boolean('show_on_site')->default(false);
+      $table->enum('rank',[0,1,2,3])->default(0)->nullable();
+      $table->boolean('show_on_site')->default(true);
       $table->string('phone')->nullable();
       $table->string('company')->nullable();
 

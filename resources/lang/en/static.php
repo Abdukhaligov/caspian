@@ -23,4 +23,5 @@ return array (
     'referred_by' => 'How did you know about the event ?',
     'member_as' => 'Participation',
     'degree' => 'Degree',
+    'region' => 'Region',
 );

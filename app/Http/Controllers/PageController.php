@@ -38,7 +38,7 @@ class PageController extends Controller {
     return view('contacts', compact('data'));
   }
 
-  public function contactsForm(ContactRequest $request){
+  public function contactsForm(ContactRequest $request) {
 //
 //    Mail::raw('It works!', function ($message){
 //      $message->to(request('email'))
@@ -46,18 +46,18 @@ class PageController extends Controller {
 //    });
 
     Mail::to(request('email'))
-          ->send(new ContactUs('shirts'));
+        ->send(new ContactUs('shirts'));
 
-    return redirect()->back()->with('message','Email sent!');
+    return redirect()->back()->with('message', 'Email sent!');
 
   }
 
   public function committee() {
     $data = Committee::first();
 
-    $data["users_1"] = User::where([['rank','1'],['show_on_site', true]])->get();
-    $data["users_2"] = User::where([['rank','2'],['show_on_site', true]])->get();
-    $data["users_3"] = User::where([['rank','3'],['show_on_site', true]])->get();
+    $data["users_1"] = User::where([['rank', '1'], ['show_on_site', true]])->get();
+    $data["users_2"] = User::where([['rank', '2'], ['show_on_site', true]])->get();
+    $data["users_3"] = User::where([['rank', '3'], ['show_on_site', true]])->get();
 
     return view('committee', compact('data'));
   }
@@ -79,6 +79,7 @@ class PageController extends Controller {
         "name" => $user->name,
         "email" => $user->email,
         "phone" => $user->phone ?? '',
+        "degree" => $user->degree ?? '',
         "company" => $user->company ?? '',
         "job_title" => $user->job_title ?? '',
         "membership_id" => $user->membership->name ?? '',
@@ -119,15 +120,15 @@ class PageController extends Controller {
 
   public function home() {
     $data = Home::first();
-    $data["event"] =  Event::activeEvent();
+    $data["event"] = Event::activeEvent();
 
-    if($data["event"]){
+    if ($data["event"]) {
       $data["eventBanners"] = $data["event"]->getMedia('banners');
     }
 
-    $data["sponsors"] =  Sponsor::all();
-    $data["partnersGold"] =  Partner::where('gold', 1)->get();
-    $data["partners"] =  Partner::where('gold', 0)->get();
+    $data["sponsors"] = Sponsor::all();
+    $data["partnersGold"] = Partner::where('gold', 1)->get();
+    $data["partners"] = Partner::where('gold', 0)->get();
 
     return view('home', compact('data'));
   }
@@ -141,11 +142,11 @@ class PageController extends Controller {
 
   public function speakers() {
     $data = Speakers::first();
-
     $data["speakers"] = User::speakers()->where('show_on_site', true);
 
     return view('speakers', compact('data'));
   }
+
 
   public function topics() {
     $data = Topics::first();

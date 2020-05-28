@@ -53,14 +53,17 @@
                   </div>
 
                   <div class="form-group cfdb1">
-                    <input type="text" class="form-control cp1" name="name" id="name" placeholder="Title of the abstract"
-                           onfocus="this.placeholder = ''" onblur="this.placeholder ='Name'">
+                    <input type="text" class="form-control cp1" name="name" id="name" placeholder="Abstract title"
+                           onfocus="this.placeholder = ''" onblur="this.placeholder ='Abstract title'">
                   </div>
 
                   <div class="form-group cfdb1">
                   <textarea rows="8" class="form-control cp1" name="description" id="description"
-                            placeholder="Abstract body (max 250 words)"
-                            onfocus="this.placeholder =''" onblur="this.placeholder ='Comment'"></textarea>
+                            placeholder="Abstract description (max 300 words)"
+                            onkeyup="countChar(this)"
+                            maxlength="300"
+                            onfocus="this.placeholder =''" onblur="this.placeholder ='Abstract description (max 300 words)'"></textarea>
+                    <div style="right: 0;position: absolute;" id="charNum">0/300</div>
                   </div>
                   <button type="submit" id="submit">Create</button>
                   <div class="col-md-12 text-center">
@@ -97,6 +100,9 @@
             </div>
             <div class="single-contact-details">
               <span><strong>Job: </strong> {{$data["user"]->job_title}}</span>
+            </div>
+            <div class="single-contact-details">
+              <span><strong>Degree: </strong> {{$data["user"]->degree->name}}</span>
             </div>
             <div class="single-contact-details">
               <span><strong>Member As: </strong> {{$data["user"]->membership_id}}</span>
@@ -187,4 +193,18 @@
   </section>
 
 
+@endsection
+
+@section('scripts')
+<script>
+  function countChar(val) {
+    var len = val.value.length;
+    if (len >= 500) {
+      val.value = val.value.substring(0, 300);
+    } else {
+      $('#charNum').text(len+"/300");
+    }
+  }
+
+</script>
 @endsection
