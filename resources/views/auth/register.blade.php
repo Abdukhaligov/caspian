@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  <?php $fake = true ? $fakeUser = factory(\App\User::class)->make() : ''?>
 
   <!-- Hero Section-->
   <section class="inner-hero inner-hero4">
@@ -18,7 +19,6 @@
   </section>
   <!-- /Hero Section-->
 
-  <?php $fake = true ? $fakeUser = factory(\App\User::class)->make() : ''?>
   <!--contact Us Section-->
   <section class="contact-us">
     <div class="container">

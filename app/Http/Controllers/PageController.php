@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
+use App\Http\Requests\UserRequest;
+use App\Mail\Contact;
+use App\Mail\ContactUs;
 use App\Models\Event;
 use App\Models\Membership;
 use App\Models\Pages\AbstractBook;
@@ -21,6 +25,9 @@ use App\Models\Topic;
 use App\Models\Partner;
 use App\User;
 use Auth;
+use Mail;
+use Request;
+use Validator;
 
 class PageController extends Controller {
 
@@ -29,6 +36,20 @@ class PageController extends Controller {
     $data->social_networks = json_decode($data->social_networks);
 
     return view('contacts', compact('data'));
+  }
+
+  public function contactsForm(ContactRequest $request){
+//
+//    Mail::raw('It works!', function ($message){
+//      $message->to(request('email'))
+//              ->subject('Hello World!');
+//    });
+
+    Mail::to(request('email'))
+          ->send(new ContactUs('shirts'));
+
+    return redirect()->back()->with('message','Email sent!');
+
   }
 
   public function committee() {
@@ -124,11 +145,6 @@ class PageController extends Controller {
     $data["speakers"] = User::speakers()->where('show_on_site', true);
 
     return view('speakers', compact('data'));
-  }
-
-  public function register() {
-
-    return view('auth.register', compact('data'));
   }
 
   public function topics() {

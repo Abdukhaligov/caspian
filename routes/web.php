@@ -17,6 +17,7 @@ Route::group(['middleware' => ['locale']], function () {
   Route::get('/', 'PageController@home')->name('home');
 
   Route::get('/contacts', 'PageController@contacts')->name('contacts');
+  Route::post('/contacts', 'PageController@contactsForm');
 
   Route::prefix('about')->group(function () {
     Route::get('/about-us', 'PageController@aboutUs')->name('about');

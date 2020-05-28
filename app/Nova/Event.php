@@ -25,6 +25,7 @@ class Event extends Resource {
 
 
   public function fields(Request $request) {
+    $field_action = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/')+1);
     $fields = array(
         ID::make()->sortable(),
 
@@ -41,10 +42,10 @@ class Event extends Resource {
             ])
             ->size('w-1/2'),
 
-
         Text::make('Name')
             ->sortable()
             ->required()
+//            ->withMeta(['value' => ])
             ->size('w-1/3'),
         DateTime::make('Date', 'date')
             ->sortable()
@@ -54,7 +55,6 @@ class Event extends Resource {
             ->sortable()
             ->size('w-1/3'),
 
-//            ->withMeta(['value' => $request->resourceId]),
 
 
         Text::make('Address', 'address')
@@ -77,7 +77,7 @@ class Event extends Resource {
 
     );
 
-    if ($request->resourceId) {
+    if ($field_action == "update-fields") {
       return $fields = array_merge($fields, array(
           Flexible::make('Program')
               ->addLayout('Day', 'day', [

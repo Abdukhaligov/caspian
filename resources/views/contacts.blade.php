@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  <?php $fake = true ? $fakeUser = factory(\App\User::class)->make() : ''?>
 
   <!-- Hero Section-->
   <section class="inner-hero inner-hero4">
@@ -33,34 +34,54 @@
           <h5>Address:</h5>
           <p>{{ $data->address }}</p>
         </div>
-      </div>
+      </div>.
       <div class="row">
         <div class="col-md-6 order-md-1 order-2">
           <div class="map">
             <div class="" id="googleMap">
-{{--              {{ $data->map }}--}}
+              {{--              {{ $data->map }}--}}
             </div>
           </div>
         </div>
         <div class="col-md-6 order-md-2 order-1">
           <div class="contact-information contact-information-2">
-            <h2>Send Us A Message Now!</h2>
-            <form>
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1" name="name" id="name" placeholder="Your Name Here*"
-                       onfocus="this.placeholder = ''" onblur="this.placeholder ='Your Name Here*'">
-              </div>
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1" name="email" id="email"
-                       placeholder="Your Email Address Here*" onfocus="this.placeholder = ''"
-                       onblur="this.placeholder ='Your Email Address Here*'">
-              </div>
-              <div class="form-group cfdb1">
-                <textarea rows="8" class="form-control cp1" name="msg" id="msg" placeholder="Message Details*"
-                          onfocus="this.placeholder =''" onblur="this.placeholder ='Message Details*'"></textarea>
-              </div>
-              <button>Send Message</button>
-            </form>
+            @if(session('message'))
+              <h2>{{ session('message') }}</h2>
+            @else
+              <h2>Send Us A Message Now!</h2>
+              <form method="POST" action="{{ route('contacts') }}">
+                @csrf
+                <div class="form-group cfdb1">
+                  <input type="text" class="form-control cp1 @error('name') is-invalid @enderror" name="name" id="name"
+                         placeholder="Your Name Here*"
+                         value="{{ $fake ? $fakeUser->name : old('name') }}"
+                         onfocus="this.placeholder = ''" onblur="this.placeholder ='Your Name Here*'">
+                  @error('name')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+                <div class="form-group cfdb1">
+                  <input type="text" class="form-control cp1 @error('email') is-invalid @enderror" name="email"
+                         id="email"
+                         value="{{ $fake ? $fakeUser->email : old('email') }}"
+                         placeholder="Your Email Address Here*" onfocus="this.placeholder = ''"
+                         onblur="this.placeholder ='Your Email Address Here*'">
+                  @error('email')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+                <div class="form-group cfdb1">
+                <textarea rows="8" class="form-control cp1 @error('msg') is-invalid @enderror" name="msg" id="msg"
+                          placeholder="Message Details*"
+                          onfocus="this.placeholder =''"
+                          onblur="this.placeholder ='Message Details*'">{{ $fake ? $fakeUser->description : old('msg') }}"</textarea>
+                  @error('msg')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+                <button>Send Message</button>
+              </form>
+            @endif
           </div>
         </div>
       </div>
@@ -94,7 +115,7 @@
 
 
         var marker = new google.maps.Marker({
-          position:  {
+          position: {
             lat: {{ json_decode($data->map)->latlng->lat }},
             lng: {{ json_decode($data->map)->latlng->lng }}
           },

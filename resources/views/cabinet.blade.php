@@ -118,8 +118,11 @@
             @endif
             @if($data["reports"])
               @foreach($data["reports"] as $report)
+                  <div class="nav-item float-left"><a class="nav-link active">Ut molestias et nemo asperiores consequa</a></div>
                 <div class="card text-center mb-3">
+
                   <div class="card-header">
+
                     <div class="nav nav-tabs card-header-tabs">
                       <div class="nav-item float-left"><a class="nav-link active">{{ substr($report->name,0,40) }}</a></div>
                       <div class="nav-item" style="right: 20px;position: absolute;">
