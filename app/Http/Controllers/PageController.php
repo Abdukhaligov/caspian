@@ -79,10 +79,11 @@ class PageController extends Controller {
         "name" => $user->name,
         "email" => $user->email,
         "phone" => $user->phone ?? '',
-        "degree" => $user->degree ?? '',
+        "degree_id" => $user->degree_id ?? '',
         "company" => $user->company ?? '',
         "job_title" => $user->job_title ?? '',
-        "membership_id" => $user->membership->name ?? '',
+        "membership_id" => $user->membership_id ?? '',
+        "region_id" => $user->region_id ?? '',
         "topic" => $user->topic->name ?? '',
         "joined" => $user->created_at ?? '',
         "canAddReport" => $user->canAddReports() ?? '',
@@ -90,7 +91,9 @@ class PageController extends Controller {
     ];
     $data["reports"] = $user->reports;
     $data["topics"] = Topic::showTree();
-    $data['references'] = Reference::all();
+    $data["references"] = Reference::all();
+    $data["membership"] = Membership::all();
+
 
 
     return view('cabinet', compact('data'));
@@ -146,7 +149,6 @@ class PageController extends Controller {
 
     return view('speakers', compact('data'));
   }
-
 
   public function topics() {
     $data = Topics::first();

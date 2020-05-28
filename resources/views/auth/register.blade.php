@@ -87,7 +87,7 @@
                 <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="selectpicker form-control cp1 @error('region') is-invalid @enderror"
-                        name="region" id="region" autocomplete="region">
+                        name="region_id" id="region" autocomplete="region">
                   @foreach(\App\Region::scopeOrdered() as $region)
                     <option value="{{ $region->id }}" @if($region->id == 20) selected
                             @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>

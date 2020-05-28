@@ -15,6 +15,8 @@ class CreateUsersTable extends Migration {
       $table->foreign('membership_id')->references('id')->on('memberships');
       $table->integer('degree_id')->unsigned()->nullable();
       $table->foreign('degree_id')->references('id')->on('degrees');
+      $table->integer('region_id')->unsigned()->nullable();
+      $table->foreign('region_id')->references('id')->on('regions');
       $table->longText('description')->nullable();
       $table->string('name')->nullable();
       $table->string('email')->unique()->nullable();

@@ -3,7 +3,6 @@
 @section('content')
 
 
-
   <!--Pricing Section-->
   <section id="ticket" class="pricing" style="height: 0; width: 0;margin: 0;">
     <div class="pp-2-bg">
@@ -26,7 +25,8 @@
                   @csrf
                   <div class="form-group cfdb1 text-left">
                     <label for="name" class="col-form-label" style="padding-left: 10px;margin-top: 10px;">Topic</label>
-                    <select style="height: 52px;font-size: 14px;" class="form-control cp1 @error('topic_id') is-invalid @enderror"
+                    <select style="height: 52px;font-size: 14px;"
+                            class="form-control cp1 @error('topic_id') is-invalid @enderror"
                             name="topic_id" id="topic_id" autocomplete="topic_id">
                       @foreach($data['topics'] as $topic)
                         @if($topic->hasChildren == true )
@@ -62,7 +62,8 @@
                             placeholder="Abstract description (max 300 words)"
                             onkeyup="countChar(this)"
                             maxlength="300"
-                            onfocus="this.placeholder =''" onblur="this.placeholder ='Abstract description (max 300 words)'"></textarea>
+                            onfocus="this.placeholder =''"
+                            onblur="this.placeholder ='Abstract description (max 300 words)'"></textarea>
                     <div style="right: 0;position: absolute;" id="charNum">0/300</div>
                   </div>
                   <button type="submit" id="submit">Create</button>
@@ -80,60 +81,34 @@
     </div>
   </section>
 
-  <section class="contact-us"  id="app" style="margin-top: 150px">
+
+  <section class="contact-us" id="app" style="margin-top: 150px">
     <div class="container">
       <div class="row">
-        <div class="col-md-5">
-          <div class="contact-details">
-            <h2>{{ __('static.personal_cabinet') }}</h2>
-            <div class="single-contact-details">
-              <span><strong>Name: </strong>{{$data["user"]->name}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>E-mail: </strong>{{$data["user"]->email}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Phone Number: </strong> <span v-mask="'+\\9\\94 (99) 999-99-99'">+{{$data["user"]->phone}}</span> </span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Company: </strong> {{$data["user"]->company}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Job: </strong> {{$data["user"]->job_title}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Degree: </strong> {{$data["user"]->degree->name}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Member As: </strong> {{$data["user"]->membership_id}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Joined At:</strong> {{$data["user"]->joined}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div class="contact-information">
             @if($data["reports"]->count() > 0)
               <h3>Abstracts: </h3>
             @endif
             @if( $data["user"]->canAddReport )
 
-              <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3" data-toggle="modal" data-target="#myModal">New abstract</a>
+              <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3" data-toggle="modal"
+                 data-target="#myModal">New abstract</a>
 
             @endif
             @if($data["reports"])
               @foreach($data["reports"] as $report)
-                  <div class="nav-item float-left"><a class="nav-link active">Ut molestias et nemo asperiores consequa</a></div>
                 <div class="card text-center mb-3">
 
                   <div class="card-header">
 
                     <div class="nav nav-tabs card-header-tabs">
-                      <div class="nav-item float-left"><a class="nav-link active">{{ substr($report->name,0,40) }}</a></div>
+                      <div class="nav-item float-left"><a class="nav-link active">{{ substr($report->name,0,40) }}</a>
+                      </div>
                       <div class="nav-item" style="right: 20px;position: absolute;">
                         @if($report->status == "pending")
-                          <div class="badge badge-primary" style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;">{{ $report->status }}</div>
+                          <div class="badge badge-primary"
+                               style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;">{{ $report->status }}</div>
                           <button type="button" class="btn btn-danger btn-sm"
                                   data-toggle="modal" data-target="#removeReport">X
                           </button>
@@ -160,9 +135,11 @@
                             </div>
                           </div>
                         @elseif($report->status == "accepted")
-                          <div  style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;" class="badge badge-success">{{ $report->status }}</div>
+                          <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
+                               class="badge badge-success">{{ $report->status }}</div>
                         @else
-                          <div  style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;" class="badge badge-danger">{{ $report->status }}</div>
+                          <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
+                               class="badge badge-danger">{{ $report->status }}</div>
                         @endif
                       </div>
                     </div>
@@ -188,6 +165,146 @@
 
           </div>
         </div>
+        <div class="col-md-6">
+          <h2>{{ __('static.account_details') }}</h2>
+          <div class="contact-information" style="margin-top: 10px;">
+            <form method="POST" action="{{ route('register') }}">
+              @csrf
+              <div class="form-group cfdb1">
+                <label class="col-form-label text-md-right">{{ __('static.full_name') }}</label>
+                <input type="text" disabled class="form-control cp1" value="{{$data["user"]->name}}">
+              </div>
+              <div class="form-group cfdb1">
+                <label class="col-form-label text-md-right">{{ __('static.e_mail_address') }}</label>
+                <input type="text" disabled class="form-control cp1" value="{{$data["user"]->email}}">
+              </div>
+              <div class="form-group cfdb1">
+                <label class="col-form-label text-md-right">{{ __('static.new_password') }}</label>
+                <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
+                       name="password" placeholder="{{ __('static.new_password') }}">
+                @error('password')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1">
+                <input type="password" class="form-control cp1 @error('password_confirmation') is-invalid @enderror"
+                       name="password_confirmation" placeholder="{{ __('static.confirm_password') }}">
+                @error('password_confirmation')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1" style="float:left; width: 22%;">
+                <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
+                <select disabled style="height: 52px;font-size: 14px;"
+                        class="selectpicker form-control cp1" id="region" >
+                  @foreach(\App\Region::scopeOrdered() as $region)
+                    <option value="{{ $region->id }}" @if($region->id == $data["user"]->region_id) selected
+                            @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group cfdb1" style="float:right; width: 77%">
+                <label for="phone" class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
+                <input type="text" class="form-control cp1"
+                       disabled
+                       value="+{{$data["user"]->phone}}"
+                       name="phone" id="phone" placeholder="{{ __('static.phone_number') }}">
+              </div>
+              <div class="form-group cfdb1">
+                <label class="col-form-label text-md-right">{{ __('static.company') }}</label>
+                <input type="text" class="form-control cp1 @error('company') is-invalid @enderror"
+                       name="company" placeholder="{{ __('static.company') }}"
+                       value="{{$data["user"]->company}}">
+                @error('company')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1">
+                <label class="col-form-label text-md-right">{{ __('static.job_title') }}</label>
+                <input type="text" class="form-control cp1 @error('job_title') is-invalid @enderror"
+                       name="job_title" id="job_title" placeholder="{{ __('static.job_title') }}"
+                       value="{{$data["user"]->job_title}}" autocomplete="job_title">
+                @error('job_title')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1">
+                <label for="degree_id" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="form-control cp1 @error('degree_id') is-invalid @enderror"
+                        name="degree_id" id="degree_id" autocomplete="degree">
+                  <option selected value="0">No degree</option>
+                  @foreach(\App\Models\Degree::all() as $degree)
+                    <option value="{{ $degree->id }}"
+                            @if($data["user"]->degree_id == $degree->id) selected @endif
+                    >{{ $degree->name }}</option>
+                  @endforeach
+                </select>
+                @error('degree')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1">
+                <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                        name="membership_id" id="membership_id" autocomplete="membership_id">
+                  <option disabled selected>Select</option>
+                  <option disabled>Reporter</option>
+
+                  @foreach($data['membership'] as $membership)
+                    <option
+                        value="{{ $membership->id }}"
+                        @if($data["user"]->membership_id == $membership->id) selected @endif>
+
+                      @if($membership->reporter == true )
+                        - {{ $membership->name }}
+                      @else
+                        {{ $membership->name }}
+                      @endif
+                    </option>
+                  @endforeach
+                </select>
+                @error('membership_id')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+
+
+              <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
+              <div class="col-md-12 text-center">
+                <div class="cf-msg"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6" style="display: none">
+          <div class="contact-details">
+            <h2>{{ __('static.personal_cabinet') }}</h2>
+            <div class="single-contact-details">
+              <span><strong>Name: </strong>{{$data["user"]->name}}</span>
+            </div>
+            <div class="single-contact-details">
+              <span><strong>E-mail: </strong>{{$data["user"]->email}}</span>
+            </div>
+            <div class="single-contact-details">
+              <span><strong>Phone Number: </strong> <span v-mask="'+\\9\\94 (99) 999-99-99'"></span> </span>
+            </div>
+            <div class="single-contact-details">
+              <span><strong>Company: </strong> </span>
+            </div>
+            <div class="single-contact-details">
+              <span><strong>Job: </strong> </span>
+            </div>
+
+            <div class="single-contact-details">
+              <span><strong>Member As: </strong> {{$data["user"]->membership_id}}</span>
+            </div>
+            <div class="single-contact-details">
+              <span><strong>Joined At:</strong> {{$data["user"]->joined}}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -196,15 +313,41 @@
 @endsection
 
 @section('scripts')
-<script>
-  function countChar(val) {
-    var len = val.value.length;
-    if (len >= 500) {
-      val.value = val.value.substring(0, 300);
-    } else {
-      $('#charNum').text(len+"/300");
+  <script>
+    function countChar(val) {
+      var len = val.value.length;
+      if (len >= 500) {
+        val.value = val.value.substring(0, 300);
+      } else {
+        $('#charNum').text(len + "/300");
+      }
     }
-  }
 
-</script>
+    $(function () {
+      let region = $('#region');
+
+      //Timer Js//
+      function changeMask(e) {
+        let mask = e.options[e.selectedIndex].getAttribute('data-mask');
+        let temp = "";
+        for (let i = 0; i < mask.length; i++) {
+          if (mask.charAt(i) === "9") {
+            temp = temp.concat("\\" + mask.charAt(i));
+          } else {
+            temp = temp.concat(mask.charAt(i));
+          }
+        }
+        $('#phone').inputmask((temp.toString()));
+      }
+
+      region.change(function () {
+        changeMask(this)
+      })
+
+      changeMask(region[0])
+
+
+    }(jQuery));
+
+  </script>
 @endsection

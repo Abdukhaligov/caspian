@@ -16,6 +16,7 @@ return array (
     'full_name' => 'Full Name',
     'e_mail_address' => 'E-mail Address',
     'password' => 'Password',
+    'new_password' => 'New Password',
     'confirm_password' => 'Confirm Password',
     'phone_number' => 'Phone Number',
     'company' => 'Working Place',
@@ -24,4 +25,5 @@ return array (
     'member_as' => 'Participation',
     'degree' => 'Degree',
     'region' => 'Region',
+    'account_details' => 'Account Details',
 );

@@ -47,6 +47,7 @@ class RegisterController extends Controller {
     $user->company = $data['company'];
     $user->job_title = $data['job_title'];
     $user->reference_id = $data['reference_id'];
+    $user->region_id = $data['region_id'];
     $user->membership_id = $data['membership_id'];
     if($data['degree_id']){
       $user->degree_id = $data['degree_id'];
@@ -75,8 +76,8 @@ class RegisterController extends Controller {
   }
 
   public function showRegistrationForm() {
-    $data['references'] = Reference::all();
-    $data['membership'] = Membership::all();
+    $data["references"] = Reference::all();
+    $data["membership"] = Membership::all();
     $data["topics"] = Topic::showTree();
 
     return view('auth.register', compact('data'));
