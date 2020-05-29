@@ -86,6 +86,167 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
+
+          @if(session('pill'))
+            @php $pill = session('pill') @endphp
+          @else
+            @php $pill = "main" @endphp
+          @endif
+
+
+          <h2>{{ __('static.account_details') }}</h2>
+          <ul style="margin-top: 15px" class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link @if($pill == "main") active @endif" id="pills-main-tab" data-toggle="pill" href="#pills-main" role="tab"
+                 aria-controls="pills-main" aria-selected="true">Main</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @if($pill == "info") active @endif" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab"
+                 aria-controls="pills-info" aria-selected="false">Change info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @if($pill == "password") active @endif" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab"
+                 aria-controls="pills-password" aria-selected="false">Change Password</a>
+            </li>
+          </ul>
+          <div class="tab-content pt-2 pl-1" id="pills-tabContent">
+            <div class="tab-pane fade @if($pill == "main") show active @endif" id="pills-main" role="tabpanel" aria-labelledby="pills-main-tab">
+              <div class="contact-information" style="margin-top: 10px;">
+                <div class="form-group cfdb1">
+                  <label class="col-form-label text-md-right">{{ __('static.full_name') }}</label>
+                  <input type="text" disabled class="form-control cp1" value="{{$data["user"]->name}}">
+                </div>
+                <div class="form-group cfdb1">
+                  <label class="col-form-label text-md-right">{{ __('static.e_mail_address') }}</label>
+                  <input type="text" disabled class="form-control cp1" value="{{$data["user"]->email}}">
+                </div>
+                <div class="form-group cfdb1" style="float:left; width: 22%;">
+                  <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
+                  <select disabled style="height: 52px;font-size: 14px;"
+                          class="selectpicker form-control cp1" id="region" >
+                    @foreach(\App\Region::scopeOrdered() as $region)
+                      <option value="{{ $region->id }}" @if($region->id == $data["user"]->region_id) selected
+                              @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group cfdb1" style="float:right; width: 77%">
+                  <label for="phone" class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
+                  <input type="text" class="form-control cp1"
+                         disabled
+                         value="+{{$data["user"]->phone}}"
+                         name="phone" id="phone" placeholder="{{ __('static.phone_number') }}">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade @if($pill == "info") show active @endif" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+              <div class="contact-information" style="margin-top: 10px;">
+                <form method="POST" action="{{ route('user_update') }}">
+                  @csrf
+                  <div class="form-group cfdb1">
+                    <label class="col-form-label text-md-right">{{ __('static.company') }}</label>
+                    <input type="text" class="form-control cp1 @error('company') is-invalid @enderror"
+                           name="company" placeholder="{{ __('static.company') }}"
+                           value="{{$data["user"]->company}}">
+                    @error('company')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+                  <div class="form-group cfdb1">
+                    <label class="col-form-label text-md-right">{{ __('static.job_title') }}</label>
+                    <input type="text" class="form-control cp1 @error('job_title') is-invalid @enderror"
+                           name="job_title" id="job_title" placeholder="{{ __('static.job_title') }}"
+                           value="{{$data["user"]->job_title}}" autocomplete="job_title">
+                    @error('job_title')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+                  <div class="form-group cfdb1">
+                    <label for="degree_id" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
+                    <select style="height: 52px;font-size: 14px;"
+                            class="form-control cp1 @error('degree_id') is-invalid @enderror"
+                            name="degree_id" id="degree_id" autocomplete="degree">
+                      <option selected value="0">No degree</option>
+                      @foreach(\App\Models\Degree::all() as $degree)
+                        <option value="{{ $degree->id }}"
+                                @if($data["user"]->degree_id == $degree->id) selected @endif
+                        >{{ $degree->name }}</option>
+                      @endforeach
+                    </select>
+                    @error('degree_id')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+                  <div class="form-group cfdb1">
+                    <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                    <select style="height: 52px;font-size: 14px;"
+                            class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                            name="membership_id" id="membership_id" autocomplete="membership_id">
+                      <option disabled selected>Select</option>
+                      <option disabled>Reporter</option>
+
+                      @foreach($data['membership'] as $membership)
+                        <option
+                            value="{{ $membership->id }}"
+                            @if($data["user"]->membership_id == $membership->id) selected @endif>
+
+                          @if($membership->reporter == true )
+                            - {{ $membership->name }}
+                          @else
+                            {{ $membership->name }}
+                          @endif
+                        </option>
+                      @endforeach
+                    </select>
+                    @error('membership_id')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                    <span class="invalid-feedback"><strong>If you change</strong></span>
+                  </div>
+                  <button style="margin-top: 15px" type="submit">{{ __('static.user_update') }}</button>
+                  <div class="col-md-12 text-center">
+                    <div class="cf-msg"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="tab-pane fade @if($pill == "password") show active @endif" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
+              <div class="contact-information" style="margin-top: 10px;">
+                <form method="POST" action="{{ route('user_update_password') }}">
+                  @csrf
+                  <div class="form-group cfdb1">
+                    <label class="col-form-label text-md-right">{{ __('static.current_password') }}</label>
+                    <input type="password" class="form-control cp1 @error('current_password') is-invalid @enderror"
+                           name="current_password" placeholder="{{ __('static.current_password') }}">
+                    @error('current_password')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+                  <div class="form-group cfdb1">
+                    <label class="col-form-label text-md-right">{{ __('static.new_password') }}</label>
+                    <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
+                           name="password" placeholder="{{ __('static.new_password') }}">
+                    @error('password')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+                  <div class="form-group cfdb1">
+                    <input type="password" class="form-control cp1 @error('password_confirmation') is-invalid @enderror"
+                           name="password_confirmation" placeholder="{{ __('static.confirm_password') }}">
+                    @error('password_confirmation')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+                  <button style="margin-top: 15px" type="submit">{{ __('static.password_update') }}</button>
+                  <div class="col-md-12 text-center">
+                    <div class="cf-msg"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
           <div class="contact-information">
             @if($data["reports"]->count() > 0)
               <h3>Abstracts: </h3>
@@ -163,146 +324,6 @@
               @endforeach
             @endif
 
-          </div>
-        </div>
-        <div class="col-md-6">
-          <h2>{{ __('static.account_details') }}</h2>
-          <div class="contact-information" style="margin-top: 10px;">
-            <form method="POST" action="{{ route('register') }}">
-              @csrf
-              <div class="form-group cfdb1">
-                <label class="col-form-label text-md-right">{{ __('static.full_name') }}</label>
-                <input type="text" disabled class="form-control cp1" value="{{$data["user"]->name}}">
-              </div>
-              <div class="form-group cfdb1">
-                <label class="col-form-label text-md-right">{{ __('static.e_mail_address') }}</label>
-                <input type="text" disabled class="form-control cp1" value="{{$data["user"]->email}}">
-              </div>
-              <div class="form-group cfdb1">
-                <label class="col-form-label text-md-right">{{ __('static.new_password') }}</label>
-                <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                       name="password" placeholder="{{ __('static.new_password') }}">
-                @error('password')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <input type="password" class="form-control cp1 @error('password_confirmation') is-invalid @enderror"
-                       name="password_confirmation" placeholder="{{ __('static.confirm_password') }}">
-                @error('password_confirmation')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1" style="float:left; width: 22%;">
-                <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
-                <select disabled style="height: 52px;font-size: 14px;"
-                        class="selectpicker form-control cp1" id="region" >
-                  @foreach(\App\Region::scopeOrdered() as $region)
-                    <option value="{{ $region->id }}" @if($region->id == $data["user"]->region_id) selected
-                            @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div class="form-group cfdb1" style="float:right; width: 77%">
-                <label for="phone" class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
-                <input type="text" class="form-control cp1"
-                       disabled
-                       value="+{{$data["user"]->phone}}"
-                       name="phone" id="phone" placeholder="{{ __('static.phone_number') }}">
-              </div>
-              <div class="form-group cfdb1">
-                <label class="col-form-label text-md-right">{{ __('static.company') }}</label>
-                <input type="text" class="form-control cp1 @error('company') is-invalid @enderror"
-                       name="company" placeholder="{{ __('static.company') }}"
-                       value="{{$data["user"]->company}}">
-                @error('company')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <label class="col-form-label text-md-right">{{ __('static.job_title') }}</label>
-                <input type="text" class="form-control cp1 @error('job_title') is-invalid @enderror"
-                       name="job_title" id="job_title" placeholder="{{ __('static.job_title') }}"
-                       value="{{$data["user"]->job_title}}" autocomplete="job_title">
-                @error('job_title')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <label for="degree_id" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('degree_id') is-invalid @enderror"
-                        name="degree_id" id="degree_id" autocomplete="degree">
-                  <option selected value="0">No degree</option>
-                  @foreach(\App\Models\Degree::all() as $degree)
-                    <option value="{{ $degree->id }}"
-                            @if($data["user"]->degree_id == $degree->id) selected @endif
-                    >{{ $degree->name }}</option>
-                  @endforeach
-                </select>
-                @error('degree')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                        name="membership_id" id="membership_id" autocomplete="membership_id">
-                  <option disabled selected>Select</option>
-                  <option disabled>Reporter</option>
-
-                  @foreach($data['membership'] as $membership)
-                    <option
-                        value="{{ $membership->id }}"
-                        @if($data["user"]->membership_id == $membership->id) selected @endif>
-
-                      @if($membership->reporter == true )
-                        - {{ $membership->name }}
-                      @else
-                        {{ $membership->name }}
-                      @endif
-                    </option>
-                  @endforeach
-                </select>
-                @error('membership_id')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-
-
-              <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
-              <div class="col-md-12 text-center">
-                <div class="cf-msg"></div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-md-6" style="display: none">
-          <div class="contact-details">
-            <h2>{{ __('static.personal_cabinet') }}</h2>
-            <div class="single-contact-details">
-              <span><strong>Name: </strong>{{$data["user"]->name}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>E-mail: </strong>{{$data["user"]->email}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Phone Number: </strong> <span v-mask="'+\\9\\94 (99) 999-99-99'"></span> </span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Company: </strong> </span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Job: </strong> </span>
-            </div>
-
-            <div class="single-contact-details">
-              <span><strong>Member As: </strong> {{$data["user"]->membership_id}}</span>
-            </div>
-            <div class="single-contact-details">
-              <span><strong>Joined At:</strong> {{$data["user"]->joined}}</span>
-            </div>
           </div>
         </div>
       </div>

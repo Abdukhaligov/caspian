@@ -27,8 +27,8 @@ class PageGallery extends Resource {
 
   public function fields(Request $request) {
     return [
-        Text::make('Title'),
-        Multilingual::make('Language'),
+//        Text::make('Title'),
+//        Multilingual::make('Language'),
         Media::make('Media'),
 
         Flexible::make('Videos')

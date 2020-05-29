@@ -47,21 +47,24 @@ class User extends Resource {
             ->size('w-3/4'),
 
 
+        BelongsTo::make('Membership')
+            ->sortable()
+            ->sizeOnForms('w-1/3')
+            ->sizeOnDetail('w-1/4'),
         Text::make('Name')
             ->sortable()
             ->rules('required', 'max:255')
-            ->size('w-1/4'),
+            ->sizeOnForms('w-1/6')
+            ->sizeOnDetail('w-1/4'),
         PhoneNumber::make('Phone')->sortable()
-            ->withCustomFormats('+994 (##) ###-##-##')
-            ->onlyCustomFormats()
-            ->size('w-1/4'),
+            ->sizeOnForms('w-1/6')
+            ->sizeOnDetail('w-1/4'),
         Email::make('Email')
             ->alwaysClickable()
             ->sortable()
-            ->size('w-1/4'),
-        BelongsTo::make('Membership')
-            ->sortable()
-            ->size('w-1/4'),
+            ->sizeOnForms('w-1/4')
+            ->sizeOnDetail('w-1/4'),
+
 
 
         BelongsTo::make('Degree')
@@ -89,6 +92,7 @@ class User extends Resource {
                     "3" => 3,
                 ]
             )
+            ->sortable()
             ->sizeOnForms('w-1/6')
             ->sizeOnDetail('w-1/4'),
 
@@ -108,6 +112,7 @@ class User extends Resource {
             ->hideFromIndex()
             ->size('w-1/4'),
         DateTime::make('Created At')
+            ->sortable()
             ->size('w-1/4'),
 
         Boolean::make('Show on site', 'show_on_site')

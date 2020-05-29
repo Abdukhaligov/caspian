@@ -39,11 +39,6 @@ class PageController extends Controller {
   }
 
   public function contactsForm(ContactRequest $request) {
-//
-//    Mail::raw('It works!', function ($message){
-//      $message->to(request('email'))
-//              ->subject('Hello World!');
-//    });
 
     Mail::to(request('email'))
         ->send(new ContactUs('shirts'));
@@ -89,7 +84,7 @@ class PageController extends Controller {
         "canAddReport" => $user->canAddReports() ?? '',
         "reference" => $user->reference->name ?? '',
     ];
-    $data["reports"] = $user->reports;
+    $data["reports"] = $user->reports()->orderBy('created_at', 'DESC')->get();
     $data["topics"] = Topic::showTree();
     $data["references"] = Reference::all();
     $data["membership"] = Membership::all();

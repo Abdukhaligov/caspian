@@ -17,6 +17,7 @@ return array (
     'e_mail_address' => 'E-mail Address',
     'password' => 'Password',
     'new_password' => 'New Password',
+    'current_password' => 'Current Password',
     'confirm_password' => 'Confirm Password',
     'phone_number' => 'Phone Number',
     'company' => 'Working Place',
@@ -26,4 +27,6 @@ return array (
     'degree' => 'Degree',
     'region' => 'Region',
     'account_details' => 'Account Details',
+    'user_update' => 'Update Details',
+    'password_update' => 'Update Password',
 );

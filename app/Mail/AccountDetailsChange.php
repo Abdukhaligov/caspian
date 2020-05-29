@@ -7,17 +7,23 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactUs extends Mailable {
+class AccountDetailsChange extends Mailable {
   use Queueable, SerializesModels;
-
   public $data;
 
-  public function __construct(string $data) {
+  public function __construct($data) {
     $this->data = $data;
+
   }
 
   public function build() {
-    return $this->markdown('emails.contact-us')
-                ->subject('More information about  '. $this->data);
+    $subject = 'Your report has changed';
+
+
+    return $this->markdown('emails.account-details-change')
+        ->subject($subject)
+        ->with(['message' => $this->data['message']]);
   }
+
+
 }

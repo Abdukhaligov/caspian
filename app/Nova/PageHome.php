@@ -26,13 +26,18 @@ class PageHome extends Resource {
 
   public function fields(Request $request) {
     return [
-        Text::make('Title'),
-        NovaTinyMCE::make('Description'),
+//        Text::make('Title'),
         FilemanagerField::make('Description IMG', 'description_img')
             ->displayAsImage()
             ->hideCreateFolderButton()
-            ->folder('main'),
-        Multilingual::make('Language'),
+            ->folder('main')
+            ->size('w-1/2'),
+
+        NovaTinyMCE::make('Description')
+            ->size('w-1/2'),
+
+
+//        Multilingual::make('Language'),
     ];
   }
 
