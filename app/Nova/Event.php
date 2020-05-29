@@ -91,9 +91,12 @@ class Event extends Resource {
                           Select::make('User', 'user')->options(
                               \App\Models\Event::findOrFail($request->resourceId)->usersForSelection()
                           )
-                              ->required(),
-                          TimeField::make('Start Time', 'event_start'),
-                          TimeField::make('End Time', 'event_end'),
+                              ->required()
+                              ->size('w-1/2'),
+                          TimeField::make('Start Time', 'event_start')
+                              ->size('w-1/4'),
+                          TimeField::make('End Time', 'event_end')
+                              ->size('w-1/4'),
 
                           Text::make('Title', 'title')
                               ->required(),
@@ -125,8 +128,10 @@ class Event extends Resource {
                           TimeField::make('End Time', 'event_end'),
 
                       ])
+                      ->collapsed()
                       ->button('New Event'),
               ])
+              ->collapsed()
               ->button('New Day!')
       ));
     } else {

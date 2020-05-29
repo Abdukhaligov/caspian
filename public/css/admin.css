@@ -32,3 +32,6 @@ input#show_on_site, input#is_admin, input#gold , input#active {
   width: 93px;
   height: 93px;
 }
+.hidden {
+  display: none !important;
+}
