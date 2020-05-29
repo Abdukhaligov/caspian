@@ -34,7 +34,7 @@ class PageGallery extends Resource {
 
         Flexible::make('Videos')
             ->addLayout('Video', 'videos', [
-                Youtube::make('Video Url (YouTube)', 'video')
+                Youtube::make('Video Url (YouTube)', 'url')
                     ->required(),
                 Image::make('Video Thumbnail', 'thumbnail')
                     ->disableDownload(),

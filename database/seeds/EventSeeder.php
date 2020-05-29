@@ -10,29 +10,29 @@ class EventSeeder extends Seeder {
     $data = [];
 
     for ($i = 0; $i < 7; $i++) {
-      $usersTemp = [];
+      $speakersTemp = [];
       for ($j = 0; $j < 4; $j++) {
-        $usersOnEvent [] = [
+        $speakersOnEvent [] = [
             "event_id" => $i + 1,
-            "user_id" => $usersTemp[] = rand(3, 32)
+            "user_id" => $speakersTemp[] = rand(3, 32)
         ];
       }
 
 
-      $program = array();
+      $days = array();
       for ($j = 0; $j < 6; $j++) {
 
-        $users = array();
+        $speakers = array();
 
         for ($k=0 ; $k<rand(1,3); $k++){
-          $users [] = array(
+          $speakers [] = array(
               "key" => uniqid(),
-              "layout" => "user",
+              "layout" => "speaker",
               "attributes" => array(
                   "key" => uniqid(),
                   "title" => "$faker->sentence",
                   "address" => "$faker->address",
-                  "user" => $usersTemp[rand(0,3)],
+                  "user" => $speakersTemp[rand(0,3)],
                   "event_end" => "12:00:00",
                   "description" => "<p>$faker->paragraph</p>",
                   "event_start" => "12:00:00"
@@ -40,15 +40,15 @@ class EventSeeder extends Seeder {
           );
         }
 
-        $days = array(
+        $day = array(
             "event_begin" => Carbon::now()->addDays($j+2),
-            "event" => $users,
+            "events" => $speakers,
         );
 
-        $program[] = array(
+        $days[] = array(
             "key" => uniqid(),
             "layout" => "day",
-            "attributes" => $days
+            "attributes" => $day
         );
       }
 
@@ -59,13 +59,13 @@ class EventSeeder extends Seeder {
           "address" => $faker->address,
           "date" => $faker->dateTimeBetween("+2 days", "+ 2 months"),
           "active" => $i == 3,
-          "program" => json_encode($program)
+          "days" => json_encode($days)
       ];
 
     }
 
     DB::table('events')->insert($data);
-    DB::table('event_user')->insert($usersOnEvent);
+    DB::table('event_user')->insert($speakersOnEvent);
   }
 
 }

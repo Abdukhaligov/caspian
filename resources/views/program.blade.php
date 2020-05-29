@@ -3,13 +3,15 @@
 @section('content')
 
   <style>
-    .ed-img h6{
+    .ed-img h6 {
       font-size: 17px;
       font-weight: 500;
     }
-    .ed-img p{
+
+    .ed-img p {
       font-size: 15px;
     }
+
     .ed-content p {
       text-align: justify;
     }
@@ -39,8 +41,10 @@
           <div class="event-schedule">
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="width: 100%">
-                @foreach($data->program as $id => $program)
-                  <a class="nav-item nav-link @if($id == 0) active @endif" id="nav-{{ $id }}-tab" data-toggle="tab" href="#nav-{{ $id }}" role="tab"
+
+                @foreach($data->days as $id => $day)
+                  <a class="nav-item nav-link @if($id == 0) active @endif" id="nav-{{ $id }}-tab" data-toggle="tab"
+                     href="#nav-{{ $id }}" role="tab"
                      aria-controls="nav-agreement" aria-selected="false">
                     <div class="es-day">
                       <div class="es-day-details">
@@ -48,48 +52,50 @@
                       </div>
                       <div class="es-day-details2">
                         <span>Day</span><br>
-                        <span>{{ date('dS M Y', strtotime($program["attributes"]["event_begin"])) }}</span>
+                        <span>{{ date('dS M Y', strtotime($day->event_begin)) }}</span>
                       </div>
                     </div>
                   </a>
                 @endforeach
               </div>
             </nav>
+
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-              @foreach($data->program as $tab_id => $tab)
-                <div class="tab-pane fade @if($tab_id == 0) show active @endif" id="nav-{{ $tab_id }}" role="tabpanel" aria-labelledby="nav-{{ $tab_id }}-tab">
-                  @foreach($tab["attributes"]["speaker"] as $speaker_id => $speaker)
-                    @php
-                      $speakerDetails = \App\User::find($speaker["attributes"]["speaker"]);
-                      $speakerDetails->photo = \App\Models\Speaker::find($speaker["attributes"]["speaker"])->photo;
-                     @endphp
+              @foreach($data->days as $day_id => $day)
+                <div class="tab-pane fade @if($day_id == 0) show active @endif" id="nav-{{ $day_id }}" role="tabpanel"
+                     aria-labelledby="nav-{{ $day_id }}-tab">
+                  @foreach($day->events as $event_id => $event)
                     <div class="event-details">
-                      <div class="ed-img">
-                        <img src="{{ Storage::disk('public')->url($speakerDetails->photo) }}" alt="">
-                        <a href="{{ route('speakers')."/".$speakerDetails->id }}">
-                          <h5>{{$speakerDetails->degree}} {{$speakerDetails->name}}</h5>
-                        </a>
-                        <h6>{{$speakerDetails->job_title}}</h6>
-                        <p>{{$speakerDetails->company}}</p>
-                      </div>
+                      @if($event->layout == "speaker")
+                        @php $user = \App\User::find($event->attributes->user);  @endphp
+                        <div class="ed-img">
+                          {{ $user->getMedia('avatar')->first() }}
+                          <a href="{{ route('speakers')."/".$user->id }}">
+                            <h5>{{$user->degree->name ?? ''}} {{$user->name}}</h5>
+                          </a>
+                          <h6>{{$user->job_title}}</h6>
+                          <p>{{$user->company}}</p>
+                        </div>
+                      @else
+                        <div class="ed-img">
+                          <img src="{{ Storage::disk('public')->url($event->attributes->pic) }}" alt="">
+                        </div>
+                      @endif
                       <div class="ed-content">
-                        <h5>{{ $speaker["attributes"]["title"] }}</h5>
-                        {!! $speaker["attributes"]["description"] !!}
+                        <h5>{{ $event->attributes->title }}</h5>
+                        {!! $event->attributes->description  !!}
                         <span>
                           <i class="fas fa-map-marker-alt"></i>
-                          @if($speaker["attributes"]["address"] !== "")
-                            {{ $speaker["attributes"]["address"] }}
-                          @else
-                            {{ $data->event["address"] }}
-                          @endif
+                          {{ $event->attributes->address ?? $data->event["address"] }}
                         </span>
                         <span>
                           <i class="far fa-clock"></i>
-                          {{ date('H:i', strtotime($speaker["attributes"]["event_start"])) }} - {{ date('H:i', strtotime($speaker["attributes"]["event_end"])) }}
+                          {{ date('H:i', strtotime($event->attributes->event_start)) }} - {{ date('H:i', strtotime($event->attributes->event_end)) }}
                         </span>
                       </div>
                     </div>
                   @endforeach
+
                 </div>
               @endforeach
             </div>

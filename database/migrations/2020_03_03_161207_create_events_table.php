@@ -13,7 +13,7 @@ class CreateEventsTable extends Migration {
       $table->text('description')->nullable();
       $table->text('address');
       $table->dateTime('date')->nullable();
-      $table->json('program')->nullable();
+      $table->json('days')->nullable();
       $table->boolean('active')->default(false);
       $table->timestamps();
     });

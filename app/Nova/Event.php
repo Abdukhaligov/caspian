@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -25,8 +26,11 @@ class Event extends Resource {
 
 
   public function fields(Request $request) {
+
     $field_action = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/')+1);
-    $fields = array(
+
+    return [
+
         ID::make()->sortable(),
 
         Text::make('Name')
@@ -61,8 +65,6 @@ class Event extends Resource {
 
 
 
-
-
         DateTime::make('Created At')
             ->hideFromIndex()
             ->size('w-1/2'),
@@ -73,70 +75,91 @@ class Event extends Resource {
 
         BelongsToMany::make('Users'),
 
+        Flexible::make('Days')
+            ->addLayout('Day', 'day', [
+                DateTime::make('Event Date', 'event_begin')
+                    ->resolveUsing(function ($date) {
+                      return Carbon::parse($date);
+                    })
+                    ->format('DD MMM Y hh:mm:ss')
+                    ->required()
+                    ->size('w-2/4'),
+                Flexible::make('Events')
+                    ->addLayout('Speaker', 'speaker', [
 
-    );
+                        Text::make('Title', 'title')
+                            ->required()
+                            ->size('w-1/4'),
+                        TimeField::make('Start Time', 'event_start')
+                            ->size('w-1/6'),
+                        TimeField::make('End Time', 'event_end')
+                            ->size('w-1/6'),
+                        Text::make('Address', 'address')
+                            ->size('w-2/5'),
 
-    if ($field_action == "update-fields") {
-      return $fields = array_merge($fields, array(
-          Flexible::make('Program')
-              ->addLayout('Day', 'day', [
-                  DateTime::make('Event Date', 'event_begin')
-                      ->resolveUsing(function ($date) {
-                        return Carbon::parse($date);
-                      })
-                      ->format('DD MMM Y hh:mm:ss')
-                      ->required(),
-                  Flexible::make('Event', 'event')
-                      ->addLayout('User', 'user', [
-                          Select::make('User', 'user')->options(
-                              \App\Models\Event::findOrFail($request->resourceId)->usersForSelection()
-                          )
-                              ->required()
-                              ->size('w-1/2'),
-                          TimeField::make('Start Time', 'event_start')
-                              ->size('w-1/4'),
-                          TimeField::make('End Time', 'event_end')
-                              ->size('w-1/4'),
 
-                          Text::make('Title', 'title')
-                              ->required(),
-                          NovaTinyMCE::make('Description', 'description')
-                              ->options([
-                                  'plugins' => [
-                                      'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
-                                  ],
-                                  'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
-                                  'use_lfm' => true
-                              ])
-                              ->required(),
-                          Text::make('Address', 'address'),
-                      ])
-                      ->addLayout('Event', 'event', [
-                          Text::make('Title', 'title')
-                              ->required(),
-                          NovaTinyMCE::make('Description', 'description')
-                              ->options([
-                                  'plugins' => [
-                                      'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
-                                  ],
-                                  'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
-                                  'use_lfm' => true
-                              ])
-                              ->required(),
-                          Text::make('Address', 'address'),
-                          TimeField::make('Start Time', 'event_start'),
-                          TimeField::make('End Time', 'event_end'),
+                        Select::make('User')->options(
+                            function () use (&$request,&$field_action){
+                              if ($field_action == "update-fields"){
+                                return \App\Models\Event::findOrFail($request->resourceId)->usersForSelection();
+                              }else{
+                                return [];
+                              }
+                            }
+                        )
+                            ->required()
+                            ->size('w-1/4'),
 
-                      ])
-                      ->collapsed()
-                      ->button('New Event'),
-              ])
-              ->collapsed()
-              ->button('New Day!')
-      ));
-    } else {
-      return $fields;
-    }
+                        NovaTinyMCE::make('Description', 'description')
+                            ->options([
+                                'plugins' => [
+                                    'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                                ],
+                                'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                                'use_lfm' => true
+                            ])
+                            ->required()
+                            ->size('w-3/4'),
+                    ])
+                    ->addLayout('Event', 'event', [
+                        Text::make('Title', 'title')
+                            ->required()
+                            ->size('w-1/4'),
+                        TimeField::make('Start Time', 'event_start')
+                            ->size('w-1/6'),
+                        TimeField::make('End Time', 'event_end')
+                            ->size('w-1/6'),
+                        Text::make('Address', 'address')
+                            ->size('w-2/5'),
+
+                        Image::make('Picture', 'pic')
+                            ->disableDownload()
+                            ->required()
+                            ->size('w-1/4'),
+                        NovaTinyMCE::make('Description', 'description')
+                            ->options([
+                                'plugins' => [
+                                    'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
+                                ],
+                                'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
+                                'use_lfm' => true
+                            ])
+                            ->required()
+                            ->size('w-3/4')
+
+
+                    ])
+                    ->collapsed()
+                    ->button('New Event')
+                    ->size('w-full'),
+            ])
+            ->collapsed()
+            ->button('New Day!')
+            ->hideFromDetail()
+            ->size('w-full')
+  ];
+
+
   }
 
 }

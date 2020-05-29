@@ -66,8 +66,8 @@
           @foreach($data["videos"] as $video)
             <div class="col-md-3" style="padding: 0">
               <div class="portfolio-img  wow fadeInUp" data-wow-delay=".4s">
-                <a data-fancybox="youtube" href="https://youtu.be/{{ $video->attributes->url }}">
-                  <img src="{{ Storage::disk('public')->url($video->attributes->cover) }}" alt="">
+                <a data-fancybox="youtube" href="https://youtu.be/{{ $video->url }}">
+                  <img src="{{ Storage::disk('public')->url($video->thumbnail) }}" alt="">
                   <div class="bpw-btn">
                     <div class="pulse-box">
                       <div class="pulse-css">

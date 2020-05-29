@@ -8,14 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 
 class Event extends Model implements HasMedia {
 
-  protected $casts = ['date' => 'datetime', 'program' => "array"];
+  protected $casts = ['date' => 'datetime'];
   protected $fillable = ["status"];
 
   use HasMediaTrait;
+  use HasFlexible;
 
+
+  public function days() {
+    return $this->flexible('days');
+  }
 
   public function usersForSelection() {
     $array = array();

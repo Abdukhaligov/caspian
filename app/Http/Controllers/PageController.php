@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
-use App\Http\Requests\UserRequest;
-use App\Mail\Contact;
 use App\Mail\ContactUs;
 use App\Models\Event;
 use App\Models\Membership;
@@ -60,7 +58,8 @@ class PageController extends Controller {
   public function program() {
     $data = Program::first();
     $data->event = Event::activeEvent();
-    $data->program = $data->event->program;
+
+    $data->days = $data->event->days();
 
 
     return view('program', compact('data'));
@@ -111,7 +110,8 @@ class PageController extends Controller {
     $data = Gallery::first();
 
     $data["media"] = $data->getMedia('media');
-    $data["videos"] = json_decode($data->videos);
+    $data["videos"] = $data->videos();
+
 
     return view('gallery', compact('data'));
   }

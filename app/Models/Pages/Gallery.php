@@ -19,8 +19,8 @@ class Gallery extends Model implements HasMedia {
 
   public $translatable = ['title'];
 
-  public function getFlexibleContentAttribute() {
-    return $this->flexible('flexible-content');
+  public function videos() {
+    return $this->flexible('videos');
   }
 
   public function registerMediaConversions(Media $media = null) {
