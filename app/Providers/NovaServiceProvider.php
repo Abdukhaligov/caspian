@@ -54,14 +54,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
     ];
   }
 
-  /**
-   * Register any application services.
-   *
-   * @return void
-   */
+
   public function register() {
     Nova::tools([
-        new NovaTranslation,
+//        new NovaTranslation,
     ]);
   }
 }

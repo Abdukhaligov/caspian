@@ -7,6 +7,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Media24si\NovaYoutubeField\Youtube;
 use Whitecube\NovaFlexibleContent\Flexible;
@@ -33,14 +34,12 @@ class PageGallery extends Resource {
 
         Flexible::make('Videos')
             ->addLayout('Video', 'videos', [
-                Youtube::make('Url', 'url')
+                Youtube::make('Video Url (YouTube)', 'video')
                     ->required(),
-                FilemanagerField::make('Cover', 'cover')
-                    ->required()
-                    ->folder('video_covers')
-                    ->displayAsImage()
-                    ->hideCreateFolderButton(),
+                Image::make('Video Thumbnail', 'thumbnail')
+                    ->disableDownload(),
             ])
+            ->button('New Video'),
     ];
   }
 
