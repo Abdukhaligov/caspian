@@ -17,7 +17,7 @@ class AccountDetailsChange extends Mailable {
   }
 
   public function build() {
-    $subject = 'Your report has changed';
+    $subject = 'Your account details has changed';
 
 
     return $this->markdown('emails.account-details-change')
