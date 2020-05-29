@@ -20,7 +20,7 @@ class EventSeeder extends Seeder {
 
 
       $days = array();
-      for ($j = 0; $j < 6; $j++) {
+      for ($j = 0; $j < 8; $j++) {
 
         $speakers = array();
 
