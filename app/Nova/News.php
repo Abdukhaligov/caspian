@@ -22,17 +22,25 @@ class News extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        Text::make('Title'),
-        Images::make('Preview', 'preview'),
+        Text::make('Title')
+            ->size('w-1/2'),
+        DateTime::make('Created At', 'created_at')
+            ->sortable()
+            ->size('w-1/2'),
+
+
+        Images::make('Preview', 'preview')
+            ->size('w-1/4'),
         NovaTinyMCE::make('Body')->options([
                 'plugins' => [
                     'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
                 ],
                 'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
                 'use_lfm' => true,
-                ]),
-        DateTime::make('Created At', 'created_at')->sortable(),
-        Multilingual::make('Language'),
+                ])
+            ->size('w-3/4'),
+
+//        Multilingual::make('Language'),
     ];
   }
 

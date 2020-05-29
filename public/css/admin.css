@@ -28,3 +28,7 @@ input#show_on_site, input#is_admin, input#gold , input#active {
 .flex.border-b.border-40.flex-col {
   border: none;
 }
+.gallery-item.gallery-item-image.mb-3.p-3.mr-3 {
+  width: 93px;
+  height: 93px;
+}

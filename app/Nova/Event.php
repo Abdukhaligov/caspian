@@ -29,8 +29,24 @@ class Event extends Resource {
     $fields = array(
         ID::make()->sortable(),
 
+        Text::make('Name')
+            ->sortable()
+            ->required()
+//            ->withMeta(['value' => ])
+            ->size('w-1/4'),
+        Text::make('Address', 'address')
+            ->required()
+            ->size('w-1/3'),
+        DateTime::make('Date', 'date')
+            ->sortable()
+            ->required()
+            ->size('w-1/4'),
+        Boolean::make('Active')
+            ->sortable()
+            ->size('w-1/6'),
+
         Media::make('Banners', 'banners')
-            ->size('w-1/2'),
+            ->size('w-1/4'),
 
         NovaTinyMCE::make('Description')
             ->options([
@@ -40,36 +56,19 @@ class Event extends Resource {
                 'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
                 'use_lfm' => true
             ])
-            ->size('w-1/2'),
-
-        Text::make('Name')
-            ->sortable()
-            ->required()
-//            ->withMeta(['value' => ])
-            ->size('w-1/3'),
-        DateTime::make('Date', 'date')
-            ->sortable()
-            ->required()
-            ->size('w-1/3'),
-        Boolean::make('Active')
-            ->sortable()
-            ->size('w-1/3'),
+            ->size('w-3/4'),
 
 
 
-        Text::make('Address', 'address')
-            ->required()
-            ->size('w-1/3'),
+
+
+
         DateTime::make('Created At')
             ->hideFromIndex()
-            ->size('w-1/3'),
-
-
-
-
+            ->size('w-1/2'),
         DateTime::make('Updated At')
             ->hideFromIndex()
-            ->size('w-1/3'),
+            ->size('w-1/2'),
 
 
         BelongsToMany::make('Users'),
