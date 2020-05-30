@@ -108,6 +108,10 @@
               <a class="nav-link @if($pill == "password") active @endif" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab"
                  aria-controls="pills-password" aria-selected="false">Change Password</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link @if($pill == "links") active @endif" id="pills-links-tab" data-toggle="pill" href="#pills-links" role="tab"
+                 aria-controls="pills-links" aria-selected="false">Usefull Links</a>
+            </li>
           </ul>
           <div class="tab-content pt-2 pl-1" id="pills-tabContent">
             <div class="tab-pane fade @if($pill == "main") show active @endif" id="pills-main" role="tabpanel" aria-labelledby="pills-main-tab">
@@ -242,6 +246,13 @@
                     <div class="cf-msg"></div>
                   </div>
                 </form>
+              </div>
+            </div>
+            <div class="tab-pane fade @if($pill == "links") show active @endif" id="pills-links" role="tabpanel" aria-labelledby="pills-links-tab">
+              <div class="contact-information" style="margin-top: 10px;">
+                @foreach($data["vouchers"] as $voucher)
+                  <a href="doc/{{ $voucher->id }}" target="_blank">Download</a></br>
+                @endforeach
               </div>
             </div>
           </div>

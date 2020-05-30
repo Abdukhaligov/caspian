@@ -162,11 +162,16 @@
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/laravel-nova-excel" />
       <path value="$PROJECT_DIR$/vendor/codenco-dev/nova-grid-system" />
-      <path value="$PROJECT_DIR$/vendor/epartment/nova-dependency-container" />
       <path value="$PROJECT_DIR$/vendor/intervention_/image" />
       <path value="$PROJECT_DIR$/vendor/unisharp/laravel-filemanager" />
       <path value="$PROJECT_DIR$/vendor/emilianotisato/nova-tinymce" />
       <path value="$PROJECT_DIR$/vendor/whitecube/nova-google-maps" />
+      <path value="$PROJECT_DIR$/vendor/pclzip/pclzip" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-escaper" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/common" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpword" />
+      <path value="$PROJECT_DIR$/vendor/optimistdigital/nova-multiselect-field" />
+      <path value="$PROJECT_DIR$/vendor/energon7/mapselect" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

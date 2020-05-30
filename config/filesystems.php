@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'vouchers' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/vouchers'),
+            'url' => env('APP_URL').'/storage/vouchers',
+            'visibility' => 'public',
+        ],
+
         'reports' => [
             'driver' => 'local',
             'root' => storage_path('app/public/reports'),

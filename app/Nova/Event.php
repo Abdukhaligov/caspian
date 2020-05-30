@@ -21,7 +21,7 @@ class Event extends Resource {
 
   public static $model = 'App\Models\Event';
   public static $group = 'Resources';
-  public static $title = 'id';
+  public static $title = 'name';
   public static $search = ['id'];
 
 

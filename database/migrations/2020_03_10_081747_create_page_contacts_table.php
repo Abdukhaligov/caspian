@@ -13,7 +13,7 @@ class CreatePageContactsTable extends Migration {
       $table->string('phone')->nullable();
       $table->string('email')->nullable();
       $table->string('address')->nullable();
-      $table->json('map')->nullable();
+      $table->string('map')->nullable();
       $table->json('social_networks')->nullable();
       $table->string('video_url')->nullable();
       $table->string('video_cover')->nullable();

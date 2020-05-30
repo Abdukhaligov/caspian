@@ -24,8 +24,9 @@ use App\Models\Partner;
 use App\User;
 use Auth;
 use Mail;
-use Request;
-use Validator;
+use PhpOffice\PhpWord\TemplateProcessor;
+use Storage;
+
 
 class PageController extends Controller {
 
@@ -69,6 +70,7 @@ class PageController extends Controller {
     $data = Cabinet::first();
     $user = Auth::user();
 
+
     $data["user"] = (object)[
         "name" => $user->name,
         "email" => $user->email,
@@ -87,6 +89,7 @@ class PageController extends Controller {
     $data["topics"] = Topic::showTree();
     $data["references"] = Reference::all();
     $data["membership"] = Membership::all();
+    $data["vouchers"] = $user->membership->vouchers ?? [];
 
 
 

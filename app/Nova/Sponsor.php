@@ -46,10 +46,13 @@ class Sponsor extends Resource
                     'fa-behance' => 'Behance',
                     'fa-linkedin-in' => 'LinkedIn',
                     'fa-youtube' => 'YouTube',])
-                    ->required(),
+                    ->required()
+                    ->size('w-1/2'),
                 Text::make('Link', 'link')
-                    ->required(),
-            ]),
+                    ->required()
+                    ->size('w-1/2'),
+            ])
+            ->collapsed(),
     ];
   }
 }
