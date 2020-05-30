@@ -214,7 +214,6 @@
                     </div>
                   </div>
                 @endforeach
-                <div class="swiper-pagination swp-pg-brands"></div>
               </div>
             </div>
           </div>
