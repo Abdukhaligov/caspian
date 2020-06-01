@@ -14,7 +14,7 @@ class CreateEventsTable extends Migration {
       $table->text('address');
       $table->dateTime('date')->nullable();
       $table->json('days')->nullable();
-      $table->boolean('status')->default(false);
+      $table->boolean('active')->default(false);
       $table->timestamps();
     });
   }

@@ -27,7 +27,7 @@ class Event extends Resource {
 
   public function fields(Request $request) {
 
-    $field_action = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/')+1);
+    $field_action = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/') + 1);
 
     return [
 
@@ -45,7 +45,7 @@ class Event extends Resource {
             ->sortable()
             ->required()
             ->size('w-1/4'),
-        Boolean::make('Status')
+        Boolean::make('Active')
             ->sortable()
             ->size('w-1/6'),
 
@@ -63,8 +63,6 @@ class Event extends Resource {
             ->size('w-3/4'),
 
 
-
-
         DateTime::make('Created At')
             ->hideFromIndex()
             ->size('w-1/2'),
@@ -73,7 +71,13 @@ class Event extends Resource {
             ->size('w-1/2'),
 
 
-        BelongsToMany::make('Users'),
+        BelongsToMany::make('Users')
+            ->fields(function () {
+              return [
+                  Boolean::make('Status')
+                      ->nullable(),
+              ];
+            }),
 
         Flexible::make('Days')
             ->addLayout('Day', 'day', [
@@ -99,10 +103,10 @@ class Event extends Resource {
 
 
                         Select::make('User')->options(
-                            function () use (&$request,&$field_action){
-                              if ($field_action == "update-fields"){
+                            function () use (&$request, &$field_action) {
+                              if ($field_action == "update-fields") {
                                 return \App\Models\Event::findOrFail($request->resourceId)->usersForSelection();
-                              }else{
+                              } else {
                                 return [];
                               }
                             }
@@ -157,7 +161,7 @@ class Event extends Resource {
             ->button('New Day!')
             ->hideFromDetail()
             ->size('w-full')
-  ];
+    ];
 
 
   }
