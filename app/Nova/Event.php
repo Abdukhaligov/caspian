@@ -45,7 +45,7 @@ class Event extends Resource {
             ->sortable()
             ->required()
             ->size('w-1/4'),
-        Boolean::make('Active')
+        Boolean::make('Status')
             ->sortable()
             ->size('w-1/6'),
 
