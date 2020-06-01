@@ -34,6 +34,11 @@ class PageController extends Controller {
     $data = Contacts::first();
     $data->social_networks = json_decode($data->social_networks);
 
+    $data->map = explode(',', $data->map);
+
+    $data["lat"] = $data->map[0];
+    $data["lng"] = $data->map[1];
+
     return view('contacts', compact('data'));
   }
 

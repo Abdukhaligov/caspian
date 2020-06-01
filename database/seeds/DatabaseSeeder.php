@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder {
     factory(\App\Models\Topic::class, 12)->create();
 
     $this->call(UserSeeder::class);
-    factory(\App\User::class, 2)->create(["rank" => '1', 'show_on_site' => true]);
-    factory(\App\User::class, 4)->create(["rank" => '2', 'show_on_site' => true]);
-    factory(\App\User::class, 12)->create(["rank" => '3', 'show_on_site' => true]);
+    factory(\App\User::class, 2)->create(["rank" => '1']);
+    factory(\App\User::class, 4)->create(["rank" => '2']);
+    factory(\App\User::class, 12)->create(["rank" => '3']);
     factory(\App\User::class, 10)->create();
 
     factory(\App\User::class)->create(array('reference_id' => '2','membership_id' => '2','name' => 'Ayten Huseynova','email' => 'khasayeva.ayten@gmail.com','is_admin' => '1','phone' => '994503501425','company' => 'Azerbaijan National Academy of Sciences','job_title' => 'Deputy of head devision','email_verified_at' => NULL,'password' => '$2y$10$P7.n4SW01BVz6ry8Dhf8De359bdmexyRLkFuTFB0zfux6tGGOmObO','remember_token' => NULL,'created_at' => '2020-05-19 19:01:42','updated_at' => '2020-05-19 19:01:42'),);

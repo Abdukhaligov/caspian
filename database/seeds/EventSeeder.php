@@ -24,7 +24,7 @@ class EventSeeder extends Seeder {
 
         $speakers = array();
 
-        for ($k=0 ; $k<rand(1,3); $k++){
+        for ($k = 0; $k < rand(1, 3); $k++) {
           $speakers [] = array(
               "key" => uniqid(),
               "layout" => "speaker",
@@ -32,7 +32,7 @@ class EventSeeder extends Seeder {
                   "key" => uniqid(),
                   "title" => "$faker->sentence",
                   "address" => "$faker->address",
-                  "user" => $speakersTemp[rand(0,3)],
+                  "user" => $speakersTemp[rand(0, 3)],
                   "event_end" => "12:00:00",
                   "description" => "<p>$faker->paragraph</p>",
                   "event_start" => "12:00:00"
@@ -41,7 +41,7 @@ class EventSeeder extends Seeder {
         }
 
         $day = array(
-            "event_begin" => Carbon::now()->addDays($j+2),
+            "event_begin" => Carbon::now()->addDays($j + 2),
             "events" => $speakers,
         );
 

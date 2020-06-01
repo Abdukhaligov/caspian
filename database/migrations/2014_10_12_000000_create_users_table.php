@@ -21,10 +21,12 @@ class CreateUsersTable extends Migration {
       $table->string('name')->nullable();
       $table->string('email')->unique()->nullable();
       $table->boolean('is_admin')->default(false);
-      $table->enum('rank',[0,1,2,3])->default(0)->nullable();
+      $table->enum('rank',[1,2,3])->nullable();
       $table->boolean('show_on_site')->default(true);
       $table->string('phone')->nullable();
       $table->string('company')->nullable();
+      $table->json('social_networks')->nullable();
+
 
 
       $table->string('job_title')->nullable();

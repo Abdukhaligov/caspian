@@ -61,9 +61,13 @@
                 </a>
                 <div class="stm-icon">
                   <ul>
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    @foreach($user->socialNetworks() as $socialNetwork)
+                      <li>
+                        <a target="_blank" href="{{ $socialNetwork->link }}">
+                          <i class="fab {{ $socialNetwork->network }}"></i>
+                        </a>
+                      </li>
+                    @endforeach
                   </ul>
                 </div>
               </div>

@@ -15,11 +15,20 @@ use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 
 class User extends Authenticatable implements HasMedia {
 
-  use HasApiTokens, Notifiable;
-  use HasMediaTrait;
+  protected $guarded = [];
+  protected $fillable = ['name', 'email', 'password', 'phone', 'company', 'job_title', 'reference_id', 'membership_id', 'topic_id'];
+  protected $hidden = ['password', 'remember_token'];
+  protected $casts = ['email_verified_at' => 'datetime'];
+
+  use HasApiTokens, Notifiable, HasFlexible, HasMediaTrait;
+
+  public function socialNetworks() {
+    return $this->flexible('social_networks');
+  }
 
   public function registerMediaConversions(Media $media = null) {
     $this->addMediaConversion('thumb')
@@ -32,14 +41,10 @@ class User extends Authenticatable implements HasMedia {
         ->addMediaCollection('avatar')
         ->useDisk('mediaFiles')
         ->singleFile();
-
   }
 
 
-  protected $guarded = [];
-  protected $fillable = ['name', 'email', 'password', 'phone', 'company', 'job_title', 'reference_id', 'membership_id', 'topic_id'];
-  protected $hidden = ['password', 'remember_token'];
-  protected $casts = ['email_verified_at' => 'datetime'];
+
 
   public function isAdmin() { return $this->is_admin; }
 

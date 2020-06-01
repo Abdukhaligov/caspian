@@ -106,18 +106,17 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('googleMap'), {
           center: {
-            lat: {{ json_decode($data->map)->latlng->lat }},
-            lng: {{ json_decode($data->map)->latlng->lng }}
+            lat: {{ $data["lat"] }},
+            lng: {{ $data["lng"] }}
           },
           zoom: 15,
           scrollwheel: false
         });
 
-
         var marker = new google.maps.Marker({
           position: {
-            lat: {{ json_decode($data->map)->latlng->lat }},
-            lng: {{ json_decode($data->map)->latlng->lng }}
+            lat: {{ $data["lat"] }},
+            lng: {{ $data["lng"] }}
           },
           map: map,
         });

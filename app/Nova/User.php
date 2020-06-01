@@ -17,6 +17,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 
 class User extends Resource {
@@ -49,6 +50,7 @@ class User extends Resource {
 
         BelongsTo::make('Membership')
             ->sortable()
+            ->nullable()
             ->sizeOnForms('w-1/3')
             ->sizeOnDetail('w-1/4'),
         Text::make('Name')
@@ -70,7 +72,7 @@ class User extends Resource {
         BelongsTo::make('Degree')
             ->hideFromIndex()
             ->sortable()
-            ->hideFromIndex()
+            ->nullable()
             ->sizeOnForms('w-1/3')
             ->sizeOnDetail('w-1/4'),
         Text::make('Job Title', 'job_title')
@@ -86,12 +88,12 @@ class User extends Resource {
         Select::make('Rank in Committee', 'rank')
             ->options(
                 [
-                    "0" => "Not in committee",
                     "1" => 1,
                     "2" => 2,
                     "3" => 3,
                 ]
             )
+            ->nullable()
             ->sortable()
             ->sizeOnForms('w-1/6')
             ->sizeOnDetail('w-1/4'),
@@ -105,6 +107,7 @@ class User extends Resource {
 
         BelongsTo::make('Reference')
             ->sortable()
+            ->nullable()
             ->hideFromIndex()
             ->sizeOnForms('w-1/3')
             ->sizeOnDetail('w-1/4'),
@@ -119,10 +122,31 @@ class User extends Resource {
             ->sortable()
             ->size('w-1/6'),
 
+        Flexible::make('Social Networks', 'social_networks')
+            ->addLayout('Social Network', 'data', [
+                Select::make('Network', 'network')->options([
+                    'fa-facebook-f' => 'Facebook',
+                    'fa-twitter' => 'Twitter',
+                    'fa-behance' => 'Behance',
+                    'fa-linkedin-in' => 'LinkedIn',
+                    'fa-youtube' => 'YouTube',])
+                    ->required()
+                    ->size('w-1/2'),
+                Text::make('Link', 'link')
+                    ->required()
+                    ->size('w-1/2'),
+            ])
+            ->button('Add social network')
+            ->hideFromDetail()
+            ->collapsed(),
+
         Password::make('Password')
             ->onlyOnForms()
             ->creationRules('required', 'string', 'min:6')
             ->updateRules('nullable', 'string', 'min:6'),
+
+
+
 
         HasMany::make('Reports'),
         BelongsToMany::make('Events'),
