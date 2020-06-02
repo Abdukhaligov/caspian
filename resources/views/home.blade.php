@@ -178,7 +178,7 @@
   </section>
   <!-- /About Section-->
   @if($data["event"])
-    @if($data["event"]["users"])
+    @if($data["speakers"])
       <!-- Team Section-->
       <section class="our-team ot-inner">
         <div class="ot-top">
@@ -189,7 +189,7 @@
           <div class="row">
             <div class="swiper-container h-brands swp-cnt-brands">
               <div class="swiper-wrapper">
-                @foreach($data["event"]["users"] as $user)
+                @foreach($data["speakers"] as $user)
                   <div class="swiper-slide">
                     <div class="col-md-12">
                       <div class="single-team-member">

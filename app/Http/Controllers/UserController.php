@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AccountDetailsChange;
 use App\Mail\PasswordChange;
 use App\Mail\ReportChange;
+use App\Models\Event;
 use App\User;
 use Auth;
 use Hash;
@@ -38,7 +39,7 @@ class UserController extends Controller {
     $validator = Validator::make($request->all(), [
         'job_title' => ['required', 'string'],
         'company' => ['required', 'string'],
-        'membership_id' => ['required', 'exists:memberships,id'],
+//        'membership_id' => ['required', 'exists:memberships,id'],
         'degree_id' => ['sometimes','exists:degrees,id'],
     ]);
 
@@ -50,7 +51,6 @@ class UserController extends Controller {
           ->withInput();
     }
 
-    $user->membership_id = $request->membership_id;
     $user->degree_id = $request->degree_id;
     $user->job_title = $request->job_title;
     $user->company = $request->company;
@@ -59,17 +59,44 @@ class UserController extends Controller {
     Mail::to($user->email)->send(new AccountDetailsChange($user));
 
 
-    if(!$user->membership->reporter){
-      foreach ($user->reports as $report){
-        $report->status = "canceled";
-        $report->save();
-      }
-    }
+//    if(!$user->membership->reporter){
+//      foreach ($user->reports as $report){
+//        $report->status = "canceled";
+//        $report->save();
+//      }
+//    }
 
 
     return redirect()->back();
 
 
+  }
+
+  public function updateMembership(Request $request){
+    $user = Auth::user();
+
+    $validator = Validator::make($request->all(), [
+        'membership_id' => ['required', 'exists:memberships,id'],
+    ]);
+
+    if ($validator->fails()) {
+      return redirect()
+          ->back()
+          ->withErrors($validator)
+          ->with('pill', 'events')
+          ->withInput();
+    }
+
+    if($user->currentEvent()){
+      $user->events()->updateExistingPivot(Event::activeEvent()->id, ["membership_id" => $request->membership_id, "status" => 1]);
+    }else{
+      $user->events()->attach(Event::activeEvent()->id, ["membership_id" => $request->membership_id, "status" => 1]);
+    }
+
+
+    //Mail::to($user->email)->send(new AccountDetailsChange($user));
+
+    return redirect()->back();
   }
 
   public function updatePassword(Request $request){

@@ -48,6 +48,7 @@ Route::group(['middleware' => ['locale']], function () {
     Route::post('/report/create', 'ReportController@store')->name('report_create');
     Route::post('/report/delete', 'ReportController@destroy')->name('report_remove');
     Route::post('/user/edit', 'UserController@update')->name('user_update');
+    Route::post('/user/edit/membership', 'UserController@updateMembership')->name('user_update_membership');
     Route::post('/user/edit/password', 'UserController@updatePassword')->name('user_update_password');
 
   });

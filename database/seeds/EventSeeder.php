@@ -12,9 +12,12 @@ class EventSeeder extends Seeder {
     for ($i = 0; $i < 7; $i++) {
       $speakersTemp = [];
       for ($j = 0; $j < 4; $j++) {
+
         $speakersOnEvent [] = [
             "event_id" => $i + 1,
-            "user_id" => $speakersTemp[] = rand(3, 32)
+            "user_id" => $speakersTemp[] = rand(3, 32),
+            "membership_id" => rand(1, 6),
+            "status" => rand(1,3),
         ];
       }
 

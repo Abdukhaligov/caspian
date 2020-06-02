@@ -5,7 +5,6 @@
 
   ### Working place: {{$data['company']}}
   ### Position: {{$data['job_title']}}
-  ### Participation: {{$data['membership']->name}}
   @if($data['degree'])### Degree: {{$data['degree']->name}}<br>@endif
 
 

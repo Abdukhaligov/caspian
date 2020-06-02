@@ -6,12 +6,14 @@ use Carbon\Carbon;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Whitecube\NovaFlexibleContent\Flexible;
@@ -50,6 +52,7 @@ class Event extends Resource {
             ->size('w-1/6'),
 
         Media::make('Banners', 'banners')
+            ->hideFromIndex()
             ->size('w-1/4'),
 
         NovaTinyMCE::make('Description')
@@ -74,8 +77,38 @@ class Event extends Resource {
         BelongsToMany::make('Users')
             ->fields(function () {
               return [
-                  Boolean::make('Status')
-                      ->nullable(),
+                  Select::make('Membership', 'membership_id')
+                      ->options(function () {
+                        $memberships = array();
+                        foreach (\App\Models\Membership::all() as $membership) {
+                          $memberships [$membership->id] = $membership->name;
+                        }
+                        return $memberships;
+                      })
+                      ->displayUsing(function ($q) {
+                        return \App\Models\Membership::find($q)->name;
+                      })
+                      ->sortable(),
+                  Select::make('Status')
+                      ->options([
+                          '1' => 'Pending',
+                          '2' => 'Deny',
+                          '3' => 'Approve',
+                      ])
+                      ->displayUsing(function ($q) {
+                        switch ($q){
+                          case 3:
+                            return "Approved";
+                            break;
+                          case 2:
+                            return "Denied";
+                            break;
+                          default :
+                            return "Pending";
+                            break;
+                        }
+                      })
+                      ->sortable(),
               ];
             }),
 

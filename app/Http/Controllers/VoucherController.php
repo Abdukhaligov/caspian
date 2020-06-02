@@ -14,9 +14,9 @@ class VoucherController extends Controller {
     $user = Auth::user();
     $voucher = Voucher::findOrFail($id);
 
-    if($user->membership->id != $voucher->membership->id){
-      return redirect()->back();
-    }
+//    if($user->membership->id != $voucher->membership->id){
+//      return redirect()->back();
+//    }
 
 
     $file = Storage::disk('public')->url($voucher->template);

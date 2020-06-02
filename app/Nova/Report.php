@@ -30,6 +30,7 @@ class Report extends Resource {
   {
     return [
         new Filters\ReportStatus(),
+        new Filters\ReportEvent(),
     ];
   }
 
@@ -41,20 +42,31 @@ class Report extends Resource {
             ->sortable()
             ->size('w-1/2'),
 
-        Status::make('Status')
-            ->loadingWhen(['pending'])
-            ->failedWhen(['canceled'])
-            ->hideFromDetail()
+        BelongsTo::make('Event')
             ->sortable()
+            ->hideFromIndex()
             ->size('w-1/2'),
 
 
         Select::make('Status')->options([
-            'pending' => 'pending',
-            'canceled' => 'canceled',
-            'accepted' => 'accepted',
+            1 => 'Pending',
+            2 => 'Canceled',
+            3 => 'Accepted',
         ])
-            ->hideFromIndex()
+            ->displayUsing(function ($q){
+              switch ($q){
+                case 1:
+                  return "Pending";
+                  break;
+                case 2:
+                  return "Denied";
+                  break;
+                default:
+                  return "Approved";
+                  break;
+              }
+            })
+            ->sortable()
             ->size('w-1/2'),
 
 

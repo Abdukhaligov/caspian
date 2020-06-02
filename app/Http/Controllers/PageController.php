@@ -23,6 +23,7 @@ use App\Models\Topic;
 use App\Models\Partner;
 use App\User;
 use Auth;
+use DB;
 use Mail;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Storage;
@@ -72,6 +73,8 @@ class PageController extends Controller {
   }
 
   public function cabinet() {
+
+
     $data = Cabinet::first();
     $user = Auth::user();
 
@@ -83,19 +86,19 @@ class PageController extends Controller {
         "degree_id" => $user->degree_id ?? '',
         "company" => $user->company ?? '',
         "job_title" => $user->job_title ?? '',
-        "membership_id" => $user->membership_id ?? '',
         "region_id" => $user->region_id ?? '',
+        "currentMembership" => $user->currentMembership() ?? '',
         "topic" => $user->topic->name ?? '',
         "joined" => $user->created_at ?? '',
         "canAddReport" => $user->canAddReports() ?? '',
         "reference" => $user->reference->name ?? '',
     ];
-    $data["reports"] = $user->reports()->orderBy('created_at', 'DESC')->get();
+    $data["reports"] = $user->currentReports()->orderBy('created_at', 'DESC')->get();
     $data["topics"] = Topic::showTree();
+//    $data["events"] = $user->events()->get()->where('id','!=',Event::activeEvent()->id) ?? '';
     $data["references"] = Reference::all();
-    $data["membership"] = Membership::all();
+    $data["memberships"] = Membership::all();
     $data["vouchers"] = $user->membership->vouchers ?? [];
-
 
 
     return view('cabinet', compact('data'));
@@ -127,7 +130,7 @@ class PageController extends Controller {
   public function home() {
     $data = Home::first();
     $data["event"] = Event::activeEvent();
-
+    $data["speakers"] = $data["event"]->speakers()->where('show_on_site', 1)->get();
     if ($data["event"]) {
       $data["eventBanners"] = $data["event"]->getMedia('banners');
     }
@@ -147,8 +150,10 @@ class PageController extends Controller {
   }
 
   public function speakers() {
+
     $data = Speakers::first();
-    $data["speakers"] = User::speakers()->where('show_on_site', true);
+    $event = Event::activeEvent();
+    $data["speakers"] = User::speakers()->where('show_on_site', 1)->get();
 
     return view('speakers', compact('data'));
   }

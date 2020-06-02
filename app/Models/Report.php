@@ -14,6 +14,8 @@ class Report extends Model {
 
   public function user() { return $this->belongsTo(User::class); }
 
+  public function event() { return $this->belongsTo(Event::class); }
+
   public function topic() { return $this->belongsTo(Topic::class); }
 
   protected function performUpdate(Builder $query) {
@@ -31,14 +33,14 @@ class Report extends Model {
     return (
         $this->user_id == $user->id
         && $this->file == null
-        && $this->status == "accepted"
+        && $this->status == 3
     );
   }
 
   public function canDeleteReport(User $user = null) {
     if (is_null($user)) $user = auth()->user();
 
-    return $this->user_id == $user->id && $this->status == "pending";
+    return $this->user_id == $user->id && $this->status == 1;
   }
 
 }

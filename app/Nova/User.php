@@ -48,11 +48,11 @@ class User extends Resource {
             ->size('w-3/4'),
 
 
-        BelongsTo::make('Membership')
-            ->sortable()
-            ->nullable()
-            ->sizeOnForms('w-1/3')
-            ->sizeOnDetail('w-1/4'),
+//        BelongsTo::make('Membership')
+//            ->sortable()
+//            ->nullable()
+//            ->sizeOnForms('w-1/3')
+//            ->sizeOnDetail('w-1/4'),
         Text::make('Name')
             ->sortable()
             ->rules('required', 'max:255')
@@ -66,7 +66,6 @@ class User extends Resource {
             ->sortable()
             ->sizeOnForms('w-1/4')
             ->sizeOnDetail('w-1/4'),
-
 
 
         BelongsTo::make('Degree')
@@ -95,6 +94,7 @@ class User extends Resource {
             )
             ->nullable()
             ->sortable()
+            ->hideFromIndex()
             ->sizeOnForms('w-1/6')
             ->sizeOnDetail('w-1/4'),
 
@@ -146,12 +146,49 @@ class User extends Resource {
             ->updateRules('nullable', 'string', 'min:6'),
 
 
-
+        BelongsToMany::make('Events')
+            ->fields(function () {
+              return [
+                  Select::make('Membership', 'membership_id')
+                      ->options(function () {
+                        $memberships = array();
+                        foreach (\App\Models\Membership::all() as $membership) {
+                          $memberships [$membership->id] = $membership->name;
+                        }
+                        return $memberships;
+                      })
+                      ->displayUsing(function ($q) {
+                        return \App\Models\Membership::find($q)->name;
+                      })
+                      ->sortable(),
+                  Select::make('Status')
+                      ->options([
+                          '1' => 'Pending',
+                          '2' => 'Deny',
+                          '3' => 'Approve',
+                      ])
+                      ->displayUsing(function ($q) {
+                        switch ($q){
+                          case 3:
+                            return "Approved";
+                            break;
+                          case 2:
+                            return "Denied";
+                            break;
+                          default :
+                            return "Pending";
+                            break;
+                        }
+                      })
+                      ->sortable(),
+              ];
+            }),
 
         HasMany::make('Reports'),
-        BelongsToMany::make('Events'),
+
 
         Impersonate::make($this)
+            ->hideFromIndex()
             ->showOnDetail(),
     ];
   }

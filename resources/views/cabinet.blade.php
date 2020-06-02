@@ -97,24 +97,34 @@
           <h2>{{ __('static.account_details') }}</h2>
           <ul style="margin-top: 15px" class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link @if($pill == "main") active @endif" id="pills-main-tab" data-toggle="pill" href="#pills-main" role="tab"
+              <a class="nav-link @if($pill == "main") active @endif" id="pills-main-tab" data-toggle="pill"
+                 href="#pills-main" role="tab"
                  aria-controls="pills-main" aria-selected="true">Main</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link @if($pill == "info") active @endif" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab"
+              <a class="nav-link @if($pill == "info") active @endif" id="pills-info-tab" data-toggle="pill"
+                 href="#pills-info" role="tab"
                  aria-controls="pills-info" aria-selected="false">Change info</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link @if($pill == "password") active @endif" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab"
+              <a class="nav-link @if($pill == "password") active @endif" id="pills-password-tab" data-toggle="pill"
+                 href="#pills-password" role="tab"
                  aria-controls="pills-password" aria-selected="false">Change Password</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link @if($pill == "links") active @endif" id="pills-links-tab" data-toggle="pill" href="#pills-links" role="tab"
+              <a class="nav-link @if($pill == "links") active @endif" id="pills-links-tab" data-toggle="pill"
+                 href="#pills-links" role="tab"
                  aria-controls="pills-links" aria-selected="false">Usefull Links</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @if($pill == "events") active @endif" id="pills-events-tab" data-toggle="pill"
+                 href="#pills-events" role="tab"
+                 aria-controls="pills-events" aria-selected="false">Events</a>
             </li>
           </ul>
           <div class="tab-content pt-2 pl-1" id="pills-tabContent">
-            <div class="tab-pane fade @if($pill == "main") show active @endif" id="pills-main" role="tabpanel" aria-labelledby="pills-main-tab">
+            <div class="tab-pane fade @if($pill == "main") show active @endif" id="pills-main" role="tabpanel"
+                 aria-labelledby="pills-main-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 <div class="form-group cfdb1">
                   <label class="col-form-label text-md-right">{{ __('static.full_name') }}</label>
@@ -127,7 +137,7 @@
                 <div class="form-group cfdb1" style="float:left; width: 22%;">
                   <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
                   <select disabled style="height: 52px;font-size: 14px;"
-                          class="selectpicker form-control cp1" id="region" >
+                          class="selectpicker form-control cp1" id="region">
                     @foreach(\App\Region::scopeOrdered() as $region)
                       <option value="{{ $region->id }}" @if($region->id == $data["user"]->region_id) selected
                               @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
@@ -143,7 +153,8 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade @if($pill == "info") show active @endif" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+            <div class="tab-pane fade @if($pill == "info") show active @endif" id="pills-info" role="tabpanel"
+                 aria-labelledby="pills-info-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 <form method="POST" action="{{ route('user_update') }}">
                   @csrf
@@ -181,32 +192,6 @@
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                   </div>
-                  <div class="form-group cfdb1">
-                    <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                    <select style="height: 52px;font-size: 14px;"
-                            class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                            name="membership_id" id="membership_id" autocomplete="membership_id">
-                      <option disabled selected>Select</option>
-                      <option disabled>Reporter</option>
-
-                      @foreach($data['membership'] as $membership)
-                        <option
-                            value="{{ $membership->id }}"
-                            @if($data["user"]->membership_id == $membership->id) selected @endif>
-
-                          @if($membership->reporter == true )
-                            - {{ $membership->name }}
-                          @else
-                            {{ $membership->name }}
-                          @endif
-                        </option>
-                      @endforeach
-                    </select>
-                    @error('membership_id')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                    <span class="invalid-feedback"><strong>If you change</strong></span>
-                  </div>
                   <button style="margin-top: 15px" type="submit">{{ __('static.user_update') }}</button>
                   <div class="col-md-12 text-center">
                     <div class="cf-msg"></div>
@@ -214,7 +199,8 @@
                 </form>
               </div>
             </div>
-            <div class="tab-pane fade @if($pill == "password") show active @endif" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
+            <div class="tab-pane fade @if($pill == "password") show active @endif" id="pills-password" role="tabpanel"
+                 aria-labelledby="pills-password-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 <form method="POST" action="{{ route('user_update_password') }}">
                   @csrf
@@ -248,11 +234,137 @@
                 </form>
               </div>
             </div>
-            <div class="tab-pane fade @if($pill == "links") show active @endif" id="pills-links" role="tabpanel" aria-labelledby="pills-links-tab">
+            <div class="tab-pane fade @if($pill == "links") show active @endif" id="pills-links" role="tabpanel"
+                 aria-labelledby="pills-links-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 @foreach($data["vouchers"] as $voucher)
                   <a href="doc/{{ $voucher->id }}" target="_blank">Download</a></br>
                 @endforeach
+              </div>
+            </div>
+            <div class="tab-pane fade @if($pill == "events") show active @endif" id="pills-events" role="tabpanel"
+                 aria-labelledby="pills-events-tab">
+              <div class="contact-information" style="margin-top: 10px;">
+                <section class="faq" style="margin-top: 0;">
+
+
+{{--                  <div id="accordion">--}}
+{{--                    <div class="card ">--}}
+{{--                      <div class="card-header">--}}
+{{--                        <h4 class="card-header">--}}
+{{--                          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"--}}
+{{--                             href="#collapseHistory" aria-expanded="false">--}}
+{{--                            History--}}
+{{--                            <i class="fas fa-minus-circle faq-icon"></i>--}}
+{{--                            <i class="fas fa-plus-circle"></i></a>--}}
+{{--                        </h4>--}}
+{{--                      </div>--}}
+{{--                      <div id="collapseHistory" class="panel-collapse in collapse" style="">--}}
+{{--                        <div class="card-block">--}}
+{{--                          <p>--}}
+{{--                          @foreach($data["events"] as $event)--}}
+{{--                            @php--}}
+{{--                              switch ($event->pivot->status){--}}
+{{--                                case 1: $status = "Pending"; break;--}}
+{{--                                case 2: $status = "Denied"; break;--}}
+{{--                                default: $status = "Approved";}--}}
+{{--                            @endphp--}}
+{{--                            <p>Event: {{ $event->name }}</p>--}}
+{{--                            <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>--}}
+{{--                            <p>Status: {{ $status }}</p>--}}
+{{--                            <br>--}}
+{{--                            @endforeach--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                      </div>--}}
+{{--                    </div>--}}
+{{--                  </div>--}}
+
+
+                </section>
+
+                @if($data["user"]->currentMembership)
+                  @php $currentMembership = $data["user"]->currentMembership;
+                      switch ($currentMembership->status){
+                        case 1: $status = "Pending"; break;
+                        case 2: $status = "Denied"; break;
+                        default: $status = "Approved";
+                      }
+                  @endphp
+                  Your participation in current Event is: {{ $currentMembership->name }} ({{ $status }}) <br>
+                  Do u wanna change your participation ?
+                  <form method="POST" action="{{ route('user_update_membership') }}">
+                    @csrf
+                    <div class="form-group cfdb1">
+                      <label for="membership_id"
+                             class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                      <select style="height: 52px;font-size: 14px;"
+                              class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                              name="membership_id" id="membership_id" autocomplete="membership_id">
+                        <option disabled selected>Select</option>
+                        <option disabled>Reporter</option>
+                        @foreach($data['memberships'] as $membership)
+                          <option
+                              value="{{ $membership->id }}"
+                              @if($currentMembership->id == $membership->id ?? '') selected @endif>
+
+                            @if($membership->reporter == true )
+                              - {{ $membership->name }}
+                            @else
+                              {{ $membership->name }}
+                            @endif
+                          </option>
+                        @endforeach
+                      </select>
+                      @error('membership_id')
+                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                      @enderror
+                      {{--                      <span><strong>If you change</strong></span>--}}
+                    </div>
+                    <button style="margin-top: 15px" type="submit">{{ __('static.user_update') }}</button>
+                    <div class="col-md-12 text-center">
+                      <div class="cf-msg"></div>
+                    </div>
+                  </form>
+                @else
+                  You have no participation in Active Event <br>
+                  Do u wanna join to event ?
+                  <form method="POST" action="{{ route('user_update_membership') }}">
+                    @csrf
+                    <div class="form-group cfdb1">
+                      <label for="membership_id"
+                             class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                      <select style="height: 52px;font-size: 14px;"
+                              class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                              name="membership_id" id="membership_id" autocomplete="membership_id">
+                        <option disabled selected>Select</option>
+                        <option disabled>Reporter</option>
+                        @foreach($data['memberships'] as $membership)
+                          <option
+                              value="{{ $membership->id }}">
+
+                            @if($membership->reporter == true )
+                              - {{ $membership->name }}
+                            @else
+                              {{ $membership->name }}
+                            @endif
+                          </option>
+                        @endforeach
+                      </select>
+                      @error('membership_id')
+                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                      @enderror
+                      {{--                      <span><strong>If you change</strong></span>--}}
+                    </div>
+                    <button style="margin-top: 15px" type="submit">{{ __('static.user_update') }}</button>
+                    <div class="col-md-12 text-center">
+                      <div class="cf-msg"></div>
+                    </div>
+                  </form>
+                @endif
+
+
+
               </div>
             </div>
           </div>
@@ -306,7 +418,7 @@
                               </div>
                             </div>
                           </div>
-                        @elseif($report->status == "accepted")
+                        @elseif($report->status == 3)
                           <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
                                class="badge badge-success">{{ $report->status }}</div>
                         @else
@@ -318,7 +430,7 @@
                   </div>
                   <div class="card-body">
                     <p class="card-text text-justify">{{ $report->description }}</p>
-                    @if($report->status == "accepted")
+                    @if($report->status == 3)
                       @if($report->file != null)
                         <a href="{{Storage::disk('reports')->url($report->file)}}">Download</a>
                       @else
