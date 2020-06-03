@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Mail\WelcomeMail;
+use App\Models\Event;
 use App\Models\Reference;
 use App\Models\Membership;
 use App\Models\Report;
@@ -26,11 +27,20 @@ class RegisterController extends Controller {
   }
 
   protected function validator(array $data) {
-    if(!Membership::find($data["membership_id"])->reporter){
+
+    if(isset($data["join_to_event"])){
+      if(!Membership::find($data["membership_id"])->reporter){
+        unset($data["abstract_topic_id"]);
+        unset($data["abstract_name"]);
+        unset($data["abstract_description"]);
+      }
+    }else{
+      unset($data["membership_id"]);
       unset($data["abstract_topic_id"]);
       unset($data["abstract_name"]);
       unset($data["abstract_description"]);
     }
+
     if(!$data['degree_id']){
       unset($data["degree_id"]);
     }
@@ -48,28 +58,40 @@ class RegisterController extends Controller {
     $user->job_title = $data['job_title'];
     $user->reference_id = $data['reference_id'];
     $user->region_id = $data['region_id'];
-    $user->membership_id = $data['membership_id'];
     if($data['degree_id']){
       $user->degree_id = $data['degree_id'];
     }
 
+    $user->save();
     Mail::to($user->email)->send(new WelcomeMail($user));
 
 
-    $user->save();
+    if(!isset($data['join_to_event'])){
+      unset($data["membership_id"]);
+      unset($data["abstract_topic_id"]);
+      unset($data["abstract_name"]);
+      unset($data["abstract_description"]);
+    }
+    elseif (!Membership::find($data["membership_id"])->reporter){
+      unset($data["abstract_topic_id"]);
+      unset($data["abstract_name"]);
+      unset($data["abstract_description"]);
 
+      $event = Event::activeEvent();
 
-
-    if(Membership::find($data["membership_id"])->reporter){
+      $user->events()->attach($event->id, ["membership_id" => $data["membership_id"]]);
+    }else{
+      $event = Event::activeEvent();
       Report::create([
+          'event_id' => $event->id,
           'user_id' => $user->id,
           'name' => $data['abstract_name'],
           'description' => $data['abstract_description'],
           'topic_id' => $data['abstract_topic_id']
       ]);
+
+      $user->events()->attach($event->id, ["membership_id" => $data["membership_id"]]);
     }
-
-
 
 
     return $user;

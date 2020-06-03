@@ -99,7 +99,11 @@
                       @endforeach
 
                       @if($data->days->count() > 6)</div>
+
                     <div class="swiper-pagination"></div>
+                    <!-- Add Arrows -->
+{{--                    <div class="swiper-button-next"></div>--}}
+{{--                    <div class="swiper-button-prev"></div>--}}
                   </div> @endif
 
               </div>
@@ -176,6 +180,8 @@
       spaceBetween: 10,
       pagination: {
         el: '.swiper-pagination',
+        // nextEl: '.swiper-button-next',
+        // prevEl: '.swiper-button-prev',
         clickable: true,
       },
     });

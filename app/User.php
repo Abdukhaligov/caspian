@@ -56,7 +56,7 @@ class User extends Authenticatable implements HasMedia {
 
     if (!$membership) return false;
 
-    if ($membership->status != 3) return false;
+//    if ($membership->status != 3) return false;
 
     return $membership->reporter;
   }

@@ -90,7 +90,7 @@ class UserController extends Controller {
     if($user->currentEvent()){
       $user->events()->updateExistingPivot(Event::activeEvent()->id, ["membership_id" => $request->membership_id, "status" => 1]);
     }else{
-      $user->events()->attach(Event::activeEvent()->id, ["membership_id" => $request->membership_id, "status" => 1]);
+      $user->events()->attach(Event::activeEvent()->id, ["membership_id" => $request->membership_id]);
     }
 
 

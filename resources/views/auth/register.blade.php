@@ -137,6 +137,30 @@
                 @enderror
               </div>
               <div class="form-group cfdb1">
+                <label for="reference_id" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
+                <select style="height: 52px;font-size: 14px;"
+                        class="form-control cp1 @error('reference_id') is-invalid @enderror"
+                        name="reference_id" id="reference_id" autocomplete="reference_id">
+                  @foreach($data['references'] as $reference)
+                    <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
+                            @endif value="{{ $reference->id }}">{{ $reference->name }}</option>
+                  @endforeach
+                </select>
+                @error('reference_id')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
+              <div class="form-group cfdb1" style="overflow: auto">
+                <label for="membership_id" class="col-form-label text-md-right" style="float: left;">
+                  Do u wanna join to event ?</label>
+                <input class="form-control cp1" type="checkbox" name="join_to_event" id="join_to_event"
+                       style="float: left;width: 25px;height: 30px; margin-left: 15px;"
+                       @if(isset($_GET["speaker"])) checked @elseif(($fake ? $fakeUser->membership_id : old('membership_id'))) checked
+                    @endif
+                >
+              </div>
+
+              <div class="form-group cfdb1" id="membership">
                 <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="form-control cp1 @error('membership_id') is-invalid @enderror"
@@ -159,7 +183,6 @@
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
-
               <div style="display: none" id="abstractForm">
                 <div class="form-group cfdb1">
                   <label for="abstract_topic_id" class="col-form-label">Topic</label>
@@ -213,21 +236,6 @@
                 </div>
               </div>
 
-              <div class="form-group cfdb1">
-                <label for="reference_id" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('reference_id') is-invalid @enderror"
-                        name="reference_id" id="reference_id" autocomplete="reference_id">
-                  @foreach($data['references'] as $reference)
-                    <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
-                            @endif value="{{ $reference->id }}">{{ $reference->name }}</option>
-                  @endforeach
-                </select>
-                @error('reference_id')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-
               <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
               <div class="col-md-12 text-center">
                 <div class="cf-msg"></div>
@@ -252,12 +260,75 @@
       if (len >= 500) {
         val.value = val.value.substring(0, 300);
       } else {
-        $('#charNum').text(len+"/300");
+        $('#charNum').text(len + "/300");
       }
     }
 
 
     $(function () {
+
+      let membership = $("#membership_id");
+      let abstractForm = $("#abstractForm");
+      let membershipContainer = $("#membership");
+
+
+      let joinEvent = $("#join_to_event");
+
+      if (joinEvent.prop("checked")) {
+        membershipContainer.show();
+
+        if(membership[0]){
+          if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
+            abstractForm.show();
+            console.log("reporter selected")
+          } else {
+            abstractForm.hide();
+            console.log("not reporter selected");
+          }
+
+
+          membership.on('change', function () {
+            if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
+              abstractForm.show();
+              console.log("reporter selected")
+            } else {
+              abstractForm.hide();
+              console.log("not reporter selected")
+            }
+          });
+        }
+      } else {
+        membershipContainer.hide();
+      }
+
+      joinEvent.change(function () {
+        if (joinEvent.prop("checked")) {
+          membershipContainer.show();
+
+          if(membership[0]){
+            if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
+              abstractForm.show();
+              console.log("reporter selected")
+            } else {
+              abstractForm.hide();
+              console.log("not reporter selected");
+            }
+
+            membership.on('change', function () {
+              if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
+                abstractForm.show();
+                console.log("reporter selected")
+              } else {
+                abstractForm.hide();
+                console.log("not reporter selected")
+              }
+            });
+          }
+        } else {
+          membershipContainer.hide();
+          abstractForm.hide();
+        }
+      })
 
       //Timer Js//
       $('#region').change(function () {
