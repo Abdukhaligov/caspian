@@ -261,6 +261,7 @@
                         <div class="card-block">
                           <p>
                           @foreach($data["events"] as $event)
+
                             @php
                               switch ($event->pivot->status){
                                 case 1: $status = "Pending"; break;
@@ -270,6 +271,29 @@
                             <p>Event: {{ $event->name }}</p>
                             <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
                             <p>Status: {{ $status }}</p>
+                            <div id="accordion">
+                              <div class="card">
+                                <div class="card-header">
+                                  <h4 class="card-header">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                       data-parent="#accordion" href="#collapse{{$event->id}}" aria-expanded="false">
+                                      Reports
+                                      <i class="fas fa-minus-circle faq-icon"></i>
+                                      <i class="fas fa-plus-circle"></i></a>
+                                  </h4>
+                                </div>
+                                <div id="collapse{{$event->id}}" class="panel-collapse collapse in">
+                                  <div class="card-block">
+                                    @foreach($event->userReports(Auth::user()->id) as $report)
+                                      <p>Name: {{ $report->name }}</p>
+                                      <p>Status: {{ $report->status }}</p>
+                                      <p>File: {{ $report->file }}</p>
+                                      <p>Topic: {{ $report->topic->name }}</p>
+                                    @endforeach
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             <br>
                             @endforeach
                             </p>
@@ -361,7 +385,6 @@
                 @endif
 
 
-
               </div>
             </div>
           </div>
@@ -375,8 +398,9 @@
                  data-target="#myModal">New abstract</a>
 
             @endif
+
             @if($data["reports"])
-                <h3>Abstracts: </h3>
+              <h3>Abstracts: </h3>
               @foreach($data["reports"] as $report)
                 <div class="card text-center mb-3">
 
@@ -386,9 +410,11 @@
                       <div class="nav-item float-left"><a class="nav-link active">{{ substr($report->name,0,40) }}</a>
                       </div>
                       <div class="nav-item" style="right: 20px;position: absolute;">
-                        @if($report->status == "pending")
+                        @if($report->status == 1)
                           <div class="badge badge-primary"
-                               style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;">{{ $report->status }}</div>
+                               style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;">
+                            Pending
+                          </div>
                           <button type="button" class="btn btn-danger btn-sm"
                                   data-toggle="modal" data-target="#removeReport">X
                           </button>
@@ -416,10 +442,12 @@
                           </div>
                         @elseif($report->status == 3)
                           <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
-                               class="badge badge-success">{{ $report->status }}</div>
+                               class="badge badge-success">Approved
+                          </div>
                         @else
                           <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
-                               class="badge badge-danger">{{ $report->status }}</div>
+                               class="badge badge-danger">Denied
+                          </div>
                         @endif
                       </div>
                     </div>

@@ -93,14 +93,16 @@ class PageController extends Controller {
         "canAddReport" => $user->canAddReports() ?? '',
         "reference" => $user->reference->name ?? '',
     ];
-    if($user->currentReports()){
-      $data["reports"] = $user->currentReports()->orderBy('created_at', 'DESC')->get();
-    }else{
-      $data["reports"] = '';
-    }
-    $data["topics"] = Topic::showTree();
-    $data["events"] = $user->events()->get()->where('active','!=',1) ?? '';
     $data["event"] = Event::activeEvent();
+
+    $data["reports"] = $user->currentReports() ?
+        $user->currentReports()
+            ->orderBy('created_at', 'DESC')
+            ->get()
+        : null;
+
+    $data["topics"] = Topic::showTree();
+    $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? null;
     $data["references"] = Reference::all();
     $data["memberships"] = Membership::all();
     $data["vouchers"] = $user->membership->vouchers ?? [];
@@ -136,7 +138,7 @@ class PageController extends Controller {
     $data = Home::first();
     $data["event"] = Event::activeEvent() ?? "";
 
-    if($data["event"]){
+    if ($data["event"]) {
       $data["speakers"] = $data["event"]->speakers()->where('show_on_site', 1)->get();
       if ($data["event"]) {
         $data["eventBanners"] = $data["event"]->getMedia('banners');

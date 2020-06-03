@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
@@ -73,44 +74,6 @@ class Event extends Resource {
             ->hideFromIndex()
             ->size('w-1/2'),
 
-
-        BelongsToMany::make('Users')
-            ->fields(function () {
-              return [
-                  Select::make('Membership', 'membership_id')
-                      ->options(function () {
-                        $memberships = array();
-                        foreach (\App\Models\Membership::all() as $membership) {
-                          $memberships [$membership->id] = $membership->name;
-                        }
-                        return $memberships;
-                      })
-                      ->displayUsing(function ($q) {
-                        return \App\Models\Membership::find($q)->name;
-                      })
-                      ->sortable(),
-                  Select::make('Status')
-                      ->options([
-                          '1' => 'Pending',
-                          '2' => 'Deny',
-                          '3' => 'Approve',
-                      ])
-                      ->displayUsing(function ($q) {
-                        switch ($q){
-                          case 3:
-                            return "Approved";
-                            break;
-                          case 2:
-                            return "Denied";
-                            break;
-                          default :
-                            return "Pending";
-                            break;
-                        }
-                      })
-                      ->sortable(),
-              ];
-            }),
 
         Flexible::make('Days')
             ->addLayout('Day', 'day', [
@@ -193,7 +156,51 @@ class Event extends Resource {
             ->collapsed()
             ->button('New Day!')
             ->hideFromDetail()
-            ->size('w-full')
+            ->size('w-full'),
+
+
+        BelongsToMany::make('Users')
+            ->fields(function () {
+              return [
+                  Select::make('Membership', 'membership_id')
+                      ->options(function () {
+                        $memberships = array();
+                        foreach (\App\Models\Membership::all() as $membership) {
+                          $memberships [$membership->id] = $membership->name;
+                        }
+                        return $memberships;
+                      })
+                      ->displayUsing(function ($q) {
+                        return \App\Models\Membership::find($q)->name;
+                      })
+                      ->sortable(),
+                  Select::make('Status')
+                      ->options([
+                          '1' => 'Pending',
+                          '2' => 'Deny',
+                          '3' => 'Approve',
+                      ])
+                      ->displayUsing(function ($q) {
+                        switch ($q){
+                          case 3:
+                            return "Approved";
+                            break;
+                          case 2:
+                            return "Denied";
+                            break;
+                          default :
+                            return "Pending";
+                            break;
+                        }
+                      })
+                      ->sortable(),
+              ];
+            }),
+
+
+        HasMany::make('Reports'),
+
+
     ];
 
 

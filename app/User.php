@@ -34,16 +34,20 @@ class User extends Authenticatable implements HasMedia {
 
   public function reports() { return $this->hasMany(Report::class); }
 
-  public function currentReports() {
+  public function eventReports($id){
+    $event = Event::find($id);
+    return $event ? $this->reports()->where('event_id', $event->id) : null;
+  }
+
+  public function currentReports(){
     $event = Event::activeEvent();
-    if(!$event) return false;
-    return $this->reports()->where('event_id', $event->id);
+    return $event ? $this->eventReports($event->id) : null;
   }
 
   public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
 
   public function currentMembership() {
-    if (!$this->currentEvent()) return false;
+    if (!$this->currentEvent()) return null;
 
     $pivot = $this->currentEvent()->pivot;
 
@@ -57,34 +61,31 @@ class User extends Authenticatable implements HasMedia {
     if ($this->isAdmin() || $this->rank) return true;
 
     $membership = $this->currentMembership();
+    //    if ($membership->status != 3) return false;
 
-    if (!$membership) return false;
-
-//    if ($membership->status != 3) return false;
-
-    return $membership->reporter;
+    return $membership ? $membership->reporter : false;
   }
 
   public function events() {
     return $this
         ->belongsToMany(Event::class)
+        ->using(MyPivot::class)
         ->withPivot('membership_id', 'status');
   }
 
   public function currentEvent() {
     $event = Event::activeEvent();
-    if(!$event) return false;
-    return $this
+    return $event ? $this
             ->events()
             ->where('event_id', '=', $event->id)
-            ->get()->first() ?? false;
+            ->get()->first() : null;
   }
 
   public static function speakers() {
     return self::with('memberships')
             ->whereHas('memberships', function ($q) {
               return $q->where('reporter', '=', 1);
-            }) ?? false;
+            }) ?? null;
   }
 
 //    return $this->checkMembership([2, 3]) && $this->checkAccessCount(Initial::getData()->max_report_count);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReportRequest;
+use App\Models\Event;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class ReportController extends Controller {
 
   public function store(ReportRequest $request) {
     $request['user_id'] = Auth::user()->id;
-
+    $request["event_id"] = Event::activeEvent()->id;
     if (Auth::user()->canAddReports()) {
       if (Report::create($request->all())) {
         return redirect()->back();

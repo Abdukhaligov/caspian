@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\MyPivot;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,15 @@ class Event extends Model implements HasMedia {
 
   public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
 
+  public function reports() { return $this->hasMany(Report::class); }
+
+  public function userReports($id) {
+    return $this->reports()
+        ->where('user_id','=',$id)
+        ->with('topic')
+        ->get();
+  }
+
   public function speakers() {
     return $this
             ->users()
@@ -26,12 +36,13 @@ class Event extends Model implements HasMedia {
             ->whereHas('memberships', function ($q) {
               return $q->where('reporter', '=', 1);
             })
-        ?? false;
+        ?? null;
   }
 
   public function users() {
     return $this
         ->belongsToMany(User::class)
+        ->using(MyPivot::class)
         ->withPivot('membership_id', 'status');
   }
 
@@ -43,7 +54,7 @@ class Event extends Model implements HasMedia {
     return $array;
   }
 
-  public static function activeEvent() { return Event::where('active', true)->first() ?? false; }
+  public static function activeEvent() { return Event::where('active', true)->first() ?? null; }
 
   protected function performUpdate(Builder $query) {
     $events = self::all('id');
