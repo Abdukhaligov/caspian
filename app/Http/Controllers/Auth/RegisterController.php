@@ -66,33 +66,21 @@ class RegisterController extends Controller {
     Mail::to($user->email)->send(new WelcomeMail($user));
 
 
-    if(!isset($data['join_to_event'])){
-      unset($data["membership_id"]);
-      unset($data["abstract_topic_id"]);
-      unset($data["abstract_name"]);
-      unset($data["abstract_description"]);
-    }
-    elseif (!Membership::find($data["membership_id"])->reporter){
-      unset($data["abstract_topic_id"]);
-      unset($data["abstract_name"]);
-      unset($data["abstract_description"]);
-
+    if(isset($data['join_to_event'])){
       $event = Event::activeEvent();
 
       $user->events()->attach($event->id, ["membership_id" => $data["membership_id"]]);
-    }else{
-      $event = Event::activeEvent();
-      Report::create([
-          'event_id' => $event->id,
-          'user_id' => $user->id,
-          'name' => $data['abstract_name'],
-          'description' => $data['abstract_description'],
-          'topic_id' => $data['abstract_topic_id']
-      ]);
 
-      $user->events()->attach($event->id, ["membership_id" => $data["membership_id"]]);
+      if(Membership::find($data["membership_id"])->reporter){
+        Report::create([
+            'event_id' => $event->id,
+            'user_id' => $user->id,
+            'name' => $data['abstract_name'],
+            'description' => $data['abstract_description'],
+            'topic_id' => $data['abstract_topic_id']
+        ]);
+      }
     }
-
 
     return $user;
   }
@@ -101,6 +89,7 @@ class RegisterController extends Controller {
     $data["references"] = Reference::all();
     $data["membership"] = Membership::all();
     $data["topics"] = Topic::showTree();
+    $data["event"] = Event::activeEvent() ?? "";
 
     return view('auth.register', compact('data'));
   }

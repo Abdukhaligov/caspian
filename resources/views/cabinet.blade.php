@@ -246,40 +246,37 @@
                  aria-labelledby="pills-events-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 <section class="faq" style="margin-top: 0;">
-
-
-{{--                  <div id="accordion">--}}
-{{--                    <div class="card ">--}}
-{{--                      <div class="card-header">--}}
-{{--                        <h4 class="card-header">--}}
-{{--                          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"--}}
-{{--                             href="#collapseHistory" aria-expanded="false">--}}
-{{--                            History--}}
-{{--                            <i class="fas fa-minus-circle faq-icon"></i>--}}
-{{--                            <i class="fas fa-plus-circle"></i></a>--}}
-{{--                        </h4>--}}
-{{--                      </div>--}}
-{{--                      <div id="collapseHistory" class="panel-collapse in collapse" style="">--}}
-{{--                        <div class="card-block">--}}
-{{--                          <p>--}}
-{{--                          @foreach($data["events"] as $event)--}}
-{{--                            @php--}}
-{{--                              switch ($event->pivot->status){--}}
-{{--                                case 1: $status = "Pending"; break;--}}
-{{--                                case 2: $status = "Denied"; break;--}}
-{{--                                default: $status = "Approved";}--}}
-{{--                            @endphp--}}
-{{--                            <p>Event: {{ $event->name }}</p>--}}
-{{--                            <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>--}}
-{{--                            <p>Status: {{ $status }}</p>--}}
-{{--                            <br>--}}
-{{--                            @endforeach--}}
-{{--                            </p>--}}
-{{--                        </div>--}}
-{{--                      </div>--}}
-{{--                    </div>--}}
-{{--                  </div>--}}
-
+                  <div id="accordion">
+                    <div class="card ">
+                      <div class="card-header">
+                        <h4 class="card-header">
+                          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                             href="#collapseHistory" aria-expanded="false">
+                            History
+                            <i class="fas fa-minus-circle faq-icon"></i>
+                            <i class="fas fa-plus-circle"></i></a>
+                        </h4>
+                      </div>
+                      <div id="collapseHistory" class="panel-collapse in collapse" style="">
+                        <div class="card-block">
+                          <p>
+                          @foreach($data["events"] as $event)
+                            @php
+                              switch ($event->pivot->status){
+                                case 1: $status = "Pending"; break;
+                                case 2: $status = "Denied"; break;
+                                default: $status = "Approved";}
+                            @endphp
+                            <p>Event: {{ $event->name }}</p>
+                            <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
+                            <p>Status: {{ $status }}</p>
+                            <br>
+                            @endforeach
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                 </section>
 
@@ -326,7 +323,7 @@
                       <div class="cf-msg"></div>
                     </div>
                   </form>
-                @else
+                @elseif($data["event"])
                   You have no participation in Active Event <br>
                   Do u wanna join to event ?
                   <form method="POST" action="{{ route('user_update_membership') }}">
@@ -356,7 +353,7 @@
                       @enderror
                       {{--                      <span><strong>If you change</strong></span>--}}
                     </div>
-                    <button style="margin-top: 15px" type="submit">{{ __('static.user_update') }}</button>
+                    <button style="margin-top: 15px" type="submit">{{ __('static.membership_update') }}</button>
                     <div class="col-md-12 text-center">
                       <div class="cf-msg"></div>
                     </div>
@@ -371,9 +368,7 @@
         </div>
         <div class="col-md-6">
           <div class="contact-information">
-            @if($data["reports"]->count() > 0)
-              <h3>Abstracts: </h3>
-            @endif
+
             @if( $data["user"]->canAddReport )
 
               <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3" data-toggle="modal"
@@ -381,6 +376,7 @@
 
             @endif
             @if($data["reports"])
+                <h3>Abstracts: </h3>
               @foreach($data["reports"] as $report)
                 <div class="card text-center mb-3">
 

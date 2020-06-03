@@ -34,7 +34,11 @@ class User extends Authenticatable implements HasMedia {
 
   public function reports() { return $this->hasMany(Report::class); }
 
-  public function currentReports() { return $this->reports()->where('event_id', Event::activeEvent()->id); }
+  public function currentReports() {
+    $event = Event::activeEvent();
+    if(!$event) return false;
+    return $this->reports()->where('event_id', $event->id);
+  }
 
   public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
 
@@ -68,9 +72,11 @@ class User extends Authenticatable implements HasMedia {
   }
 
   public function currentEvent() {
+    $event = Event::activeEvent();
+    if(!$event) return false;
     return $this
             ->events()
-            ->where('event_id', '=', Event::activeEvent()->id)
+            ->where('event_id', '=', $event->id)
             ->get()->first() ?? false;
   }
 

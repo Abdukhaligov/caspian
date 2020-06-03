@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <?php $fake = false ? $fakeUser = factory(\App\User::class)->make() : ''?>
+  <?php $fake = true ? $fakeUser = factory(\App\User::class)->make() : ''?>
 
   <!-- Hero Section-->
   <section class="inner-hero inner-hero4">
@@ -150,6 +150,8 @@
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
+
+              @if($data["event"])
               <div class="form-group cfdb1" style="overflow: auto">
                 <label for="membership_id" class="col-form-label text-md-right" style="float: left;">
                   Do u wanna join to event ?</label>
@@ -235,7 +237,7 @@
                   @enderror
                 </div>
               </div>
-
+              @endif
               <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
               <div class="col-md-12 text-center">
                 <div class="cf-msg"></div>

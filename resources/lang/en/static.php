@@ -29,4 +29,5 @@ return array (
     'account_details' => 'Account Details',
     'user_update' => 'Update Details',
     'password_update' => 'Update Password',
+    'membership_update' => 'Update Membership',
 );

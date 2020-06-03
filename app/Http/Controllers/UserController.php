@@ -73,6 +73,9 @@ class UserController extends Controller {
   }
 
   public function updateMembership(Request $request){
+    $event = Event::activeEvent();
+    if(!$event) return redirect()->back();
+
     $user = Auth::user();
 
     $validator = Validator::make($request->all(), [
@@ -88,9 +91,9 @@ class UserController extends Controller {
     }
 
     if($user->currentEvent()){
-      $user->events()->updateExistingPivot(Event::activeEvent()->id, ["membership_id" => $request->membership_id, "status" => 1]);
+      $user->events()->updateExistingPivot($event->id, ["membership_id" => $request->membership_id, "status" => 1]);
     }else{
-      $user->events()->attach(Event::activeEvent()->id, ["membership_id" => $request->membership_id]);
+      $user->events()->attach($event->id, ["membership_id" => $request->membership_id]);
     }
 
 
