@@ -44,6 +44,12 @@ class User extends Authenticatable implements HasMedia {
     return $event ? $this->eventReports($event->id) : null;
   }
 
+  public function pendingReports() {
+    return $this
+        ->currentReports()
+        ->where('status', '=', '1');
+  }
+
   public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
 
   public function currentMembership() {
@@ -60,8 +66,10 @@ class User extends Authenticatable implements HasMedia {
   public function canAddReports() {
     if ($this->isAdmin() || $this->rank) return true;
 
+    if(!$this->checkAccessCount(Initial::getData()->max_report_count)) return false;
+
     $membership = $this->currentMembership();
-    //    if ($membership->status != 3) return false;
+    //if ($membership->status != 3) return false;
 
     return $membership ? $membership->reporter : false;
   }
@@ -91,27 +99,15 @@ class User extends Authenticatable implements HasMedia {
 //    return $this->checkMembership([2, 3]) && $this->checkAccessCount(Initial::getData()->max_report_count);
 //    return $this->membership->reporter && $this->checkAccessCount(Initial::getData()->max_report_count);
 
-  //  public function pendingReports() {
-//    return $this
-//        ->reports()
-//        ->where('status', '=', '1');
-//  }
-
-//  public static function speakers() {
-//    return User::whereHas('membership', function ($q) {
-//      $q->where('reporter', true);
-//    })->get();
-//  }
 
 //  private function checkMembership(array $ids = []) {
 //    if (!count($ids)) return false;
-//
 //    return in_array($this->membership->id, $ids);
 //  }
 
-//  private function checkAccessCount(int $count = 0) {
-//    return $this->pendingReports->count() < $count;
-//  }
+  private function checkAccessCount(int $count = 0) {
+    return $this->pendingReports->count() < $count;
+  }
 
   public function socialNetworks() { return $this->flexible('social_networks'); }
 

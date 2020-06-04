@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+  <style>
+    .badge{
+      display: block;float: left;font-size: 14px;margin-top: 4px;margin-right: 10px;
+    }
+  </style>
 
   <!--Pricing Section-->
   <section id="ticket" class="pricing" style="height: 0; width: 0;margin: 0;">
@@ -261,7 +265,6 @@
                         <div class="card-block">
                           <p>
                           @foreach($data["events"] as $event)
-
                             @php
                               switch ($event->pivot->status){
                                 case 1: $status = "Pending"; break;
@@ -271,29 +274,41 @@
                             <p>Event: {{ $event->name }}</p>
                             <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
                             <p>Status: {{ $status }}</p>
-                            <div id="accordion">
-                              <div class="card">
-                                <div class="card-header">
-                                  <h4 class="card-header">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                       data-parent="#accordion" href="#collapse{{$event->id}}" aria-expanded="false">
-                                      Reports
-                                      <i class="fas fa-minus-circle faq-icon"></i>
-                                      <i class="fas fa-plus-circle"></i></a>
-                                  </h4>
-                                </div>
-                                <div id="collapse{{$event->id}}" class="panel-collapse collapse in">
-                                  <div class="card-block">
-                                    @foreach($event->userReports(Auth::user()->id) as $report)
-                                      <p>Name: {{ $report->name }}</p>
-                                      <p>Status: {{ $report->status }}</p>
-                                      <p>File: {{ $report->file }}</p>
-                                      <p>Topic: {{ $report->topic->name }}</p>
-                                    @endforeach
+                            @if($event->userReports(Auth::user()->id)->count() > 0)
+                              <div id="accordion">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 class="card-header">
+                                      <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                         data-parent="#accordion" href="#collapse{{$event->id}}" aria-expanded="false">
+                                        Reports
+                                        <i class="fas fa-minus-circle faq-icon"></i>
+                                        <i class="fas fa-plus-circle"></i></a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapse{{$event->id}}" class="panel-collapse collapse in">
+                                    <div class="card-block">
+                                      @foreach($event->userReports(Auth::user()->id) as $report)
+                                        @php
+                                          switch ($report->status){
+                                            case 1: $report->status = "Pending"; break;
+                                            case 2: $report->status = "Denied"; break;
+                                            default: $report->status = "Approved";}
+                                        @endphp
+                                        <p>Name: {{ $report->name }}</p>
+                                        <p>Topic: {{ $report->topic->name }}</p>
+                                        <p>Status: {{ $report->status }}</p>
+                                        @if($report->file)
+                                          <p>File: <a target="_blank"
+                                                      href="{{ Storage::disk('reports')->url($report->file) }}">Download</a>
+                                          </p>
+                                        @endif
+                                      @endforeach
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            @endif
                             <br>
                             @endforeach
                             </p>
@@ -313,7 +328,7 @@
                       }
                   @endphp
                   Your participation in current Event is: {{ $currentMembership->name }} ({{ $status }}) <br>
-                  Do u wanna change your participation ?
+                  Do u wanna change your participation ? <br>
                   <form method="POST" action="{{ route('user_update_membership') }}">
                     @csrf
                     <div class="form-group cfdb1">
@@ -340,7 +355,11 @@
                       @error('membership_id')
                       <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                       @enderror
-                      {{--                      <span><strong>If you change</strong></span>--}}
+                      <span>
+                        <strong>
+                          If you change your participation, all your current reports will be denied
+                        </strong>
+                      </span>
                     </div>
                     <button style="margin-top: 15px" type="submit">{{ __('static.user_update') }}</button>
                     <div class="col-md-12 text-center">
@@ -393,15 +412,23 @@
           <div class="contact-information">
 
             @if( $data["user"]->canAddReport )
-
               <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3" data-toggle="modal"
                  data-target="#myModal">New abstract</a>
-
             @endif
 
-            @if($data["reports"])
+            @if($data["reports"]->count() > 0)
               <h3>Abstracts: </h3>
               @foreach($data["reports"] as $report)
+                Topic:
+                <div class="card p-3 mb-3">
+                  @if($report->topic->parent)
+                    {{ $report->topic->parent->name}}<br>
+                    —{{ $report->topic->name}}
+                  @else
+                    {{ $report->topic->name}}
+                  @endif
+
+                </div>
                 <div class="card text-center mb-3">
 
                   <div class="card-header">
@@ -411,8 +438,7 @@
                       </div>
                       <div class="nav-item" style="right: 20px;position: absolute;">
                         @if($report->status == 1)
-                          <div class="badge badge-primary"
-                               style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;">
+                          <div class="badge badge-primary">
                             Pending
                           </div>
                           <button type="button" class="btn btn-danger btn-sm"
@@ -441,12 +467,10 @@
                             </div>
                           </div>
                         @elseif($report->status == 3)
-                          <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
-                               class="badge badge-success">Approved
+                          <div class="badge badge-success">Approved
                           </div>
                         @else
-                          <div style="display: block;float: left;font-size: 14px;margin-top: 5px;margin-right: 10px;"
-                               class="badge badge-danger">Denied
+                          <div class="badge badge-danger">Denied
                           </div>
                         @endif
                       </div>

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\File;
@@ -22,7 +23,8 @@ class Report extends Resource {
 
   public function actions(Request $request) {
     return [
-        new DownloadExcel,
+        (new DownloadExcel)
+            ->withHeadings(),
     ];
   }
 
@@ -42,16 +44,26 @@ class Report extends Resource {
             ->sortable()
             ->size('w-1/2'),
 
+        BelongsTo::make('Topic')
+            ->sortable()
+            ->size('w-1/2'),
+
+        Text::make('Title', 'name')
+//            ->displayUsing(function ($value) {
+//              return substr($value, 0, 20);
+//            })
+            ->sortable()
+            ->size('w-1/2'),
+
         BelongsTo::make('Event')
             ->sortable()
             ->hideFromIndex()
             ->size('w-1/2'),
 
-
         Select::make('Status')->options([
             1 => 'Pending',
-            2 => 'Canceled',
-            3 => 'Accepted',
+            2 => 'Deny',
+            3 => 'Approve',
         ])
             ->displayUsing(function ($q){
               switch ($q){
@@ -69,34 +81,14 @@ class Report extends Resource {
             ->sortable()
             ->size('w-1/2'),
 
-
-        BelongsTo::make('Topic')
-            ->sortable()
-            ->size('w-1/2'),
-
-
-        Text::make('Title', 'name')
-            ->displayUsing(function ($value) {
-              return substr($value, 0, 20);
-            })
-            ->sortable()
-            ->size('w-1/2'),
-
-
         File::make('File')
             ->hideFromIndex()
             ->disk('reports')
             ->size('w-1/2'),
 
-
         Textarea::make('Description')
             ->hideFromIndex()
             ->size('w-1/2'),
-
-
-
-
-
 
         DateTime::make('Created At')
             ->sortable()

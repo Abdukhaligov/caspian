@@ -21,6 +21,12 @@ class Report extends Model {
   protected function performUpdate(Builder $query) {
     $report = $query->getModel();
 
+    if($report->status == 3){
+      User::find($report->user_id)
+          ->events()
+          ->updateExistingPivot($report->event_id, ["status" => 3]);
+    }
+
     Mail::to($report->user->email)->send(new ReportChange($report));
 
     return parent::performUpdate($query);

@@ -78,6 +78,15 @@ class UserController extends Controller {
 
     $user = Auth::user();
 
+    $reports = $user->reports()->where('event_id', $event->id)->get();
+
+    foreach ($reports as $report) {
+      if($report->status != 2){
+        $report->status = 2;
+        $report->save();
+      }
+    }
+
     $validator = Validator::make($request->all(), [
         'membership_id' => ['required', 'exists:memberships,id'],
     ]);
@@ -95,6 +104,8 @@ class UserController extends Controller {
     }else{
       $user->events()->attach($event->id, ["membership_id" => $request->membership_id]);
     }
+
+
 
 
     //Mail::to($user->email)->send(new AccountDetailsChange($user));

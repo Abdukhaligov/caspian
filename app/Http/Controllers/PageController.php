@@ -103,7 +103,6 @@ class PageController extends Controller {
 
     $data["topics"] = Topic::showTree();
     $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? null;
-    $data["references"] = Reference::all();
     $data["memberships"] = Membership::all();
     $data["vouchers"] = $user->membership->vouchers ?? [];
 
