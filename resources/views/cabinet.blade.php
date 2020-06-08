@@ -268,7 +268,7 @@
                  aria-labelledby="pills-links-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 @foreach($data["vouchers"] as $voucher)
-                  <a href="{{ route('vouchers',$voucher->id) }}" target="_blank">Download</a></br>
+                  <strong>{{$voucher->name}}</strong>: <a href="{{ route('vouchers',$voucher->id) }}" target="_blank">Download</a></br>
                 @endforeach
               </div>
             </div>
