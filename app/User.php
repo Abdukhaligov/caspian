@@ -34,6 +34,8 @@ class User extends Authenticatable implements HasMedia {
 
   public function reference() { return $this->belongsTo(Reference::class); }
 
+  public function region() { return $this->belongsTo(Region::class); }
+
   public function reports() { return $this->hasMany(Report::class); }
 
   public function documents() { return $this->hasMany(Document::class); }

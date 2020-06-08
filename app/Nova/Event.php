@@ -24,8 +24,19 @@ class Event extends Resource {
 
   public static $model = 'App\Models\Event';
   public static $group = 'Resources';
-  public static $title = 'name';
+  public static $title = 'id';
   public static $search = ['id'];
+
+  public function title() {
+    $event = \App\Models\Event::find(parent::title());
+    $activeEvent = \App\Models\Event::activeEvent();
+    if($activeEvent){
+      if($activeEvent->id == $event->id){
+        return ($event->name." (ACTIVE)");
+      }
+    }
+    return $event->name;
+  }
 
 
   public function fields(Request $request) {
@@ -181,7 +192,7 @@ class Event extends Resource {
                           '3' => 'Approve',
                       ])
                       ->displayUsing(function ($q) {
-                        switch ($q){
+                        switch ($q) {
                           case 3:
                             return "Approved";
                             break;

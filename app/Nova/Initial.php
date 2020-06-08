@@ -28,18 +28,20 @@ class Initial extends Resource {
   public function fields(Request $request) {
     return [
         Text::make('Title'),
-        Multilingual::make('Language'),
+//        Multilingual::make('Language'),
         FilemanagerField::make('Favicon')
             ->displayAsImage()
             ->hideCreateFolderButton()
-            ->folder('main'),
+            ->folder('main')
+            ->size('w-full'),
         Text::make('Phone'),
         Text::make('Email'),
         Number::make('Max Report Count','max_report_count'),
         FilemanagerField::make('Logo')
             ->folder('main')
             ->displayAsImage()
-            ->hideCreateFolderButton(),
+            ->hideCreateFolderButton()
+            ->size('w-full'),
         Text::make('Copyright'),
         Flexible::make('Social Networks', 'social_networks')
             ->addLayout('Social Network', 'Data', [

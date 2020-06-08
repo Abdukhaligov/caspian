@@ -21,6 +21,7 @@ use App\Models\Pages\Topics;
 use App\Models\Sponsor;
 use App\Models\Topic;
 use App\Models\Partner;
+use App\Models\Voucher;
 use App\User;
 use Auth;
 use DB;
@@ -106,6 +107,10 @@ class PageController extends Controller {
     $data["memberships"] = Membership::all();
 
     $data["vouchers"] = $user->eventVouchers($data["event"]->id) ?? [];
+    $data["broadcastVouchers"] = Voucher
+        ::where('event_id', '=', $data["event"]->id)
+        ->where('membership_id', '=', null)
+        ->get();
 
 
     return view('cabinet', compact('data'));

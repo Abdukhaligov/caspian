@@ -45,16 +45,16 @@ class VoucherController extends Controller {
 
       $phpword = new TemplateProcessor($file);
       $phpword->setValues([
-          '{{id}}' => $document->id,
-          '{{membership}}' => $membership->name,
-          '{{voucherDate}}' => $voucher->created_at,
-          '{{documentDate}}' => $document->created_at,
-          '{{userName}}' => $user->name,
-          '{{userEmail}}' => $user->email,
-          '{{userPhone}}' => $user->phone,
-          '{{userDegree}}' => $user->degree->name,
-          '{{userJobTitle}}' => $user->job_title,
-          '{{userCompany}}' => $user->company,
+          '{{id}}' => $document->id ?? '',
+          '{{membership}}' => $membership->name ?? '',
+          '{{voucherDate}}' => $voucher->created_at ?? '',
+          '{{documentDate}}' => $document->created_at ?? '',
+          '{{userName}}' => $user->name ?? '',
+          '{{userEmail}}' => $user->email ?? '',
+          '{{userPhone}}' => $user->phone ?? '',
+          '{{userDegree}}' => $user->degree->name ?? '',
+          '{{userJobTitle}}' => $user->job_title ?? '',
+          '{{userCompany}}' => $user->company ?? '',
         'a' => 'AAA'
       ]);
 

@@ -24,7 +24,7 @@ class Sponsor extends Resource
     return [
         ID::make()->sortable(),
 
-        Media::make('Avatar')
+        Media::make('Avatars')
             ->size('w-1/4'),
 
 

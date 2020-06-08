@@ -20,11 +20,15 @@ class Topic extends Resource {
     return [
         ID::make()->sortable(),
         Text::make('Name')
-            ->sortable(),
-        NovaTinyMCE::make('Description'),
+            ->sortable()
+            ->size('w-1/2'),
         Select::make('Parent Topic','parent_id')
             ->options(Topic::pluck('name', 'id'))
-            ->nullable(true),
+            ->nullable(true)
+            ->size('w-1/2'),
+
+        NovaTinyMCE::make('Description'),
+
         HasMany::make('Topics', 'children'),
         HasMany::make('Reports'),
     ];

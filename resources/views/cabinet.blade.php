@@ -103,7 +103,7 @@
           @if(session('pill'))
             @php $pill = session('pill') @endphp
           @else
-            @php $pill = "info" @endphp
+            @php $pill = "main" @endphp
           @endif
 
 
@@ -270,6 +270,10 @@
             <div class="tab-pane fade @if($pill == "links") show active @endif" id="pills-links" role="tabpanel"
                  aria-labelledby="pills-links-tab">
               <div class="contact-information" style="margin-top: 10px;">
+                @foreach($data["broadcastVouchers"] as $voucher)
+                  <strong>{{$voucher->name}}</strong>: <a href="{{ route('vouchers',$voucher->id) }}" target="_blank">Download</a></br>
+                @endforeach
+
                 @foreach($data["vouchers"] as $voucher)
                   <strong>{{$voucher->name}}</strong>: <a href="{{ route('vouchers',$voucher->id) }}" target="_blank">Download</a></br>
                 @endforeach

@@ -48,6 +48,12 @@ class User extends Resource {
             ->size('w-3/4'),
 
 
+        BelongsTo::make('Region')
+            ->sortable()
+            ->nullable()
+            ->hideFromIndex()
+            ->sizeOnForms('w-1/3')
+            ->sizeOnDetail('w-1/4'),
 //        BelongsTo::make('Membership')
 //            ->sortable()
 //            ->nullable()
@@ -182,9 +188,13 @@ class User extends Resource {
                       })
                       ->sortable(),
               ];
-            }),
+            })
+            ->withMeta([
+                'belongsToManyId' => 1 // default value for the select
+            ]),
 
         HasMany::make('Reports'),
+        HasMany::make('Documents'),
 
 
         Impersonate::make($this)

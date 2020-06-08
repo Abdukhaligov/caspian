@@ -13,7 +13,7 @@ class Voucher extends Resource {
 
   public static $model = 'App\Models\Voucher';
   public static $group = 'Resources';
-  public static $title = 'id';
+  public static $title = 'name';
   public static $search = ['id'];
 
 
@@ -32,7 +32,8 @@ class Voucher extends Resource {
             ])
             ->rules('required'),
 
-        BelongsTo::make('Membership'),
+        BelongsTo::make('Membership')
+            ->nullable(),
 
         Boolean::make('Uniq'),
     ];

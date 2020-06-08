@@ -55,6 +55,7 @@
               </div>
 
               <div class="form-group cfdb1">
+                <label for="avatar" class="col-form-label text-md-right">Avatar</label>
                 <input style="padding: 15px 15px 40px 15px;" type="file" id="avatar" class="form-control cp1 @error('avatar') is-invalid @enderror"
                        name="avatar" placeholder="avatar">
                 @error('avatar')
