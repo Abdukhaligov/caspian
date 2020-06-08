@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\Voucher;
 use Auth;
 use Illuminate\Http\Request;
@@ -13,51 +14,62 @@ class VoucherController extends Controller {
   public function index($id) {
     $user = Auth::user();
     $voucher = Voucher::findOrFail($id);
+    $membership = $user->currentMembership();
 
-//    if($user->membership->id != $voucher->membership->id){
-//      return redirect()->back();
-//    }
+    if (!$voucher->uniq) {
+      return redirect(Storage::disk('public')->url($voucher->template));
+    }
 
+    if ($membership->id != $voucher->membership->id ||
+        $membership->status != 3) {
+      return redirect()->back();
+    }
 
-    $file = Storage::disk('public')->url($voucher->template);
-    $newFile = uniqid('doc_').'.docx';
+    $document = $user->documents()->where('voucher_id', '=', $voucher->id)->first();
 
-    $phpword = new TemplateProcessor($file);
-    $phpword->setValue('{name}', $user->name);
-    $phpword->setValue('{email}', $user->email);
-    $phpword->setValue('{phone}', $user->phone);
-    $phpword->setValue('{company}', $user->company);
-    $phpword->setValue('{job_title}', $user->job_title);
-    $phpword->setValue('{date}', date("d M Y H:m:s"));
+    if ($document) {
 
 
-    $phpword->saveAs('storage/vouchers/'.$newFile);
-    return redirect(Storage::disk('vouchers')->url($newFile));
+      return redirect(Storage::disk('vouchers')->url($document->path));
+
+    } else {
+
+      $file = Storage::disk('public')->url($voucher->template);
+      $newFile = uniqid('doc_') . '.docx';
+
+      $document = new Document();
+      $document->user_id = $user->id;
+      $document->voucher_id = $voucher->id;
+      $document->path = $newFile;
+      $document->save();
+
+      $phpword = new TemplateProcessor($file);
+      $phpword->setValues([
+          '{{id}}' => $document->id,
+          '{{membership}}' => $membership->name,
+          '{{voucherDate}}' => $voucher->created_at,
+          '{{documentDate}}' => $document->created_at,
+          '{{userName}}' => $user->name,
+          '{{userEmail}}' => $user->email,
+          '{{userPhone}}' => $user->phone,
+          '{{userDegree}}' => $user->degree->name,
+          '{{userJobTitle}}' => $user->job_title,
+          '{{userCompany}}' => $user->company,
+        'a' => 'AAA'
+      ]);
+
+
+      $phpword->saveAs('storage/vouchers/' . $newFile);
+
+
+      return redirect(Storage::disk('vouchers')->url($newFile));
+    }
 
   }
 
-  public function create() {
-    //
-  }
-
-
-  public function store(Request $request) {
-    //
-  }
 
   public function show(Voucher $voucher) {
     //
   }
 
-  public function edit(Voucher $voucher) {
-    //
-  }
-
-  public function update(Request $request, Voucher $voucher) {
-    //
-  }
-
-  public function destroy(Voucher $voucher) {
-    //
-  }
 }

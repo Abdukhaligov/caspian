@@ -34,7 +34,7 @@ class User extends Resource {
 
         ID::make()->sortable(),
 
-        Media::make('Avatar')
+        Media::make('Avatars')
             ->size('w-1/4'),
 
         NovaTinyMCE::make('Description')

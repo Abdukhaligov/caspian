@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="sd-img">
-            {{ $data->getMedia('avatar')->first() }}
+            {{ $data->getMedia('avatars')->first() }}
           </div>
         </div>
         <div class="col-md-6">

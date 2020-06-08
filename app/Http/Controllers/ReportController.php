@@ -24,6 +24,7 @@ class ReportController extends Controller {
   }
 
   public function store(ReportRequest $request) {
+
     $request['user_id'] = Auth::user()->id;
     $request["event_id"] = Event::activeEvent()->id;
     if (Auth::user()->canAddReports()) {

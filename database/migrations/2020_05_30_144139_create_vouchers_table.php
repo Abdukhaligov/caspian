@@ -13,8 +13,10 @@ class CreateVouchersTable extends Migration {
       $table->foreign('event_id')->references('id')->on('events');
       $table->integer('membership_id')->unsigned()->nullable();
       $table->foreign('membership_id')->references('id')->on('memberships');
-
+      $table->string('name');
       $table->string('template');
+      $table->boolean('uniq')->default(false);
+
       $table->timestamps();
     });
   }

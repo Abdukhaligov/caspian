@@ -8,11 +8,12 @@ use Spatie\Translatable\HasTranslations;
 class Membership extends Model {
 
   use HasTranslations;
+
   public $translatable = ['name'];
 
-  public function vouchers(){
-    return $this->hasMany(Voucher::class);
-  }
+  public function vouchers() { return $this->hasMany(Voucher::class); }
+
+  public function events() { return $this->hasMany(Event::class); }
 
 //  public function parent() {
 //    return $this->belongsTo(Membership::class);

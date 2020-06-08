@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Mail;
 
 class RegisterController extends Controller {
+
   use RegistersUsers;
 
   protected $redirectTo = RouteServiceProvider::HOME;
@@ -28,7 +29,7 @@ class RegisterController extends Controller {
 
   protected function validator(array $data) {
 
-    if(isset($data["join_to_event"])){
+    if(isset($data["join_to_event"]) && isset($data["membership_id"])){
       if(!Membership::find($data["membership_id"])->reporter){
         unset($data["abstract_topic_id"]);
         unset($data["abstract_name"]);
@@ -49,20 +50,23 @@ class RegisterController extends Controller {
   }
 
   protected function create(array $data) {
-    $user = new User();
-    $user->name = $data['name'];
-    $user->email = $data['email'];
-    $user->password = Hash::make($data['password']);
-    $user->phone = preg_replace('/[^0-9]/', '', $data['phone']);
-    $user->company = $data['company'];
-    $user->job_title = $data['job_title'];
-    $user->reference_id = $data['reference_id'];
-    $user->region_id = $data['region_id'];
-    if($data['degree_id']){
-      $user->degree_id = $data['degree_id'];
+
+    $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'phone' => preg_replace('/[^0-9]/', '', $data['phone']),
+        'company' => $data['company'],
+        'job_title' => $data['job_title'],
+        'reference_id' => $data['reference_id'],
+        'region_id' => $data['region_id'],
+        'degree_id' => $data['degree_id'] ?? '',
+    ]);
+
+    if (isset($data['avatar'])) {
+      $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
     }
 
-    $user->save();
     Mail::to($user->email)->send(new WelcomeMail($user));
 
 

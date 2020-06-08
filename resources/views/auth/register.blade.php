@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <?php $fake = true ? $fakeUser = factory(\App\User::class)->make() : ''?>
+  <?php $fake = false ? $fakeUser = factory(\App\User::class)->make() : ''?>
 
   <!-- Hero Section-->
   <section class="inner-hero inner-hero4">
@@ -47,13 +47,24 @@
         </div>
         <div class="col-md-7">
           <div class="contact-information">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
               @csrf
+
+              <div class="form-group cfdb1" id="profile" style="display: none">
+                <img style="width: 30%" alt="profile-image" />
+              </div>
+
+              <div class="form-group cfdb1">
+                <input style="padding: 15px 15px 40px 15px;" type="file" id="avatar" class="form-control cp1 @error('avatar') is-invalid @enderror"
+                       name="avatar" placeholder="avatar">
+                @error('avatar')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+              </div>
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('name') is-invalid @enderror"
-                       name="name" id="name" placeholder="{{ __('static.full_name') }}"
-                       value="{{ $fake ? $fakeUser->name : old('name') }}" autocomplete="name"
-                       onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.full_name') }}'">
+                       name="name" placeholder="{{ __('static.full_name') }}"
+                       value="{{ $fake ? $fakeUser->name : old('name') }}">
                 @error('name')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -61,8 +72,7 @@
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
                        name="email" placeholder="{{ __('static.e_mail_address') }}"
-                       value="{{ $fake ? $fakeUser->email : old('email') }}" autocomplete="email"
-                       onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.e_mail_address') }}'">
+                       value="{{ $fake ? $fakeUser->email : old('email') }}">
                 @error('email')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -70,15 +80,15 @@
               <div class="form-group cfdb1">
                 <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
                        name="password" placeholder="{{ __('static.password') }}"
-                       value="{{ $fake ? "123123" : '' }}" autocomplete="new-password">
+                       value="{{ $fake ? "123123" : '' }}">
                 @error('password')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
               <div class="form-group cfdb1">
                 <input type="password" class="form-control cp1 @error('password_confirmation') is-invalid @enderror"
-                       name="password_confirmation" id="password-c" placeholder="{{ __('static.confirm_password') }}"
-                       value="{{ $fake ? "123123" : '' }}" autocomplete="new-password">
+                       name="password_confirmation" placeholder="{{ __('static.confirm_password') }}"
+                       value="{{ $fake ? "123123" : '' }}">
                 @error('password_confirmation')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -87,7 +97,7 @@
                 <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="selectpicker form-control cp1 @error('region') is-invalid @enderror"
-                        name="region_id" id="region" autocomplete="region">
+                        name="region_id" id="region">
                   @foreach(\App\Region::scopeOrdered() as $region)
                     <option value="{{ $region->id }}" @if($region->id == 20) selected
                             @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
@@ -101,23 +111,23 @@
                 <label for="phone" class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
                 <input type="text" class="form-control cp1 @error('phone') is-invalid @enderror"
                        name="phone" id="phone" placeholder="{{ __('static.phone_number') }}"
-                       value="+{{ $fake ? $fakeUser->phone : old('phone') }}" autocomplete="phone">
+                       value="+{{ $fake ? $fakeUser->phone : old('phone') }}">
                 @error('phone')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('company') is-invalid @enderror"
-                       name="company" id="" placeholder="{{ __('static.company') }}"
-                       value="{{ $fake ? $fakeUser->company : old('company') }}" autocomplete="company">
+                       name="company" placeholder="{{ __('static.company') }}"
+                       value="{{ $fake ? $fakeUser->company : old('company') }}">
                 @error('company')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
               <div class="form-group cfdb1">
                 <input type="text" class="form-control cp1 @error('job_title') is-invalid @enderror"
-                       name="job_title" id="job_title" placeholder="{{ __('static.job_title') }}"
-                       value="{{ $fake ? $fakeUser->job_title : old('job_title') }}" autocomplete="job_title">
+                       name="job_title" placeholder="{{ __('static.job_title') }}"
+                       value="{{ $fake ? $fakeUser->job_title : old('job_title') }}">
                 @error('job_title')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -126,7 +136,7 @@
                 <label for="degree_id" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="form-control cp1 @error('degree_id') is-invalid @enderror"
-                        name="degree_id" id="degree_id" autocomplete="degree">
+                        name="degree_id">
                   <option selected value="0">No degree</option>
                   @foreach(\App\Models\Degree::all() as $degree)
                     <option value="{{ $degree->id }}">{{ $degree->name }}</option>
@@ -140,7 +150,7 @@
                 <label for="reference_id" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="form-control cp1 @error('reference_id') is-invalid @enderror"
-                        name="reference_id" id="reference_id" autocomplete="reference_id">
+                        name="reference_id">
                   @foreach($data['references'] as $reference)
                     <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
                             @endif value="{{ $reference->id }}">{{ $reference->name }}</option>
@@ -166,7 +176,7 @@
                 <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                        name="membership_id" id="membership_id" autocomplete="membership_id">
+                        name="membership_id" id="membership_id">
                   <option disabled selected>Select</option>
                   <option disabled>Reporter</option>
 
@@ -190,7 +200,7 @@
                   <label for="abstract_topic_id" class="col-form-label">Topic</label>
                   <select style="height: 52px;font-size: 14px;"
                           class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
-                          name="abstract_topic_id" id="abstract_topic_id" autocomplete="abstract_topic_id">
+                          name="abstract_topic_id">
                     @foreach($data['topics'] as $topic)
                       @if($topic->hasChildren == true )
                         <option disabled>{{ $topic->name }}</option>
@@ -216,8 +226,7 @@
                 </div>
                 <div class="form-group cfdb1">
                   <input type="text" class="form-control cp1 @error('abstract_name') is-invalid @enderror"
-                         name="abstract_name" id="abstract_name" placeholder="Abstract title"
-                         onfocus="this.placeholder = ''" onblur="this.placeholder ='Abstract title'"
+                         name="abstract_name" placeholder="Abstract title"
                          value="{{old('abstract_name') }}">
                   @error('abstract_name')
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -228,9 +237,7 @@
                             name="abstract_description" id="abstract_description"
                             onkeyup="countChar(this)"
                             placeholder="Abstract description (max 300 words)"
-                            maxlength="300"
-                            onfocus="this.placeholder ='Abstract description (max 300 words)'"
-                            onblur="this.placeholder ='Comment'">{{old('abstract_description') }}</textarea>
+                            maxlength="300">{{old('abstract_description') }}</textarea>
                   <div style="right: 0;position: absolute;" id="charNum">0/300</div>
                   @error('abstract_description')
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -256,6 +263,21 @@
 
 @section('scripts')
   <script>
+
+    $("#avatar").change(function(){
+      $('#profile').show();
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#profile img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+
 
     function countChar(val) {
       var len = val.value.length;

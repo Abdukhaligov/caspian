@@ -20,11 +20,13 @@ class Event extends Model implements HasMedia {
 
   public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
 
+  public function vouchers() { return $this->hasMany(Voucher::class); }
+
   public function reports() { return $this->hasMany(Report::class); }
 
   public function userReports($id) {
     return $this->reports()
-        ->where('user_id','=',$id)
+        ->where('user_id', '=', $id)
         ->with('topic')
         ->get();
   }

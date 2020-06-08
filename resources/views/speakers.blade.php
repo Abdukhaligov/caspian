@@ -27,6 +27,11 @@
     .card h5{
       font-size:  15px !important;
     }
+    section.our-team .single-team-member .stm-img {
+      max-height: 270px;
+      max-width: 270px;
+      overflow: hidden;
+    }
   </style>
   <!-- Hero Section-->
   <section class="inner-hero">
@@ -57,7 +62,7 @@
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
                 <a href="{{ route('speakers')."/".$user->id }}">
-                  {{ $user->getMedia('avatar')->first() }}
+                  {{ $user->getMedia('avatars')->first() }}
                 </a>
                 <div class="stm-icon">
                   <ul>

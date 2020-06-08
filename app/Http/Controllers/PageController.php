@@ -74,14 +74,13 @@ class PageController extends Controller {
 
   public function cabinet() {
 
-
     $data = Cabinet::first();
     $user = Auth::user();
-
 
     $data["user"] = (object)[
         "name" => $user->name,
         "email" => $user->email,
+        "avatar" => $user->getMedia('avatars')->first(),
         "phone" => $user->phone ?? '',
         "degree_id" => $user->degree_id ?? '',
         "company" => $user->company ?? '',
@@ -102,9 +101,11 @@ class PageController extends Controller {
         : null;
 
     $data["topics"] = Topic::showTree();
+
     $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? null;
     $data["memberships"] = Membership::all();
-    $data["vouchers"] = $user->membership->vouchers ?? [];
+
+    $data["vouchers"] = $user->eventVouchers($data["event"]->id) ?? [];
 
 
     return view('cabinet', compact('data'));

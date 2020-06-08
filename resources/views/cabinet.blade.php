@@ -2,8 +2,16 @@
 
 @section('content')
   <style>
-    .badge{
-      display: block;float: left;font-size: 14px;margin-top: 4px;margin-right: 10px;
+    .badge {
+      display: block;
+      float: left;
+      font-size: 14px;
+      margin-top: 4px;
+      margin-right: 10px;
+    }
+
+    .form-group img {
+      width: 30%;
     }
   </style>
 
@@ -160,8 +168,26 @@
             <div class="tab-pane fade @if($pill == "info") show active @endif" id="pills-info" role="tabpanel"
                  aria-labelledby="pills-info-tab">
               <div class="contact-information" style="margin-top: 10px;">
-                <form method="POST" action="{{ route('user_update') }}">
+                <form method="POST" action="{{ route('user_update') }}" enctype="multipart/form-data">
                   @csrf
+
+                  <div class="form-group cfdb1" id="profile">
+                    @if($data["user"]->avatar)
+                      {{ $data["user"]->avatar }}
+                    @else
+                      <img style="width: 30%"/>
+                    @endif
+                  </div>
+
+                  <div class="form-group cfdb1">
+                    <input style="padding: 15px 15px 40px 15px;" type="file" id="avatar"
+                           class="form-control cp1 @error('avatar') is-invalid @enderror"
+                           name="avatar" placeholder="avatar">
+                    @error('avatar')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                  </div>
+
                   <div class="form-group cfdb1">
                     <label class="col-form-label text-md-right">{{ __('static.company') }}</label>
                     <input type="text" class="form-control cp1 @error('company') is-invalid @enderror"
@@ -242,82 +268,85 @@
                  aria-labelledby="pills-links-tab">
               <div class="contact-information" style="margin-top: 10px;">
                 @foreach($data["vouchers"] as $voucher)
-                  <a href="doc/{{ $voucher->id }}" target="_blank">Download</a></br>
+                  <a href="{{ route('vouchers',$voucher->id) }}" target="_blank">Download</a></br>
                 @endforeach
               </div>
             </div>
             <div class="tab-pane fade @if($pill == "events") show active @endif" id="pills-events" role="tabpanel"
                  aria-labelledby="pills-events-tab">
               <div class="contact-information" style="margin-top: 10px;">
-                <section class="faq" style="margin-top: 0;">
-                  <div id="accordion">
-                    <div class="card ">
-                      <div class="card-header">
-                        <h4 class="card-header">
-                          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                             href="#collapseHistory" aria-expanded="false">
-                            History
-                            <i class="fas fa-minus-circle faq-icon"></i>
-                            <i class="fas fa-plus-circle"></i></a>
-                        </h4>
-                      </div>
-                      <div id="collapseHistory" class="panel-collapse in collapse" style="">
-                        <div class="card-block">
-                          <p>
-                          @foreach($data["events"] as $event)
-                            @php
-                              switch ($event->pivot->status){
-                                case 1: $status = "Pending"; break;
-                                case 2: $status = "Denied"; break;
-                                default: $status = "Approved";}
-                            @endphp
-                            <p>Event: {{ $event->name }}</p>
-                            <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
-                            <p>Status: {{ $status }}</p>
-                            @if($event->userReports(Auth::user()->id)->count() > 0)
-                              <div id="accordion">
-                                <div class="card">
-                                  <div class="card-header">
-                                    <h4 class="card-header">
-                                      <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                         data-parent="#accordion" href="#collapse{{$event->id}}" aria-expanded="false">
-                                        Reports
-                                        <i class="fas fa-minus-circle faq-icon"></i>
-                                        <i class="fas fa-plus-circle"></i></a>
-                                    </h4>
-                                  </div>
-                                  <div id="collapse{{$event->id}}" class="panel-collapse collapse in">
-                                    <div class="card-block">
-                                      @foreach($event->userReports(Auth::user()->id) as $report)
-                                        @php
-                                          switch ($report->status){
-                                            case 1: $report->status = "Pending"; break;
-                                            case 2: $report->status = "Denied"; break;
-                                            default: $report->status = "Approved";}
-                                        @endphp
-                                        <p>Name: {{ $report->name }}</p>
-                                        <p>Topic: {{ $report->topic->name }}</p>
-                                        <p>Status: {{ $report->status }}</p>
-                                        @if($report->file)
-                                          <p>File: <a target="_blank"
-                                                      href="{{ Storage::disk('reports')->url($report->file) }}">Download</a>
-                                          </p>
-                                        @endif
-                                      @endforeach
+
+                @if($data["events"]->count() > 0)
+                  <section class="faq" style="margin-top: 0;">
+                    <div id="accordion">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h4 class="card-header">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseHistory" aria-expanded="false">
+                              History
+                              <i class="fas fa-minus-circle faq-icon"></i>
+                              <i class="fas fa-plus-circle"></i></a>
+                          </h4>
+                        </div>
+                        <div id="collapseHistory" class="panel-collapse in collapse" style="">
+                          <div class="card-block">
+                            <p>
+                            @foreach($data["events"] as $event)
+                              @php
+                                switch ($event->pivot->status){
+                                  case 1: $status = "Pending"; break;
+                                  case 2: $status = "Denied"; break;
+                                  default: $status = "Approved";}
+                              @endphp
+                              <p>Event: {{ $event->name }}</p>
+                              <p>Member As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
+                              <p>Status: {{ $status }}</p>
+                              @if($event->userReports(Auth::user()->id)->count() > 0)
+                                <div id="accordion">
+                                  <div class="card">
+                                    <div class="card-header">
+                                      <h4 class="card-header">
+                                        <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                           data-parent="#accordion" href="#collapse{{$event->id}}"
+                                           aria-expanded="false">
+                                          Reports
+                                          <i class="fas fa-minus-circle faq-icon"></i>
+                                          <i class="fas fa-plus-circle"></i></a>
+                                      </h4>
+                                    </div>
+                                    <div id="collapse{{$event->id}}" class="panel-collapse collapse in">
+                                      <div class="card-block">
+                                        @foreach($event->userReports(Auth::user()->id) as $report)
+                                          @php
+                                            switch ($report->status){
+                                              case 1: $report->status = "Pending"; break;
+                                              case 2: $report->status = "Denied"; break;
+                                              default: $report->status = "Approved";}
+                                          @endphp
+                                          <p>Name: {{ $report->name }}</p>
+                                          <p>Topic: {{ $report->topic->name }}</p>
+                                          <p>Status: {{ $report->status }}</p>
+                                          @if($report->file)
+                                            <p>File: <a target="_blank"
+                                                        href="{{ Storage::disk('reports')->url($report->file) }}">Download</a>
+                                            </p>
+                                          @endif
+                                        @endforeach
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            @endif
-                            <br>
-                            @endforeach
-                            </p>
+                              @endif
+                              <br>
+                              @endforeach
+                              </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                </section>
+                  </section>
+                @endif
 
                 @if($data["user"]->currentMembership)
                   @php $currentMembership = $data["user"]->currentMembership;
@@ -506,6 +535,19 @@
 
 @section('scripts')
   <script>
+    $("#avatar").change(function () {
+      $('#profile').show();
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#profile img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
     function countChar(val) {
       var len = val.value.length;
       if (len >= 500) {

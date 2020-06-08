@@ -54,9 +54,14 @@ class UserController extends Controller {
     $user->degree_id = $request->degree_id;
     $user->job_title = $request->job_title;
     $user->company = $request->company;
+
+
+    $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+
     $user->save();
 
-    Mail::to($user->email)->send(new AccountDetailsChange($user));
+
+   // Mail::to($user->email)->send(new AccountDetailsChange($user));
 
 
 //    if(!$user->membership->reporter){

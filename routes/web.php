@@ -41,7 +41,7 @@ Route::group(['middleware' => ['locale']], function () {
 
   Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/doc/{id}', 'VoucherController@index')->name('voucher');
+    Route::get('/voucher/{id}', 'VoucherController@index')->name('vouchers');
 
     Route::get('/cabinet', 'PageController@cabinet')->name('cabinet');
     Route::post('/report/edit', 'ReportController@update')->name('report_update');

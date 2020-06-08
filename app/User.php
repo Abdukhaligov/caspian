@@ -3,11 +3,13 @@
 namespace App;
 
 use App\Models\Degree;
+use App\Models\Document;
 use App\Models\Event;
 use App\Models\Membership;
 use App\Models\Pages\Initial;
 use App\Models\Reference;
 use App\Models\Report;
+use App\Nova\Voucher;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -34,12 +36,14 @@ class User extends Authenticatable implements HasMedia {
 
   public function reports() { return $this->hasMany(Report::class); }
 
-  public function eventReports($id){
+  public function documents() { return $this->hasMany(Document::class); }
+
+  public function eventReports($id) {
     $event = Event::find($id);
     return $event ? $this->reports()->where('event_id', $event->id) : null;
   }
 
-  public function currentReports(){
+  public function currentReports() {
     $event = Event::activeEvent();
     return $event ? $this->eventReports($event->id) : null;
   }
@@ -50,7 +54,11 @@ class User extends Authenticatable implements HasMedia {
         ->where('status', '=', '1');
   }
 
-  public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
+  public function memberships() {
+    return $this
+        ->belongsToMany(Membership::class, 'event_user')
+        ->withPivot('event_id', 'status');
+  }
 
   public function currentMembership() {
     if (!$this->currentEvent()) return null;
@@ -63,10 +71,25 @@ class User extends Authenticatable implements HasMedia {
     return $membership;
   }
 
+  public function eventVouchers($id) {
+
+    $membership = $this
+        ->memberships()
+        ->where('event_user.event_id', '=', $id)
+        ->where('event_user.status', '=', 3)
+        ->first();
+
+    return $membership ? $membership
+        ->vouchers()
+        ->where('event_id', '=', $id)
+        ->get()
+        : null;
+  }
+
   public function canAddReports() {
     if ($this->isAdmin() || $this->rank) return true;
 
-    if(!$this->checkAccessCount(Initial::getData()->max_report_count)) return false;
+    if (!$this->checkAccessCount(Initial::getData()->max_report_count)) return false;
 
     $membership = $this->currentMembership();
     //if ($membership->status != 3) return false;
@@ -84,9 +107,9 @@ class User extends Authenticatable implements HasMedia {
   public function currentEvent() {
     $event = Event::activeEvent();
     return $event ? $this
-            ->events()
-            ->where('event_id', '=', $event->id)
-            ->get()->first() : null;
+        ->events()
+        ->where('event_id', '=', $event->id)
+        ->get()->first() : null;
   }
 
   public static function speakers() {
@@ -119,7 +142,7 @@ class User extends Authenticatable implements HasMedia {
 
   public function registerMediaCollections() {
     $this
-        ->addMediaCollection('avatar')
+        ->addMediaCollection('avatars')
         ->useDisk('mediaFiles')
         ->singleFile();
   }
