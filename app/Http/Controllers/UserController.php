@@ -37,8 +37,8 @@ class UserController extends Controller {
     }
 
     $validator = Validator::make($request->all(), [
-        'job_title' => ['required', 'string'],
-        'company' => ['required', 'string'],
+//        'job_title' => ['required', 'string'],
+//        'company' => ['required', 'string'],
 //        'membership_id' => ['required', 'exists:memberships,id'],
         'degree_id' => ['sometimes','exists:degrees,id'],
     ]);
