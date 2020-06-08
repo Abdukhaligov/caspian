@@ -62,7 +62,11 @@
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
                 <a href="{{ route('speakers')."/".$user->id }}">
-                  {{ $user->getMedia('avatars')->first() }}
+                  @if($user->getFirstMedia('avatars'))
+                    {{ $user->getFirstMedia('avatars') }}
+                  @else
+                    <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
+                  @endif
                 </a>
                 <div class="stm-icon">
                   <ul>

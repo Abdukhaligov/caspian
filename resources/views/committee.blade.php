@@ -2,15 +2,17 @@
 
 @section('content')
   <style>
-    .stm-text{
+    .stm-text {
       padding: 10px !important;
       max-height: 130px;
       overflow: hidden;
     }
+
     .stm-text p {
       font-size: 13px !important;
       line-height: 20px !important;
     }
+
     .stm-text h5 {
       font-size: 17px;
       line-height: 20px !important;
@@ -20,24 +22,29 @@
       font-weight: normal;
       line-height: 20px !important;
     }
+
     .card p {
       font-size: 12px !important;
       line-height: 32px;
     }
-    .card h5{
-      font-size:  15px !important;
+
+    .card h5 {
+      font-size: 15px !important;
     }
 
     .col-md-2 .card h5 {
       font-size: 13px !important;
     }
+
     .col-md-2 .card h6 {
       font-size: 11px !important;
     }
+
     .col-md-2 .card p {
       font-size: 10px !important;
     }
-    .col-md-2 .card{
+
+    .col-md-2 .card {
       border: 0;
       background: #fff;
       box-shadow: 0px 6px 40px 0px rgba(0, 0, 0, 0.08);
@@ -45,7 +52,11 @@
       max-height: 145px;
       overflow: hidden;
       margin-bottom: 15px;
-         }
+    }
+
+    .second img {
+      max-height: 255px;
+    }
   </style>
   <!-- Hero Section-->
   <section class="inner-hero inner-hero2">
@@ -77,7 +88,11 @@
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
                 <a href="{{ route('speakers')."/".$user->id }}">
-                  {{ $user->getMedia('avatars')->first() }}
+                  @if($user->getFirstMedia('avatars'))
+                    {{ $user->getFirstMedia('avatars') }}
+                  @else
+                    <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
+                  @endif
                 </a>
                 <div class="stm-icon">
                   <ul>
@@ -103,10 +118,14 @@
       <div class="row col-md-12 m-auto">
         @foreach($data["users_2"] as $user)
           <div class="col-md-3">
-            <div class="single-team-member">
+            <div class="single-team-member second">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
                 <a href="{{ route('speakers')."/".$user->id }}">
-                  {{ $user->getMedia('avatar')->first() }}
+                  @if($user->getFirstMedia('avatars'))
+                    {{ $user->getFirstMedia('avatars') }}
+                  @else
+                    <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
+                  @endif
                 </a>
                 <div class="stm-icon">
                   <ul>

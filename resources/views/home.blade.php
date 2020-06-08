@@ -178,7 +178,7 @@
   </section>
   <!-- /About Section-->
   @if($data["event"])
-    @if($data["speakers"])
+    @if($data["speakers"]->count() > 0)
       <!-- Team Section-->
       <section class="our-team ot-inner">
         <div class="ot-top">
@@ -228,7 +228,7 @@
   @endif
 
 
-
+@if($data["sponsors"]->count() > 0)
   <section class="our-team ot-inner">
     <div class="ot-top">
       <span>WHO HELPS US</span>
@@ -241,7 +241,7 @@
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
                 <a>
-                  {{$sponsor->getMedia('avatar')->first()}}
+                  {{$sponsor->getFirstMedia('avatars')}}
                 </a>
                 <div class="stm-icon">
                   <ul>
@@ -266,7 +266,7 @@
       </div>
     </div>
   </section>
-
+@endif
 
   <!--- Partner Section -->
   <section class="partner partner2 partner3 sponsor">

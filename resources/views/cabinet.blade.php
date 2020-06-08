@@ -12,6 +12,7 @@
 
     .form-group img {
       width: 30%;
+      max-height: 200px;
     }
   </style>
 
@@ -102,7 +103,7 @@
           @if(session('pill'))
             @php $pill = session('pill') @endphp
           @else
-            @php $pill = "main" @endphp
+            @php $pill = "info" @endphp
           @endif
 
 
@@ -171,12 +172,14 @@
                 <form method="POST" action="{{ route('user_update') }}" enctype="multipart/form-data">
                   @csrf
 
-                  <div class="form-group cfdb1" id="profile">
+                  <div class="form-group cfdb1" id="profile" @if(!$data["user"]->avatar) style="display: none" @endif>
                     @if($data["user"]->avatar)
                       {{ $data["user"]->avatar }}
                     @else
-                      <img style="width: 30%"/>
+                      <img style="display: none"/>
                     @endif
+                    <button style="padding: 5px 15px;" type="button" id="removeAvatar" class="btn-danger">x</button>
+                    <input type="checkbox" name="isAvatarRemoved" id="isAvatarRemoved" style="display: none">
                   </div>
 
                   <div class="form-group cfdb1">
@@ -535,8 +538,16 @@
 
 @section('scripts')
   <script>
+    $("#removeAvatar").on('click', function () {
+      $('#profile').hide();
+      $('#isAvatarRemoved').prop('checked', true);
+    })
+
     $("#avatar").change(function () {
+      $('#isAvatarRemoved').prop('checked', false);
       $('#profile').show();
+      $('#profile img').show();
+
       if (this.files && this.files[0]) {
         var reader = new FileReader();
 

@@ -55,7 +55,13 @@ class UserController extends Controller {
     $user->job_title = $request->job_title;
     $user->company = $request->company;
 
-    $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+    if($request->isAvatarRemoved){
+      if($user->hasMedia('avatars')){
+        $user->getFirstMedia('avatars')->forceDelete();
+      }
+    }else{
+      $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+    }
 
     $user->save();
 

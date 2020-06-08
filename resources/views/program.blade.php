@@ -3,6 +3,9 @@
 @section('content')
 
   <style>
+    .ed-img img{
+      max-height: 255px;
+    }
     .ed-img h6 {
       font-size: 17px;
       font-weight: 500;
@@ -67,11 +70,11 @@
       <div class="row">
         <div class="col-md-12">
           <div class="event-schedule">
-            <nav style="max-width: 100%">
-              <div class="nav row nav-tabs nav-fill" id="nav-tab" role="tablist" style="width: 100%">
+            <nav>
+              <div class="nav row nav-tabs nav-fill" id="nav-tab" role="tablist" style="margin: 0;width: auto">
 
                 @if($data->days->count() > 6)
-                  <div class="swiper-container row">
+                  <div class="swiper-container row" style="padding: 0px 40px;">
                     <div class="swiper-wrapper">@endif
 
                       @foreach($data->days as $id => $day)
@@ -100,10 +103,10 @@
 
                       @if($data->days->count() > 6)</div>
 
-                    <div class="swiper-pagination"></div>
+{{--                    <div class="swiper-pagination"></div>--}}
                     <!-- Add Arrows -->
-{{--                    <div class="swiper-button-next"></div>--}}
-{{--                    <div class="swiper-button-prev"></div>--}}
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                   </div> @endif
 
               </div>
@@ -119,7 +122,12 @@
                         @if($event->attributes->user)
                           @php $user = \App\User::find($event->attributes->user);  @endphp
                           <div class="ed-img">
-                            {{ $user->getMedia('avatar')->first() }}
+                            @if($user->getFirstMedia('avatars'))
+                              {{ $user->getFirstMedia('avatars') }}
+                            @else
+                              <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
+                            @endif
+
                             <a href="{{ route('speakers')."/".$user->id }}">
                               <h5>{{$user->degree->name ?? ''}} {{$user->name}}</h5>
                             </a>
@@ -178,12 +186,16 @@
     var swiper = new Swiper('.swiper-container', {
       slidesPerView: 6,
       spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
       pagination: {
         el: '.swiper-pagination',
-        // nextEl: '.swiper-button-next',
-        // prevEl: '.swiper-button-prev',
         clickable: true,
       },
+
+
     });
 
     $('.program_day').click(function () {
