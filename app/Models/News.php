@@ -12,18 +12,12 @@ class News extends Model implements HasMedia {
 
   use HasTranslations;
   use HasMediaTrait;
+
   public $translatable = ['title', 'body'];
 
 
-
-  public function preview(){
-    if($this->getMedia('preview')->first() == null) return false;
-
-    return json_decode($this->getMedia('preview')->first());
-  }
-
-  public function minimumDescription(){
-    return substr($this->body,0,80)."...</p>";
+  public function minimumDescription() {
+    return substr($this->body, 0, 80) . "...</p>";
   }
 
   public function registerMediaConversions(Media $media = null) {
@@ -33,7 +27,9 @@ class News extends Model implements HasMedia {
   }
 
   public function registerMediaCollections() {
-    $this->addMediaCollection('preview')->singleFile()->useDisk('mediaFiles');
+    $this->addMediaCollection('preview')
+        ->useDisk('mediaFiles')
+        ->singleFile();
   }
 
 }

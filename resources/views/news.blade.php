@@ -29,9 +29,9 @@
             <div class="single-blog  wow fadeInUp" data-wow-delay=".4s">
               <a href="{{ route('news')."/".$news->id }}">
                 <div class="sb-img">
-                  @if($news->preview())
-                    <img src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}" alt="">
-                    @else
+                  @if($news->getFirstMedia('preview'))
+                    {{ $news->getFirstMedia('preview') }}
+                  @else
                     <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
                   @endif
                 </div>
@@ -52,11 +52,12 @@
       {!! $data["news"]->render() !!}
 
       <style>
-        .active{
+        .active {
           background-color: #1a41c9 !important;
           border: 1.5px solid #1a41c9 !important;
         }
-        .active a{
+
+        .active a {
           color: #fff !important;
         }
       </style>

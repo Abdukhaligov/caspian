@@ -3,9 +3,10 @@
 @section('content')
 
   <style>
-    .ed-img img{
+    .ed-img img {
       max-height: 255px;
     }
+
     .ed-img h6 {
       font-size: 17px;
       font-weight: 500;
@@ -103,8 +104,8 @@
 
                       @if($data->days->count() > 6)</div>
 
-{{--                    <div class="swiper-pagination"></div>--}}
-                    <!-- Add Arrows -->
+                  {{--                    <div class="swiper-pagination"></div>--}}
+                  <!-- Add Arrows -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                   </div> @endif
@@ -119,50 +120,41 @@
                   @foreach($day->events as $event_id => $event)
                     <div class="event-details">
                       @if($event->layout == "speaker")
-                        @if($event->attributes->user)
-                          @php $user = \App\User::find($event->attributes->user);  @endphp
+                        @if($event->user)
                           <div class="ed-img">
-                            @if($user->getFirstMedia('avatars'))
-                              {{ $user->getFirstMedia('avatars') }}
+                            @if($event->user->getFirstMedia('avatars'))
+                              {{ $event->user->getFirstMedia('avatars') }}
                             @else
                               <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
                             @endif
 
-                            <a href="{{ route('speakers')."/".$user->id }}">
-                              <h5>{{$user->degree->name ?? ''}} {{$user->name}}</h5>
+                            <a href="{{ route('speakers')."/".$event->user->id }}">
+                              <h5>{{$event->user->degree->name ?? ''}} {{$event->user->name}}</h5>
                             </a>
-                            <h6>{{$user->job_title}}</h6>
-                            <p>{{$user->company}}</p>
+                            <h6>{{$event->user->job_title}}</h6>
+                            <p>{{$event->user->company}}</p>
                           </div>
                         @else
                           <div class="ed-img">
-                            <img src="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->logo) }}"
+                            <img src="{{ $data->logoPath }}"
                                  alt="">
                           </div>
                         @endif
                       @else
-                        @if($event->attributes->pic)
-
-                          <div class="ed-img">
-                            <img src="{{ Storage::disk('public')->url($event->attributes->pic) }}" alt="">
-                          </div>
-                        @else
-                          <div class="ed-img">
-                            <img src="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->logo) }}"
-                                 alt="">
-                          </div>
-                        @endif
+                        <div class="ed-img">
+                          <img src="{{ Storage::disk('public')->url($event->pic) }}" alt="">
+                        </div>
                       @endif
                       <div class="ed-content">
-                        <h5>{{ $event->attributes->title }}</h5>
-                        {!! $event->attributes->description  !!}
+                        <h5>{{ $event->title }}</h5>
+                        {!! $event->description  !!}
                         <span>
                           <i class="fas fa-map-marker-alt"></i>
-                          {{ $event->attributes->address ?? $data->event["address"] }}
+                          {{ $event->address ?? $data->event["address"] }}
                         </span>
                         <span>
                           <i class="far fa-clock"></i>
-                          {{ date('H:i', strtotime($event->attributes->event_start)) }} - {{ date('H:i', strtotime($event->attributes->event_end)) }}
+                          {{ date('H:i', strtotime($event->event_start)) }} - {{ date('H:i', strtotime($event->event_end)) }}
                         </span>
                       </div>
                     </div>

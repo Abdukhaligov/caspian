@@ -23,7 +23,8 @@ class Initial extends Model {
 
     $routes = [
         [
-            "title" => App\Models\Pages\Home::first()->title,
+            //"title" => App\Models\Pages\Home::first()->title,
+            "title" => "Home",
             "link" => route('home'),
             "active" => Request::url() == route('home') ? true : false,
         ],
@@ -33,12 +34,14 @@ class Initial extends Model {
             "active" => Request::is('about*') ? true : false,
             "children" => [
                 [
-                    "title" => App\Models\Pages\AboutUs::first()->title,
+                    //"title" => App\Models\Pages\AboutUs::first()->title,
+                    "title" => "About Us",
                     "link" => route('about'),
                     "active" => Request::url() == route('about') ? true : false,
                 ],
                 [
-                    "title" => App\Models\Pages\Topics::first()->title,
+                    //"title" => App\Models\Pages\Topics::first()->title,
+                    "title" => "Topics",
                     "link" => route('topics'),
                     "active" => Request::url() == route('topics') ? true : false,
                 ],
@@ -48,7 +51,8 @@ class Initial extends Model {
                     "active" => Request::url() == route('committee') ? true : false,
                 ],
                 [
-                    "title" => App\Models\Pages\Speakers::first()->title,
+                    //"title" => App\Models\Pages\Speakers::first()->title,
+                    "title" => "Speakers",
                     "link" => route('speakers'),
                     "active" => Request::url() == route('speakers') ? true : false,
                 ],
@@ -65,7 +69,8 @@ class Initial extends Model {
             "link" => $registerUrl
         ],
         [
-            "title" => App\Models\Pages\News::first()->title,
+            //"title" => App\Models\Pages\News::first()->title,
+            "title" => "News",
             "link" => route('news'),
             "active" => Request::url() == route('news') ? true : false,
         ],
@@ -75,19 +80,22 @@ class Initial extends Model {
             "active" => Request::is('media*') ? true : false,
             "children" => [
                 [
-                    "title" => App\Models\Pages\Gallery::first()->title,
+                    //"title" => App\Models\Pages\Gallery::first()->title,
+                    "title" => "Gallery",
                     "link" => route('gallery'),
                     "active" => Request::url() == route('gallery') ? true : false,
                 ],
                 [
-                    "title" => App\Models\Pages\AbstractBook::first()->title,
+                    //"title" => App\Models\Pages\AbstractBook::first()->title,
+                    "title" => "Abstract Books",
                     "link" => route('abstractBook'),
                     "active" => Request::url() == route('abstractBook') ? true : false,
                 ],
             ]
         ],
         [
-            "title" => App\Models\Pages\Contacts::first()->title,
+            //"title" => App\Models\Pages\Contacts::first()->title,
+            "title" => "Contacts",
             "link" => route('contacts'),
             "active" => Request::url() == route('contacts') ? true : false,
         ],

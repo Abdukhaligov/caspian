@@ -203,22 +203,10 @@
                           class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
                           name="abstract_topic_id">
                     @foreach($data['topics'] as $topic)
-                      @if($topic->hasChildren == true )
-                        <option disabled>{{ $topic->name }}</option>
-                      @else
-                        <option
-                            @if(old('abstract_topic_id') == $topic->id ) selected
-                            @endif
-                            value="{{ $topic->id }}">{{ $topic->name }}
-                        </option>
-                      @endif
-                      @if($topic->hasChildren == true )
-                        @foreach($topic->children as $child)
-                          <option @if(old('abstract_topic_id') == $child->id ) selected @endif
-                          value="{{ $child->id }}">— {{ $child->name }}
-                          </option>
-                        @endforeach
-                      @endif
+                      <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                      @foreach($topic->children as $child)
+                        <option value="{{ $child->id }}">- {{ $child->name }}</option>
+                      @endforeach
                     @endforeach
                   </select>
                   @error('abstract_topic_id')

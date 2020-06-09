@@ -90,9 +90,11 @@ class RegisterController extends Controller {
   }
 
   public function showRegistrationForm() {
+    //45
     $data["references"] = Reference::all();
     $data["membership"] = Membership::all();
-    $data["topics"] = Topic::showTree();
+//    $data["topics"] = Topic::showTree();
+    $data["topics"] = Topic::where('parent_id','=',null)->with('children')->get();
     $data["event"] = Event::activeEvent() ?? "";
 
     return view('auth.register', compact('data'));

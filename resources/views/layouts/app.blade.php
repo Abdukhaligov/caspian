@@ -1,3 +1,5 @@
+<?php $data["initial"] = \App\Models\Pages\Initial::first();
+      $data["event"] = \App\Models\Event::activeEvent(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{ \App\Models\Pages\Initial::getData()->title }}</title>
+  <title>{{ $data["initial"]->title }}</title>
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -44,7 +46,7 @@
   <link rel="stylesheet" href="{{ asset('/eventdia/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/swiper.min.css') }}">
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->favicon) }}"
+  <link rel="shortcut icon" href="{{ Storage::disk('public')->url($data["initial"]->favicon) }}"
         type="image/png">
   <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
@@ -55,12 +57,14 @@
 </head>
 
 <style>
-  .loginButton{
-    float:left; margin-bottom: 0px;
+  .loginButton {
+    float: left;
+    margin-bottom: 0px;
     background-color: #B3B3B3 !important;
   }
-  .loginButton:hover{
-    background-color: #1a41c9!important;
+
+  .loginButton:hover {
+    background-color: #1a41c9 !important;
   }
 </style>
 <body>
@@ -86,7 +90,7 @@
           <h2 class="nav-brand">
             <a href="/" style="margin: 0; padding: 0">
               <img class="top-logo"
-                   src="{{ Storage::disk('public')->url(\App\Models\Pages\Initial::getData()->logo) }}">
+                   src="{{ Storage::disk('public')->url($data["initial"]->logo) }}">
             </a></h2>
           <!-- Sample menu definition -->
           <ul id="main-menu" class="sm sm-mint">
@@ -213,15 +217,13 @@
     </div>
     <div class="row">
 
-      @foreach(\App\Models\News::orderBy('created_at', 'desc')->limit(3)->get() as $news)
+      @foreach(\App\Models\News::orderBy('created_at', 'desc')->with('media')->limit(3)->get() as $news)
         <div class="col-md-4">
           <div class="single-blog wow fadeInUp" data-wow-delay=".4s">
             <a href="{{ route('news')."/".$news->id }}">
               <div class="sb-img">
-                @if($news->preview())
-                  <img
-                      src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}"
-                      alt="">
+                @if($news->getFirstMedia('preview'))
+                  {{ $news->getFirstMedia('preview') }}
                 @else
                   <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
                 @endif
@@ -264,13 +266,13 @@
           <div class="fb-text">
             {{--            <p> Copyright © 2020 eventdia ! All Rights Reserved By <a href="https://voidcoders.com/"--}}
             {{--                                                                      target="blank">VoidCoders</a></p>--}}
-            {!! \App\Models\Pages\Initial::getData()->copyright  !!}
+            {!! $data["initial"]->copyright  !!}
           </div>
           <div class="fb-s-icon">
             <ul>
               @php
                   @endphp
-              @foreach(json_decode(\App\Models\Pages\Initial::getData()->social_networks) as $network)
+              @foreach(json_decode($data["initial"]->social_networks) as $network)
                 <li>
                   <a href="{{ $network->attributes->link }}" target="_blank">
                     <i class="fab {{ $network->attributes->network }}"></i>
@@ -317,7 +319,6 @@
 <!-- Main Script -->
 <script src="{{ asset('/eventdia/js/theme.js') }}"></script>
 <script src="{{ asset('/js/swiper.min.js') }}"></script>
-
 
 
 @yield('scripts')
@@ -416,8 +417,8 @@
         var timeinterval = setInterval(updateClock, 1000);
       }
 
-      @if(\App\Models\Event::activeEvent())
-        var deadline = new Date("{{  \App\Models\Event::activeEvent()["date"] }}");
+          @if($data["event"])
+      var deadline = new Date("{{  $data["event"]["date"] }}");
       @endif
       initializeClock('clockdiv', deadline);
     }

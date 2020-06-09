@@ -7,6 +7,7 @@ use App\Mail\ContactUs;
 use App\Models\Event;
 use App\Models\Membership;
 use App\Models\Pages\AbstractBook;
+use App\Models\Pages\Initial;
 use App\Models\Pages\Program;
 use App\Models\Reference;
 use App\Models\Pages\AboutUs;
@@ -56,9 +57,13 @@ class PageController extends Controller {
   public function committee() {
     $data = Committee::first();
 
-    $data["users_1"] = User::where([['rank', '1'], ['show_on_site', true]])->get();
-    $data["users_2"] = User::where([['rank', '2'], ['show_on_site', true]])->get();
-    $data["users_3"] = User::where([['rank', '3'], ['show_on_site', true]])->get();
+    $committee = User::where([['rank', '!=' ,null], ['show_on_site', true]])
+        ->with('media')
+        ->with('degree')->get();
+
+    $data["users_1"] = $committee->where('rank', '1');
+    $data["users_2"] = $committee->where('rank', '2');
+    $data["users_3"] = $committee->where('rank', '3');
 
     return view('committee', compact('data'));
   }
@@ -66,9 +71,34 @@ class PageController extends Controller {
   public function program() {
     $data = Program::first();
     $data->event = Event::activeEvent();
+    $users = User::with('events')
+        ->whereHas('events',function ($q) use ($data){
+          return $q->where('event_id', $data->event->id);
+        })
+        ->with('media')
+        ->with('degree')
+        ->get();
 
     $data->days = $data->event->days();
 
+    foreach ($data->days as $day){
+      foreach ($day->events as $event){
+        $event->user = "test";
+        $event->key = $event->attributes->key ?? '';
+        if(isset($event->attributes->user)){
+          $event->user = $users->where('id','=', $event->attributes->user)->first() ?? '';
+        }elseif(isset($event->attributes->pic)){
+          $event->pic = $event->attributes->pic;
+        }else{
+          $event->pic = Initial::getData()->logo;
+        }
+        $event->title = $event->attributes->title ?? '';
+        $event->address = $event->attributes->address ?? '';
+        $event->event_end = $event->attributes->event_end ?? '';
+        $event->description = $event->attributes->description ?? '';
+        $event->event_start = $event->attributes->event_start ?? '';
+      }
+    }
 
     return view('program', compact('data'));
   }
@@ -101,7 +131,7 @@ class PageController extends Controller {
             ->get()
         : null;
 
-    $data["topics"] = Topic::showTree();
+    $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
 
     $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? null;
     $data["memberships"] = Membership::all();
@@ -144,23 +174,24 @@ class PageController extends Controller {
     $data["event"] = Event::activeEvent() ?? "";
 
     if ($data["event"]) {
-      $data["speakers"] = $data["event"]->speakers()->where('show_on_site', 1)->get();
+      $data["speakers"] = $data["event"]->speakers()->where('show_on_site', 1)->with('degree')->with('media')->get();
       if ($data["event"]) {
         $data["eventBanners"] = $data["event"]->getMedia('banners');
       }
     }
 
 
-    $data["sponsors"] = Sponsor::all();
-    $data["partnersGold"] = Partner::where('gold', 1)->get();
-    $data["partners"] = Partner::where('gold', 0)->get();
+    $data["sponsors"] = Sponsor::query()->with('degree')->with('media')->get();
+    $partners = Partner::with('media')->get();
+    $data["partnersGold"] = $partners->where('gold', '=', 1);
+    $data["partners"] = $partners->where('gold', '=', 0);
 
     return view('home', compact('data'));
   }
 
   public function news() {
     $data = News::first();
-    $data["news"] = \App\Models\News::orderBy('created_at', 'desc')->paginate(9);
+    $data["news"] = \App\Models\News::orderBy('created_at', 'desc')->with('media')->paginate(9);
 
     return view('news', compact('data'));
   }
@@ -169,13 +200,14 @@ class PageController extends Controller {
 
     $data = Speakers::first();
     $event = Event::activeEvent();
-    $data["speakers"] = User::speakers()->where('show_on_site', 1)->get();
+    $data["speakers"] = User::speakers()->where('show_on_site', 1)->with('degree')->with('media')->get();
 
     return view('speakers', compact('data'));
   }
 
   public function topics() {
     $data = Topics::first();
+    $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
 
     return view('topics', compact('data'));
   }

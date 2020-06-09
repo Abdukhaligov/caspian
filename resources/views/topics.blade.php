@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-md-12">
           <div id="accordion">
-            @foreach(\App\Models\Topic::showTree() as $topic)
+            @foreach($data["topics"]  as $topic)
               <div class="card ">
                 <div class="card-header">
                   <h4 class="card-header">

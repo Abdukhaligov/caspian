@@ -28,19 +28,19 @@
               <div class="single-blog">
                 <a href="#">
                   <div class="sb-img">
-                    @if($data["preview"])
-                      <img src="{{ Storage::disk('mediaFiles')->url($data["preview"]->id."/".$data["preview"]->file_name) }}" alt="">
+                    @if($data["news"]->getFirstMedia('preview'))
+                      {{ $data["news"]->getFirstMedia('preview') }}
                     @else
                       <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
                     @endif
                   </div>
                 </a>
                 <div class="sb-content sbc-details">
-                  <span>{{ date('M d, Y', strtotime($data["created_at"])) }}</span>
+                  <span>{{ date('M d, Y', strtotime($data["news"]->created_at)) }}</span>
                   <a href="#">
-                    <h2>{{ $data["title"] }}</h2>
+                    <h2>{{ $data["news"]->title }}</h2>
                   </a>
-                  {!! $data["description"] !!}
+                  {!! $data["news"]->description !!}
                 </div>
               </div>
 
@@ -97,12 +97,12 @@
 
             <div class="recent-post">
               <h4>Recent Posts</h4>
-              @foreach(\App\Models\News::orderBy('created_at', 'desc')->limit(5)->get() as $news)
+              @foreach($data["recentNews"] as $news)
                 <div class="single-recent-blog">
                   <div class="srb-img">
                     <a href="{{ route('news')."/".$news->id }}">
-                      @if($news->preview())
-                        <img src="{{ Storage::disk('mediaFiles')->url($news->preview()->id."/".$news->preview()->file_name) }}" alt="">
+                      @if($news->getFirstMedia('preview'))
+                        {{ $news->getFirstMedia('preview') }}
                       @else
                         <img src="{{ asset('eventdia/img/blog/blog-details'.rand(1,8).'.jpg') }}" alt="">
                       @endif
