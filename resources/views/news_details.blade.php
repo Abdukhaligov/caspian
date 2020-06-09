@@ -26,15 +26,13 @@
           <div class="row">
             <div class="col-md-12">
               <div class="single-blog">
-                <a href="#">
-                  <div class="sb-img">
-                    @if($data["news"]->getFirstMedia('preview'))
-                      {{ $data["news"]->getFirstMedia('preview') }}
-                    @else
-                      <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
-                    @endif
-                  </div>
-                </a>
+                <div class="sb-img">
+                  @if($data["news"]->getFirstMedia('preview'))
+                    {{ $data["news"]->getFirstMedia('preview') }}
+                  @else
+                    <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
+                  @endif
+                </div>
                 <div class="sb-content sbc-details">
                   <span>{{ date('M d, Y', strtotime($data["news"]->created_at)) }}</span>
                   <a href="#">

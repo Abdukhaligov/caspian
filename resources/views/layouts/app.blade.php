@@ -1,6 +1,6 @@
 <?php $data["initial"] = \App\Models\Pages\Initial::first();
-      $data["event"] = \App\Models\Event::activeEvent(); ?>
-<!DOCTYPE html>
+$data["event"] = \App\Models\Event::activeEvent(); ?>
+    <!DOCTYPE html>
 <html lang="en">
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -231,8 +231,9 @@
             </a>
             <div class="sb-content">
               <span>{{ date('M d, Y', strtotime($news->created_at)) }}</span>
-              <a href="{{ route('news')."/".$news->id }}"></a>
-              <h3>{{ $news->title }}</h3>
+              <a href="{{ route('news')."/".$news->id }}">
+                <h3>{{ $news->title }}</h3>
+              </a>
               {!! $news->minimumDescription() !!}
               <a href="{{ route('news')."/".$news->id }}">READ MORE</a>
             </div>
