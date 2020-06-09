@@ -24,7 +24,8 @@ class Report extends Resource {
   public function actions(Request $request) {
     return [
         (new DownloadExcel)
-            ->withHeadings(),
+            ->withHeadings()
+            ->allFields(),
     ];
   }
 

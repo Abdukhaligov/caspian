@@ -114,7 +114,11 @@ class Event extends Resource {
                         Select::make('User')->options(
                             function () use (&$request, &$field_action) {
                               if ($field_action == "update-fields") {
-                                return \App\Models\Event::findOrFail($request->resourceId)->usersForSelection();
+                                if(\App\Models\Event::find($request->resourceId)){
+                                  return \App\Models\Event::find($request->resourceId)->usersForSelection();
+                                }else{
+                                  return [];
+                                }
                               } else {
                                 return [];
                               }

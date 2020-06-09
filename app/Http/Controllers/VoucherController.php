@@ -13,7 +13,7 @@ class VoucherController extends Controller {
 
   public function index($id) {
     $user = Auth::user();
-    $voucher = Voucher::findOrFail($id);
+    $voucher = Voucher::find($id) ?? null;
     $membership = $user->currentMembership();
 
     if (!$voucher->uniq) {

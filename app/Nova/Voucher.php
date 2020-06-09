@@ -16,6 +16,13 @@ class Voucher extends Resource {
   public static $title = 'name';
   public static $search = ['id'];
 
+  public function filters(Request $request)
+  {
+    return [
+        new Filters\ReportEvent(),
+    ];
+  }
+
 
   public function fields(Request $request) {
     return [

@@ -172,6 +172,7 @@
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpword" />
       <path value="$PROJECT_DIR$/vendor/optimistdigital/nova-multiselect-field" />
       <path value="$PROJECT_DIR$/vendor/energon7/mapselect" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

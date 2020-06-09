@@ -13,7 +13,6 @@
           :data="availableResources"
           :clearable="field.nullable"
           trackBy="value"
-          searchBy="display"
           class="w-full"
         >
           <div slot="default" v-if="selectedResource" class="flex items-center">
@@ -36,7 +35,23 @@
               <img :src="option.avatar" class="w-8 h-8 rounded-full block" />
             </div>
 
-            {{ option.display }}
+            <div>
+              <div
+                class="text-sm font-semibold leading-5 text-90"
+                :class="{ 'text-white': selected }"
+              >
+                {{ option.display }}
+              </div>
+
+              <div
+                v-if="field.withSubtitles"
+                class="mt-1 text-xs font-semibold leading-5 text-80"
+                :class="{ 'text-white': selected }"
+              >
+                <span v-if="option.subtitle">{{ option.subtitle }}</span>
+                <span v-else>{{ __('No additional information...') }}</span>
+              </div>
+            </div>
           </div>
         </search-input>
 
@@ -53,7 +68,9 @@
           :selected="selectedResourceId"
           label="display"
         >
-          <option value="" selected :disabled="!field.nullable">&mdash;</option>
+          <option value="" selected :disabled="!field.nullable">{{
+            placeholder
+          }}</option>
         </select-control>
 
         <create-relation-button
@@ -82,7 +99,7 @@
         <checkbox-with-label
           :dusk="`${field.resourceName}-with-trashed-checkbox`"
           :checked="withTrashed"
-          @change="toggleWithTrashed"
+          @input="toggleWithTrashed"
         >
           {{ __('With Trashed') }}
         </checkbox-with-label>
@@ -134,6 +151,8 @@ export default {
   methods: {
     initializeComponent() {
       this.withTrashed = false
+
+      this.selectedResourceId = this.field.value
 
       // If a user is editing an existing resource with this relation
       // we'll have a belongsToId on the field, and we should prefill
@@ -352,11 +371,19 @@ export default {
 
     canShowNewRelationModal() {
       return (
+        this.field.showCreateRelationButton &&
         !this.shownViaNewRelationModal &&
         !this.isLocked &&
         !this.isReadonly &&
         this.authorizedToCreate
       )
+    },
+
+    /**
+     * Return the placeholder text for the field.
+     */
+    placeholder() {
+      return this.field.placeholder || this.__('—')
     },
   },
 }
