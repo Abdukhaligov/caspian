@@ -6,7 +6,7 @@ class PageCommitteeSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Committee\",\"ru\":\"Комитет\"}"
+        "title" => "Committee"
     ]];
 
     DB::table('page_committee')->insert($data);

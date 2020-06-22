@@ -13,11 +13,8 @@ class Gallery extends Model implements HasMedia {
 
   protected $table = 'page_gallery';
 
-  use HasMediaTrait;
-  use HasTranslations;
-  use HasFlexible;
+  use HasMediaTrait,HasFlexible;
 
-  public $translatable = ['title'];
 
   public function videos() {
     return $this->flexible('videos');

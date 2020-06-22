@@ -10,10 +10,7 @@ use Spatie\Translatable\HasTranslations;
 
 class News extends Model implements HasMedia {
 
-  use HasTranslations;
   use HasMediaTrait;
-
-  public $translatable = ['title', 'body'];
 
 
   public function minimumDescription() {

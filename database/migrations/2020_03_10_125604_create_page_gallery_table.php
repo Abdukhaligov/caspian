@@ -9,7 +9,7 @@ class CreatePageGalleryTable extends Migration {
   public function up() {
     Schema::create('page_gallery', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
+      $table->string('title');
       $table->json('videos')->nullable();
       $table->timestamps();
     });

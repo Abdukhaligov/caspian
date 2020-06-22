@@ -8,7 +8,5 @@ use Spatie\Translatable\HasTranslations;
 class Committee extends Model {
 
   protected $table = 'page_committee';
-  use HasTranslations;
-  public $translatable = ['title'];
 
 }

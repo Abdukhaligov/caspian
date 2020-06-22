@@ -6,7 +6,7 @@ class PageAbstractBook extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => json_encode(["en" => "Abstract Book", "ru" => "чтото"]),
+        "title" =>"Abstract Book",
     ]];
 
     DB::table('page_abstract_book')->insert($data);

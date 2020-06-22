@@ -9,7 +9,7 @@ class CreatePageProgramTable extends Migration {
   public function up() {
     Schema::create('page_program', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
+      $table->string('title');
       $table->timestamps();
     });
   }

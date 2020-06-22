@@ -8,7 +8,6 @@ use Spatie\Translatable\HasTranslations;
 class Speakers extends Model {
 
   protected $table = 'page_speakers';
-  use HasTranslations;
-  public $translatable = ['title'];
+
 
 }

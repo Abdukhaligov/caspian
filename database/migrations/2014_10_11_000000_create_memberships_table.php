@@ -9,7 +9,7 @@ class CreateMembershipsTable extends Migration {
   public function up() {
     Schema::create('memberships', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('name');
+      $table->string('name');
       $table->boolean('reporter')->default(false);
       $table->timestamps();
     });

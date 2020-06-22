@@ -6,7 +6,7 @@ class PageProgramSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Program\",\"ru\":\"Program\"}"
+        "title" => "Program"
     ]];
 
     DB::table('page_program')->insert($data);

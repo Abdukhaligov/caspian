@@ -6,7 +6,7 @@ class PageContactsSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Contact Us\",\"ru\":\"Контакты\"}",
+        "title" => "Contact Us",
         "phone" => '+994 55 122 22 22',
         "email" => 'hikmat.pou@gmail.com', 'address' => '12/A, Baku, Azerbaijan',
         "map" => "40.383269799151115,49.8958562217659",

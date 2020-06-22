@@ -6,7 +6,7 @@ class PageSpeakersSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Speakers\",\"ru\":\"Докладчики\"}"
+        "title" => "Speakers"
     ]];
 
     DB::table('page_speakers')->insert($data);

@@ -9,7 +9,7 @@ class CreatePageAbstractBookTable extends Migration {
   public function up() {
     Schema::create('page_abstract_book', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
+      $table->string('title');
       $table->json('books')->nullable();
       $table->timestamps();
     });

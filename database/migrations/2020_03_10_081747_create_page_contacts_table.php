@@ -9,7 +9,7 @@ class CreatePageContactsTable extends Migration {
   public function up() {
     Schema::create('page_contacts', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
+      $table->string('title');
       $table->string('phone')->nullable();
       $table->string('email')->nullable();
       $table->string('address')->nullable();

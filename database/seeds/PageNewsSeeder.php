@@ -6,7 +6,7 @@ class PageNewsSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"News\",\"ru\":\"Новости\"}"
+        "title" => "News"
     ]];
 
     DB::table('page_news')->insert($data);

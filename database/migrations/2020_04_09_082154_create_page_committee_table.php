@@ -9,7 +9,7 @@ class CreatePageCommitteeTable extends Migration {
   public function up() {
     Schema::create('page_committee', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
+      $table->string('title');
       $table->timestamps();
     });
   }

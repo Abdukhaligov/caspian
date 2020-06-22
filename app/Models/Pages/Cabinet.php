@@ -8,7 +8,5 @@ use Spatie\Translatable\HasTranslations;
 class Cabinet extends Model {
 
   protected $table = 'page_cabinet';
-  use HasTranslations;
-  public $translatable = ['title'];
 
 }

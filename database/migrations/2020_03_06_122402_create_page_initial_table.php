@@ -9,7 +9,7 @@ class CreatePageInitialTable extends Migration {
   public function up() {
     Schema::create('page_initial', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
+      $table->string('title');
       $table->string('favicon');
       $table->string('phone');
       $table->string('email');

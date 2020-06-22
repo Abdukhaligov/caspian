@@ -7,12 +7,12 @@ class MembershipSeeder extends Seeder {
   public function run() {
 
     $memberships = [
-        ["name" => "{\"en\":\"Speaker\",\"ru\":\"устное выступление\"}", "reporter" => true],
-        ["name" => "{\"en\":\"Poster\",\"ru\":\"постерное выступление\"}", "reporter" => true],
-        ["name" => "{\"en\":\"Listener\",\"ru\":\"слушатель\"}", "reporter" => false],
-        ["name" => "{\"en\":\"Media\",\"ru\":\"пресса\"}", "reporter" => false],
-        ["name" => "{\"en\":\"Accompanying\",\"ru\":\"пресса\"}", "reporter" => false],
-        ["name" => "{\"en\":\"Guest\",\"ru\":\"гость\"}", "reporter" => false],
+        ["name" => "Speaker", "reporter" => true],
+        ["name" => "Poster", "reporter" => true],
+        ["name" => "Listener", "reporter" => false],
+        ["name" => "Media", "reporter" => false],
+        ["name" => "Accompanying", "reporter" => false],
+        ["name" => "Guest", "reporter" => false],
     ];
 
     DB::table('memberships')->insert($memberships);

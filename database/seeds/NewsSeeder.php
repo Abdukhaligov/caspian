@@ -9,8 +9,8 @@ class NewsSeeder extends Seeder {
     $data = [];
     for ($i = 0; $i < 55; $i++) {
       $data [] = [
-          "title" => "{\"en\":\"".$faker->sentence."\",\"ru\":\"".$faker->sentence."\"}",
-          "body" => "{\"en\":\"".$faker->paragraph(45)."\",\"ru\":\"".$faker->paragraph(45)."\"}",
+          "title" => $faker->sentence,
+          "body" => $faker->paragraph(45),
           "created_at" => $faker->dateTimeBetween("-50 days", "now")
       ];
     }

@@ -6,7 +6,7 @@ class PageInitialSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Title\",\"ru\":\"Заголовок\"}",
+        "title" => "Title",
         "phone" => "+994 70 226 26 26",
         "email" => "test@mail.ru",
         "copyright" => "Copyright test@mail.ru Caspian - 2020",

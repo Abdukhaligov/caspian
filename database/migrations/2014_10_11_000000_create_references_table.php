@@ -9,7 +9,7 @@ class CreateReferencesTable extends Migration {
   public function up() {
     Schema::create('references', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('name');
+      $table->string('name');
     });
   }
 

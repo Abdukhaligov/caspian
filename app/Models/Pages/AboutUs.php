@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 class AboutUs extends Model {
-
   protected $table = 'page_about_us';
-  use HasTranslations;
-  public $translatable = ['title','body'];
 
 }

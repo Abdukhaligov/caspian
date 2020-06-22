@@ -9,8 +9,8 @@ class CreatePageAboutUsTable extends Migration {
   public function up() {
     Schema::create('page_about_us', function (Blueprint $table) {
       $table->increments('id');
-      $table->json('title');
-      $table->json('body');
+      $table->string('title');
+      $table->text('body');
 //      $table->json('team')->nullable();
       $table->timestamps();
     });

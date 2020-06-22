@@ -6,7 +6,7 @@ class PageCabinetSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Personal Cabinet\",\"ru\":\"Личный Кабинет\"}"
+        "title" => "Personal Cabinet"
     ]];
 
     DB::table('page_cabinet')->insert($data);

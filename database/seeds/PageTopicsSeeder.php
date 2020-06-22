@@ -6,7 +6,7 @@ class PageTopicsSeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Topics\",\"ru\":\"Темы\"}"
+        "title" => "Topics"
     ]];
 
     DB::table('page_topics')->insert($data);
