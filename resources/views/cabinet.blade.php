@@ -271,7 +271,7 @@
                  aria-labelledby="pills-events-tab">
               <div class="contact-information" style="margin-top: 10px;">
 
-                @if($data["events"]->count() > 0)
+                @if($data["events"] && $data["events"]->count() > 0)
                   <section class="faq" style="margin-top: 0;">
                     <div id="accordion">
                       <div class="card ">
