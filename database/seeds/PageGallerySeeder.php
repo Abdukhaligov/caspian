@@ -6,7 +6,7 @@ class PageGallerySeeder extends Seeder {
 
   public function run() {
     $data = [[
-        "title" => "{\"en\":\"Our gallery\",\"ru\":\"Наша Галлерея\"}"
+        "title" => "Our gallery"
     ]];
 
     DB::table('page_gallery')->insert($data);

@@ -57,7 +57,8 @@
     </div>
     <div class="container">
       <div class="row">
-        @foreach($data["speakers"] as $user)
+        @if($data["speakers"])
+          @foreach($data["speakers"] as $user)
           <div class="col-md-3">
             <div class="single-team-member">
               <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
@@ -88,6 +89,7 @@
             </div>
           </div>
         @endforeach
+        @endif
       </div>
     </div>
   </section>
