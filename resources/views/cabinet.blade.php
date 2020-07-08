@@ -5,9 +5,10 @@
     .badge {
       display: block;
       float: left;
-      font-size: 14px;
-      margin-top: 4px;
-      margin-right: 10px;
+      font-size: 11px;
+      margin-top: 5px;
+      margin-right: 4px;
+      font-weight: 100;
     }
 
     .form-group img {
@@ -290,7 +291,7 @@
                             @foreach($data["events"] as $event)
                               @php
                                 switch ($event->pivot->status){
-                                  case 1: $status = "Pending"; break;
+                                  case 1: $status = "In progress"; break;
                                   case 2: $status = "Denied"; break;
                                   default: $status = "Approved";}
                               @endphp
@@ -315,7 +316,7 @@
                                         @foreach($event->userReports(Auth::user()->id) as $report)
                                           @php
                                             switch ($report->status){
-                                              case 1: $report->status = "Pending"; break;
+                                              case 1: $report->status = "In progress"; break;
                                               case 2: $report->status = "Denied"; break;
                                               default: $report->status = "Approved";}
                                           @endphp
@@ -346,7 +347,7 @@
                 @if($data["user"]->currentMembership)
                   @php $currentMembership = $data["user"]->currentMembership;
                       switch ($currentMembership->status){
-                        case 1: $status = "Pending"; break;
+                        case 1: $status = "In progress"; break;
                         case 2: $status = "Denied"; break;
                         default: $status = "Approved";
                       }
@@ -463,7 +464,7 @@
                       <div class="nav-item" style="right: 20px;position: absolute;">
                         @if($report->status == 1)
                           <div class="badge badge-primary">
-                            Pending
+                            In progress
                           </div>
                           <button type="button" class="btn btn-danger btn-sm"
                                   data-toggle="modal" data-target="#removeReport">X

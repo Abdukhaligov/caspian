@@ -62,14 +62,14 @@ class Report extends Resource {
             ->size('w-1/2'),
 
         Select::make('Status')->options([
-            1 => 'Pending',
+            1 => 'In progress',
             2 => 'Deny',
             3 => 'Approve',
         ])
             ->displayUsing(function ($q){
               switch ($q){
                 case 1:
-                  return "Pending";
+                  return "In progress";
                   break;
                 case 2:
                   return "Denied";

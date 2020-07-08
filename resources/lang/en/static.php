@@ -26,6 +26,7 @@ return array (
     'member_as' => 'Participation',
     'degree' => 'Degree',
     'region' => 'Region',
+    'country' => 'Country',
     'account_details' => 'Account Details',
     'user_update' => 'Update Details',
     'password_update' => 'Update Password',

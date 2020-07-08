@@ -95,7 +95,7 @@
                 @enderror
               </div>
               <div class="form-group cfdb1" style="float:left; width: 22%;">
-                <label for="region" class="col-form-label text-md-right">{{ __('static.region') }}</label>
+                <label for="region" class="col-form-label text-md-right">{{ __('static.country') }}</label>
                 <select style="height: 52px;font-size: 14px;"
                         class="selectpicker form-control cp1 @error('region') is-invalid @enderror"
                         name="region_id" id="region">
@@ -234,10 +234,13 @@
                 </div>
               </div>
               @endif
+              <div><a href="http://google.com" target="_blank">* Получение виз</a></div>
+
               <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
               <div class="col-md-12 text-center">
                 <div class="cf-msg"></div>
               </div>
+
             </form>
           </div>
         </div>
