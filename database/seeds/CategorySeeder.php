@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class CategorySeeder extends Seeder
 {
@@ -9,11 +10,11 @@ class CategorySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        \App\Models\Category::create(array("name" => "ЭТНОС"));
-        \App\Models\Category::create(array("name" => "ЭКОНОМИКА"));
-        \App\Models\Category::create(array("name" => "ЭНЕРГЕТИКА"));
-        \App\Models\Category::create(array("name" => "ЭКОЛОГИЯ"));
+        \App\Models\Category::create(array("name" => "ЭТНОС", "description" => $faker->paragraph(3)));
+        \App\Models\Category::create(array("name" => "ЭКОНОМИКА", "description" => $faker->paragraph(3)));
+        \App\Models\Category::create(array("name" => "ЭНЕРГЕТИКА", "description" => $faker->paragraph(3)));
+        \App\Models\Category::create(array("name" => "ЭКОЛОГИЯ", "description" => $faker->paragraph(3)));
     }
 }

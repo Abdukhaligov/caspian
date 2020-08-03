@@ -51,6 +51,8 @@ Route::group(['middleware' => ['locale']], function () {
     Route::post('/user/edit/membership', 'UserController@updateMembership')->name('user_update_membership');
     Route::post('/user/edit/password', 'UserController@updatePassword')->name('user_update_password');
 
+    Route::get('/categories/{categoryId}/topics', 'PageController@topics')->name('category_topics');
+
   });
 
 });

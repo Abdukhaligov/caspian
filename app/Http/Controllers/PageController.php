@@ -29,6 +29,7 @@ use Auth;
 use DB;
 use Mail;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Request;
 use Storage;
 
 
@@ -208,13 +209,15 @@ class PageController extends Controller {
     return view('speakers', compact('data'));
   }
 
-  public function topics() {
+  public function topics($id = null) {
     $data = Topics::first();
-    $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
     $data["categories"] = Category::all();
-
+    if ($id) $data["topics"] = Category::find($id)->topics()->with('children')->get();
 
     return view('topics', compact('data'));
   }
+
+
+
 
 }

@@ -3,11 +3,13 @@
 namespace App\Nova;
 
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Category extends Resource
@@ -24,6 +26,8 @@ class Category extends Resource
         return [
             ID::make()->sortable(),
             Text::make("Name"),
+            Textarea::make("Description"),
+            Media::make('Image'),
             HasMany::make("Topics")
         ];
     }
