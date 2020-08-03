@@ -211,6 +211,8 @@ class PageController extends Controller {
   public function topics() {
     $data = Topics::first();
     $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
+    $data["categories"] = Category::all();
+
 
     return view('topics', compact('data'));
   }

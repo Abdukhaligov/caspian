@@ -65,6 +65,40 @@ class UserController extends Controller {
 
     $user->save();
 
+    if (isset($request["membership_id"])){
+      $event = Event::activeEvent();
+      if(!$event) return redirect()->back();
+
+
+      $reports = $user->reports()->where('event_id', $event->id)->get();
+
+      foreach ($reports as $report) {
+        if($report->status != 2){
+          $report->status = 2;
+          $report->save();
+        }
+      }
+
+      $validator = Validator::make($request->all(), [
+          'membership_id' => ['required', 'exists:memberships,id'],
+      ]);
+
+      if ($validator->fails()) {
+        return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->with('pill', 'events')
+            ->withInput();
+      }
+
+      if($user->currentEvent()) {
+        $user->events()->updateExistingPivot($event->id, ["membership_id" => $request->membership_id, "status" => 1]);
+      }else{
+        $user->events()->attach($event->id, ["membership_id" => $request->membership_id]);
+      }
+
+    }
+
     if($user->email){
       Mail::to($user->email)->send(new AccountDetailsChange($user));
     }
@@ -83,46 +117,6 @@ class UserController extends Controller {
 
   }
 
-  public function updateMembership(Request $request){
-    $event = Event::activeEvent();
-    if(!$event) return redirect()->back();
-
-    $user = Auth::user();
-
-    $reports = $user->reports()->where('event_id', $event->id)->get();
-
-    foreach ($reports as $report) {
-      if($report->status != 2){
-        $report->status = 2;
-        $report->save();
-      }
-    }
-
-    $validator = Validator::make($request->all(), [
-        'membership_id' => ['required', 'exists:memberships,id'],
-    ]);
-
-    if ($validator->fails()) {
-      return redirect()
-          ->back()
-          ->withErrors($validator)
-          ->with('pill', 'events')
-          ->withInput();
-    }
-
-    if($user->currentEvent()) {
-      $user->events()->updateExistingPivot($event->id, ["membership_id" => $request->membership_id, "status" => 1]);
-    }else{
-      $user->events()->attach($event->id, ["membership_id" => $request->membership_id]);
-    }
-
-
-
-
-    //Mail::to($user->email)->send(new AccountDetailsChange($user));
-
-    return redirect()->back();
-  }
 
   public function updatePassword(Request $request){
 

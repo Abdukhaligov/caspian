@@ -143,12 +143,6 @@
                  aria-controls="pills-links" aria-selected="false">My invintations</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link @if($pill == "events") active @endif" id="pills-events-tab"
-                 data-toggle="pill"
-                 href="#pills-events" role="tab"
-                 aria-controls="pills-events" aria-selected="false">Events</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link @if($pill == "abstracts") active @endif" id="pills-abstracts-tab"
                  data-toggle="pill"
                  href="#pills-abstracts" role="tab"
@@ -164,6 +158,7 @@
               <div class="contact-information" style="margin-top: 10px;">
                 <form method="POST" action="{{ route('user_update') }}" enctype="multipart/form-data">
                   @csrf
+
                   <div class="form-group cfdb1" id="profile"
                        @if(!$data["user"]->avatar) style="display: none" @endif>
                     @if($data["user"]->avatar)
@@ -259,6 +254,164 @@
                           role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                   </div>
+
+
+                  @if($data["user"]->currentMembership)
+                    @php $currentMembership = $data["user"]->currentMembership;
+                      switch ($currentMembership->status){
+                        case 1: $status = "In progress"; break;
+                        case 2: $status = "Denied"; break;
+                        default: $status = "Approved";
+                      }
+                    @endphp
+                    Your participation in current Event is: {{ $currentMembership->name }}
+                    ({{ $status }}) <br>
+                    Do u wanna change your participation ? <br>
+                      <div class="form-group cfdb1">
+                        <label for="membership_id"
+                               class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                        <select style="height: 52px;font-size: 14px;"
+                                class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                                name="membership_id" id="membership_id"
+                                autocomplete="membership_id">
+                          <option disabled selected>Select</option>
+                          <option disabled>Reporter</option>
+                          @foreach($data['memberships'] as $membership)
+                            <option
+                                value="{{ $membership->id }}"
+                                @if($currentMembership->id == $membership->id ?? '') selected @endif>
+
+                              @if($membership->reporter == true )
+                                - {{ $membership->name }}
+                              @else
+                                {{ $membership->name }}
+                              @endif
+                            </option>
+                          @endforeach
+                        </select>
+                        @error('membership_id')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        @enderror
+                        <span>
+                        <strong>
+                          If you change your participation, all your current reports will be denied
+                        </strong>
+                      </span>
+                      </div>
+                      <div class="col-md-12 text-center">
+                        <div class="cf-msg"></div>
+                      </div>
+
+                  @elseif($data["event"])
+                    You have no participation in Active Event <br>
+                    Do u wanna join to event ?
+                    <div class="form-group cfdb1">
+                      <label for="membership_id"
+                             class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
+                      <select style="height: 52px;font-size: 14px;"
+                              class="form-control cp1 @error('membership_id') is-invalid @enderror"
+                              name="membership_id" id="membership_id"
+                              autocomplete="membership_id">
+                        <option disabled selected>Select</option>
+                        <option disabled>Reporter</option>
+                        @foreach($data['memberships'] as $membership)
+                          <option
+                              value="{{ $membership->id }}">
+
+                            @if($membership->reporter == true )
+                              - {{ $membership->name }}
+                            @else
+                              {{ $membership->name }}
+                            @endif
+                          </option>
+                        @endforeach
+                      </select>
+                      @error('membership_id')
+                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                      @enderror
+                      {{--                      <span><strong>If you change</strong></span>--}}
+                    </div>
+
+                  @endif
+
+                  @if($data["events"] && $data["events"]->count() > 0)
+                    <section class="faq" style="margin-top: 0;">
+                      <div id="accordion">
+                        <div class="card ">
+                          <div class="card-header">
+                            <h4 class="card-header">
+                              <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                 data-parent="#accordion"
+                                 href="#collapseHistory" aria-expanded="false">
+                                History
+                                <i class="fas fa-minus-circle faq-icon"></i>
+                                <i class="fas fa-plus-circle"></i></a>
+                            </h4>
+                          </div>
+                          <div id="collapseHistory" class="panel-collapse in collapse" style="">
+                            <div class="card-block">
+                              <p>
+                              @foreach($data["events"] as $event)
+                                @php
+                                  switch ($event->pivot->status){
+                                    case 1: $status = "In progress"; break;
+                                    case 2: $status = "Denied"; break;
+                                    default: $status = "Approved";}
+                                @endphp
+                                <p>Event: {{ $event->name }}</p>
+                                <p>Member
+                                  As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
+                                <p>Status: {{ $status }}</p>
+                                @if($event->userReports(Auth::user()->id)->count() > 0)
+                                  <div id="accordion">
+                                    <div class="card">
+                                      <div class="card-header">
+                                        <h4 class="card-header">
+                                          <a class="accordion-toggle collapsed"
+                                             data-toggle="collapse"
+                                             data-parent="#accordion"
+                                             href="#collapse{{$event->id}}"
+                                             aria-expanded="false">
+                                            Reports
+                                            <i class="fas fa-minus-circle faq-icon"></i>
+                                            <i class="fas fa-plus-circle"></i></a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapse{{$event->id}}"
+                                           class="panel-collapse collapse in">
+                                        <div class="card-block">
+                                          @foreach($event->userReports(Auth::user()->id) as $report)
+                                            @php
+                                              switch ($report->status){
+                                                case 1: $report->status = "In progress"; break;
+                                                case 2: $report->status = "Denied"; break;
+                                                default: $report->status = "Approved";}
+                                            @endphp
+                                            <p>Name: {{ $report->name }}</p>
+                                            <p>
+                                              Topic: {{ $report->topic->name }}</p>
+                                            <p>Status: {{ $report->status }}</p>
+                                            @if($report->file)
+                                              <p>File: <a target="_blank"
+                                                          href="{{ Storage::disk('reports')->url($report->file) }}">Download</a>
+                                              </p>
+                                            @endif
+                                          @endforeach
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
+                                <br>
+                                @endforeach
+                                </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  @endif
+
                   <button style="margin-top: 15px"
                           type="submit">{{ __('static.user_update') }}</button>
                   <div class="col-md-12 text-center">
@@ -328,181 +481,6 @@
                   <strong>{{$voucher->name}}</strong>: <a href="{{ route('vouchers',$voucher->id) }}"
                                                           target="_blank">Download</a></br>
                 @endforeach
-              </div>
-            </div>
-            <div class="tab-pane fade @if($pill == "events") show active @endif" id="pills-events"
-                 role="tabpanel"
-                 aria-labelledby="pills-events-tab">
-              <div class="contact-information" style="margin-top: 10px;">
-
-                @if($data["events"] && $data["events"]->count() > 0)
-                  <section class="faq" style="margin-top: 0;">
-                    <div id="accordion">
-                      <div class="card ">
-                        <div class="card-header">
-                          <h4 class="card-header">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse"
-                               data-parent="#accordion"
-                               href="#collapseHistory" aria-expanded="false">
-                              History
-                              <i class="fas fa-minus-circle faq-icon"></i>
-                              <i class="fas fa-plus-circle"></i></a>
-                          </h4>
-                        </div>
-                        <div id="collapseHistory" class="panel-collapse in collapse" style="">
-                          <div class="card-block">
-                            <p>
-                            @foreach($data["events"] as $event)
-                              @php
-                                switch ($event->pivot->status){
-                                  case 1: $status = "In progress"; break;
-                                  case 2: $status = "Denied"; break;
-                                  default: $status = "Approved";}
-                              @endphp
-                              <p>Event: {{ $event->name }}</p>
-                              <p>Member
-                                As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
-                              <p>Status: {{ $status }}</p>
-                              @if($event->userReports(Auth::user()->id)->count() > 0)
-                                <div id="accordion">
-                                  <div class="card">
-                                    <div class="card-header">
-                                      <h4 class="card-header">
-                                        <a class="accordion-toggle collapsed"
-                                           data-toggle="collapse"
-                                           data-parent="#accordion"
-                                           href="#collapse{{$event->id}}"
-                                           aria-expanded="false">
-                                          Reports
-                                          <i class="fas fa-minus-circle faq-icon"></i>
-                                          <i class="fas fa-plus-circle"></i></a>
-                                      </h4>
-                                    </div>
-                                    <div id="collapse{{$event->id}}"
-                                         class="panel-collapse collapse in">
-                                      <div class="card-block">
-                                        @foreach($event->userReports(Auth::user()->id) as $report)
-                                          @php
-                                            switch ($report->status){
-                                              case 1: $report->status = "In progress"; break;
-                                              case 2: $report->status = "Denied"; break;
-                                              default: $report->status = "Approved";}
-                                          @endphp
-                                          <p>Name: {{ $report->name }}</p>
-                                          <p>
-                                            Topic: {{ $report->topic->name }}</p>
-                                          <p>Status: {{ $report->status }}</p>
-                                          @if($report->file)
-                                            <p>File: <a target="_blank"
-                                                        href="{{ Storage::disk('reports')->url($report->file) }}">Download</a>
-                                            </p>
-                                          @endif
-                                        @endforeach
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              @endif
-                              <br>
-                              @endforeach
-                              </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                @endif
-
-                @if($data["user"]->currentMembership)
-                  @php $currentMembership = $data["user"]->currentMembership;
-                      switch ($currentMembership->status){
-                        case 1: $status = "In progress"; break;
-                        case 2: $status = "Denied"; break;
-                        default: $status = "Approved";
-                      }
-                  @endphp
-                  Your participation in current Event is: {{ $currentMembership->name }}
-                  ({{ $status }}) <br>
-                  Do u wanna change your participation ? <br>
-                  <form method="POST" action="{{ route('user_update_membership') }}">
-                    @csrf
-                    <div class="form-group cfdb1">
-                      <label for="membership_id"
-                             class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                      <select style="height: 52px;font-size: 14px;"
-                              class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                              name="membership_id" id="membership_id"
-                              autocomplete="membership_id">
-                        <option disabled selected>Select</option>
-                        <option disabled>Reporter</option>
-                        @foreach($data['memberships'] as $membership)
-                          <option
-                            value="{{ $membership->id }}"
-                            @if($currentMembership->id == $membership->id ?? '') selected @endif>
-
-                            @if($membership->reporter == true )
-                              - {{ $membership->name }}
-                            @else
-                              {{ $membership->name }}
-                            @endif
-                          </option>
-                        @endforeach
-                      </select>
-                      @error('membership_id')
-                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                      @enderror
-                      <span>
-                        <strong>
-                          If you change your participation, all your current reports will be denied
-                        </strong>
-                      </span>
-                    </div>
-                    <button style="margin-top: 15px"
-                            type="submit">{{ __('static.user_update') }}</button>
-                    <div class="col-md-12 text-center">
-                      <div class="cf-msg"></div>
-                    </div>
-                  </form>
-                @elseif($data["event"])
-                  You have no participation in Active Event <br>
-                  Do u wanna join to event ?
-                  <form method="POST" action="{{ route('user_update_membership') }}">
-                    @csrf
-                    <div class="form-group cfdb1">
-                      <label for="membership_id"
-                             class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                      <select style="height: 52px;font-size: 14px;"
-                              class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                              name="membership_id" id="membership_id"
-                              autocomplete="membership_id">
-                        <option disabled selected>Select</option>
-                        <option disabled>Reporter</option>
-                        @foreach($data['memberships'] as $membership)
-                          <option
-                            value="{{ $membership->id }}">
-
-                            @if($membership->reporter == true )
-                              - {{ $membership->name }}
-                            @else
-                              {{ $membership->name }}
-                            @endif
-                          </option>
-                        @endforeach
-                      </select>
-                      @error('membership_id')
-                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                      @enderror
-                      {{--                      <span><strong>If you change</strong></span>--}}
-                    </div>
-                    <button style="margin-top: 15px"
-                            type="submit">{{ __('static.membership_update') }}</button>
-                    <div class="col-md-12 text-center">
-                      <div class="cf-msg"></div>
-                    </div>
-                  </form>
-                @endif
-
-
               </div>
             </div>
             <div class="tab-pane fade @if($pill == "abstracts") show active @endif" id="pills-abstracts"
