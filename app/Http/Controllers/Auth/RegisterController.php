@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Mail\WelcomeMail;
+use App\Models\Category;
 use App\Models\Event;
 use App\Models\Reference;
 use App\Models\Membership;
@@ -93,7 +94,7 @@ class RegisterController extends Controller {
     //45
     $data["references"] = Reference::all();
     $data["membership"] = Membership::all();
-//    $data["topics"] = Topic::showTree();
+    $data["categories"] = Category::all();
     $data["topics"] = Topic::where('parent_id','=',null)->with('children')->get();
     $data["event"] = Event::activeEvent() ?? "";
 

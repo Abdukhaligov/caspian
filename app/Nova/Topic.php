@@ -4,6 +4,8 @@ namespace App\Nova;
 
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
@@ -23,11 +25,24 @@ class Topic extends Resource {
             ->sortable()
             ->size('w-1/2'),
         Select::make('Parent Topic','parent_id')
-            ->options(Topic::pluck('name', 'id'))
+            ->options(function (){
+                $result = array();
+                $topics = \App\Models\Topic::where('parent_id', '=', null)->pluck('name', 'id');
+                foreach ($topics as $id => $topic){
+                    $result[$id] = $topic;
+                    $subtopics = \App\Models\Topic::where('parent_id', '=', $id)->pluck('name', 'id');
+                    foreach ($subtopics as $keySub => $topicSub){
+                        $result[$keySub] = " - ".$topicSub;
+                    }
+                }
+                return $result;
+            })
             ->nullable(true)
             ->size('w-1/2'),
 
         NovaTinyMCE::make('Description'),
+
+        BelongsTo::make('Category'),
 
         HasMany::make('Topics', 'children'),
         HasMany::make('Reports'),

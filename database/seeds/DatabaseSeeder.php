@@ -5,12 +5,12 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder {
 
   public function run() {
+    $this->call(CategorySeeder::class);
     $this->call(ReferenceSeeder::class);
     $this->call(MembershipSeeder::class);
     $this->call(RegionSeeder::class);
     $this->call(DegreeSeeder::class);
     $this->call(TopicSeeder::class);
-    factory(\App\Models\Topic::class, 12)->create();
 
     $this->call(UserSeeder::class);
     factory(\App\User::class, 2)->create(["rank" => '1']);

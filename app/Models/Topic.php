@@ -4,9 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static where(string $string, string $string1, $null)
+ * @method static pluck(string $string, string $string1)
+ * @method static create(array $array)
+ */
 class Topic extends Model {
 
   public function parent() { return $this->belongsTo(Topic::class); }
+
+  public function category() { return $this->belongsTo(Category::class); }
 
   public function children() { return $this->hasMany(Topic::class, 'parent_id'); }
 

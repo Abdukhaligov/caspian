@@ -39,6 +39,11 @@
               <p>email@yoursite.com</p>
             </div>
             <div class="single-contact-details">
+              <h5>Visa policy:</h5>
+                <p><a href="https://www.mfa.gov.az/en">Republic of Azerbaijan Ministry of Foreign Affairs</a></p>
+                <p><a href="https://www.azerbaijantourism.az/visa">Visa to Azerbaijan</a></p>
+            </div>
+            <div class="single-contact-details">
               <h5>Address:</h5>
               <p>27 Division St, New York, NY 10002</p>
               <p>United States</p>
@@ -197,15 +202,27 @@
                 @enderror
               </div>
               <div style="display: none" id="abstractForm">
-                <div class="form-group cfdb1">
+                  <div class="form-group cfdb1">
+                      <label for="abstract_category_id" class="col-form-label">Category</label>
+                      <select style="height: 52px;font-size: 14px;"
+                              class="form-control cp1"
+                              id="abstract_category_id">
+                          @foreach($data['categories'] as $category)
+                              <option value="{{ $category->id }}">{{ $category->name }}</option>
+                          @endforeach
+                      </select>
+                  </div>
+                  <div class="form-group cfdb1">
                   <label for="abstract_topic_id" class="col-form-label">Topic</label>
+
                   <select style="height: 52px;font-size: 14px;"
                           class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
+                          id="abstract_topic_id"
                           name="abstract_topic_id">
                     @foreach($data['topics'] as $topic)
-                      <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                      <option data-category="{{$topic->category_id}}" value="{{ $topic->id }}">{{ $topic->name }}</option>
                       @foreach($topic->children as $child)
-                        <option value="{{ $child->id }}">- {{ $child->name }}</option>
+                        <option data-category="{{$topic->category_id}}" value="{{ $child->id }}">- {{ $child->name }}</option>
                       @endforeach
                     @endforeach
                   </select>
@@ -286,6 +303,52 @@
       let membership = $("#membership_id");
       let abstractForm = $("#abstractForm");
       let membershipContainer = $("#membership");
+
+      let category = $("#abstract_category_id");
+
+        let topicsNative = '<?php
+            foreach($data['topics'] as $topic){
+                echo "<option data-category=\"$topic->category_id\" value=\"$topic->id\">$topic->name</option>";
+                foreach($topic->children as $child) {
+                    echo "<option data-category=\"$topic->category_id\" value=\"$child->id\">- $child->name</option>";
+                }
+            }
+            ?>';
+
+        let category_id = category.val();
+        let abstractTopics = document.getElementById('abstract_topic_id');
+        let abstractTopicsJQ = $('#abstract_topic_id');
+        abstractTopicsJQ.html(topicsNative);
+
+        $(abstractTopics.options).each(function() {
+            if ($(this).attr('data-category') !== category_id) {
+                $(this).remove();
+            }
+        });
+
+      category.on("change", function () {
+
+          let topicsNative = '<?php
+              foreach($data['topics'] as $topic){
+                  echo "<option data-category=\"$topic->category_id\" value=\"$topic->id\">$topic->name</option>";
+                  foreach($topic->children as $child) {
+                      echo "<option data-category=\"$topic->category_id\" value=\"$child->id\">- $child->name</option>";
+                  }
+              }
+              ?>';
+
+          let category_id = category.val();
+          let abstractTopics = document.getElementById('abstract_topic_id');
+          let abstractTopicsJQ = $('#abstract_topic_id');
+          abstractTopicsJQ.html(topicsNative);
+
+          $(abstractTopics.options).each(function() {
+              if ($(this).attr('data-category') !== category_id) {
+                  $(this).remove();
+              }
+          });
+
+      });
 
 
       let joinEvent = $("#join_to_event");
