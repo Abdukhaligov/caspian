@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactUs;
+use App\Models\Category;
 use App\Models\Event;
 use App\Models\Membership;
 use App\Models\Pages\AbstractBook;
@@ -141,6 +142,8 @@ class PageController extends Controller {
         ::where('event_id', '=', $data["event"]->id)
         ->where('membership_id', '=', null)
         ->get();
+
+    $data["categories"] = Category::all();
 
 
     return view('cabinet', compact('data'));

@@ -59,13 +59,15 @@ class UserController extends Controller {
       if($user->hasMedia('avatars')){
         $user->getFirstMedia('avatars')->forceDelete();
       }
-    }else{
+    }elseif($request->file('avatar')){
       $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
     }
 
     $user->save();
 
-    Mail::to($user->email)->send(new AccountDetailsChange($user));
+    if($user->email){
+      Mail::to($user->email)->send(new AccountDetailsChange($user));
+    }
 
 
 //    if(!$user->membership->reporter){

@@ -31,4 +31,5 @@ return array (
     'user_update' => 'Update Details',
     'password_update' => 'Update Password',
     'membership_update' => 'Update Membership',
+    'my_profile' => 'My profile',
 );
