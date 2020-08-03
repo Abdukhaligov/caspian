@@ -18,7 +18,7 @@
   <section class="inner-hero inner-hero2">
     <div class="container">
       <div class="ih-content">
-        <h1 class="wow fadeInUp" data-wow-delay=".4s">Contact us</h1>
+        <h1 class="wow fadeInUp" data-wow-delay=".4s">Topics</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
