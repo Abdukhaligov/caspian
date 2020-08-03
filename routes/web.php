@@ -30,6 +30,7 @@ Route::group(['middleware' => ['locale']], function () {
     Route::get('/speakers', 'PageController@speakers')->name('speakers');
     Route::get('/speakers/{id}', 'UserController@index');
     Route::get('/program', 'PageController@program')->name('program');
+    Route::get('/categories/{categoryId}/topics', 'PageController@topics')->name('category_topics');
   });
 
   Route::prefix('media')->group(function () {
@@ -50,9 +51,6 @@ Route::group(['middleware' => ['locale']], function () {
     Route::post('/user/edit', 'UserController@update')->name('user_update');
     Route::post('/user/edit/membership', 'UserController@updateMembership')->name('user_update_membership');
     Route::post('/user/edit/password', 'UserController@updatePassword')->name('user_update_password');
-
-    Route::get('/categories/{categoryId}/topics', 'PageController@topics')->name('category_topics');
-
   });
 
 });
