@@ -107,16 +107,24 @@ $data["event"] = \App\Models\Event::activeEvent(); ?>
               </li>
             @endforeach
 
-            <li style="margin-left: 40px;">
+            <li class="profileSub">
               @auth
-                <a class="btn-1 blue" href="{{ route('cabinet') }}">
-                  {{  __('static.personal_cabinet') }}
+                <a href="#">
+                  <span><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px"></i> {{Auth::user()->name }}</span>
                 </a>
-                <a class="" style="float: right"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                   href="{{ route('logout') }}">
-                  {{  __('static.logout') }}
-                </a>
+                <ul>
+                  <li>
+                    <a href="{{ route('cabinet') }}">
+                      {{  __('static.personal_cabinet') }}
+                    </a></li>
+                  <li>
+                    <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                       href="{{ route('logout') }}">
+                      {{  __('static.logout') }}
+                    </a>
+                  </li>
+                </ul>
+
               @else
                 <a id="navFormButtonMobile" class="btn-1 blue" href="{{ route('login') }}">
                   LOGIN
