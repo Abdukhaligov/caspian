@@ -11,7 +11,7 @@ class CreateSponsorsTable extends Migration {
       $table->increments('id');
       $table->integer('degree_id')->unsigned()->nullable();
       $table->foreign('degree_id')->references('id')->on('degrees');
-      $table->string('name')->nullable();
+      $table->string('name');
       $table->longText('description')->nullable();
       $table->string('job_title')->nullable();
       $table->string('company')->nullable();

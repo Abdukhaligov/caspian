@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Digitalcloud\MultilingualNova\Multilingual;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Infinety\Filemanager\FilemanagerField;
@@ -27,14 +28,13 @@ class PageHome extends Resource {
   public function fields(Request $request) {
     return [
 //        Text::make('Title'),
-        FilemanagerField::make('Description IMG', 'description_img')
-            ->displayAsImage()
-            ->hideCreateFolderButton()
-            ->folder('main')
-            ->size('w-1/2'),
+        Images::make('Description IMG', 'description_img')
+            ->size('w-1/4')
+            ->rules('required')
+            ->singleImageRules('dimensions:min_width=600,min_height=400'),
 
         NovaTinyMCE::make('Description')
-            ->size('w-1/2'),
+            ->size('w-3/4'),
 
 
 //        Multilingual::make('Language'),

@@ -51,9 +51,9 @@ class Initial extends Resource {
                     'fa-behance' => 'Behance',
                     'fa-linkedin-in' => 'LinkedIn',
                     'fa-youtube' => 'YouTube',])
-                  ->required(),
+                  ->rules('required'),
                 Text::make('Link', 'link')
-                    ->required(),
+                    ->rules('required'),
             ]),
     ];
   }

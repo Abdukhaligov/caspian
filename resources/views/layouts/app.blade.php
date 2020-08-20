@@ -95,6 +95,7 @@ $data["event"] = \App\Models\Event::activeEvent(); ?>
           <!-- Sample menu definition -->
           <ul id="main-menu" class="sm sm-mint">
             @foreach(\App\Models\Pages\Initial::getRoutes() as $route)
+              @auth @if($route["title"] === "Registration") @continue @endif  @endauth
               <li>
                 <a href="{{ $route["link"] }}">{{$route["title"]}}</a>
                 @if(array_key_exists('children', $route))
@@ -124,6 +125,7 @@ $data["event"] = \App\Models\Event::activeEvent(); ?>
                     </a>
                   </li>
                 </ul>
+
 
               @else
                 <a id="navFormButtonMobile" class="btn-1 blue" href="{{ route('login') }}">

@@ -16,7 +16,7 @@ class Event extends Model implements HasMedia {
   protected $casts = ['date' => 'datetime'];
   protected $fillable = ["active"];
 
-  use HasMediaTrait, HasFlexible;
+  use HasMediaTrait;
 
   public function memberships() { return $this->belongsToMany(Membership::class, 'event_user'); }
 
@@ -76,8 +76,6 @@ class Event extends Model implements HasMedia {
     }
     return parent::performInsert($query);
   }
-
-  public function days() { return $this->flexible('days'); }
 
   public function registerMediaConversions(Media $media = null) {
     $this->addMediaConversion('thumb')

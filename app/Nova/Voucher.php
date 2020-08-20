@@ -27,10 +27,12 @@ class Voucher extends Resource {
   public function fields(Request $request) {
     return [
         ID::make()->sortable(),
-        Text::make('Name'),
+        Text::make('Name')
+            ->rules('required'),
         FilemanagerField::make('Template')
             ->folder('vouchers/templates')
-            ->hideCreateFolderButton(),
+            ->hideCreateFolderButton()
+            ->rules('required'),
 
         BelongsTo::make('Event')
             ->withMeta([

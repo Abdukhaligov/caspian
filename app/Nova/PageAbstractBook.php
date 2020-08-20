@@ -30,9 +30,9 @@ class PageAbstractBook extends Resource {
         Flexible::make('Books')
             ->addLayout('Abstract book', 'Data', [
                 Text::make('Name', 'name')
-                    ->required(),
+                    ->rules('required'),
                 FilemanagerField::make('File','file')
-                    ->required()
+                    ->rules('required')
                     ->folder('books')
                     ->displayAsImage()
                     ->hideCreateFolderButton(),

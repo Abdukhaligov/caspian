@@ -54,11 +54,11 @@
   <section class="inner-hero inner-hero2">
     <div class="container">
       <div class="ih-content">
-        <h1 class="wow fadeInUp" data-wow-delay=".4s">Schedule</h1>
+        <h1 class="wow fadeInUp" data-wow-delay=".4s">Program</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Schedule</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Program</li>
           </ol>
         </nav>
       </div>
@@ -74,13 +74,14 @@
             <nav>
               <div class="nav row nav-tabs nav-fill" id="nav-tab" role="tablist" style="margin: 0;width: auto">
 
-                @if($data->days->count() > 6)
+                @if(count($data->days) > 6)
                   <div class="swiper-container row" style="padding: 0px 40px;">
                     <div class="swiper-wrapper">@endif
 
                       @foreach($data->days as $id => $day)
 
-                        @if($data->days->count() > 6)
+
+                        @if(count($data->days) > 6)
                           <div class="swiper-slide">@endif
 
                             <a class="program_day nav-item nav-link @if($id == 0) active @endif" id="nav-{{ $id }}-tab"
@@ -93,16 +94,15 @@
                                 </div>
                                 <div class="es-day-details2">
                                   <span>Day</span><br>
-                                  <span>{{ date('dS M Y', strtotime($day->event_begin)) }}</span>
+                                  <span>{{ date('dS M Y', strtotime($day->event_begin ?? 0)) }}</span>
                                 </div>
                               </div>
                             </a>
 
-                            @if($data->days->count() > 6)</div>@endif
+                            @if(count($data->days) > 6)</div>@endif
 
                       @endforeach
-
-                      @if($data->days->count() > 6)</div>
+                      @if(count($data->days) > 6)</div>
 
                   {{--                    <div class="swiper-pagination"></div>--}}
                   <!-- Add Arrows -->
@@ -117,7 +117,7 @@
               @foreach($data->days as $day_id => $day)
                 <div class="tab-pane fade @if($day_id == 0) show active @endif" id="nav-{{ $day_id }}" role="tabpanel"
                      aria-labelledby="nav-{{ $day_id }}-tab">
-                  @foreach($day->events as $event_id => $event)
+                  @foreach($day->attributes->events as $event_id => $event)
                     <div class="event-details">
                       @if($event->layout == "speaker")
                         @if($event->user)

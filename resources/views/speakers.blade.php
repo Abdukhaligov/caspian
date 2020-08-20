@@ -40,7 +40,7 @@
         <h1 class="wow fadeInUp" data-wow-delay=".4s">Speakers</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Speakers</li>
           </ol>
         </nav>

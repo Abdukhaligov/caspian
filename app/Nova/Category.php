@@ -25,8 +25,10 @@ class Category extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Name"),
-            Textarea::make("Description"),
+            Text::make("Name")
+              ->rules('required'),
+            Textarea::make("Description")
+               ->rules('required'),
             Media::make('Image'),
             HasMany::make("Topics")
         ];

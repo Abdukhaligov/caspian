@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use CodencoDev\NovaGridSystem\NovaGridSystem;
+use Laravel\Nova\Tools\Dashboard;
 
 
 class NovaServiceProvider extends NovaApplicationServiceProvider {
@@ -45,6 +46,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider {
   }
 
   public function tools() {
+    foreach (Nova::$tools as $index => $tool) {
+      if ($tool instanceof Dashboard) {
+        unset(Nova::$tools[$index]);
+      }
+    }
+
     return [
 //        new \Infinety\Filemanager\FilemanagerTool(),
         new NovaGridSystem,

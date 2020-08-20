@@ -42,7 +42,7 @@ class Topic extends Resource {
 
         NovaTinyMCE::make('Description'),
 
-        BelongsTo::make('Category'),
+        BelongsTo::make('Category')->rules('required'),
 
         HasMany::make('Topics', 'children'),
         HasMany::make('Reports'),

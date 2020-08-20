@@ -43,15 +43,15 @@ class PageContacts extends Resource {
         Flexible::make('Social Networks', 'social_networks')
             ->addLayout('Social Networks', 'Data', [
                 Text::make('title')
-                    ->required(),
+                    ->rules('required'),
                 Text::make('link')
-                    ->required(),
+                    ->rules('required'),
             ]),
         Youtube::make('Video Youtube', 'video_url')
-            ->required()
+            ->rules('required')
             ->size('w-1/2'),
         FilemanagerField::make('Video Cover', 'video_cover')
-            ->required()
+            ->rules('required')
             ->folder('video_covers')
             ->displayAsImage()
             ->hideCreateFolderButton()

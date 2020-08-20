@@ -15,9 +15,17 @@ class Category extends Model implements HasMedia
 {
   use HasMediaTrait;
   public function registerMediaConversions(Media $media = null) {
-    $this->addMediaConversion('image')
+    $this
+        ->addMediaConversion('image')
         ->width(130)
         ->height(130);
+  }
+
+  public function registerMediaCollections() {
+    $this
+        ->addMediaCollection('image')
+        ->useDisk('mediaFiles')
+        ->singleFile();
   }
 
     public function topics(){

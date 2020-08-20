@@ -81,10 +81,10 @@ class PageController extends Controller {
         ->with('degree')
         ->get();
 
-    $data->days = $data->event->days();
+    $data->days = json_decode($data->event->days);
 
     foreach ($data->days as $day){
-      foreach ($day->events as $event){
+      foreach ($day->attributes->events as $event){
         $event->user = "test";
         $event->key = $event->attributes->key ?? '';
         if(isset($event->attributes->user)){

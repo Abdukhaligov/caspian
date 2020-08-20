@@ -41,11 +41,11 @@ class PageAboutUs extends Resource {
 //        Flexible::make('Team')
 //            ->addLayout('Member', 'Data', [
 //                Text::make('Name', 'name')
-//                    ->required(),
+//                    ->rules('required'),
 //                Text::make('Job Title', 'job_title')
-//                    ->required(),
+//                    ->rules('required'),
 //                FilemanagerField::make('Photo', 'photo')
-//                    ->required()
+//                    ->rules('required')
 //                    ->folder('team')
 //                    ->displayAsImage()
 //                    ->hideCreateFolderButton()
@@ -59,9 +59,9 @@ class PageAboutUs extends Resource {
 //                            'fa-linkedin-in' => 'LinkedIn',
 //                            'fa-instagram' => 'Instagram',
 //                            'fa-youtube' => 'YouTube',])
-//                            ->required(),
+//                            ->rules('required'),
 //                        Text::make('Link', 'link')
-//                            ->required(),
+//                            ->rules('required'),
 //                    ]),
 //            ]),
     ];

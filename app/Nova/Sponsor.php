@@ -24,8 +24,9 @@ class Sponsor extends Resource
     return [
         ID::make()->sortable(),
 
-        Media::make('Avatars')
-            ->size('w-1/4'),
+        Media::make('Avatar', 'avatars')
+            ->size('w-1/4')
+            ->rules('required'),
 
 
         NovaTinyMCE::make('Description')
@@ -44,7 +45,8 @@ class Sponsor extends Resource
             ->size('w-1/4'),
         Text::make('Name')
             ->sortable()
-            ->size('w-1/4'),
+            ->size('w-1/4')
+            ->rules('required'),
         Text::make('Job Title', 'job_title')
             ->sortable()
             ->size('w-1/4'),
@@ -63,10 +65,10 @@ class Sponsor extends Resource
                     'fa-behance' => 'Behance',
                     'fa-linkedin-in' => 'LinkedIn',
                     'fa-youtube' => 'YouTube',])
-                    ->required()
+                    ->rules('required')
                     ->size('w-1/2'),
                 Text::make('Link', 'link')
-                    ->required()
+                    ->rules('required')
                     ->size('w-1/2'),
             ])
             ->button('Add social network')

@@ -25,7 +25,7 @@ class User extends Resource {
   public static $model = 'App\User';
   public static $group = 'Resources';
   public static $title = 'name';
-  public static $search = ['id', 'name', 'email',];
+  public static $search = ['id', 'name', 'email', 'description'];
 
 
   public function fields(Request $request) {
@@ -136,10 +136,10 @@ class User extends Resource {
                     'fa-behance' => 'Behance',
                     'fa-linkedin-in' => 'LinkedIn',
                     'fa-youtube' => 'YouTube',])
-                    ->required()
+                    ->rules('required')
                     ->size('w-1/2'),
                 Text::make('Link', 'link')
-                    ->required()
+                    ->rules('required')
                     ->size('w-1/2'),
             ])
             ->button('Add social network')

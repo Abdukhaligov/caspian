@@ -2519,7 +2519,9 @@ section.blog {
         -webkit-transition: all .5s ease-in-out;
         -moz-transition: all .5s ease-in-out;
         -ms-transition: all .5s ease-in-out;
-        -o-transition: all .5s ease-in-out; }
+        -o-transition: all .5s ease-in-out;
+        max-height: 300px;
+        width: auto;}
       section.blog .single-blog .sb-img:hover img {
         transform: scale(1.1);
         -webkit-transform: scale(1.1);
@@ -2782,7 +2784,6 @@ section.inner-blog {
       .blog-sideber .searchbox form .form-control {
         padding: 20px 10px;
         font-size: 15px;
-        color: #d7d7d7;
         border-color: #d7d7d7; }
       .blog-sideber .searchbox form .btn-outline-secondary {
         color: #ffffff;

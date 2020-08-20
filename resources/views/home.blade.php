@@ -32,6 +32,15 @@
     .card h5 {
       font-size: 15px !important;
     }
+    .about-content{
+      overflow-wrap: break-word;
+    }
+    section.about-section .about-content p {
+      padding: 0px 0px 10px 0px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
 
     .swiper-container {
       width: 100%;
@@ -164,13 +173,16 @@
         <div class="col-md-6">
           <div class="about-content">
             {!! $data->description !!}
+            <br>
             <a href="@guest {{ route('register') }}?speaker=2 @endauth @auth{{ route('cabinet') }}@endauth"
                class="btn-2">Join to Us</a>
           </div>
         </div>
         <div class="col-md-6">
           <div class="amout-img">
-            <img src="{{ Storage::disk('public')->url($data->description_img) }}" alt="">
+              @if($data->hasMedia('description_img'))
+                {{ $data->media('description_img')->first() }}
+              @endif
           </div>
         </div>
       </div>
@@ -228,45 +240,45 @@
   @endif
 
 
-@if($data["sponsors"]->count() > 0)
-  <section class="our-team ot-inner">
-    <div class="ot-top">
-      <span>WHO HELPS US</span>
-      <h1>Organizers of the event </h1>
-    </div>
-    <div class="container">
-      <div class="row col-md-8 m-auto">
-        @foreach($data["sponsors"] as $sponsor)
-          <div class="col-md-6">
-            <div class="single-team-member">
-              <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                <a>
-                  {{$sponsor->getFirstMedia('avatars')}}
-                </a>
-                <div class="stm-icon">
-                  <ul>
-                    @foreach($sponsor->socialNetworks() as $socialNetwork)
-                      <li>
-                        <a target="_blank" href="{{ $socialNetwork->link }}">
-                          <i class="fab {{ $socialNetwork->network }}"></i>
-                        </a>
-                      </li>
-                    @endforeach
-                  </ul>
+  @if($data["sponsors"]->count() > 0)
+    <section class="our-team ot-inner">
+      <div class="ot-top">
+        <span>WHO HELPS US</span>
+        <h1>Organizers of the event </h1>
+      </div>
+      <div class="container">
+        <div class="row col-md-8 m-auto">
+          @foreach($data["sponsors"] as $sponsor)
+            <div class="col-md-6">
+              <div class="single-team-member">
+                <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
+                  <a>
+                    {{$sponsor->getFirstMedia('avatars')}}
+                  </a>
+                  <div class="stm-icon">
+                    <ul>
+                      @foreach($sponsor->socialNetworks() as $socialNetwork)
+                        <li>
+                          <a target="_blank" href="{{ $socialNetwork->link }}">
+                            <i class="fab {{ $socialNetwork->network }}"></i>
+                          </a>
+                        </li>
+                      @endforeach
+                    </ul>
+                  </div>
+                </div>
+                <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
+                  <h5>{{ $sponsor->degree->name ?? '' }} {{ $sponsor->name }}</h5>
+                  <h6>{{ $sponsor->job_title }}</h6>
+                  <p>{{ $sponsor->company }}</p>
                 </div>
               </div>
-              <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $sponsor->degree->name ?? '' }} {{ $sponsor->name }}</h5>
-                <h6>{{ $sponsor->job_title }}</h6>
-                <p>{{ $sponsor->company }}</p>
-              </div>
             </div>
-          </div>
-        @endforeach
+          @endforeach
+        </div>
       </div>
-    </div>
-  </section>
-@endif
+    </section>
+  @endif
 
   <!--- Partner Section -->
   <section class="partner partner2 partner3 sponsor">
@@ -279,12 +291,13 @@
         @foreach($data["partnersGold"] as $partner)
           @php $media = $partner->getMedia('partners')->first(); @endphp
           <div class="col-md-3">
-            <div class="single-partner">
-              <a href="{{ $partner->url }}"></a>
-              @if($media)
-                {{ $media }}
-              @endif
-            </div>
+            <a target="_blank" href="{{ $partner->url }}">
+              <div class="single-partner">
+                @if($media)
+                  {{ $media }}
+                @endif
+              </div>
+            </a>
           </div>
         @endforeach
       </div>
@@ -296,12 +309,13 @@
         @foreach($data["partners"] as $partner)
           @php $media = $partner->getMedia('partners')->first(); @endphp
           <div class="col-md-2">
-            <div class="single-partner">
-              <a href="{{ $partner->url }}"></a>
-              @if($media)
-                {{ $media }}
-              @endif
-            </div>
+            <a target="_blank" href="{{ $partner->url }}">
+              <div class="single-partner">
+                @if($media)
+                  {{ $media }}
+                @endif
+              </div>
+            </a>
           </div>
         @endforeach
       </div>

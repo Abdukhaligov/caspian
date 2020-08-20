@@ -2,6 +2,12 @@
 
 @section('content')
 
+  <style>
+    .portfolio-img img {
+      min-height: 175px;
+      width: 100%;
+    }
+  </style>
   <!-- Hero Section-->
   <section class="inner-hero inner-hero2">
     <div class="container">

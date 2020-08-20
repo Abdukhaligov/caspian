@@ -23,6 +23,7 @@ class News extends Resource {
     return [
         ID::make()->sortable(),
         Text::make('Title')
+            ->rules('required')
             ->size('w-1/2'),
         DateTime::make('Created At', 'created_at')
             ->sortable()
@@ -31,7 +32,9 @@ class News extends Resource {
 
         Images::make('Preview', 'preview')
             ->size('w-1/4'),
-        NovaTinyMCE::make('Body')->options([
+        NovaTinyMCE::make('Body')
+            ->rules('required')
+            ->options([
                 'plugins' => [
                     'lists preview hr anchor pagebreak image wordcount fullscreen directionality paste textpattern'
                 ],

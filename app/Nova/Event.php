@@ -51,15 +51,15 @@ class Event extends Resource {
 
         Text::make('Name')
             ->sortable()
-            ->required()
+            ->rules('required')
 //            ->withMeta(['value' => ])
             ->size('w-1/4'),
         Text::make('Address', 'address')
-            ->required()
+            ->rules('required')
             ->size('w-1/3'),
         DateTime::make('Date', 'date')
             ->sortable()
-            ->required()
+            ->rules('required')
             ->size('w-1/4'),
         Boolean::make('Active')
             ->sortable()
@@ -95,17 +95,19 @@ class Event extends Resource {
                       return Carbon::parse($date);
                     })
                     ->format('DD MMM Y hh:mm:ss')
-                    ->required()
+                    ->rules('required')
                     ->size('w-2/4'),
                 Flexible::make('Events')
                     ->addLayout('Speaker', 'speaker', [
 
                         Text::make('Title', 'title')
-                            ->required()
+                            ->rules('required')
                             ->size('w-1/4'),
                         TimeField::make('Start Time', 'event_start')
+                            ->rules('required')
                             ->size('w-1/6'),
                         TimeField::make('End Time', 'event_end')
+                            ->rules('required')
                             ->size('w-1/6'),
                         Text::make('Address', 'address')
                             ->size('w-2/5'),
@@ -124,7 +126,7 @@ class Event extends Resource {
                               }
                             }
                         )
-                            ->required()
+                            ->rules('required')
                             ->size('w-1/4'),
 
                         NovaTinyMCE::make('Description', 'description')
@@ -135,23 +137,24 @@ class Event extends Resource {
                                 'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
                                 'use_lfm' => true
                             ])
-                            ->required()
+                            ->rules('required')
                             ->size('w-3/4'),
                     ])
                     ->addLayout('Event', 'event', [
                         Text::make('Title', 'title')
-                            ->required()
+                            ->rules('required')
                             ->size('w-1/4'),
                         TimeField::make('Start Time', 'event_start')
+                            ->rules('required')
                             ->size('w-1/6'),
                         TimeField::make('End Time', 'event_end')
+                            ->rules('required')
                             ->size('w-1/6'),
                         Text::make('Address', 'address')
                             ->size('w-2/5'),
 
                         Image::make('Picture', 'pic')
                             ->disableDownload()
-                            ->required()
                             ->size('w-1/4'),
                         NovaTinyMCE::make('Description', 'description')
                             ->options([
@@ -161,7 +164,7 @@ class Event extends Resource {
                                 'toolbar' => 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | image | bullist numlist outdent indent | link',
                                 'use_lfm' => true
                             ])
-                            ->required()
+                            ->rules('required')
                             ->size('w-3/4')
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Pages\AbstractBook;
 use App\Models\Pages\Initial;
 use App\Models\Pages\AboutUs;
 use App\Models\Pages\Cabinet;
@@ -23,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider {
       Gallery::class => SinglePagePolicy::class,
       Topics::class => SinglePagePolicy::class,
       Cabinet::class => SinglePagePolicy::class,
+      AbstractBook::class => SinglePagePolicy::class,
   ];
 
   public function boot() {
