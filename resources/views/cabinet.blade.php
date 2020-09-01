@@ -334,7 +334,7 @@
 
                   @endif
 
-                  @if($data["events"] && $data["events"]->count() > 0)
+                  @if($data["events"] && count($data["events"]) > 0)
                     <section class="faq" style="margin-top: 0;">
                       <div id="accordion">
                         <div class="card ">
@@ -493,7 +493,7 @@
                      data-target="#myModal">New abstract</a>
                 @endif
 
-                @if($data["reports"]->count() > 0)
+                @if(count($data["reports"]) > 0)
                   <h3>Abstracts: </h3>
                   @foreach($data["reports"] as $report)
                     Topic:

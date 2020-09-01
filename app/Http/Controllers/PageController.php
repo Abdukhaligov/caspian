@@ -73,15 +73,15 @@ class PageController extends Controller {
   public function program() {
     $data = Program::first();
     $data->event = Event::activeEvent();
-    $users = User::with('events')
+    $users = $data->event ? User::with('events')
         ->whereHas('events',function ($q) use ($data){
           return $q->where('event_id', $data->event->id);
         })
         ->with('media')
         ->with('degree')
-        ->get();
+        ->get() : [];
 
-    $data->days = json_decode($data->event->days);
+    $data->days = $data->event ? json_decode($data->event->days) : [];
 
     foreach ($data->days as $day){
       foreach ($day->attributes->events as $event){
@@ -131,18 +131,18 @@ class PageController extends Controller {
         $user->currentReports()
             ->orderBy('created_at', 'DESC')
             ->get()
-        : null;
+        : [];
 
     $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
 
     $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? null;
     $data["memberships"] = Membership::all();
 
-    $data["vouchers"] = $user->eventVouchers($data["event"]->id) ?? [];
-    $data["broadcastVouchers"] = Voucher
+    $data["vouchers"] = $data["event"] ? $user->eventVouchers($data["event"]->id) : [];
+    $data["broadcastVouchers"] = $data["event"] ? Voucher
         ::where('event_id', '=', $data["event"]->id)
         ->where('membership_id', '=', null)
-        ->get();
+        ->get() : [];
 
     $data["categories"] = Category::all();
 
