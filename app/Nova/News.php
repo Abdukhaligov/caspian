@@ -15,8 +15,8 @@ class News extends Resource {
 
   public static $model = 'App\Models\News';
   public static $group = 'Resources';
-  public static $title = 'id';
-  public static $search = ['id','created_at'];
+  public static $title = 'title';
+  public static $search = ['id','created_at','title','body'];
 
 
   public function fields(Request $request) {

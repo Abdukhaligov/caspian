@@ -18,7 +18,7 @@ class Initial extends Resource {
   public static $title = 'id';
   public static $search = ['id'];
 
-  public static function label() { return "Initial"; }
+  public static function label() { return "Settings"; }
 
   public static function singleRecord(): bool { return true; }
 

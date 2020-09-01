@@ -21,12 +21,15 @@ class Partner extends Resource {
 
   public function fields(Request $request) {
     return [
-        ID::make()->sortable(),
+        ID::make()
+            ->sortable(),
 
         Media::make('Img', 'partners')
+            ->rules('required')
             ->sortable()
             ->size('w-1/4'),
         Text::make('Name')
+            ->rules('required')
             ->sortable()
             ->size('w-1/4'),
 

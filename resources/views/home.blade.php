@@ -174,7 +174,7 @@
           <div class="about-content">
             {!! $data->description !!}
             <br>
-            <a href="@guest {{ route('register') }}?speaker=2 @endauth @auth{{ route('cabinet') }}@endauth"
+            <a href="@guest {{ route('register') }}?speaker=2 @endauth @auth{{ route('about') }}@endauth"
                class="btn-2">Join to Us</a>
           </div>
         </div>

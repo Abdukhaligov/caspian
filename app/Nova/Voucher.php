@@ -36,8 +36,8 @@ class Voucher extends Resource {
 
         BelongsTo::make('Event')
             ->withMeta([
-                'value' => \App\Models\Event::activeEvent()->id,
-                'belongsToId' => \App\Models\Event::activeEvent()->id
+                'value' => \App\Models\Event::activeEvent() ? \App\Models\Event::activeEvent()->id : null,
+                'belongsToId' => \App\Models\Event::activeEvent() ? \App\Models\Event::activeEvent()->id : null
             ])
             ->rules('required'),
 
