@@ -1,198 +1,100 @@
 @extends('layouts.app')
 
 @section('content')
-
-  <style>
-    .ed-img img {
-      max-height: 255px;
-    }
-
-    .ed-img h6 {
-      font-size: 17px;
-      font-weight: 500;
-    }
-
-    .ed-img p {
-      font-size: 15px;
-    }
-
-    .ed-content p {
-      text-align: justify;
-    }
-
-    .swiper-container {
-      width: 100%;
-      height: 180px;
-      margin-top: -30px;
-    }
-
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-
-    section.schedule .event-schedule nav .nav-tabs {
-      /*margin: 0 !important;*/
-    }
-  </style>
-  <!-- Hero Section-->
-  <section class="inner-hero inner-hero2">
+  <section class="hero" style="background-image: url('{{asset('assets/img/auditory.jpg')}}')">
     <div class="container">
-      <div class="ih-content">
-        <h1 class="wow fadeInUp" data-wow-delay=".4s">Program</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Program</li>
-          </ol>
-        </nav>
-      </div>
+
+      <h1 class="wow fadeInUp" data-wow-delay=".3s">
+        <span data-text="{!! $data->title !!}">{!! $data->title !!}</span>
+      </h1>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb text-size-35 wow fadeInUp" data-wow-delay=".5s">
+          <li><a href="{{ route('home') }}">Home</a><span aria-hidden="true">|</span></li>
+          <li class="active" aria-current="page">{!! $data->title !!}</li>
+        </ul>
+      </nav>
+
     </div>
   </section>
-  <!-- /Hero Section-->
-  <!--Schedule Section-->
-  <section class="schedule schedule3 schedule4 schedule-inner">
+
+  <section class="section-people">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="event-schedule">
-            <nav>
-              <div class="nav row nav-tabs nav-fill" id="nav-tab" role="tablist" style="margin: 0;width: auto">
-
-                @if(count($data->days) > 6)
-                  <div class="swiper-container row" style="padding: 0px 40px;">
-                    <div class="swiper-wrapper">@endif
-
-                      @foreach($data->days as $id => $day)
-
-
-                        @if(count($data->days) > 6)
-                          <div class="swiper-slide">@endif
-
-                            <a class="program_day nav-item nav-link @if($id == 0) active @endif" id="nav-{{ $id }}-tab"
-                               data-toggle="tab"
-                               href="#nav-{{ $id }}" role="tab"
-                               aria-controls="nav-agreement" aria-selected="false">
-                              <div class="es-day">
-                                <div class="es-day-details">
-                                  <span>{{ ++$id }}</span>
-                                </div>
-                                <div class="es-day-details2">
-                                  <span>Day</span><br>
-                                  <span>{{ date('dS M Y', strtotime($day->event_begin ?? 0)) }}</span>
-                                </div>
-                              </div>
-                            </a>
-
-                            @if(count($data->days) > 6)</div>@endif
-
-                      @endforeach
-                      @if(count($data->days) > 6)</div>
-
-                  {{--                    <div class="swiper-pagination"></div>--}}
-                  <!-- Add Arrows -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                  </div> @endif
-
-              </div>
-            </nav>
-
-            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-              @foreach($data->days as $day_id => $day)
-                <div class="tab-pane fade @if($day_id == 0) show active @endif" id="nav-{{ $day_id }}" role="tabpanel"
-                     aria-labelledby="nav-{{ $day_id }}-tab">
-                  @foreach($day->attributes->events as $event_id => $event)
-                    <div class="event-details">
-                      @if($event->layout == "speaker")
-                        @if($event->user)
-                          <div class="ed-img">
-                            @if($event->user->getFirstMedia('avatars'))
-                              {{ $event->user->getFirstMedia('avatars') }}
-                            @else
-                              <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
-                            @endif
-
-                            <a href="{{ route('speakers')."/".$event->user->id }}">
-                              <h5>{{$event->user->degree->name ?? ''}} {{$event->user->name}}</h5>
-                            </a>
-                            <h6>{{$event->user->job_title}}</h6>
-                            <p>{{$event->user->company}}</p>
-                          </div>
-                        @else
-                          <div class="ed-img">
-                            <img src="{{ $data->logoPath }}"
-                                 alt="">
-                          </div>
-                        @endif
-                      @else
-                        <div class="ed-img">
-                          <img src="{{ Storage::disk('public')->url($event->pic) }}" alt="">
-                        </div>
-                      @endif
-                      <div class="ed-content">
-                        <h5>{{ $event->title }}</h5>
-                        {!! $event->description  !!}
-                        <span>
-                          <i class="fas fa-map-marker-alt"></i>
-                          {{ $event->address ?? $data->event["address"] }}
-                        </span>
-                        <span>
-                          <i class="far fa-clock"></i>
-                          {{ date('H:i', strtotime($event->event_start)) }} - {{ date('H:i', strtotime($event->event_end)) }}
-                        </span>
-                      </div>
-                    </div>
-                  @endforeach
-
+      <div class="swiper wow fadeIn" data-wow-delay=".2s" id="swiper-agenda">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            @foreach($data->days as $id => $day)
+              <div class="swiper-slide" data-tab-target="day{{$id}}">
+                <strong>{{ ++$id }}</strong>
+                <div class="date">
+                  <strong class="text-size-25">Day</strong>
+                  <span>{{ date('dS M Y', strtotime($day->attributes->event_begin ?? 0)) }}</span>
                 </div>
-              @endforeach
-            </div>
+              </div>
+            @endforeach
+
           </div>
         </div>
+        <div class="swiper-button-prev icon-arrow-down"></div>
+        <div class="swiper-button-next icon-arrow-up"></div>
+      </div>
+      <div class="flex-row">
+        @foreach($data->days as $id => $day)
+          @foreach($day->attributes->events as $event_id => $event)
+            <div class="person person--schedule wow fadeIn" data-tab="day{{$id}}">
+
+              <div class="person-img ">
+                @if($event->layout == "speaker")
+                  @if($event->user)
+                    <a href="{{ route('speakers')."/".$event->user->id }}">
+                      <div class="person-img-wrap">
+                        @if($event->user->getFirstMedia('avatars'))
+                          {{ $event->user->getFirstMedia('avatars') }}
+                        @else
+                          <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
+                        @endif
+                      </div>
+                    </a>
+                    <div class="person-img-caption">
+                      <h4>{{$event->user->degree->name ?? ''}} {{$event->user->name}}</h4>
+                      <p><strong>{{$event->user->job_title}}</strong></p>
+                      <p>{{$event->user->company}}</p>
+                    </div>
+                  @else
+                    <a href="#">
+                      <div class="person-img-wrap">
+                        <img src="{{ $data->logoPath }}" alt="">
+                      </div>
+                    </a>
+                  @endif
+                @else
+                  <a>
+                    <div class="person-img-wrap">
+                      <img src="{{ Storage::disk('public')->url($event->pic) }}" alt="">
+                    </div>
+                  </a>
+                @endif
+              </div>
+
+              <div class="person-schedule">
+                <div class="text-paragraphs">
+                  <h3 class="text-size-25">{{ $event->title }}</h3>
+                  {!! $event->description  !!}
+                </div>
+                <div class="person-schedule-details">
+                  <span>
+                    <i class="icon-placeholder" aria-hidden="true"></i>
+                     {{ $event->address ?? $data->event["address"] }}
+                  </span>
+                  <span>
+                    <i class="icon-clock" aria-hidden="true"></i>
+                     {{ date('H:i', strtotime($event->event_start)) }} - {{ date('H:i', strtotime($event->event_end)) }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          @endforeach
+        @endforeach
       </div>
     </div>
   </section>
-  <!--/Schedule Section-->
-
-
-@endsection
-
-@section('scripts')
-  <script>
-    var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 6,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-
-
-    });
-
-    $('.program_day').click(function () {
-      $(this).addClass('show active');
-      $('.program_day').removeClass('show active');
-    })
-  </script>
 @endsection

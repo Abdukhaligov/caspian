@@ -1,166 +1,91 @@
 @extends('layouts.app')
 
 @section('content')
-  <style>
-    .stm-text {
-      padding: 10px !important;
-      max-height: 130px;
-      overflow: hidden;
-    }
-
-    .stm-text p {
-      font-size: 13px !important;
-      line-height: 20px !important;
-    }
-
-    .stm-text h5 {
-      font-size: 17px;
-      line-height: 20px !important;
-    }
-
-    .stm-text h6 {
-      font-weight: normal;
-      line-height: 20px !important;
-    }
-
-    .card p {
-      font-size: 12px !important;
-      line-height: 32px;
-    }
-
-    .card h5 {
-      font-size: 15px !important;
-    }
-
-    .col-md-2 .card h5 {
-      font-size: 13px !important;
-    }
-
-    .col-md-2 .card h6 {
-      font-size: 11px !important;
-    }
-
-    .col-md-2 .card p {
-      font-size: 10px !important;
-    }
-
-    .col-md-2 .card {
-      border: 0;
-      background: #fff;
-      box-shadow: 0px 6px 40px 0px rgba(0, 0, 0, 0.08);
-      padding: 5px !important;
-      max-height: 145px;
-      overflow: hidden;
-      margin-bottom: 15px;
-    }
-
-    .second img {
-      max-height: 255px;
-    }
-  </style>
-  <!-- Hero Section-->
-  <section class="inner-hero inner-hero2">
+  <section class="hero" style="background-image: url('{{asset('/assets/img/auditory.jpg')}}')">
     <div class="container">
-      <div class="ih-content">
-        <h1 class="wow fadeInUp" data-wow-delay=".4s">Committee</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Committee</li>
-          </ol>
-        </nav>
-      </div>
+
+      <h1 class="wow fadeInUp" data-wow-delay=".3s">
+        <span data-text="{{ $data->title }}">{{ $data->title }}</span>
+      </h1>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb text-size-35 wow fadeInUp" data-wow-delay=".5s">
+          <li><a href="{{ route('home') }}">Home</a><span aria-hidden="true">|</span></li>
+          <li class="active" aria-current="page">{{ $data->title }}</li>
+        </ul>
+      </nav>
+
     </div>
   </section>
-  <!-- /Hero Section-->
 
-
-  <section class="our-team ot-inner">
-    <div class="ot-top">
-      <span>Our Team</span>
-      <h1>People Behind the World </h1>
-      <h1>Digital Conference</h1>
-    </div>
+  <section class="section-people">
     <div class="container">
-      <div class="col-md-8 row m-auto">
+      <div class="section-title wow fadeIn">
+        <span>Our Team</span>
+        <h2 class="text-size-35">People Behind the World Digital Conference</h2>
+      </div>
+      <div class="flex-row">
+
         @foreach($data["users_1"] as $user)
-          <div class="col-md-6">
-            <div class="single-team-member">
-              <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                <a href="{{ route('speakers')."/".$user->id }}">
+          <div class="person person--show-more wow fadeIn">
+            <div class="person-info">
+              <h4>Abstract Name</h4>
+              <p>Minima molestias reprehenderit piciatis. ia officia modi cumque et facere hic et. Sedit rem repellat.
+                Optio ut aut nam dolores tur modi. usamus velit commodi consequatur esse orporis adipisci sed
+                reprehenderit. Fac magni quam nisi eveniet. Modi autem aut earum error et ipsam quis tenetur. Non te
+                vero sint. Minima molestias erit perspiciat</p>
+              <a href="{{ route('speakers')."/".$user->id }}" class="btn btn-outline-blue">Show More</a>
+            </div>
+            <div class="person-img ">
+              <a href="{{ route('speakers')."/".$user->id }}">
+                <div class="person-img-wrap">
                   @if($user->getFirstMedia('avatars'))
                     {{ $user->getFirstMedia('avatars') }}
                   @else
                     <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
                   @endif
-                </a>
-                <div class="stm-icon">
-                  <ul>
-                    @foreach($user->socialNetworks() as $socialNetwork)
-                      <li>
-                        <a target="_blank" href="{{ $socialNetwork->link }}">
-                          <i class="fab {{ $socialNetwork->network }}"></i>
-                        </a>
-                      </li>
-                    @endforeach
-                  </ul>
                 </div>
-              </div>
-              <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $user->degree->name ?? "" }} {{ $user->name }}</h5>
-                <h6>{{ $user->job_title }}</h6>
+              </a>
+              <div class="person-img-caption">
+                <h4>{{ $user->degree->name ?? "" }} {{ $user->name }}</h4>
+                <p><strong>{{ $user->job_title }}</strong></p>
                 <p>{{ $user->company }}</p>
               </div>
             </div>
           </div>
         @endforeach
-      </div>
-      <div class="row col-md-12 m-auto">
         @foreach($data["users_2"] as $user)
-          <div class="col-md-3">
-            <div class="single-team-member second">
-              <div class="stm-img wow fadeInUp" data-wow-delay=".3s">
-                <a href="{{ route('speakers')."/".$user->id }}">
+          <div class="person person--default wow fadeIn">
+            <div class="person-img ">
+              <a href="{{ route('speakers')."/".$user->id }}">
+                <div class="person-img-wrap">
                   @if($user->getFirstMedia('avatars'))
                     {{ $user->getFirstMedia('avatars') }}
                   @else
                     <img src="{{ Storage::disk('public')->url('user.svg') }}" alt="">
                   @endif
-                </a>
-                <div class="stm-icon">
-                  <ul>
-                    @foreach($user->socialNetworks() as $socialNetwork)
-                      <li>
-                        <a target="_blank" href="{{ $socialNetwork->link }}">
-                          <i class="fab {{ $socialNetwork->network }}"></i>
-                        </a>
-                      </li>
-                    @endforeach
-                  </ul>
                 </div>
-              </div>
-              <div class="stm-text wow fadeInDown" data-wow-delay=".5s">
-                <h5>{{ $user->degree->name ?? "" }} {{ $user->name }}</h5>
-                <h6>{{ $user->job_title }}</h6>
+              </a>
+              <div class="person-img-caption">
+                <h4>{{ $user->degree->name ?? "" }} {{ $user->name }}</h4>
+                <p><strong>{{ $user->job_title }}</strong></p>
                 <p>{{ $user->company }}</p>
               </div>
             </div>
           </div>
-
         @endforeach
-      </div>
-      <div class="row">
         @foreach($data["users_3"] as $user)
-          <div class="col-md-2 wow fadeInUp" data-wow-delay=".10s">
-            <div class="card">
-              <h5>{{ $user->degree->name ?? "" }} {{ $user->name }}</h5>
-              <h6>{{ $user->job_title }}</h6>
-              <p>{{ $user->company }}</p>
+          <div class="person person--default wow fadeIn">
+            <div class="person-img no-img">
+              <div class="person-img-caption">
+                <h4>{{ $user->degree->name ?? "" }} {{ $user->name }}</h4>
+                <p><strong>{{ $user->job_title }}</strong></p>
+                <p>{{ $user->company }}</p>
+              </div>
             </div>
           </div>
         @endforeach
+
       </div>
     </div>
   </section>
-
 @endsection

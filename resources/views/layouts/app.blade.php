@@ -1,444 +1,317 @@
-<?php $data["initial"] = \App\Models\Pages\Initial::first();
-$data["event"] = \App\Models\Event::activeEvent(); ?>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{ $data["initial"]->title }}</title>
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta name="author" content="AlVentures"/>
+  <meta name="description" content=""/>
+  <meta name="keywords" content=""/>
+  <!-- Facebook Open Graph -->
+  <meta property="og:site_name" content=""/>
+  <meta property="og:title" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content=""/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+  <!-- Other -->
+  <title>Home</title>
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <!-- Mobile Specific Meta  -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <!--- Font-->
-  <link href="{{ asset('/eventdia/css/cssf67e.css') }}?family=Poppins:400,500,600,700&amp;display=swap"
-        rel="stylesheet">
-  <link href="{{ asset('/eventdia/css/cssbbf1.css') }}?family=Montserrat:400,500,600&amp;display=swap"
-        rel="stylesheet">
-
-  <!-- CSS -->
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/bootstrap.min.css') }}">
-  <!-- Jquery ui CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/jquery-ui.css') }}">
-  <!-- Fancybox CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/jquery.fancybox.min.css') }}">
-  <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/font-awosome.css') }}">
-  <!-- Flaticon CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/flat-font/flaticon.css') }}">
-  <!-- Slick Slider -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/slick/slick-theme.css') }}">
-  <link rel="stylesheet" href="{{ asset('/eventdia/slick/slick.css') }}">
-  <!-- Ticker css-->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/ticker.min.css') }}">
-  <!-- Nav Menu CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/sm-core-css.css') }}">
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/sm-mint.css') }}">
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/sm-style.css') }}">
-  <!-- Animate CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/animate.min.css') }}">
-  <!-- Main StyleSheet CSS -->
-  <link rel="stylesheet" href="{{ asset('/eventdia/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/swiper.min.css') }}">
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ Storage::disk('public')->url($data["initial"]->favicon) }}"
-        type="image/png">
-  <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js') }}/1.4.2/respond.min.js') }}"></script>
-  <![endif]-->
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/fav/favicon.ico')}}">
+  <link rel="apple-touch-icon" href="{{asset('assets/img/fav/favicon.png')}}">
+  <link rel="canonical" href="http://casper.test"/>
+  <!-- Styles -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;900&family=Montserrat:wght@400;500;600;900&display=swap">
+  <link rel="stylesheet" href="{{asset('assets/css/build.min.css')}}"/>
 </head>
 
-<style>
-  .loginButton {
-    float: left;
-    margin-bottom: 0px;
-    background-color: #B3B3B3 !important;
-  }
-
-  .loginButton:hover {
-    background-color: #1a41c9 !important;
-  }
-</style>
 <body>
-<!---Preloder-->
-<div id="preloader-2"></div>
-<!-- /Preloder-->
+<div id="preloader"></div>
+<div id="scroll-top">
+  <i class="icon-arrow" aria-hidden="true"></i>
+</div>
+<div id="wrapper">
 
-<!--Scroll Top-->
-<div class="scrollup"><i class="fas fa-long-arrow-alt-up scrollup-icon"></i></div>
-<!--Scroll Top-->
+  <header class="header compensate-for-scrollbar">
+    <nav class="header_nav">
+      <div class="container flex">
+        <a class="header_logo" href="/" title="Home">
+          <img src="{{asset('assets/img/logo.svg')}}" alt="Casper"/>
+        </a>
+        <ul class="header_menu">
 
-<!-- Header Area-->
-<header class="header-area nav-fixed">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <nav class="main-nav" role="navigation">
-          <!-- Mobile menu toggle button (hamburger/x icon) -->
-          <input id="main-menu-state" type="checkbox"/>
-          <label class="main-menu-btn" for="main-menu-state">
-            <span class="main-menu-btn-icon"></span>
-          </label>
-          <h2 class="nav-brand">
-            <a href="/" style="margin: 0; padding: 0">
-              <img class="top-logo"
-                   src="{{ Storage::disk('public')->url($data["initial"]->logo) }}">
-            </a></h2>
-          <!-- Sample menu definition -->
-          <ul id="main-menu" class="sm sm-mint">
-            @foreach(\App\Models\Pages\Initial::getRoutes() as $route)
-              @auth @if($route["title"] === "Registration") @continue @endif  @endauth
-              <li>
-                <a href="{{ $route["link"] }}">{{$route["title"]}}</a>
-                @if(array_key_exists('children', $route))
-                  <ul>
-                    @foreach($route["children"] as $child)
-                      <li><a href="{{ $child["link"] }}">{{ $child["title"] }}</a></li>
-                    @endforeach
-                  </ul>
-                @endif
+          <li class="{{Request::url() == route('home') ? "active" : ""}}">
+            <a href="{{route('home')}}" title="Home">
+              Home
+            </a>
+
+          </li>
+
+          <li class="{{!Request::is('about*') ?: "active"}} dropdown">
+            <a href="#0" title="About">
+              About
+            </a>
+
+            <ul>
+
+              <li class="{{Request::url() == route('about') ?"active": ""}}">
+                <a href="{{route('about')}}" title="About Us">About Us</a>
               </li>
-            @endforeach
 
-            <li class="profileSub">
-              @auth
-                <a href="#">
-                  <span><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px"></i> {{Auth::user()->name }}</span>
-                </a>
-                <ul>
-                  <li>
-                    <a href="{{ route('cabinet') }}">
-                      {{  __('static.personal_cabinet') }}
-                    </a></li>
-                  <li>
-                    <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                       href="{{ route('logout') }}">
-                      {{  __('static.logout') }}
-                    </a>
-                  </li>
-                </ul>
+              <li class="{{Request::url() == route('topics') ?"active": ""}}">
+                <a href="{{route('topics')}}" title="Topics">Topics</a>
+              </li>
 
+              <li class="{{Request::url() == route('committee') ?"active": ""}}">
+                <a href="{{route('committee')}}" title="Committee">Committee</a>
+              </li>
 
-              @else
-                <a id="navFormButtonMobile" class="btn-1 blue" href="{{ route('login') }}">
-                  LOGIN
-                  {{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
-                </a>
-                <a id="navFormButton" class="btn-1 blue" style="cursor: pointer">
-                  LOGIN
-                  {{--                  {{  __('static.sign_in') . " \\ " . __('static.sign_up') }}--}}
-                </a>
-                <div class="navForm">
-                  <section class="contact-us">
-                    <div class="contact-information">
-                      <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="form-group cfdb1">
-                          <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
-                                 name="email" id="email" placeholder="{{ __('static.e_mail_address') }}"
-                                 value="{{ old('email') }}" autocomplete="email"
-                                 onfocus="this.placeholder = ''"
-                                 onblur="this.placeholder ='{{ __('static.e_mail_address') }}'">
-                          @error('email')
-                          <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                          @enderror
-                        </div>
-                        <div class="form-group cfdb1">
-                          <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                                 name="password" id="password" placeholder="{{ __('static.password') }}"
-                                 value="" autocomplete="password">
-                          @error('password')
-                          <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                          @enderror
-                        </div>
-                        <button class="loginButton" type="submit"
-                                id="submit">{{ __('static.login') }}</button>
-                        <a href="{{ route('register') }}">{{ __('static.registration') }}</a>
-                        @if (Route::has('password.request'))
-                          <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                          </a>
-                        @endif
-                      </form>
-                    </div>
-                  </section>
+              <li class="{{Request::url() == route('speakers') ?"active": ""}}">
+                <a href="{{route('speakers')}}" title="Speakers">Speakers</a>
+              </li>
 
+              <li class="{{Request::url() == route('program') ?"active": ""}}">
+                <a href="{{route('program')}}" title="Program">Program</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="{{Request::url() == route('register') ? "active" : ""}}">
+            <a href="{{route('register')}}" title="Registration">
+              Registration
+            </a>
+
+          </li>
+
+          <li class="{{Request::url() == route('news') ? "active" : ""}}">
+            <a href="{{route('news')}}" title="News">
+              News
+            </a>
+
+          </li>
+
+          <li class="{{!Request::is('media*') ?: "active"}} dropdown">
+            <a href="#0" title="Media">
+              Media
+            </a>
+
+            <ul>
+
+              <li class="{{Request::url() == route('gallery') ? "active" : ""}}">
+                <a href="{{route('gallery')}}" title="Gallery">Gallery</a>
+              </li>
+
+              <li class="{{Request::url() == route('abstractBook') ? "active" : ""}}">
+                <a href="{{route('abstractBook')}}" title="Abstract Books">Abstract Books</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li class="{{Request::url() == route('contacts') ? "active" : ""}}">
+            <a href="{{route('contacts')}}" title="Contacts">
+              Contacts
+            </a>
+
+          </li>
+
+          <li class=" login-cta" data-toggle="login">
+            <a href="#0" title="Login">
+              Login
+            </a>
+
+            <div class="header_login form">
+              <form method="POST" action="/cabinet.html" enctype="multipart/form-data" autocomplete="off">
+                <div class="form-group">
+                  <input type="email" placeholder="E-mail Address" value="" name="email"/>
                 </div>
-              @endguest
+                <div class="form-group">
+                  <input type="password" placeholder="Password" value="" name="password" class="error"
+                         autocomplete="current-password"/>
+                  <span class="helper">Wrong password</span>
+                </div>
+                <button type="submit" class="btn btn-blue pull-center">Login</button>
+                <div class="text-center">
+                  <a href="/register.html">Registration</a><br/>
+                  <a href="/password-reset.html">Forgot your password?</a>
+                </div>
+              </form>
+            </div>
 
+          </li>
+
+        </ul>
+        <button class="header_burger" data-toggle="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <nav class="header_mobile">
+      <ul>
+
+        <li class="active">
+          <a href="/" title="Home">
+            Home
+          </a>
+
+        </li>
+
+        <li class=" dropdown">
+          <a href="#0" title="About" data-toggle="dropdown">
+            About
+          </a>
+
+          <ul style="display: none;">
+
+            <li class="">
+              <a href="/about.html" title="About Us">About Us</a>
             </li>
-            @if(App::getLocale() == "en")
-              <li style="display: none">
-                <a class="btn-4" style="padding: 0; background: none; border-radius: 0;"
-                   href="{{ Request::root()."/lang/ru" }}">
-                  <img style="
-                        width: 54px;
-                        padding: 5px 5px;
-                        border-radius: 12px;
-                        background-color: #ffffff;
-                        margin-left: 15px;" src="{{ asset('/omnivus/images/flag-2.jpg') }}" alt="">
-                </a>
-              </li>
-            @else
-              <li style="display: none">
-                <a class="btn-4" style="padding: 0; background: none; border-radius: 0;"
-                   href="{{ Request::root()."/lang/eng" }}">
-                  <img style="
-                          width: 54px;
-                          padding: 5px 5px;
-                          border-radius: 12px;
-                          background-color: #ffffff;
-                          margin-left: 15px;" src="{{ asset('/omnivus/images/flag-1.jpg') }}" alt="">
-                </a>
-              </li>
-            @endif
+
+            <li class="">
+              <a href="/topics.html" title="Topics">Topics</a>
+            </li>
+
+            <li class="">
+              <a href="/committee.html" title="Committee">Committee</a>
+            </li>
+
+            <li class="">
+              <a href="/speakers.html" title="Speakers">Speakers</a>
+            </li>
+
+            <li class="">
+              <a href="/program.html" title="Program">Program</a>
+            </li>
 
           </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-<!--/Header Area-->
 
+        </li>
 
-@yield('content')
+        <li class="">
+          <a href="/register.html" title="Registration">
+            Registration
+          </a>
 
+        </li>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-  @csrf
-</form>
+        <li class="">
+          <a href="/news.html" title="News">
+            News
+          </a>
 
+        </li>
 
-<!-- Blog Section-->
-<section class="blog blog-3">
-  <div class="container">
-    <div class="blog-top">
-      <span>From our blog</span>
-      <h1>Latest News</h1>
-    </div>
-    <div class="row">
+        <li class=" dropdown">
+          <a href="#0" title="Media" data-toggle="dropdown">
+            Media
+          </a>
 
-      @foreach(\App\Models\News::orderBy('created_at', 'desc')->with('media')->limit(3)->get() as $news)
-        <div class="col-md-4">
-          <div class="single-blog wow fadeInUp" data-wow-delay=".4s">
-            <a href="{{ route('news')."/".$news->id }}">
-              <div class="sb-img">
-                @if($news->getFirstMedia('preview'))
-                  {{ $news->getFirstMedia('preview') }}
-                @else
-                  <img src="{{ asset('eventdia/img/blog/blog-'.rand(1,8).'.jpg') }}" alt="">
-                @endif
-              </div>
-            </a>
-            <div class="sb-content">
-              <span>{{ date('M d, Y', strtotime($news->created_at)) }}</span>
-              <a href="{{ route('news')."/".$news->id }}">
-                <h3>{{ $news->title }}</h3>
+          <ul style="display: none;">
+
+            <li class="">
+              <a href="/gallery.html" title="Gallery">Gallery</a>
+            </li>
+
+            <li class="">
+              <a href="/books.html" title="Abstract Books">Abstract Books</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="">
+          <a href="/contacts.html" title="Contacts">
+            Contacts
+          </a>
+
+        </li>
+
+        <li class="">
+          <a href="/login.html" title="Login">
+            Login
+          </a>
+
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    @yield('content')
+    <section class="section-news">
+      <div class="container">
+        <div class="section-title wow fadeIn">
+          <span>From our blog</span>
+          <h2 class="text-size-35">Latest News</h2>
+        </div>
+        <div class="flex-row">
+          @foreach(\App\Models\News::orderBy('created_at', 'desc')->with('media')->limit(3)->get() as $news)
+            <div class="news-item wow fadeIn">
+              <a class="news-item-img" href="{{ route('news')."/".$news->id }}">
+                {{ $news->getFirstMedia('preview') }}
               </a>
-              {!! $news->minimumDescription() !!}
-              <a href="{{ route('news')."/".$news->id }}">READ MORE</a>
+              <div class="news-item-info">
+                <p class="font-poppins">{{ date('M d, Y', strtotime($news->created_at)) }}</p>
+                <h4><a href="{{ route('news')."/".$news->id }}">{{ $news->title }}</a></h4>
+                {!! $news->minimumDescription() !!}
+                <a href="{{ route('news')."/".$news->id }}" class="btn btn-outline-blue font-poppins">Read More</a>
+              </div>
             </div>
-          </div>
-        </div>
-      @endforeach
-
-    </div>
-  </div>
-
-</section>
-<!-- /Blog Section-->
-
-<!-- Footer Section-->
-<footer class="footer-area footer-area-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="subscribe">
-          <h1>Subscribe to Our Newsletter</h1>
-          <form>
-            <input type="text" class="form-control" placeholder=" Enter your email address....."
-                   onfocus="this.placeholder=''" onblur="this.placeholder='Enter your email address.....'">
-            <button type="submit" class="btn btn-primary sub-btn"> Subscribe</button>
-          </form>
-        </div>
-        <div class="footer-bottom">
-          <div class="logo">
-            <a href="#"><img src="{{ asset('/eventdia/img/logo.png') }}" alt=""></a>
-          </div>
-          <div class="fb-text">
-            {{--            <p> Copyright © 2020 eventdia ! All Rights Reserved By <a href="https://voidcoders.com/"--}}
-            {{--                                                                      target="blank">VoidCoders</a></p>--}}
-            {!! $data["initial"]->copyright  !!}
-          </div>
-          <div class="fb-s-icon">
-            <ul>
-              @php
-                  @endphp
-              @foreach(json_decode($data["initial"]->social_networks) as $network)
-                <li>
-                  <a href="{{ $network->attributes->link }}" target="_blank">
-                    <i class="fab {{ $network->attributes->network }}"></i>
-                  </a>
-                </li>
-              @endforeach
-            </ul>
-          </div>
+          @endforeach
         </div>
       </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer_subscribe">
+        <h2 class="text-size-35">Subscribe to Our Newsletter</h2>
+        <form method="POST" action="/" enctype="multipart/form-data" autocomplete="off">
+          <input type="email" placeholder="Enter your email address..." value="" name="newsletter"
+                 class="font-poppins"/>
+          <button type="submit" class="btn btn-blue">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer_bottom flex font-poppins">
+        <a href="#0" class="btn btn-outline-white">Caspian Forum</a>
+        <small>Copyright Caspian Forum - 2020</small>
+        <ul class="socials flex">
+
+          <li><a href="#0"><i class="icon-facebook"></i></a></li>
+
+          <li><a href="#0"><i class="icon-twitter"></i></a></li>
+
+          <li><a href="#0"><i class="icon-linkedin"></i></a></li>
+
+          <li><a href="#0"><i class="icon-youtube"></i></a></li>
+
+        </ul>
+      </div>
     </div>
-  </div>
-</footer>
-<!-- /Footer Section-->
+  </footer>
+</div>
 
 <!-- Scripts -->
-
-<!-- jQuery Plugin -->
-<script src="{{ asset('/eventdia/js/jquery-3.4.1.min.js') }}"></script>
-<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-
-
-<!-- Bootstrap JS -->
-{{--<script src="{{ asset('/eventdia/js/bootstrap.min.js') }}"></script>--}}
-<script src="{{ asset('/eventdia/js/bootstrap.min.js') }}"></script>
-<!-- Jquery ui JS-->
-<script src="{{ asset('/eventdia/js/jquery-ui.js') }}"></script>
-<!--  Nav  -->
-<script src="{{ asset('/eventdia/js/jquery.smartmenus.js') }}"></script>
-<!-- Slick Slider -->
-<script src="{{ asset('/eventdia/slick/slick.min.js') }}"></script>
-<!-- Main Counterup Plugin-->
-<script src="{{ asset('/eventdia/js/jquery.counterup.min.js') }}"></script>
-<!-- Main Counterdown Plugin-->
-<script src="{{ asset('/eventdia/js/countdown.js') }}"></script>
-<!-- Waypoint Js-->
-<script src="{{ asset('/eventdia/js/waypoints.min.js') }}"></script>
-<!-- Fancybox Js-->
-<script src="{{ asset('/eventdia/js/jquery.fancybox.min.js') }}"></script>
-<!-- Ticker Js Plugin-->
-<script src="{{ asset('/eventdia/js/ticker.min.js') }}"></script>
-<!-- WOW JS Plugin-->
-<script src="{{ asset('/eventdia/js/wow.min.js') }}"></script>
-<!-- Main Script -->
-<script src="{{ asset('/eventdia/js/theme.js') }}"></script>
-<script src="{{ asset('/js/swiper.min.js') }}"></script>
-
-
+<script src="{{asset('assets/js/vendors.min.js')}}"></script>
+<script src="{{asset('assets/js/build.min.js')}}"></script>
 @yield('scripts')
-
-
-<script>
-  $(function () {
-    //Timer Js//
-
-    $("#navFormButton").on('click', function () {
-      $(".navForm").toggle('slow');
-    });
-
-    new Swiper(".swp-cnt-brands", {
-      slidesPerView: 1,
-      spaceBetween: 10,
-      loop: !0,
-      pagination: {
-        el: ".swp-pg-brands",
-        clickable: !0
-      },
-      speed: 750,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: !1
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 10,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 10,
-        },
-      }
-    })
-
-    new Swiper(".swp-cnt-home", {
-      slidesPerView: 1,
-      spaceBetween: 0,
-      loop: !0,
-      pagination: {
-        el: ".swp-pg-home",
-        clickable: !0
-      },
-      speed: 750,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: !1
-      },
-    })
-
-    if ($('body').find('#clockdiv').length !== 0) {
-
-      function getTimeRemaining(endtime) {
-        var t = Date.parse(endtime) - Date.parse(new Date());
-        var seconds = Math.floor((t / 1000) % 60);
-        var minutes = Math.floor((t / 1000 / 60) % 60);
-        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-        var days = Math.floor(t / (1000 * 60 * 60 * 24));
-        return {
-          'total': t,
-          'days': days,
-          'hours': hours,
-          'minutes': minutes,
-          'seconds': seconds
-        };
-      }
-
-      function initializeClock(id, endtime) {
-        var clock = document.getElementById(id);
-        var daysSpan = clock.querySelector('.days');
-        var hoursSpan = clock.querySelector('.hours');
-        var minutesSpan = clock.querySelector('.minutes');
-        var secondsSpan = clock.querySelector('.seconds');
-
-        function updateClock() {
-          var t = getTimeRemaining(endtime);
-
-          daysSpan.innerHTML = t.days;
-          hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-          minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-          secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-          if (t.total <= 0) {
-            clearInterval(timeinterval);
-          }
-        }
-
-        updateClock();
-        var timeinterval = setInterval(updateClock, 1000);
-      }
-
-          @if($data["event"])
-      var deadline = new Date("{{  $data["event"]["date"] }}");
-      @endif
-      initializeClock('clockdiv', deadline);
-    }
-  }(jQuery));
-
-  //**=================End Timer=====================**//
-</script>
-
 
 </body>
 
 </html>
+
+
