@@ -126,31 +126,57 @@
 
           </li>
 
-          <li class=" login-cta" data-toggle="login">
-            <a href="#0" title="Login">
-              Login
-            </a>
+          @auth
+            <li class="dropdown {{Request::url() == route('cabinet') ? "active" : ""}}">
+              <a href="#0" title="{{Auth::user()->name }}">
+                <i class="icon-user" aria-hidden="true"></i>{{Auth::user()->name }}
+              </a>
+              <ul>
+                <li class="{{Request::url() == route('cabinet') ? "active" : ""}}">
+                  <a href="{{ route("cabinet") }}" title="Personal Cabinet">Personal Cabinet</a>
+                </li>
+                <li class="">
+                  <a href="{{ route('logout') }}" title="Logout">Logout</a>
+                </li>
+              </ul>
+            </li>
+          @else
+            <li class=" login-cta" data-toggle="login">
+              <a href="#0" title="Login">
+                Login
+              </a>
 
-            <div class="header_login form">
-              <form method="POST" action="/cabinet.html" enctype="multipart/form-data" autocomplete="off">
-                <div class="form-group">
-                  <input type="email" placeholder="E-mail Address" value="" name="email"/>
-                </div>
-                <div class="form-group">
-                  <input type="password" placeholder="Password" value="" name="password" class="error"
-                         autocomplete="current-password"/>
-                  <span class="helper">Wrong password</span>
-                </div>
-                <button type="submit" class="btn btn-blue pull-center">Login</button>
-                <div class="text-center">
-                  <a href="/register.html">Registration</a><br/>
-                  <a href="/password-reset.html">Forgot your password?</a>
-                </div>
-              </form>
-            </div>
+              <div class="header_login form">
+                <form method="POST" action="{{ route('login') }}" autocomplete="off">
+                  @csrf
+                  <div class="form-group">
+                    <input type="email" placeholder="E-mail Address" value=""
+                           @error('email') class="error" @enderror
+                           name="email"/>
+                    @error('email')
+                      <span class="helper">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <input type="password" placeholder="Password" value="" name="password"
+                           @error('password') class="error" @enderror
+                           autocomplete="current-password"/>
+                    @error('password')
+                    <span class="helper">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <button type="submit" class="btn btn-blue pull-center">Login</button>
+                  <div class="text-center">
+                    <a href="{{ route('register') }}">Registration</a><br/>
+                    @if (Route::has('password.request'))
+                      <a href="{{ route('password.request') }}">Forgot your password?</a>
+                    @endif
+                  </div>
+                </form>
+              </div>
 
-          </li>
-
+            </li>
+          @endauth
         </ul>
         <button class="header_burger" data-toggle="nav">
           <span></span><span></span><span></span>

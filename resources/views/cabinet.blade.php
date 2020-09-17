@@ -1,709 +1,269 @@
 @extends('layouts.app')
 
 @section('content')
-  <style>
-    .badge {
-      display: block;
-      float: left;
-      font-size: 11px;
-      margin-top: 5px;
-      margin-right: 4px;
-      font-weight: 100;
-    }
-
-    .form-group img {
-      width: 30%;
-      max-height: 200px;
-    }
-
-    .nav {
-      display: block;
-    }
-
-    .nav-item {
-      line-height: 30px;
-      list-style-type: none;
-      display: block;
-    }
-
-  </style>
-
-  <!--Pricing Section-->
-  <section id="ticket" class="pricing" style="height: 0; width: 0;margin: 0;">
-    <div class="pp-2-bg">
-      <!-- The Modal -->
-      <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Abstract</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <!--contact Us Section-->
-            <section class="contact-us no-mar">
-              <div class="contact-information">
-                <form method="POST" action="{{ route('report_create') }}">
-                  @csrf
-                  <div class="form-group cfdb1 text-left">
-                    <div class="form-group cfdb1">
-                      <label class="col-form-label"
-                             style="padding-left: 10px;margin-top: 10px;">Category</label>
-                      <select style="height: 52px;font-size: 14px;"
-                              class="form-control cp1"
-                              id="abstract_category_id">
-                        @foreach($data['categories'] as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-
-                    <label for="name" class="col-form-label"
-                           style="padding-left: 10px;margin-top: 10px;">Topic</label>
-                    <select style="height: 52px;font-size: 14px;"
-                            class="form-control cp1 @error('topic_id') is-invalid @enderror"
-                            name="topic_id" id="topic_id" autocomplete="topic_id">
-                      @foreach($data['topics'] as $topic)
-                        <option data-category="{{$topic->category_id}}" value="{{ $topic->id }}">{{ $topic->name }}</option>
-                        @foreach($topic->children as $child)
-                          <option data-category="{{$topic->category_id}}" value="{{ $child->id }}">- {{ $child->name }}</option>
-                        @endforeach
-                      @endforeach
-                    </select>
-                    @error('topic_id')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-
-                  <div class="form-group cfdb1">
-                    <input type="text" class="form-control cp1" name="name" id="name"
-                           placeholder="Abstract title"
-                           onfocus="this.placeholder = ''"
-                           onblur="this.placeholder ='Abstract title'">
-                  </div>
-
-                  <div class="form-group cfdb1">
-                  <textarea rows="8" class="form-control cp1" name="description" id="description"
-                            placeholder="Abstract description (max 300 words)"
-                            onkeyup="countChar(this)"
-                            maxlength="300"
-                            onfocus="this.placeholder =''"
-                            onblur="this.placeholder ='Abstract description (max 300 words)'"></textarea>
-                    <div style="right: 0;position: absolute;" id="charNum">0/300</div>
-                  </div>
-                  <button type="submit" id="submit">Create</button>
-                  <div class="col-md-12 text-center">
-                    <div class="cf-msg"></div>
-                  </div>
-                </form>
-              </div>
-            </section>
-            <!--/contact Us Section-->
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  @if(session('pill'))
-    @php $pill = session('pill') @endphp
-  @else
-    @php $pill = "profile" @endphp
-  @endif
-
-
-  <section class="contact-us" id="app" style="margin-top: 150px">
+  <section class="section-cabinet">
     <div class="container">
-      <h2>{{ __('static.my_profile') }}</h2>
-
-      <div class="row">
-        <div class="col-md-3">
-          <ul style="margin-top: 15px" class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link @if($pill == "profile") active @endif" id="pills-profile-tab"
-                 data-toggle="pill"
-                 href="#pills-profile" role="tab"
-                 aria-controls="pills-profile" aria-selected="true">User Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link @if($pill == "password") active @endif" id="pills-password-tab"
-                 data-toggle="pill"
-                 href="#pills-password" role="tab"
-                 aria-controls="pills-password" aria-selected="false">Change Password</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link @if($pill == "links") active @endif" id="pills-links-tab"
-                 data-toggle="pill"
-                 href="#pills-links" role="tab"
-                 aria-controls="pills-links" aria-selected="false">My invintations</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link @if($pill == "abstracts") active @endif" id="pills-abstracts-tab"
-                 data-toggle="pill"
-                 href="#pills-abstracts" role="tab"
-                 aria-controls="pills-abstracts" aria-selected="false">Abstracts</a>
-            </li>
-          </ul>
+      <div class="flex-row">
+        <div class="cabinet-sidebar">
+          <h2 class="text-size-25">My profile</h2>
+          <nav class="font-poppins">
+            <button data-tab-target="user-profile" class="btn btn-outline-blue">User Profile</button>
+            <button data-tab-target="change-password" class="btn btn-outline-blue">Change Password</button>
+            <button data-tab-target="invitations" class="btn btn-outline-blue">My Invitations</button>
+            <button data-tab-target="abstracts" class="btn btn-outline-blue">Abstracts</button>
+          </nav>
         </div>
-        <div class="col-md-9">
-          <div class="tab-content pt-2 pl-1" id="pills-tabContent">
-            <div class="tab-pane fade @if($pill == "profile") show active @endif" id="pills-profile"
-                 role="tabpanel"
-                 aria-labelledby="pills-main-tab">
-              <div class="contact-information" style="margin-top: 10px;">
-                <form method="POST" action="{{ route('user_update') }}" enctype="multipart/form-data">
-                  @csrf
-
-                  <div class="form-group cfdb1" id="profile"
-                       @if(!$data["user"]->avatar) style="display: none" @endif>
-                    @if($data["user"]->avatar)
-                      {{ $data["user"]->avatar }}
-                    @else
-                      <img style="display: none"/>
-                    @endif
-                    <button style="padding: 5px 15px;" type="button" id="removeAvatar"
-                            class="btn-danger">x
-                    </button>
-                    <input type="checkbox" name="isAvatarRemoved" id="isAvatarRemoved"
-                           style="display: none">
-                  </div>
-
-                  <div class="form-group cfdb1">
-                    <input style="padding: 15px 15px 40px 15px;" type="file" id="avatar"
-                           class="form-control cp1 @error('avatar') is-invalid @enderror"
-                           name="avatar" placeholder="avatar">
-                    @error('avatar')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-                  <div class="form-group cfdb1">
-                    <label class="col-form-label text-md-right">{{ __('static.full_name') }}</label>
-                    <input type="text" disabled class="form-control cp1"
-                           value="{{$data["user"]->name}}">
-                  </div>
-                  <div class="form-group cfdb1">
-                    <label
-                      class="col-form-label text-md-right">{{ __('static.e_mail_address') }}</label>
-                    <input type="text" disabled class="form-control cp1"
-                           value="{{$data["user"]->email}}">
-                  </div>
-                  <div class="form-group cfdb1" style="float:left; width: 22%;">
-                    <label for="region"
-                           class="col-form-label text-md-right">{{ __('static.region') }}</label>
-                    <select disabled style="height: 52px;font-size: 14px;"
-                            class="selectpicker form-control cp1" id="region">
+        <div class="cabinet-content">
+          <div data-tab="user-profile">
+            <div class="form wow fadeIn">
+              <form method="POST" action="{{ route('user_update') }}" enctype="multipart/form-data" autocomplete="off">
+                @csrf
+                <h4 class="form-title">Avatar</h4>
+                <div class="form-group file">
+                  @if($data["user"]->avatar)
+                    {{ $data["user"]->avatar }}
+                  @endif
+                  <label for="avatar" class="file-input @if($data["user"]->avatar) chosen @endif"
+                         data-image-placeholder="/assets/img/svg/icons/user.svg">
+                    <input type="file" id="avatar" name="avatar" data-file-upload="image"/>
+                    <span class="btn btn-blue">Choose file</span>
+                    <span class="file-name"></span>
+                    <span class="no-file">No file chosen</span>
+                    <span class="delete">
+                          <span>Delete</span>
+                          <i class="icon-delete" aria-hidden="true"></i>
+                        </span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <input type="text" placeholder="Full Name" value="{{$data["user"]->name}}" name="name" disabled/>
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="E-mail Address" value="{{$data["user"]->email}}" name="email"
+                         disabled/>
+                </div>
+                <h4 class="form-title">Phone</h4>
+                <div class="form-group-double">
+                  <div class="form-group select">
+                    <select name="country" disabled>
                       @foreach(\App\Region::scopeOrdered() as $region)
-                        <option value="{{ $region->id }}"
-                                @if($region->id == $data["user"]->region_id) selected
-                                @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
+                        <option value="{{ $region->id }}" @if($region->id == $data["user"]->region_id) selected @endif>
+                          {!! $region->name_en !!}
+                        </option>
                       @endforeach
                     </select>
                   </div>
-                  <div class="form-group cfdb1" style="float:right; width: 77%">
-                    <label for="phone"
-                           class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
-                    <input type="text" class="form-control cp1"
-                           disabled
-                           value="+{{$data["user"]->phone}}"
-                           name="phone" id="phone" placeholder="{{ __('static.phone_number') }}">
+                  <div class="form-group">
+                    <input type="text" placeholder="Phone Number" value="+{{$data["user"]->phone}}" name="phone"
+                           disabled/>
                   </div>
-                  <div class="form-group cfdb1">
-                    <label class="col-form-label text-md-right">{{ __('static.company') }}</label>
-                    <input type="text"
-                           class="form-control cp1 @error('company') is-invalid @enderror"
-                           name="company" placeholder="{{ __('static.company') }}"
-                           value="{{$data["user"]->company}}">
-                    @error('company')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-                  <div class="form-group cfdb1">
-                    <label class="col-form-label text-md-right">{{ __('static.job_title') }}</label>
-                    <input type="text"
-                           class="form-control cp1 @error('job_title') is-invalid @enderror"
-                           name="job_title" id="job_title"
-                           placeholder="{{ __('static.job_title') }}"
-                           value="{{$data["user"]->job_title}}" autocomplete="job_title">
-                    @error('job_title')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-                  <div class="form-group cfdb1">
-                    <label for="degree_id"
-                           class="col-form-label text-md-right">{{ __('static.degree') }}</label>
-                    <select style="height: 52px;font-size: 14px;"
-                            class="form-control cp1 @error('degree_id') is-invalid @enderror"
-                            name="degree_id" id="degree_id" autocomplete="degree">
-                      <option selected value="0">No degree</option>
-                      @foreach(\App\Models\Degree::all() as $degree)
-                        <option value="{{ $degree->id }}"
-                                @if($data["user"]->degree_id == $degree->id) selected @endif
-                        >{{ $degree->name }}</option>
-                      @endforeach
-                    </select>
-                    @error('degree_id')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-
-
-                  @if($data["user"]->currentMembership)
-                    @php $currentMembership = $data["user"]->currentMembership;
-                      switch ($currentMembership->status){
-                        case 1: $status = "In progress"; break;
-                        case 2: $status = "Denied"; break;
-                        default: $status = "Approved";
-                      }
-                    @endphp
-                    Your participation in current Event is: {{ $currentMembership->name }}
-                    ({{ $status }}) <br>
-                    Do u wanna change your participation ? <br>
-                      <div class="form-group cfdb1">
-                        <label for="membership_id"
-                               class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                        <select style="height: 52px;font-size: 14px;"
-                                class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                                name="membership_id" id="membership_id"
-                                autocomplete="membership_id">
-                          <option disabled selected>Select</option>
-                          <option disabled>Reporter</option>
-                          @foreach($data['memberships'] as $membership)
-                            <option
-                                value="{{ $membership->id }}"
-                                @if($currentMembership->id == $membership->id ?? '') selected @endif>
-
-                              @if($membership->reporter == true )
-                                - {{ $membership->name }}
-                              @else
-                                {{ $membership->name }}
-                              @endif
-                            </option>
-                          @endforeach
-                        </select>
-                        @error('membership_id')
-                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
-                        <span>
-                        <strong>
-                          If you change your participation, all your current reports will be denied
-                        </strong>
-                      </span>
-                      </div>
-                      <div class="col-md-12 text-center">
-                        <div class="cf-msg"></div>
-                      </div>
-
-                  @elseif($data["event"])
-                    You have no participation in Active Event <br>
-                    Do u wanna join to event ?
-                    <div class="form-group cfdb1">
-                      <label for="membership_id"
-                             class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                      <select style="height: 52px;font-size: 14px;"
-                              class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                              name="membership_id" id="membership_id"
-                              autocomplete="membership_id">
-                        <option disabled selected>Select</option>
-                        <option disabled>Reporter</option>
-                        @foreach($data['memberships'] as $membership)
-                          <option
-                              value="{{ $membership->id }}">
-
-                            @if($membership->reporter == true )
-                              - {{ $membership->name }}
-                            @else
-                              {{ $membership->name }}
-                            @endif
-                          </option>
-                        @endforeach
-                      </select>
-                      @error('membership_id')
-                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                      @enderror
-                      {{--                      <span><strong>If you change</strong></span>--}}
-                    </div>
-
-                  @endif
-
-                  @if($data["events"] && count($data["events"]) > 0)
-                    <section class="faq" style="margin-top: 0;">
-                      <div id="accordion">
-                        <div class="card ">
-                          <div class="card-header">
-                            <h4 class="card-header">
-                              <a class="accordion-toggle collapsed" data-toggle="collapse"
-                                 data-parent="#accordion"
-                                 href="#collapseHistory" aria-expanded="false">
-                                History
-                                <i class="fas fa-minus-circle faq-icon"></i>
-                                <i class="fas fa-plus-circle"></i></a>
-                            </h4>
-                          </div>
-                          <div id="collapseHistory" class="panel-collapse in collapse" style="">
-                            <div class="card-block">
-                              <p>
-                              @foreach($data["events"] as $event)
-                                @php
-                                  switch ($event->pivot->status){
-                                    case 1: $status = "In progress"; break;
-                                    case 2: $status = "Denied"; break;
-                                    default: $status = "Approved";}
-                                @endphp
-                                <p>Event: {{ $event->name }}</p>
-                                <p>Member
-                                  As: {{ \App\Models\Membership::find($event->pivot->membership_id)->name }}</p>
-                                <p>Status: {{ $status }}</p>
-                                @if($event->userReports(Auth::user()->id)->count() > 0)
-                                  <div id="accordion">
-                                    <div class="card">
-                                      <div class="card-header">
-                                        <h4 class="card-header">
-                                          <a class="accordion-toggle collapsed"
-                                             data-toggle="collapse"
-                                             data-parent="#accordion"
-                                             href="#collapse{{$event->id}}"
-                                             aria-expanded="false">
-                                            Reports
-                                            <i class="fas fa-minus-circle faq-icon"></i>
-                                            <i class="fas fa-plus-circle"></i></a>
-                                        </h4>
-                                      </div>
-                                      <div id="collapse{{$event->id}}"
-                                           class="panel-collapse collapse in">
-                                        <div class="card-block">
-                                          @foreach($event->userReports(Auth::user()->id) as $report)
-                                            @php
-                                              switch ($report->status){
-                                                case 1: $report->status = "In progress"; break;
-                                                case 2: $report->status = "Denied"; break;
-                                                default: $report->status = "Approved";}
-                                            @endphp
-                                            <p>Name: {{ $report->name }}</p>
-                                            <p>
-                                              Topic: {{ $report->topic->name }}</p>
-                                            <p>Status: {{ $report->status }}</p>
-                                            @if($report->file)
-                                              <p>File: <a target="_blank"
-                                                          href="{{ Storage::disk('reports')->url($report->file) }}">Download</a>
-                                              </p>
-                                            @endif
-                                          @endforeach
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                @endif
-                                <br>
-                                @endforeach
-                                </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  @endif
-
-                  <button style="margin-top: 15px"
-                          type="submit">{{ __('static.user_update') }}</button>
-                  <div class="col-md-12 text-center">
-                    <div class="cf-msg"></div>
-                  </div>
-                </form>
-
-              </div>
+                </div>
+                <h4 class="form-title">Company</h4>
+                <div class="form-group">
+                  <input type="text" placeholder="Working Place" value="{{$data["user"]->company}}" name="company"/>
+                </div>
+                <div class="form-group">
+                  <input type="text" placeholder="Position" value="{{$data["user"]->job_title}}" name="job_title"/>
+                </div>
+                <h4 class="form-title">Degree</h4>
+                <div class="form-group select">
+                  <select name="degree_id">
+                    @foreach(\App\Models\Degree::all() as $degree)
+                      <option value="{{ $degree->id }}" @if($data["user"]->degree_id == $degree->id) selected @endif>
+                        {{ $degree->name }}
+                      </option>
+                    @endforeach
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-outline-blue pull-right">Update Details</button>
+              </form>
             </div>
-            <div class="tab-pane fade @if($pill == "password") show active @endif" id="pills-password"
-                 role="tabpanel"
-                 aria-labelledby="pills-password-tab">
-              <div class="contact-information" style="margin-top: 10px;">
-                <form method="POST" action="{{ route('user_update_password') }}">
-                  @csrf
-                  <div class="form-group cfdb1">
-                    <label
-                      class="col-form-label text-md-right">{{ __('static.current_password') }}</label>
-                    <input type="password"
-                           class="form-control cp1 @error('current_password') is-invalid @enderror"
-                           name="current_password"
-                           placeholder="{{ __('static.current_password') }}">
-                    @error('current_password')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-                  <div class="form-group cfdb1">
-                    <label
-                      class="col-form-label text-md-right">{{ __('static.new_password') }}</label>
-                    <input type="password"
-                           class="form-control cp1 @error('password') is-invalid @enderror"
-                           name="password" placeholder="{{ __('static.new_password') }}">
-                    @error('password')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-                  <div class="form-group cfdb1">
-                    <input type="password"
-                           class="form-control cp1 @error('password_confirmation') is-invalid @enderror"
-                           name="password_confirmation"
-                           placeholder="{{ __('static.confirm_password') }}">
-                    @error('password_confirmation')
-                    <span class="invalid-feedback"
-                          role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                  </div>
-                  <button style="margin-top: 15px"
-                          type="submit">{{ __('static.password_update') }}</button>
-                  <div class="col-md-12 text-center">
-                    <div class="cf-msg"></div>
-                  </div>
-                </form>
-              </div>
+          </div>
+          <div data-tab="change-password">
+            <div class="form wow fadeIn">
+              <form method="POST" action="{{ route('user_update_password') }}" autocomplete="off">
+                @csrf
+                <h4 class="form-title">Current Password</h4>
+                <div class="form-group">
+                  <input type="password" placeholder="Current Password" value="" name="current_password"
+                         class="@error('current_password') error @enderror"
+                         autocomplete="current-password"/>
+                  @error('current_password')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
+                <h4 class="form-title">New Password</h4>
+                <div class="form-group">
+                  <input type="password" placeholder="New Password" value="" name="password"
+                         class="@error('password') error @enderror"
+                         autocomplete="new-password"/>
+                  @error('password')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Confirm Password" value="" name="password_confirmation"
+                         class="@error('password_confirmation') error @enderror"
+                         autocomplete="new-password"/>
+                  @error('password_confirmation')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
+                <button type="submit" class="btn btn-outline-blue pull-right">Update Password</button>
+              </form>
             </div>
-            <div class="tab-pane fade @if($pill == "links") show active @endif" id="pills-links"
-                 role="tabpanel"
-                 aria-labelledby="pills-links-tab">
-              <div class="contact-information" style="margin-top: 10px;">
-                @foreach($data["broadcastVouchers"] as $voucher)
-                  <strong>{{$voucher->name}}</strong>: <a href="{{ route('vouchers',$voucher->id) }}"
-                                                          target="_blank">Download</a></br>
-                @endforeach
+          </div>
+          <div data-tab="invitations">
+            <div class="invitations wow fadeIn">
+              @foreach($data["broadcastVouchers"] as $voucher)
+                <div class="download-pdf">
+                  <h4>{{$voucher->name}}</h4>
+                  <a href="{{ route('vouchers',$voucher->id) }}">Download
+                    <i class="icon-download" aria-hidden="true"></i>
+                  </a>
+                </div>
+              @endforeach
 
-                @foreach($data["vouchers"] as $voucher)
-                  <strong>{{$voucher->name}}</strong>: <a href="{{ route('vouchers',$voucher->id) }}"
-                                                          target="_blank">Download</a></br>
-                @endforeach
-              </div>
+              @foreach($data["vouchers"] as $voucher)
+                <div class="download-pdf">
+                  <h4>{{$voucher->name}}</h4>
+                  <a href="{{ route('vouchers',$voucher->id) }}">Download
+                    <i class="icon-download" aria-hidden="true"></i>
+                  </a>
+                </div>
+              @endforeach
             </div>
-            <div class="tab-pane fade @if($pill == "abstracts") show active @endif" id="pills-abstracts"
-                 role="tabpanel">
-              <div class="contact-information">
-
-                @if( $data["user"]->canAddReport )
-                  <a style="padding: 12px;margin-top: 10px;" href="#" class="btn-3"
-                     data-toggle="modal"
-                     data-target="#myModal">New abstract</a>
-                @endif
-
-                @if(count($data["reports"]) > 0)
-                  <h3>Abstracts: </h3>
-                  @foreach($data["reports"] as $report)
-                    Topic:
-                    <div class="card p-3 mb-3">
-                      @if($report->topic->parent)
-                        {{ $report->topic->parent->name}}<br>
-                        —{{ $report->topic->name}}
-                      @else
-                        {{ $report->topic->name}}
-                      @endif
-
-                    </div>
-                    <div class="card text-center mb-3">
-
-                      <div class="card-header">
-
-                        <div class="nav nav-tabs card-header-tabs">
-                          <div class="nav-item float-left"><a
-                              class="nav-link active">{{ substr($report->name,0,40) }}</a>
-                          </div>
-                          <div class="nav-item" style="right: 20px;position: absolute;">
-                            @if($report->status == 1)
-                              <div class="badge badge-primary">
-                                In progress
-                              </div>
-                              <button type="button" class="btn btn-danger btn-sm"
-                                      data-toggle="modal" data-target="#removeReport">X
+          </div>
+          <div data-tab="abstracts">
+            @if( $data["user"]->canAddReport )
+              <button class="btn btn-outline-blue" data-fancybox data-src="#new-abstract" data-hash="false"
+                      data-touch="false">New Abstract
+              </button>
+            @endif
+            @if(count($data["reports"]) > 0)
+              <h3 class="text-size-25">Abstracts:</h3>
+              <div class="abstracts-list">
+                @foreach($data["reports"] as $report)
+                  <div class="abstract wow fadeIn">
+                    <p>Topic:</p>
+                    <div class="abstract-body">
+                      <div class="abstract-topic">
+                        @if($report->topic->parent)
+                          <h4>{{ $report->topic->name}}</h4>
+                          <p>- {{ $report->topic->name}}</p>
+                        @else
+                          <h4>{{ $report->topic->name}}</h4>
+                        @endif
+                      </div>
+                      <div class="abstract-status">
+                        <h4>{{ $report->name }}</h4>
+                        <div class="status">
+                          @if($report->status == 1)
+                            <span class="badge in-progress">In progress</span>
+                            <form method="POST" action="{{ route('report_remove') }}">
+                              @csrf
+                              <input style="display: none" type="text" name="id" value="{{ $report->id }}">
+                              <button type="submit" class="badge in-progress">
+                                <i class="icon-close" aria-hidden="true"></i>
                               </button>
-                              <div class="modal fade" id="removeReport" tabindex="-1"
-                                   role="dialog" aria-labelledby="removeReportLabel"
-                                   aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title"
-                                          id="removeReportLabel">Confirmation</h5>
-                                      <button type="button" class="close"
-                                              data-dismiss="modal"
-                                              aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">Are you sure you want to
-                                      remove this report
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button"
-                                              class="btn btn-secondary"
-                                              data-dismiss="modal">Close
-                                      </button>
-                                      <form method="POST"
-                                            action="{{ route('report_remove') }}">
-                                        @csrf
-                                        <input style="display: none" type="text"
-                                               name="id"
-                                               value="{{ $report->id }}">
-                                        <button type="submit"
-                                                class="btn btn-danger">Remove
-                                        </button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            @elseif($report->status == 3)
-                              <div class="badge badge-success">Approved
-                              </div>
-                            @else
-                              <div class="badge badge-danger">Denied
-                              </div>
-                            @endif
-                          </div>
+                            </form>
+                          @elseif($report->status == 2)
+                            <span class="badge rejected">Rejected</span>
+                          @else
+                            <span class="badge approved">Approved</span>
+                          @endif
                         </div>
                       </div>
-                      <div class="card-body">
-                        <p class="card-text text-justify">{{ $report->description }}</p>
+                      <div class="abstract-data">
+                        <p>{{ $report->description }}</p>
                         @if($report->status == 3)
-                          @if($report->file != null)
-                            <a href="{{Storage::disk('reports')->url($report->file)}}">Download</a>
+                          @if($report->file)
+                            <div style="display: flex;justify-content: center;margin: 20px 0 8px;">
+                              <a target="_blank" href="{{Storage::disk('reports')->url($report->file)}}">Download</a>
+                            </div>
                           @else
-                            <form method="POST" action="{{ route('report_update') }}"
-                                  enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('report_update') }}" enctype="multipart/form-data"
+                                  autocomplete="off">
                               @csrf
                               <input name="report_id" style="display: none" type="text"
                                      value="{{ $report->id }}">
-                              <input name="file" type="file">
-                              <button type="submit">Send</button>
+                              <div class="form-group file">
+                                <label for="document" class="file-input">
+                                  <input name="file" type="file" id="document" data-file-upload="document"/>
+                                  <span class="btn btn-blue">Choose file</span>
+                                  <span class="file-name"></span>
+                                  <span class="no-file">No file chosen</span>
+                                  <span class="delete">
+                                <span>Delete</span>
+                                <i class="icon-delete" aria-hidden="true"></i>
+                              </span>
+                                </label>
+                              </div>
+                              <button type="submit" class="btn btn-blue">Send</button>
                             </form>
                           @endif
                         @endif
                       </div>
                     </div>
-                  @endforeach
-                @endif
-
+                  </div>
+                @endforeach
               </div>
-            </div>
+            @endif
+
+            @if( $data["user"]->canAddReport )
+              <div id="new-abstract" style="display:none;">
+                <h2 class="text-size-25">Abstract</h2>
+                <div class="form wow fadeIn">
+                  <form method="POST" action="{{ route('report_create') }}" autocomplete="off">
+                    @csrf
+                    <h4 class="form-title">Category</h4>
+                    <div class="form-group select">
+                      <select name="abstract_category_id" @error('abstract_category_id') class="error" @enderror>
+                        @foreach($data['categories'] as $category)
+                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                      </select>
+                      @error('abstract_category_id')
+                      <span class="helper">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <h4 class="form-title">Topic</h4>
+                    <div class="form-group select">
+                      <select name="topic_id" @error('topic_id') class="error" @enderror>
+                        @foreach($data['topics'] as $topic)
+                          <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                          @foreach($topic->children as $child)
+                            <option value="{{ $child->id }}"> - {{ $child->name }}</option>
+                          @endforeach
+                        @endforeach
+                      </select>
+                      @error('topic_id')
+                      <span class="helper">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <div class="form-group">
+                      <input type="text" placeholder="Abstract Title" name="name" value="{{ old('name') }}"
+                             @error('name') class="error" @enderror/>
+                      @error('name')
+                      <span class="helper">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Abstract description (max 300 words)" name="description"
+                                  @error('description') class="error" @enderror
+                                  maxlength="300">{{ old('description') }}</textarea>
+                      @error('description')
+                      <span class="helper">{{ $message }}</span>
+                      @enderror
+                    </div>
+                    <button type="submit" class="btn btn-blue pull-right">Create</button>
+                  </form>
+                </div>
+              </div>
+            @endif
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
-@endsection
-
-@section('scripts')
-  <script>
-    $("#removeAvatar").on('click', function () {
-      $('#profile').hide();
-      $('#isAvatarRemoved').prop('checked', true);
-    })
-
-    $("#avatar").change(function () {
-      $('#isAvatarRemoved').prop('checked', false);
-      $('#profile').show();
-      $('#profile img').show();
-
-      if (this.files && this.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('#profile img').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(this.files[0]);
-      }
-    });
-
-    function countChar(val) {
-      var len = val.value.length;
-      if (len >= 500) {
-        val.value = val.value.substring(0, 300);
-      } else {
-        $('#charNum').text(len + "/300");
-      }
-    }
-
-    $(function () {
-      let region = $('#region');
-
-      let category = $("#abstract_category_id");
-
-      let topicsNative = '<?php
-        foreach($data['topics'] as $topic){
-          echo "<option data-category=\"$topic->category_id\" value=\"$topic->id\">$topic->name</option>";
-          foreach($topic->children as $child) {
-            echo "<option data-category=\"$topic->category_id\" value=\"$child->id\">- $child->name</option>";
-          }
-        }
-        ?>';
-
-      let category_id = category.val();
-      let abstractTopics = document.getElementById('topic_id');
-      let abstractTopicsJQ = $('#topic_id');
-
-      abstractTopicsJQ.html(topicsNative);
-
-      $(abstractTopics.options).each(function() {
-        if ($(this).attr('data-category') !== category_id) {
-          $(this).remove();
-        }
-      });
-
-      category.on("change", function () {
-
-        let topicsNative = '<?php
-          foreach($data['topics'] as $topic){
-            echo "<option data-category=\"$topic->category_id\" value=\"$topic->id\">$topic->name</option>";
-            foreach($topic->children as $child) {
-              echo "<option data-category=\"$topic->category_id\" value=\"$child->id\">- $child->name</option>";
-            }
-          }
-          ?>';
-
-        let category_id = category.val();
-        let abstractTopics = document.getElementById('topic_id');
-        let abstractTopicsJQ = $('#topic_id');
-        abstractTopicsJQ.html(topicsNative);
-
-        $(abstractTopics.options).each(function() {
-          if ($(this).attr('data-category') !== category_id) {
-            $(this).remove();
-          }
-        });
-
-      });
-
-      //Timer Js//
-      function changeMask(e) {
-        let mask = e.options[e.selectedIndex].getAttribute('data-mask');
-        let temp = "";
-        for (let i = 0; i < mask.length; i++) {
-          if (mask.charAt(i) === "9") {
-            temp = temp.concat("\\" + mask.charAt(i));
-          } else {
-            temp = temp.concat(mask.charAt(i));
-          }
-        }
-        $('#phone').inputmask((temp.toString()));
-      }
-
-      region.change(function () {
-        changeMask(this)
-      })
-
-      changeMask(region[0])
-
-
-    }(jQuery));
-
-  </script>
 @endsection

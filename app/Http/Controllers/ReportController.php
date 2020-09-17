@@ -20,7 +20,6 @@ class ReportController extends Controller {
 
   private function deleteReport($report) {
     $report->delete();
-
   }
 
   public function store(ReportRequest $request) {

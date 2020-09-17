@@ -135,7 +135,7 @@ class PageController extends Controller {
 
     $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
 
-    $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? null;
+    $data["events"] = $user->events()->where('active', '!=', 1)->get() ?? [];
     $data["memberships"] = Membership::all();
 
     $data["vouchers"] = $data["event"] ? $user->eventVouchers($data["event"]->id) : [];
@@ -145,7 +145,6 @@ class PageController extends Controller {
         ->get() : [];
 
     $data["categories"] = Category::all();
-
 
     return view('cabinet', compact('data'));
   }

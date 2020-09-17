@@ -85,7 +85,7 @@ class User extends Authenticatable implements HasMedia {
         ->vouchers()
         ->where('event_id', '=', $id)
         ->get()
-        : null;
+        : [];
   }
 
   public function canAddReports() {
