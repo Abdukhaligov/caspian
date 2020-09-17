@@ -1,58 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-
-  <section class="contact-us" id="app">
+  <section class="section-pwd-reset">
     <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="contact-details">
-            <h2>Some kind of title</h2>
-            <p>I have worls-class, flexible support via live chat, email and hone. I guarantee that you’ll be able to
-              have any issue resolved within 24 hours.</p>
+      <div class="form wow fadeIn">
+        <h2>Reset your password</h2>
+        <br>
+        <form method="POST" action="{{ route('password.update') }}" autocomplete="off">
+          @csrf
+          <input type="hidden" name="token" value="{{ $token }}">
+          <div class="form-group">
+            <input type="text" value="{{ $email ?? old('email') }}" name="email"
+                   class="@error('email') error @enderror"/>
+            @error('email')
+            <span class="helper">{{ $message }}</span>
+            @enderror
           </div>
-        </div>
-        <div class="col-md-7">
-          <div class="contact-information">
-            <form method="POST" action="{{ route('password.update') }}">
-              @csrf
-              <input type="hidden" name="token" value="{{ $token }}">
-                <div class="form-group cfdb1">
-                    <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
-                           name="email" id="email" placeholder="{{ __('static.e_mail_address') }}"
-                           autocomplete="email"
-                           value="{{ $email ?? old('email') }}"
-                           onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.e_mail_address') }}'">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-              <div class="form-group cfdb1">
-                <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                       name="password" id="password" placeholder="{{ __('static.password') }}"
-                       autocomplete="password"
-                       onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.password') }}'">
-                  @error('password')
-                  <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                  @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                       name="password_confirmation" id="password_confirmation" placeholder="{{ __('static.confirm_password') }}"
-                       autocomplete="password_confirmation"
-                       onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.confirm_password') }}'">
-              </div>
-              <button style="float:left; margin-right: 15px" type="submit" id="submit">{{ __('Reset Password') }}
-              </button>
-            </form>
+          <div class="form-group">
+            <input type="password" value="" placeholder="New password" name="password"
+                   class="@error('password') error @enderror"/>
+            @error('password')
+            <span class="helper">{{ $message }}</span>
+            @enderror
           </div>
-        </div>
+          <div class="form-group">
+            <input type="password" value="" placeholder="Confirm password" name="password_confirmation"
+                   class="@error('password_confirmation') error @enderror"/>
+            @error('password_confirmation')
+            <span class="helper">{{ $message }}</span>
+            @enderror
+          </div>
+          <button type="submit" class="btn btn-blue pull-center">Reset</button>
+        </form>
       </div>
     </div>
   </section>
-
 @endsection

@@ -6,12 +6,12 @@
     <div class="container">
 
       <h1 class="wow fadeInUp" data-wow-delay=".3s">
-        <span data-text="{!! $data->title !!}">{!! $data->title !!}</span>
+        <span data-text="News">News</span>
       </h1>
       <nav aria-label="breadcrumb">
         <ul class="breadcrumb text-size-35 wow fadeInUp" data-wow-delay=".5s">
           <li><a href="{{ route('home') }}">Home</a><span aria-hidden="true">|</span></li>
-          <li class="active" aria-current="page">{!! $data->title !!}</li>
+          <li class="active" aria-current="page">News</li>
         </ul>
       </nav>
 

@@ -1,54 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-
-  <section class="contact-us"  id="app">
+  <section class="section-login">
     <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="contact-details">
-            <h2>Some kind of title</h2>
-            <p>I have worls-class, flexible support via live chat, email and hone. I guarantee that you’ll be able to
-              have any issue resolved within 24 hours.</p>
+      <div class="section-title wow fadeIn">
+        <h2>Welcome Back!</h2>
+        <p>Please, enter your login details</p>
+      </div>
+      <div class="form wow fadeIn">
+        <form method="POST" action="{{ route('login') }}" autocomplete="off">
+          @csrf
+          <div class="form-group">
+            <input type="email" placeholder="E-mail Address" value="{{ $email ?? old('email') }}" name="email"
+                   @error('email') class="error" @enderror/>
+            @error('email')
+            <span class="helper">{{ $message }}</span>
+            @enderror
           </div>
-        </div>
-        <div class="col-md-7">
-          <div class="contact-information">
-            <form method="POST" action="{{ route('login') }}">
-              @csrf
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
-                       name="email" id="email" placeholder="{{ __('static.e_mail_address') }}"
-                       value="{{ old('email') }}" autocomplete="email"
-                       onfocus="this.placeholder = ''" onblur="this.placeholder ='{{ __('static.e_mail_address') }}'">
-                @error('email')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                       name="password" id="password" placeholder="{{ __('static.password') }}"
-                       value="" autocomplete="password">
-                @error('password')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <button style="float:left; margin-right: 15px" type="submit" id="submit">{{ __('static.login') }}</button>
-            </form>
-            <a href="{{ route('register') }}">
-              <button style="float:left;  margin-right: 15px" type="submit" id="submit">{{ __('static.registration') }}</button>
-            </a>
-
+          <div class="form-group">
+            <input type="password" placeholder="Password" value="" name="password"
+                   @error('password') class="error" @enderror
+                   autocomplete="current-password"/>
+            @error('password')
+            <span class="helper">{{ $message }}</span>
+            @enderror
+          </div>
+          <button type="submit" class="btn btn-blue pull-center">Login</button>
+          <div class="text-center">
+            <a href="{{ route('register') }}">Registration</a><br/>
             @if (Route::has('password.request'))
-              <a href="{{ route('password.request') }}">
-                <button style="float:left;" type="submit" id="submit">{{ __('Forgot Your Password?') }}</button>
-              </a>
+              <a href="{{ route('password.request') }}">Forgot your password?</a>
             @endif
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
-
-
 @endsection

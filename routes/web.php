@@ -36,11 +36,10 @@ Route::group(['middleware' => ['locale']], function () {
   Route::prefix('media')->group(function () {
     Route::get('/gallery', 'PageController@gallery')->name('gallery');
     Route::get('/abstract-book', 'PageController@abstractBook')->name('abstractBook');
-    Route::get('/news/{id}', 'NewsController@index');
   });
 
   Route::get('/news', 'PageController@news')->name('news');
-
+  Route::get('/news/{id}', 'NewsController@index');
 
   Route::group(['middleware' => ['auth']], function () {
 
@@ -54,6 +53,5 @@ Route::group(['middleware' => ['locale']], function () {
     Route::post('/user/edit/membership', 'UserController@updateMembership')->name('user_update_membership');
     Route::post('/user/edit/password', 'UserController@updatePassword')->name('user_update_password');
   });
-
 });
 

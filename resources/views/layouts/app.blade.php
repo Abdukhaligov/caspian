@@ -136,7 +136,11 @@
                   <a href="{{ route("cabinet") }}" title="Personal Cabinet">Personal Cabinet</a>
                 </li>
                 <li class="">
-                  <a href="{{ route('logout') }}" title="Logout">Logout</a>
+                  <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                     href="{{ route('logout') }}" title="Logout">Logout</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
                 </li>
               </ul>
             </li>
@@ -150,7 +154,7 @@
                 <form method="POST" action="{{ route('login') }}" autocomplete="off">
                   @csrf
                   <div class="form-group">
-                    <input type="email" placeholder="E-mail Address" value=""
+                    <input type="email" placeholder="E-mail Address" value="{{ $email ?? old('email') }}"
                            @error('email') class="error" @enderror
                            name="email"/>
                     @error('email')

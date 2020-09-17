@@ -1,56 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-
-  <!-- Hero Section-->
-  <section class="inner-hero">
+  <section class="hero" style="background-image: url('{{asset('assets/img/auditory.jpg')}}')">
     <div class="container">
-      <div class="ih-content">
-        <h1 class=" wow fadeInUp" data-wow-delay=".4s">Speakers</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb  wow fadeInUp" data-wow-delay=".8s">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Speaker Details</li>
-          </ol>
-        </nav>
-      </div>
+      <h1 class="wow fadeInUp" data-wow-delay=".3s">
+        <span data-text="Speaker">Speaker</span>
+      </h1>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb text-size-35 wow fadeInUp" data-wow-delay=".5s">
+          <li><a href="{{ route('home') }}">Home</a><span aria-hidden="true">|</span></li>
+          <li class="active" aria-current="page">Speaker</li>
+        </ul>
+      </nav>
     </div>
   </section>
-  <!-- /Hero Section-->
 
-  <!-- Speaker details Section-->
-  <section class="speaker-details">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="sd-img">
-            {{ $data->getMedia('avatars')->first() }}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="sd-text">
-            <h2>{{ $data->name }}</h2>
-            <span>{{ $data->job_title }}</span>
-            {!! $data->description !!}
-          </div>
-
-          @if($data["social_networks"])
-            <div class="icon">
-              <ul>
-                @foreach(json_decode($data["social_networks"]) as $network)
-                  <li><a target="_blank" href="{{ $network->attributes->link  }}"><i
-                          class="fab {{ $network->attributes->network }}"></i></a></li>
-                @endforeach
-              </ul>
-            </div>
-          @endif
-          
-
-        </div>
+  <section class="section-people">
+  <div class="container">
+    @if($data->getFirstMedia('avatars'))
+      <div class="section-float-img">
+        {{ $data->getFirstMedia('avatars') }}
       </div>
+    @endif
+    <div class="section-title wow fadeIn">
+      <span>{{ $data->job_title }} / {{ $data->company }}</span>
+      <h2 class="text-size-35">{{ $data->degree->name ?? '' }} {{ $data->name }}</h2>
     </div>
-  </section>
-  <!-- /Speaker details Section-->
-
-
+    <div class="text-paragraphs">
+      {!! $data->description !!}
+    </div>
+  </div>
+</section>
 @endsection
