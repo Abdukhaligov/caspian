@@ -47,7 +47,7 @@
               <p class="font-poppins">{{ date('M d, Y', strtotime($news->created_at)) }}</p>
 
               <h4><a href="{{ route('news')."/".$news->id }}">{{ $news->title }}</a></h4>
-              {!! $news->minimumDescription() !!}
+              <p>{!! $news->minimumDescription() !!}</p>
               <a href="{{ route('news')."/".$news->id }}" class="btn btn-outline-blue font-poppins">Read More</a>
 
             </div>
