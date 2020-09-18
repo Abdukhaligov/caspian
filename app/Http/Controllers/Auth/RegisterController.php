@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Mail\WelcomeMail;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Pages\Initial;
 use App\Models\Reference;
 use App\Models\Membership;
 use App\Models\Report;
@@ -97,6 +98,7 @@ class RegisterController extends Controller {
     $data["categories"] = Category::all();
     $data["topics"] = Topic::where('parent_id','=',null)->with('children')->get();
     $data["event"] = Event::activeEvent() ?? "";
+    $data["initial"] = Initial::first();
 
     return view('auth.register', compact('data'));
   }

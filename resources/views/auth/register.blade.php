@@ -3,426 +3,166 @@
 @section('content')
   <?php $fake = false ? $fakeUser = factory(\App\User::class)->make() : ''?>
 
-  <!-- Hero Section-->
-  <section class="inner-hero inner-hero4">
+  <section class="hero" style="background-image: url('{{asset('assets/img/auditory.jpg')}}')">
     <div class="container">
-      <div class="ih-content">
-        <h1 class="wow fadeInUp" data-wow-delay=".4s">Registration</h1>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb wow fadeInUp" data-wow-delay=".8s">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Registration</li>
-          </ol>
-        </nav>
-      </div>
+      <h1 class="wow fadeInUp" data-wow-delay=".3s">
+        <span data-text="Registration">Registration</span>
+      </h1>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb text-size-35 wow fadeInUp" data-wow-delay=".5s">
+          <li><a href="{{ route('home') }}">Home</a><span aria-hidden="true">|</span></li>
+          <li class="active" aria-current="page">Registration</li>
+        </ul>
+      </nav>
     </div>
   </section>
-  <!-- /Hero Section-->
 
-  <!--contact Us Section-->
-  <section class="contact-us">
+  <section class="section-registration">
     <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="contact-details">
-            <h2>{{ __('static.registration') }}</h2>
-            <p>I have worls-class, flexible support via live chat, email and hone. I guarantee that you’ll be able to
-              have any issue resolved within 24 hours.</p>
-            <div class="single-contact-details">
-              <h5>Phone:</h5>
-              <p>8 800 2534 236</p>
-              <p>8 800 2534 888</p>
-            </div>
-            <div class="single-contact-details">
-              <h5>Send Email:</h5>
-              <p>email@example.com</p>
-              <p>email@yoursite.com</p>
-            </div>
-            <div class="single-contact-details">
-              <h5>Visa policy:</h5>
-                <p><a href="https://www.mfa.gov.az/en">Republic of Azerbaijan Ministry of Foreign Affairs</a></p>
-                <p><a href="https://www.azerbaijantourism.az/visa">Visa to Azerbaijan</a></p>
-            </div>
-            <div class="single-contact-details">
-              <h5>Address:</h5>
-              <p>27 Division St, New York, NY 10002</p>
-              <p>United States</p>
-            </div>
+      <div class="section-title split wow fadeIn">
+        <div class="section-title-left">
+          <h2 class="text-size-35">Registration</h2>
+          <p>I have worls-class, flexible support via live chat, email and hone. I guarantee that you’ll be able to have
+            any issue resolved within 24 hours.</p>
+        </div>
+        <div class="section-title-right">
+          <div>
+            <h3 class="text-size-25">Phone:</h3>
+            <p><a href="tel:{{$data["initial"]->phone}}">{{$data["initial"]->phone}}</a>
+            </p>
+          </div>
+          <div>
+            <h3 class="text-size-25">Send E-mail:</h3>
+            <p><a href="mailto:{{$data["initial"]->email}}">{{$data["initial"]->email}}</a></p>
+          </div>
+          <div>
+            <h3 class="text-size-25">Visa policy:</h3>
+            <p><a href="https://www.azerbaijantourism.az/visa" target="_blank">Republic of Azerbaijan Ministry of
+                Foreign Affairs. Visa to Azerbaijan</a></p>
+          </div>
+          <div>
+            <h3 class="text-size-25">Address:</h3>
+            <p>Raiffeisen St, 12/A, Baku, Azerbaijan</p>
           </div>
         </div>
-        <div class="col-md-7">
-          <div class="contact-information">
-            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-              @csrf
-
-              <div class="form-group cfdb1" id="profile" style="display: none">
-                <img style="width: 30%" alt="profile-image" />
+      </div>
+      <div class="form two-cols wow fadeIn">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" autocomplete="off">
+          @csrf
+          <div class="flex-row">
+            <div class="form-col">
+              <h4 class="form-title">Avatar</h4>
+              <div class="form-group file">
+                <img src="{{asset('assets/img/svg/icons/user.svg')}}" alt=""/>
+                <label for="avatar" class="file-input" data-image-placeholder="/assets/img/svg/icons/user.svg">
+                  <input type="file" id="avatar" name="avatar" data-file-upload="image"/>
+                  <span class="btn btn-blue">Choose file</span>
+                  <span class="file-name"></span>
+                  <span class="no-file">No file chosen</span>
+                  <span class="delete">
+                        <span>Delete</span>
+                        <i class="icon-delete" aria-hidden="true"></i>
+                      </span>
+                </label>
               </div>
-
-              <div class="form-group cfdb1">
-                <label for="avatar" class="col-form-label text-md-right">Avatar</label>
-                <input style="padding: 15px 15px 40px 15px;" type="file" id="avatar" class="form-control cp1 @error('avatar') is-invalid @enderror"
-                       name="avatar" placeholder="avatar">
-                @error('avatar')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1 @error('name') is-invalid @enderror"
-                       name="name" placeholder="{{ __('static.full_name') }}"
-                       value="{{ $fake ? $fakeUser->name : old('name') }}">
+              <div class="form-group">
+                <input type="text" placeholder="Full Name"
+                       value="{{ $fake ? $fakeUser->name : old('name') }}" name="name"
+                       class="@error('name') error @enderror"/>
                 @error('name')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1 @error('email') is-invalid @enderror"
-                       name="email" placeholder="{{ __('static.e_mail_address') }}"
-                       value="{{ $fake ? $fakeUser->email : old('email') }}">
+              <div class="form-group">
+                <input type="email" placeholder="E-mail Address"
+                       value="{{ $fake ? $fakeUser->email : old('email') }}" name="email"
+                       class="@error('email') error @enderror"/>
                 @error('email')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <input type="password" class="form-control cp1 @error('password') is-invalid @enderror"
-                       name="password" placeholder="{{ __('static.password') }}"
-                       value="{{ $fake ? "123123" : '' }}">
+              <div class="form-group">
+                <input type="password" placeholder="Password"
+                       value="{{ $fake ? "123123" : '' }}" name="password"
+                       class="@error('password') error @enderror"/>
                 @error('password')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <input type="password" class="form-control cp1 @error('password_confirmation') is-invalid @enderror"
-                       name="password_confirmation" placeholder="{{ __('static.confirm_password') }}"
-                       value="{{ $fake ? "123123" : '' }}">
+              <div class="form-group">
+                <input type="password" placeholder="Confirm Password"
+                       value="{{ $fake ? "123123" : '' }}" name="password_confirmation"
+                       class="@error('password_confirmation') error @enderror"/>
                 @error('password_confirmation')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1" style="float:left; width: 22%;">
-                <label for="region" class="col-form-label text-md-right">{{ __('static.country') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="selectpicker form-control cp1 @error('region') is-invalid @enderror"
-                        name="region_id" id="region">
-                  @foreach(\App\Region::scopeOrdered() as $region)
-                    <option value="{{ $region->id }}" @if($region->id == 20) selected
-                            @endif data-mask="{{ $region->mask }}"> {!! $region->name_en !!}</option>
-                  @endforeach
-                </select>
-                @error('region')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
+            </div>
+            <div class="form-col">
+              <h4 class="form-title">Phone</h4>
+              <div class="form-group-double">
+                <div class="form-group select">
+                  <select name="region_id" class="@error('region_id') error @enderror">
+                    @foreach(\App\Region::scopeOrdered() as $region)
+                      <option value="{{ $region->id }}"
+                              @if($region->id == 20) selected @endif >{!! $region->name_en !!}</option>
+                    @endforeach
+                  </select>
+                  @error('region_id')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input type="text" placeholder="Phone Number" value="{{ $fake ? $fakeUser->phone : old('phone') }}"
+                         name="phone" class="@error('phone') error @enderror"/>
+                  @error('phone')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
               </div>
-              <div class="form-group cfdb1" style="float:right; width: 77%">
-                <label for="phone" class="col-form-label text-md-right">{{ __('static.phone_number') }}</label>
-                <input type="text" class="form-control cp1 @error('phone') is-invalid @enderror"
-                       name="phone" id="phone" placeholder="{{ __('static.phone_number') }}"
-                       value="+{{ $fake ? $fakeUser->phone : old('phone') }}">
-                @error('phone')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1 @error('company') is-invalid @enderror"
-                       name="company" placeholder="{{ __('static.company') }}"
-                       value="{{ $fake ? $fakeUser->company : old('company') }}">
+              <h4 class="form-title">Company</h4>
+              <div class="form-group">
+                <input type="text" placeholder="Working Place" value="{{ $fake ? $fakeUser->company : old('company') }}"
+                       name="company" class="@error('company') error @enderror"/>
                 @error('company')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <input type="text" class="form-control cp1 @error('job_title') is-invalid @enderror"
-                       name="job_title" placeholder="{{ __('static.job_title') }}"
-                       value="{{ $fake ? $fakeUser->job_title : old('job_title') }}">
+              <div class="form-group">
+                <input type="text" placeholder="Position" value="{{ $fake ? $fakeUser->job_title : old('job_title') }}"
+                       name="job_title" class="@error('job_title') error @enderror"/>
                 @error('job_title')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <label for="degree_id" class="col-form-label text-md-right">{{ __('static.degree') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('degree_id') is-invalid @enderror"
-                        name="degree_id">
-                  <option selected value="0">No degree</option>
+              <h4 class="form-title">Degree</h4>
+              <div class="form-group select">
+                <select name="degree_id" class="@error('degree_id') error @enderror">
                   @foreach(\App\Models\Degree::all() as $degree)
                     <option value="{{ $degree->id }}">{{ $degree->name }}</option>
                   @endforeach
                 </select>
-                @error('degree')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @error('degree_id')
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="form-group cfdb1">
-                <label for="reference_id" class="col-form-label text-md-right">{{ __('static.referred_by') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('reference_id') is-invalid @enderror"
-                        name="reference_id">
+              <h4 class="form-title">How did you know about the event?</h4>
+              <div class="form-group select">
+                <select name="reference_id" class="@error('reference_id') error @enderror">
                   @foreach($data['references'] as $reference)
                     <option @if(($fake ? $fakeUser->reference_id : old('reference_id')) == $reference->id) selected
                             @endif value="{{ $reference->id }}">{{ $reference->name }}</option>
                   @endforeach
                 </select>
                 @error('reference_id')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-
-              @if($data["event"])
-              <div class="form-group cfdb1" style="overflow: auto">
-                <label for="membership_id" class="col-form-label text-md-right" style="float: left;">
-                  Do u wanna join to event ?</label>
-                <input class="form-control cp1" type="checkbox" name="join_to_event" id="join_to_event"
-                       style="float: left;width: 25px;height: 30px; margin-left: 15px;"
-                       @if(isset($_GET["speaker"])) checked @elseif(($fake ? $fakeUser->membership_id : old('membership_id'))) checked
-                    @endif
-                >
-              </div>
-
-              <div class="form-group cfdb1" id="membership">
-                <label for="membership_id" class="col-form-label text-md-right">{{ __('static.member_as') }}</label>
-                <select style="height: 52px;font-size: 14px;"
-                        class="form-control cp1 @error('membership_id') is-invalid @enderror"
-                        name="membership_id" id="membership_id">
-                  <option disabled selected>Select</option>
-                  <option disabled>Reporter</option>
-
-                  @foreach($data['membership'] as $membership)
-
-                    <option
-                        reporter="{{ $membership->reporter }}"
-                        @if(isset($_GET["speaker"]) && $_GET["speaker"] == $membership->id) selected
-                        @elseif(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected
-                        @endif
-                        value="{{ $membership->id }}"> @if($membership->reporter == true )
-                        - {{ $membership->name }} @else {{ $membership->name }} @endif</option>
-                  @endforeach
-                </select>
-                @error('membership_id')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-              </div>
-              <div style="display: none" id="abstractForm">
-                  <div class="form-group cfdb1">
-                      <label for="abstract_category_id" class="col-form-label">Category</label>
-                      <select style="height: 52px;font-size: 14px;"
-                              class="form-control cp1"
-                              id="abstract_category_id">
-                          @foreach($data['categories'] as $category)
-                              <option value="{{ $category->id }}">{{ $category->name }}</option>
-                          @endforeach
-                      </select>
-                  </div>
-                  <div class="form-group cfdb1">
-                  <label for="abstract_topic_id" class="col-form-label">Topic</label>
-
-                  <select style="height: 52px;font-size: 14px;"
-                          class="form-control cp1 @error('abstract_topic_id') is-invalid @enderror"
-                          id="abstract_topic_id"
-                          name="abstract_topic_id">
-                    @foreach($data['topics'] as $topic)
-                      <option data-category="{{$topic->category_id}}" value="{{ $topic->id }}">{{ $topic->name }}</option>
-                      @foreach($topic->children as $child)
-                        <option data-category="{{$topic->category_id}}" value="{{ $child->id }}">- {{ $child->name }}</option>
-                      @endforeach
-                    @endforeach
-                  </select>
-                  @error('abstract_topic_id')
-                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-                </div>
-                <div class="form-group cfdb1">
-                  <input type="text" class="form-control cp1 @error('abstract_name') is-invalid @enderror"
-                         name="abstract_name" placeholder="Abstract title"
-                         value="{{old('abstract_name') }}">
-                  @error('abstract_name')
-                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-                </div>
-                <div class="form-group cfdb1" style="margin-bottom: 10px">
-                  <textarea rows="8" class="form-control cp1 @error('abstract_description') is-invalid @enderror"
-                            name="abstract_description" id="abstract_description"
-                            onkeyup="countChar(this)"
-                            placeholder="Abstract description (max 300 words)"
-                            maxlength="300">{{old('abstract_description') }}</textarea>
-                  <div style="right: 0;position: absolute;" id="charNum">0/300</div>
-                  @error('abstract_description')
-                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-                </div>
-              </div>
-              @endif
-              <div><a href="http://google.com" target="_blank">* Получение виз</a></div>
-
-              <button style="margin-top: 15px" type="submit">{{ __('static.registration') }}</button>
-              <div class="col-md-12 text-center">
-                <div class="cf-msg"></div>
-              </div>
-
-            </form>
+              <button type="submit" class="btn btn-outline-blue pull-right">Submit</button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
-
-
-
-
-@endsection
-
-@section('scripts')
-  <script>
-
-    $("#avatar").change(function(){
-      $('#profile').show();
-      if (this.files && this.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('#profile img').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(this.files[0]);
-      }
-    });
-
-
-
-    function countChar(val) {
-      var len = val.value.length;
-      if (len >= 500) {
-        val.value = val.value.substring(0, 300);
-      } else {
-        $('#charNum').text(len + "/300");
-      }
-    }
-
-
-    $(function () {
-
-      let membership = $("#membership_id");
-      let abstractForm = $("#abstractForm");
-      let membershipContainer = $("#membership");
-
-      let category = $("#abstract_category_id");
-
-        let topicsNative = '<?php
-            foreach($data['topics'] as $topic){
-                echo "<option data-category=\"$topic->category_id\" value=\"$topic->id\">$topic->name</option>";
-                foreach($topic->children as $child) {
-                    echo "<option data-category=\"$topic->category_id\" value=\"$child->id\">- $child->name</option>";
-                }
-            }
-            ?>';
-
-        let category_id = category.val();
-        let abstractTopics = document.getElementById('abstract_topic_id');
-        let abstractTopicsJQ = $('#abstract_topic_id');
-        abstractTopicsJQ.html(topicsNative);
-
-        $(abstractTopics.options).each(function() {
-            if ($(this).attr('data-category') !== category_id) {
-                $(this).remove();
-            }
-        });
-
-      category.on("change", function () {
-
-          let topicsNative = '<?php
-              foreach($data['topics'] as $topic){
-                  echo "<option data-category=\"$topic->category_id\" value=\"$topic->id\">$topic->name</option>";
-                  foreach($topic->children as $child) {
-                      echo "<option data-category=\"$topic->category_id\" value=\"$child->id\">- $child->name</option>";
-                  }
-              }
-              ?>';
-
-          let category_id = category.val();
-          let abstractTopics = document.getElementById('abstract_topic_id');
-          let abstractTopicsJQ = $('#abstract_topic_id');
-          abstractTopicsJQ.html(topicsNative);
-
-          $(abstractTopics.options).each(function() {
-              if ($(this).attr('data-category') !== category_id) {
-                  $(this).remove();
-              }
-          });
-
-      });
-
-
-      let joinEvent = $("#join_to_event");
-
-      if (joinEvent.prop("checked")) {
-        membershipContainer.show();
-
-        if(membership[0]){
-          if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
-            abstractForm.show();
-            console.log("reporter selected")
-          } else {
-            abstractForm.hide();
-            console.log("not reporter selected");
-          }
-
-
-          membership.on('change', function () {
-            if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
-              abstractForm.show();
-              console.log("reporter selected")
-            } else {
-              abstractForm.hide();
-              console.log("not reporter selected")
-            }
-          });
-        }
-      } else {
-        membershipContainer.hide();
-      }
-
-      joinEvent.change(function () {
-        if (joinEvent.prop("checked")) {
-          membershipContainer.show();
-
-          if(membership[0]){
-            if (membership[0].options[membership[0].selectedIndex].getAttribute('reporter') === "1") {
-              abstractForm.show();
-              console.log("reporter selected")
-            } else {
-              abstractForm.hide();
-              console.log("not reporter selected");
-            }
-
-            membership.on('change', function () {
-              if (this.options[this.selectedIndex].getAttribute('reporter') === "1") {
-                abstractForm.show();
-                console.log("reporter selected")
-              } else {
-                abstractForm.hide();
-                console.log("not reporter selected")
-              }
-            });
-          }
-        } else {
-          membershipContainer.hide();
-          abstractForm.hide();
-        }
-      })
-
-      //Timer Js//
-      $('#region').change(function () {
-        let mask = this.options[this.selectedIndex].getAttribute('data-mask');
-        let temp = "";
-        for (let i = 0; i < mask.length; i++) {
-          if (mask.charAt(i) === "9") {
-            temp = temp.concat("\\" + mask.charAt(i));
-          } else {
-            temp = temp.concat(mask.charAt(i));
-          }
-        }
-        $('#phone').inputmask((temp.toString()));
-      })
-      $('#phone').inputmask("+\\9\\94 (99) ###-##-##");
-    }(jQuery));
-  </script>
 @endsection

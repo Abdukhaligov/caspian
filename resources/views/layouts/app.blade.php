@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $data["initial"] = \App\Models\Pages\Initial::first();
+$data["event"] = \App\Models\Event::activeEvent(); ?>
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -39,7 +40,6 @@
   <i class="icon-arrow" aria-hidden="true"></i>
 </div>
 <div id="wrapper">
-
   <header class="header compensate-for-scrollbar">
     <nav class="header_nav">
       <div class="container flex">
@@ -47,85 +47,63 @@
           <img src="{{asset('assets/img/logo.svg')}}" alt="Casper"/>
         </a>
         <ul class="header_menu">
-
           <li class="{{Request::url() == route('home') ? "active" : ""}}">
             <a href="{{route('home')}}" title="Home">
               Home
             </a>
-
           </li>
-
           <li class="{{!Request::is('about*') ?: "active"}} dropdown">
             <a href="#0" title="About">
               About
             </a>
-
             <ul>
-
               <li class="{{Request::url() == route('about') ?"active": ""}}">
                 <a href="{{route('about')}}" title="About Us">About Us</a>
               </li>
-
               <li class="{{Request::url() == route('topics') ?"active": ""}}">
                 <a href="{{route('topics')}}" title="Topics">Topics</a>
               </li>
-
               <li class="{{Request::url() == route('committee') ?"active": ""}}">
                 <a href="{{route('committee')}}" title="Committee">Committee</a>
               </li>
-
               <li class="{{Request::url() == route('speakers') ?"active": ""}}">
                 <a href="{{route('speakers')}}" title="Speakers">Speakers</a>
               </li>
-
               <li class="{{Request::url() == route('program') ?"active": ""}}">
                 <a href="{{route('program')}}" title="Program">Program</a>
               </li>
-
             </ul>
-
           </li>
-
-          <li class="{{Request::url() == route('register') ? "active" : ""}}">
-            <a href="{{route('register')}}" title="Registration">
-              Registration
-            </a>
-
-          </li>
-
+          @guest
+            <li class="{{Request::url() == route('register') ? "active" : ""}}">
+              <a href="{{route('register')}}" title="Registration">
+                Registration
+              </a>
+            </li>
+          @endguest
           <li class="{{Request::url() == route('news') ? "active" : ""}}">
             <a href="{{route('news')}}" title="News">
               News
             </a>
-
           </li>
-
           <li class="{{!Request::is('media*') ?: "active"}} dropdown">
             <a href="#0" title="Media">
               Media
             </a>
-
             <ul>
-
               <li class="{{Request::url() == route('gallery') ? "active" : ""}}">
                 <a href="{{route('gallery')}}" title="Gallery">Gallery</a>
               </li>
-
               <li class="{{Request::url() == route('abstractBook') ? "active" : ""}}">
                 <a href="{{route('abstractBook')}}" title="Abstract Books">Abstract Books</a>
               </li>
-
             </ul>
-
           </li>
-
           <li class="{{Request::url() == route('contacts') ? "active" : ""}}">
             <a href="{{route('contacts')}}" title="Contacts">
               Contacts
             </a>
-
           </li>
-
           @auth
             <li class="dropdown {{Request::url() == route('cabinet') ? "active" : ""}}">
               <a href="#0" title="{{Auth::user()->name }}">
@@ -149,7 +127,6 @@
               <a href="#0" title="Login">
                 Login
               </a>
-
               <div class="header_login form">
                 <form method="POST" action="{{ route('login') }}" autocomplete="off">
                   @csrf
@@ -158,7 +135,7 @@
                            @error('email') class="error" @enderror
                            name="email"/>
                     @error('email')
-                      <span class="helper">{{ $message }}</span>
+                    <span class="helper">{{ $message }}</span>
                     @enderror
                   </div>
                   <div class="form-group">
@@ -178,7 +155,6 @@
                   </div>
                 </form>
               </div>
-
             </li>
           @endauth
         </ul>
@@ -189,92 +165,66 @@
     </nav>
     <nav class="header_mobile">
       <ul>
-
         <li class="active">
           <a href="/" title="Home">
             Home
           </a>
-
         </li>
-
         <li class=" dropdown">
           <a href="#0" title="About" data-toggle="dropdown">
             About
           </a>
-
           <ul style="display: none;">
-
             <li class="">
               <a href="/about.html" title="About Us">About Us</a>
             </li>
-
             <li class="">
               <a href="/topics.html" title="Topics">Topics</a>
             </li>
-
             <li class="">
               <a href="/committee.html" title="Committee">Committee</a>
             </li>
-
             <li class="">
               <a href="/speakers.html" title="Speakers">Speakers</a>
             </li>
-
             <li class="">
               <a href="/program.html" title="Program">Program</a>
             </li>
-
           </ul>
-
         </li>
-
         <li class="">
           <a href="/register.html" title="Registration">
             Registration
           </a>
-
         </li>
-
         <li class="">
           <a href="/news.html" title="News">
             News
           </a>
-
         </li>
-
         <li class=" dropdown">
           <a href="#0" title="Media" data-toggle="dropdown">
             Media
           </a>
-
           <ul style="display: none;">
-
             <li class="">
               <a href="/gallery.html" title="Gallery">Gallery</a>
             </li>
-
             <li class="">
               <a href="/books.html" title="Abstract Books">Abstract Books</a>
             </li>
-
           </ul>
-
         </li>
-
         <li class="">
           <a href="/contacts.html" title="Contacts">
             Contacts
           </a>
-
         </li>
-
         <li class="">
           <a href="/login.html" title="Login">
             Login
           </a>
-
         </li>
-
       </ul>
     </nav>
   </header>
@@ -318,17 +268,15 @@
       </div>
       <div class="footer_bottom flex font-poppins">
         <a href="#0" class="btn btn-outline-white">Caspian Forum</a>
-        <small>Copyright Caspian Forum - 2020</small>
+        <small>{!! $data["initial"]->copyright  !!}</small>
         <ul class="socials flex">
-
-          <li><a href="#0"><i class="icon-facebook"></i></a></li>
-
-          <li><a href="#0"><i class="icon-twitter"></i></a></li>
-
-          <li><a href="#0"><i class="icon-linkedin"></i></a></li>
-
-          <li><a href="#0"><i class="icon-youtube"></i></a></li>
-
+          @foreach(json_decode($data["initial"]->social_networks) as $network)
+            <li>
+              <a href="{{ $network->attributes->link }}" target="_blank">
+                <i class="icon-{{ $network->attributes->network }}"></i>
+              </a>
+            </li>
+          @endforeach
         </ul>
       </div>
     </div>
