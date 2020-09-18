@@ -215,8 +215,4 @@ class PageController extends Controller {
 
     return view('topics', compact('data'));
   }
-
-
-
-
 }
