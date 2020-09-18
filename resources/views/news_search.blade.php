@@ -4,7 +4,6 @@
 
   <section class="hero" style="background-image: url('{{asset('assets/img/auditory.jpg')}}')">
     <div class="container">
-
       <h1 class="wow fadeInUp" data-wow-delay=".3s">
         <span data-text="News">News</span>
       </h1>
@@ -14,42 +13,45 @@
           <li class="active" aria-current="page">News</li>
         </ul>
       </nav>
-
     </div>
   </section>
 
   <section class="section-news">
     <div class="container">
       <div class="section-title wow fadeIn">
-        <span>From our blog</span>
-        <h2 class="text-size-35 flex-title has-form">Latest News
+        <h2 class="text-size-35 flex-title has-form">Search Results
           <div class="search-form">
             <form method="GET" action="{{ route('newsSearch') }}" autocomplete="off">
-              <input required type="text" placeholder="Search here..." value="" name="s" class="font-poppins" />
+              <input required type="text" placeholder="Search here..." value="{{$data["search"]}}" name="s" class="font-poppins" />
               <button type="submit" class="btn btn-blue" aria-label="Search">
                 <i class="icon-search" aria-hidden="true"></i>
               </button>
             </form>
           </div>
         </h2>
+        @if($data["news"]->total() == 0)
+          <p><strong>Nothing was found</strong></p>
+        @else
+        <p><strong>"{{$data["search"]}}" - {{ $data["news"]->total()}} results, {{ $data["news"]->lastPage()}} pages</strong></p>
+        @endif
       </div>
       <div class="flex-row">
         @foreach($data["news"] as $news)
           <div class="news-item wow fadeIn">
 
-          <a class="news-item-img" href="{{ route('news')."/".$news->id }}">
-            {{ $news->getFirstMedia('preview') }}
-          </a>
+            <a class="news-item-img" href="{{ route('news')."/".$news->id }}">
+              {{ $news->getFirstMedia('preview') }}
+            </a>
 
-          <div class="news-item-info">
-            <p class="font-poppins">{{ date('M d, Y', strtotime($news->created_at)) }}</p>
+            <div class="news-item-info">
+              <p class="font-poppins">{{ date('M d, Y', strtotime($news->created_at)) }}</p>
 
-            <h4><a href="{{ route('news')."/".$news->id }}">{{ $news->title }}</a></h4>
-            {!! $news->minimumDescription() !!}
-            <a href="{{ route('news')."/".$news->id }}" class="btn btn-outline-blue font-poppins">Read More</a>
+              <h4><a href="{{ route('news')."/".$news->id }}">{{ $news->title }}</a></h4>
+              {!! $news->minimumDescription() !!}
+              <a href="{{ route('news')."/".$news->id }}" class="btn btn-outline-blue font-poppins">Read More</a>
 
+            </div>
           </div>
-        </div>
         @endforeach
       </div>
 
@@ -71,7 +73,6 @@
           text-decoration: none;
         }
       </style>
-
     </div>
   </section>
 

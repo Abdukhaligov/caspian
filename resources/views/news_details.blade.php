@@ -29,8 +29,9 @@
         <div class="news-other">
           <div class="news-other-top">
             <div class="search-form">
-              <form method="GET" action="/news-search.html" enctype="multipart/form-data" autocomplete="off">
-                <input type="text" placeholder="Search here..." value="" name="s" class="font-poppins" />
+              <form method="GET" action="{{ route('newsSearch') }}" autocomplete="off">
+                <input required type="text" placeholder="Search here..." value="" name="s"
+                       class="font-poppins"/>
                 <button type="submit" class="btn btn-blue" aria-label="Search">
                   <i class="icon-search" aria-hidden="true"></i>
                 </button>

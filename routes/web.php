@@ -39,6 +39,7 @@ Route::group(['middleware' => ['locale']], function () {
   });
 
   Route::get('/news', 'PageController@news')->name('news');
+  Route::get('/news-search', 'PageController@newsSearch')->name('newsSearch');
   Route::get('/news/{id}', 'NewsController@index');
 
   Route::group(['middleware' => ['auth']], function () {

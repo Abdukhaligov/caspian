@@ -7,30 +7,27 @@ use App\Mail\ContactUs;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\Membership;
-use App\Models\Pages\AbstractBook;
-use App\Models\Pages\Initial;
-use App\Models\Pages\Program;
-use App\Models\Reference;
 use App\Models\Pages\AboutUs;
+use App\Models\Pages\AbstractBook;
 use App\Models\Pages\Cabinet;
 use App\Models\Pages\Committee;
 use App\Models\Pages\Contacts;
 use App\Models\Pages\Gallery;
 use App\Models\Pages\Home;
+use App\Models\Pages\Initial;
 use App\Models\Pages\News;
+use App\Models\News as NewsModel;
+use App\Models\Pages\Program;
 use App\Models\Pages\Speakers;
 use App\Models\Pages\Topics;
+use App\Models\Partner;
 use App\Models\Sponsor;
 use App\Models\Topic;
-use App\Models\Partner;
 use App\Models\Voucher;
 use App\User;
+use Illuminate\Http\Request;
 use Auth;
-use DB;
 use Mail;
-use PhpOffice\PhpWord\TemplateProcessor;
-use Request;
-use Storage;
 
 
 class PageController extends Controller {
@@ -197,6 +194,21 @@ class PageController extends Controller {
     $data["news"] = \App\Models\News::orderBy('created_at', 'desc')->with('media')->paginate(9);
 
     return view('news', compact('data'));
+  }
+
+  public function newsSearch(Request $request) {
+    if ($request->s){
+      $data["news"] = NewsModel::where('title', 'like', '%'.$request->s.'%')
+          ->orWhere('body', 'like', '%'.$request->s.'%')
+          ->orderBy('created_at', 'desc')
+          ->with('media')
+          ->paginate(9)
+          ->appends(['s' => $request->s]);
+    }
+
+    $data["search"] = $request->s;
+
+    return view('news_search', compact('data'));
   }
 
   public function speakers() {
