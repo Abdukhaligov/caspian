@@ -160,12 +160,13 @@
                         <div class="status">
                           @if($report->status == 1)
                             <span class="badge in-progress">In progress</span>
-                            <form method="POST" action="{{ route('report_remove') }}">
+                            <span class="badge in-progress" style="cursor: pointer"
+                                  onclick="if(confirm('Are you sure ?')){document.getElementById('remove-abstract').submit();}">
+                              <i class="icon-close" aria-hidden="true"></i>
+                            </span>
+                            <form id="remove-abstract" method="POST" action="{{ route('report_remove') }}">
                               @csrf
                               <input style="display: none" type="text" name="id" value="{{ $report->id }}">
-                              <button type="submit" class="badge in-progress">
-                                <i class="icon-close" aria-hidden="true"></i>
-                              </button>
                             </form>
                           @elseif($report->status == 2)
                             <span class="badge rejected">Rejected</span>

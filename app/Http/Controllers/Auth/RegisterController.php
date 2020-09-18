@@ -30,29 +30,15 @@ class RegisterController extends Controller {
   }
 
   protected function validator(array $data) {
-
-    if(isset($data["join_to_event"]) && isset($data["membership_id"])){
-      if(!Membership::find($data["membership_id"])->reporter){
-        unset($data["abstract_topic_id"]);
-        unset($data["abstract_name"]);
-        unset($data["abstract_description"]);
-      }
-    }else{
-      unset($data["membership_id"]);
+    if (!Membership::find($data["membership_id"])->reporter) {
       unset($data["abstract_topic_id"]);
       unset($data["abstract_name"]);
       unset($data["abstract_description"]);
     }
-
-    if(!$data['degree_id']){
-      unset($data["degree_id"]);
-    }
-
     return Validator::make($data, UserRequest::rules());
   }
 
   protected function create(array $data) {
-
     $user = User::create([
         'name' => $data['name'],
         'email' => $data['email'],
@@ -71,13 +57,11 @@ class RegisterController extends Controller {
 
     Mail::to($user->email)->send(new WelcomeMail($user));
 
-
-    if(isset($data['join_to_event'])){
+    if (Event::activeEvent()) {
       $event = Event::activeEvent();
-
       $user->events()->attach($event->id, ["membership_id" => $data["membership_id"]]);
 
-      if(Membership::find($data["membership_id"])->reporter){
+      if (Membership::find($data["membership_id"])->reporter) {
         Report::create([
             'event_id' => $event->id,
             'user_id' => $user->id,
@@ -92,11 +76,10 @@ class RegisterController extends Controller {
   }
 
   public function showRegistrationForm() {
-    //45
     $data["references"] = Reference::all();
     $data["membership"] = Membership::all();
     $data["categories"] = Category::all();
-    $data["topics"] = Topic::where('parent_id','=',null)->with('children')->get();
+    $data["topics"] = Topic::where('parent_id', '=', null)->with('children')->get();
     $data["event"] = Event::activeEvent() ?? "";
     $data["initial"] = Initial::first();
 

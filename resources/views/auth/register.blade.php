@@ -48,13 +48,13 @@
       </div>
       <div class="form two-cols wow fadeIn">
         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" autocomplete="off">
-          @csrf
           <div class="flex-row">
             <div class="form-col">
               <h4 class="form-title">Avatar</h4>
               <div class="form-group file">
                 <img src="{{asset('assets/img/svg/icons/user.svg')}}" alt=""/>
-                <label for="avatar" class="file-input" data-image-placeholder="/assets/img/svg/icons/user.svg">
+                <label for="avatar" class="file-input"
+                       data-image-placeholder="{{asset('assets/img/svg/icons/user.svg')}}">
                   <input type="file" id="avatar" name="avatar" data-file-upload="image"/>
                   <span class="btn btn-blue">Choose file</span>
                   <span class="file-name"></span>
@@ -66,6 +66,7 @@
                 </label>
               </div>
               <div class="form-group">
+                @csrf
                 <input type="text" placeholder="Full Name"
                        value="{{ $fake ? $fakeUser->name : old('name') }}" name="name"
                        class="@error('name') error @enderror"/>
@@ -105,7 +106,7 @@
                   <select name="region_id" class="@error('region_id') error @enderror">
                     @foreach(\App\Region::scopeOrdered() as $region)
                       <option value="{{ $region->id }}"
-                              @if($region->id == 20) selected @endif >{!! $region->name_en !!}</option>
+                              @if($region->id == old('region_id')) selected @endif >{!! $region->name_en !!}</option>
                     @endforeach
                   </select>
                   @error('region_id')
@@ -158,9 +159,79 @@
                 <span class="helper">{{ $message }}</span>
                 @enderror
               </div>
-              <button type="submit" class="btn btn-outline-blue pull-right">Submit</button>
+              @if(!$data["event"])
+                <button type="submit" class="btn btn-outline-blue pull-right">Submit</button>
+              @endif
             </div>
           </div>
+          @if($data["event"])
+            <div class="flex-row">
+              <div class="form-col has-hidden-inputs">
+                <h4 class="form-title">Do you want to join event?</h4>
+                <div class="form-group select">
+                  <select name="membership_id" @error('membership_id') class="error" @enderror>
+                    @foreach($data['membership'] as $membership)
+                      @if(!$membership->reporter)
+                        <option
+                            @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected
+                            @endif value="{{ $membership->id }}">{{ $membership->name }}</option>
+                      @endif
+                    @endforeach
+                    <optgroup label="Reporter">
+                      @foreach($data['membership'] as $membership)
+                        @if($membership->reporter)
+                          <option
+                              @if(($fake ? $fakeUser->membership_id : old('membership_id')) == $membership->id ) selected
+                              @endif value="{{ $membership->id }}"
+                              data-if-selected="is-speaker">{{ $membership->name }}</option>
+                        @endif
+                      @endforeach
+                    </optgroup>
+                  </select>
+                  @error('membership_id')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+                </div>
+                <h4 class="form-title" data-show-if="is-speaker" style="display: none;">Category</h4>
+                <div class="form-group select" data-show-if="is-speaker" style="display: none;">
+                  <select name="category">
+                    @foreach($data['categories'] as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <h4 class="form-title" data-show-if="is-speaker" style="display: none;">Topic</h4>
+                <div class="form-group select" data-show-if="is-speaker" style="display: none;">
+                  <select name="abstract_topic_id">
+                    @foreach($data['topics'] as $topic)
+                      <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                      @foreach($topic->children as $child)
+                        <option value="{{ $child->id }}">- {{ $child->name }}</option>
+                      @endforeach
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="form-col has-hidden-inputs">
+                <div class="form-group" data-show-if="is-speaker" style="display: none;">
+                  <input type="text" placeholder="Abstract Title" name="abstract_name"
+                         @error('abstract_name') class="error" @enderror value="{{old('abstract_name') }}"/>
+                  @error('abstract_name')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="form-group" data-show-if="is-speaker" style="display: none;">
+                  <textarea placeholder="Abstract description (max 500 characters)" name="abstract_description"
+                            @error('abstract_name') class="error" @enderror
+                            maxlength="500">{{old('abstract_description') }}</textarea>
+                  @error('abstract_description')
+                  <span class="helper">{{ $message }}</span>
+                  @enderror
+                </div>
+                <button type="submit" class="btn btn-outline-blue pull-right">Submit</button>
+              </div>
+            </div>
+          @endif
         </form>
       </div>
     </div>

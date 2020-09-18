@@ -9,33 +9,43 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller {
-
   private function addFile($request, $report) {
     $fileName = $request->file->store('');
     $request->file->store('public/reports');
     $report->update(['file' => $fileName]);
 
-    return redirect()->back();
+    return \Redirect::to(\URL::previous() . "#abstracts")
+        ->withInput();
   }
 
   private function deleteReport($report) {
     $report->delete();
   }
 
-  public function store(ReportRequest $request) {
+  public function store(Request $request) {
+    $validator = \Validator::make($request->all(), [
+        'name' => 'required',
+        'description' => 'required',
+        'topic_id' => 'exists:topics,id'
+    ]);
+
+    if ($validator->fails()) {
+      return \Redirect::to(\URL::previous() . "#abstracts")
+          ->withErrors($validator)
+          ->withInput();
+    }
 
     $request['user_id'] = Auth::user()->id;
     $request["event_id"] = Event::activeEvent()->id;
     if (Auth::user()->canAddReports()) {
       if (Report::create($request->all())) {
-        return redirect()->back();
+        return \Redirect::to(\URL::previous() . "#abstracts");
       } else {
-        return redirect()->back();
+        return \Redirect::to(\URL::previous() . "#abstracts");
       }
     } else {
-      return redirect()->back();
+      return \Redirect::to(\URL::previous() . "#abstracts");
     }
-
   }
 
   public function update(Request $request) {
@@ -44,14 +54,13 @@ class ReportController extends Controller {
     if ($report->canAttachFile()) {
       if ($request->file) {
         $this->addFile($request, $report);
-        return redirect()->back();
+        return \Redirect::to(\URL::previous() . "#abstracts");
       } else {
-        return redirect()->back();
+        return \Redirect::to(\URL::previous() . "#abstracts");
       }
     } else {
-      return redirect()->back();
+      return \Redirect::to(\URL::previous() . "#abstracts");
     }
-
   }
 
   public function destroy(Request $request) {
@@ -59,11 +68,11 @@ class ReportController extends Controller {
 
     if ($report->canDeleteReport()) {
       $report->delete();
-      return redirect()->back();
+      return \Redirect::to(\URL::previous() . "#abstracts")
+          ->withInput();
     } else {
-      return redirect()->back();
+      return \Redirect::to(\URL::previous() . "#abstracts")
+          ->withInput();
     }
-
   }
-
 }

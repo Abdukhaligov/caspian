@@ -44,10 +44,8 @@ class UserController extends Controller {
     ]);
 
     if ($validator->fails()) {
-      return redirect()
-          ->back()
+      return Redirect::to(\URL::previous() . "#user-profile")
           ->withErrors($validator)
-          ->with('pill', 'info')
           ->withInput();
     }
 
@@ -133,10 +131,8 @@ class UserController extends Controller {
     ]);
 
     if ($validator->fails()) {
-      return redirect()
-          ->back()
+      return Redirect::to(\URL::previous() . "#change-password")
           ->withErrors($validator)
-          ->with('pill', 'password')
           ->withInput();
     }
 
