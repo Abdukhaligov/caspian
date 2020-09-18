@@ -48,14 +48,10 @@ $data["event"] = \App\Models\Event::activeEvent(); ?>
         </a>
         <ul class="header_menu">
           <li class="{{Request::url() == route('home') ? "active" : ""}}">
-            <a href="{{route('home')}}" title="Home">
-              Home
-            </a>
+            <a href="{{route('home')}}" title="Home">Home</a>
           </li>
           <li class="{{!Request::is('about*') ?: "active"}} dropdown">
-            <a href="#0" title="About">
-              About
-            </a>
+            <a href="#0" title="About">About</a>
             <ul>
               <li class="{{Request::url() == route('about') ?"active": ""}}">
                 <a href="{{route('about')}}" title="About Us">About Us</a>
@@ -87,9 +83,7 @@ $data["event"] = \App\Models\Event::activeEvent(); ?>
             </a>
           </li>
           <li class="{{!Request::is('media*') ?: "active"}} dropdown">
-            <a href="#0" title="Media">
-              Media
-            </a>
+            <a href="#0" title="Media">Media</a>
             <ul>
               <li class="{{Request::url() == route('gallery') ? "active" : ""}}">
                 <a href="{{route('gallery')}}" title="Gallery">Gallery</a>
@@ -165,66 +159,80 @@ $data["event"] = \App\Models\Event::activeEvent(); ?>
     </nav>
     <nav class="header_mobile">
       <ul>
-        <li class="active">
-          <a href="/" title="Home">
-            Home
-          </a>
+        <li class="{{Request::url() == route('home') ? "active" : ""}}">
+          <a href="{{route('home')}}" title="Home">Home</a>
         </li>
-        <li class=" dropdown">
-          <a href="#0" title="About" data-toggle="dropdown">
-            About
-          </a>
+        <li class="{{!Request::is('about*') ?: "active"}} dropdown">
+          <a href="#0" title="About" data-toggle="dropdown">About</a>
           <ul style="display: none;">
-            <li class="">
-              <a href="/about.html" title="About Us">About Us</a>
+            <li class="{{Request::url() == route('about') ?"active": ""}}">
+              <a href="{{route('about')}}" title="About Us">About Us</a>
             </li>
-            <li class="">
-              <a href="/topics.html" title="Topics">Topics</a>
+            <li class="{{Request::url() == route('topics') ?"active": ""}}">
+              <a href="{{route('topics')}}" title="Topics">Topics</a>
             </li>
-            <li class="">
-              <a href="/committee.html" title="Committee">Committee</a>
+            <li class="{{Request::url() == route('committee') ?"active": ""}}">
+              <a href="{{route('committee')}}" title="Committee">Committee</a>
             </li>
-            <li class="">
-              <a href="/speakers.html" title="Speakers">Speakers</a>
+            <li class="{{Request::url() == route('speakers') ?"active": ""}}">
+              <a href="{{route('speakers')}}" title="Speakers">Speakers</a>
             </li>
-            <li class="">
-              <a href="/program.html" title="Program">Program</a>
+            <li class="{{Request::url() == route('program') ?"active": ""}}">
+              <a href="{{route('program')}}" title="Program">Program</a>
             </li>
           </ul>
         </li>
-        <li class="">
-          <a href="/register.html" title="Registration">
-            Registration
-          </a>
-        </li>
-        <li class="">
-          <a href="/news.html" title="News">
+        @guest
+          <li class="{{Request::url() == route('register') ? "active" : ""}}">
+            <a href="{{route('register')}}" title="Registration">
+              Registration
+            </a>
+          </li>
+        @endguest
+        <li class="{{Request::url() == route('news') ? "active" : ""}}">
+          <a href="{{route('news')}}" title="News">
             News
           </a>
         </li>
-        <li class=" dropdown">
-          <a href="#0" title="Media" data-toggle="dropdown">
-            Media
-          </a>
-          <ul style="display: none;">
-            <li class="">
-              <a href="/gallery.html" title="Gallery">Gallery</a>
+        <li class="{{!Request::is('media*') ?: "active"}} dropdown">
+          <a href="#0" title="Media" data-toggle="dropdown">Media</a>
+          <ul>
+            <li class="{{Request::url() == route('gallery') ? "active" : ""}}">
+              <a href="{{route('gallery')}}" title="Gallery">Gallery</a>
             </li>
-            <li class="">
-              <a href="/books.html" title="Abstract Books">Abstract Books</a>
+            <li class="{{Request::url() == route('abstractBook') ? "active" : ""}}">
+              <a href="{{route('abstractBook')}}" title="Abstract Books">Abstract Books</a>
             </li>
           </ul>
         </li>
-        <li class="">
-          <a href="/contacts.html" title="Contacts">
+        <li class="{{Request::url() == route('contacts') ? "active" : ""}}">
+          <a href="{{route('contacts')}}" title="Contacts">
             Contacts
           </a>
         </li>
-        <li class="">
-          <a href="/login.html" title="Login">
-            Login
-          </a>
-        </li>
+        @auth
+          <li class="dropdown {{Request::url() == route('cabinet') ? "active" : ""}}">
+            <a href="#0" title="{{Auth::user()->name }}" data-toggle="dropdown">
+              <i class="icon-user" aria-hidden="true"></i>{{Auth::user()->name }}
+            </a>
+            <ul>
+              <li class="{{Request::url() == route('cabinet') ? "active" : ""}}">
+                <a href="{{ route("cabinet") }}" title="Personal Cabinet">Personal Cabinet</a>
+              </li>
+              <li class="">
+                <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                   href="{{ route('logout') }}" title="Logout">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+              </li>
+            </ul>
+          </li>
+        @else
+          <li class="{{Request::url() == route('login') ? "active" : ""}}">
+            <a href="{{route('login')}}" title="Login">Login</a>
+          </li>
+        @endauth
       </ul>
     </nav>
   </header>
