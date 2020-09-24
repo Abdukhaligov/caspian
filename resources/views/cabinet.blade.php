@@ -219,9 +219,9 @@
                     @csrf
                     <h4 class="form-title">Category</h4>
                     <div class="form-group select">
-                      <select name="abstract_category_id" @error('abstract_category_id') class="error" @enderror>
+                      <select name="abstract_category_id"  data-set-options="topic" @error('abstract_category_id') class="error" @enderror>
                         @foreach($data['categories'] as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                          <option  @if(old('abstract_category_id') == $category->id ) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                       </select>
                       @error('abstract_category_id')
@@ -230,11 +230,13 @@
                     </div>
                     <h4 class="form-title">Topic</h4>
                     <div class="form-group select">
-                      <select name="topic_id" @error('topic_id') class="error" @enderror>
+                      <select name="topic_id" data-get-options="topic" @error('topic_id') class="error" @enderror>
                         @foreach($data['topics'] as $topic)
-                          <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                          <option @if(old('topic_id') == $topic->id ) selected @endif
+                                  data-topic="{{$topic->category_id}}" value="{{ $topic->id }}">{{ $topic->name }}</option>
                           @foreach($topic->children as $child)
-                            <option value="{{ $child->id }}"> - {{ $child->name }}</option>
+                            <option @if(old('topic_id') == $child->id ) selected @endif
+                                    data-topic="{{$topic->category_id}}" value="{{ $child->id }}"> - {{ $child->name }}</option>
                           @endforeach
                         @endforeach
                       </select>
