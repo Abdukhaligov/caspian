@@ -30,7 +30,7 @@ class ReportController extends Controller {
     ]);
 
     if ($validator->fails()) {
-      return \Redirect::to(\URL::previous() . "#abstracts")
+      return \Redirect::to(\URL::previous() . "#new-abstract")
           ->withErrors($validator)
           ->withInput();
     }

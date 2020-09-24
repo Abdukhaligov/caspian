@@ -194,7 +194,7 @@
                 </div>
                 <h4 class="form-title" data-show-if="is-speaker" style="display: none;">Category</h4>
                 <div class="form-group select" data-show-if="is-speaker" style="display: none;">
-                  <select name="category">
+                  <select name="category" data-set-options="topic">
                     @foreach($data['categories'] as $category)
                       <option @if(old('category') == $category->id ) selected @endif
                               value="{{ $category->id }}">{{ $category->name }}</option>
@@ -203,12 +203,14 @@
                 </div>
                 <h4 class="form-title" data-show-if="is-speaker" style="display: none;">Topic</h4>
                 <div class="form-group select" data-show-if="is-speaker" style="display: none;">
-                  <select name="abstract_topic_id">
+                  <select name="abstract_topic_id" data-get-options="topic">
                     @foreach($data['topics'] as $topic)
                       <option @if(old('abstract_topic_id') == $topic->id ) selected @endif
+                              data-topic="{{$topic->category_id}}"
                               value="{{ $topic->id }}">{{ $topic->name }}</option>
                       @foreach($topic->children as $child)
                         <option @if(old('abstract_topic_id') == $child->id ) selected @endif
+                                data-topic="{{$topic->category_id}}"
                                 value="{{ $child->id }}">- {{ $child->name }}</option>
                       @endforeach
                     @endforeach
