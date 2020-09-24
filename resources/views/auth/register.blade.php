@@ -196,7 +196,8 @@
                 <div class="form-group select" data-show-if="is-speaker" style="display: none;">
                   <select name="category">
                     @foreach($data['categories'] as $category)
-                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      <option @if(($fake ? $fakeUser->category : old('category')) == $category->id ) selected
+                              @endif value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                   </select>
                 </div>
