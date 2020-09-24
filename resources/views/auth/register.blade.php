@@ -196,8 +196,8 @@
                 <div class="form-group select" data-show-if="is-speaker" style="display: none;">
                   <select name="category">
                     @foreach($data['categories'] as $category)
-                      <option @if(($fake ? $fakeUser->category : old('category')) == $category->id ) selected
-                              @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                      <option @if(old('category') == $category->id ) selected @endif
+                              value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -205,9 +205,11 @@
                 <div class="form-group select" data-show-if="is-speaker" style="display: none;">
                   <select name="abstract_topic_id">
                     @foreach($data['topics'] as $topic)
-                      <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                      <option @if(old('abstract_topic_id') == $topic->id ) selected @endif
+                              value="{{ $topic->id }}">{{ $topic->name }}</option>
                       @foreach($topic->children as $child)
-                        <option value="{{ $child->id }}">- {{ $child->name }}</option>
+                        <option @if(old('abstract_topic_id') == $child->id ) selected @endif
+                                value="{{ $child->id }}">- {{ $child->name }}</option>
                       @endforeach
                     @endforeach
                   </select>
